@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  portfolio: one
+  title: MyString
+  body: MyText
+  purchase_price: 9.99
+  quantity: 9.99
+  symbol: MyString
+  name: MyString
+  portfolio_id: 1
+  purchase_date: MyString
+  strike: 9.99
+  expiration_date: MyString
+  stock_option: MyString
+
+two:
+  portfolio: two
+  title: MyString
+  body: MyText
+  purchase_price: 9.99
+  quantity: 9.99
+  symbol: MyString
+  name: MyString
+  portfolio_id: 1
+  purchase_date: MyString
+  strike: 9.99
+  expiration_date: MyString
+  stock_option: MyString

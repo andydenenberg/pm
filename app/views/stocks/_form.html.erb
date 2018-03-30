@@ -1,0 +1,77 @@
+<%= form_with(model: stock, local: true) do |form| %>
+  <% if stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+
+      <ul>
+      <% stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :portfolio_id %>
+    <%= form.text_field :portfolio_id, id: :stock_portfolio_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :stock_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :stock_body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purchase_price %>
+    <%= form.text_field :purchase_price, id: :stock_purchase_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, id: :stock_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :symbol %>
+    <%= form.text_field :symbol, id: :stock_symbol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :stock_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :portfolio_id %>
+    <%= form.number_field :portfolio_id, id: :stock_portfolio_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purchase_date %>
+    <%= form.text_field :purchase_date, id: :stock_purchase_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strike %>
+    <%= form.text_field :strike, id: :stock_strike %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration_date %>
+    <%= form.text_field :expiration_date, id: :stock_expiration_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stock_option %>
+    <%= form.text_field :stock_option, id: :stock_stock_option %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
