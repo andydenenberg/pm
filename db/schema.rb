@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330174616) do
+ActiveRecord::Schema.define(version: 20180330195003) do
+
+  create_table "portfolios", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.decimal "cash", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.integer "portfolio_id"
-    t.string "title"
-    t.text "body"
     t.decimal "purchase_price", precision: 10, scale: 2
     t.decimal "quantity", precision: 10, scale: 2
     t.string "symbol"
