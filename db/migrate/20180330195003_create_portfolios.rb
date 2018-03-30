@@ -2,7 +2,7 @@ class CreatePortfolios < ActiveRecord::Migration[5.1]
   def change
     create_table :portfolios do |t|
       t.integer :user_id
-      t.references :user, foreign_key: true
+#      t.references :user, foreign_key: true
       t.string :name
       t.decimal :cash,   :precision => 10, :scale => 2
 
