@@ -6,8 +6,6 @@
   <thead>
     <tr>
       <th>Portfolio</th>
-      <th>Title</th>
-      <th>Body</th>
       <th>Purchase price</th>
       <th>Quantity</th>
       <th>Symbol</th>
@@ -25,8 +23,6 @@
     <% @stocks.each do |stock| %>
       <tr>
         <td><%= stock.portfolio %></td>
-        <td><%= stock.title %></td>
-        <td><%= stock.body %></td>
         <td><%= stock.purchase_price %></td>
         <td><%= stock.quantity %></td>
         <td><%= stock.symbol %></td>
