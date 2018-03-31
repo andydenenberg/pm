@@ -1,35 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<table class="table table-bordered">
-  <thead>
-	<tr>
-	<td>Portfolio:</td>
-	<td>Purchase price:</td>
-	<td>Quantity:</td>
-	<td>Symbol:</td>
-	<td>Name:</td>
-	<td>Portfolio:</td>
-	<td>Purchase date:</td>
-	<td>Strike:</td>
-	<td>Expiration date:</td>
-	<td>Stock option:</td>
-  	</tr>
-  </thead>
-<tbody>
-  <tr>
-	<td><%= @stock.portfolio %></td>
-	<td><%= @stock.purchase_price %></td>
-	<td><%= @stock.quantity %></td>
-	<td><%= @stock.symbol %></td>
-	<td><%= @stock.name %></td>
-	<td><%= @stock.portfolio_id %></td>
-	<td><%= @stock.purchase_date %></td>
-	<td><%= @stock.strike %></td>
-	<td><%= @stock.expiration_date %></td>
-	<td><%= @stock.stock_option %></td>
-    </tr>
-  </tbody>
-</table>
-	
+<p>
+  <strong>Portfolio:</strong>
+  <%= @stock.portfolio %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @stock.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @stock.body %>
+</p>
+
+<p>
+  <strong>Purchase price:</strong>
+  <%= @stock.purchase_price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @stock.quantity %>
+</p>
+
+<p>
+  <strong>Symbol:</strong>
+  <%= @stock.symbol %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stock.name %>
+</p>
+
+<p>
+  <strong>Portfolio:</strong>
+  <%= @stock.portfolio_id %>
+</p>
+
+<p>
+  <strong>Purchase date:</strong>
+  <%= @stock.purchase_date %>
+</p>
+
+<p>
+  <strong>Strike:</strong>
+  <%= @stock.strike %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @stock.expiration_date %>
+</p>
+
+<p>
+  <strong>Stock option:</strong>
+  <%= @stock.stock_option %>
+</p>
+
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>

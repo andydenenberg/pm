@@ -5,6 +5,8 @@ class PortfoliosController < ApplicationController
   # GET /portfolios.json
   def index
     @portfolios = Portfolio.all
+    #sum-up a Portfolio
+    # Portfolio.find_by_name('R').stocks.sum { |s| s.quantity }.to_s
   end
 
   # GET /portfolios/1
