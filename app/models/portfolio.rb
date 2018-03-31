@@ -2,5 +2,5 @@ class Portfolio < ApplicationRecord
   belongs_to :user
 end
 
-#   rails g scaffold Portfolio user:references name:string cash:decimal
+#   rails g scaffold Portfolio name:string cash:decimal
 
