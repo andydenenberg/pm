@@ -8,19 +8,24 @@ class Portfolio < ApplicationRecord
   
   def total_stocks
     total = 0
-    stocks = self.stocks.where(:stock_option => 'Stock')
+    stocks = self.stocks.where(:stock_option => 'Stock').or(self.stocks.where(:stock_option => 'Fund'))
+    puts stocks.count
     stocks.each do |s|
-      price = Options.stock_price(s.symbol)[1]
-      if price.nil? 
-        price = Options.yahoo_price(s.symbol)
-        s.stock_option = 'Fund'  
-        s.save
-      end
-        total += price.to_f * s.quantity
+      total += s.quantity * s.price
     end
     return total
   end
   
+  def total_options
+    total = 0
+    options = self.stocks.where(:stock_option => 'Call Option').or(self.stocks.where(:stock_option => 'Put Option'))
+    puts options.count
+    options.each do |s|
+      total += s.quantity * s.price * 100
+    end
+    return total
+    
+  end
 end
 
 #   rails g scaffold Portfolio name:string cash:decimal

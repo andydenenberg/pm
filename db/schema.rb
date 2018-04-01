@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20180330195003) do
     t.string "name"
     t.string "purchase_date"
     t.decimal "strike", precision: 10, scale: 2
+    t.decimal "price"
+    t.string "as_of"
     t.string "expiration_date"
     t.string "stock_option"
     t.datetime "created_at", null: false

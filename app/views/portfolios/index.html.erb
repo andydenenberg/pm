@@ -104,25 +104,33 @@
 	      <th>Total Value</th>
 	      <th>Monthly Dividends</th>
 	      <th>Daily Dividends</th>
-	      <th colspan="3"></th>
 	    </tr>
 	  </thead>
 
 	  <tbody>
-	    <% @portfolios.each do |port| %>
+	    <% @ordered.each do |p| %>
 	      <tr>
+				<% port = Portfolio.find(p.first) %>
 	        <td><%= port.name %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_stocks) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_options) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks+port.total_options) %></td>
 	        <td class='text-right'><%= number_with_precision(0, :precision => 0, :delimiter => ',') %></td>
-	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks) %></td>
 	        <td class='text-right'><%= number_with_precision(0, :precision => 0, :delimiter => ',') %></td>
-	        <td class='text-right'><%= number_with_precision(0, :precision => 0, :delimiter => ',') %></td>
-	        <td><%= link_to 'Show', port %></td>
-	        <td><%= link_to 'Edit', edit_portfolio_path(port) %></td>
-	        <td><%= link_to 'Destroy', port, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	      </tr>
+	      </tr>		
 	    <% end %>
+	
+	      <tr>
+	        <td></td>
+	        <td class='text-right'><%= number_to_currency(@total_cash) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_stocks) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_options) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_cash+@total_stocks+@total_options) %></td>
+			<td></td>
+	        <td></td>
+	      </tr>
+	
 	  </tbody>
 	</table>
   </div>

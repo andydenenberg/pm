@@ -4,8 +4,14 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = Portfolio.all
+    totals = Hash.new
+    Portfolio.all.each { |p| totals[p.id] = (p.cash + p.total_stocks + p.total_options).to_f }
+    @ordered = totals.sort_by { |key, value | -value }
+    @total_cash = Portfolio.all.sum { |s| s.cash }
+    @total_stocks = Portfolio.all.sum { |s| s.total_stocks }
+    @total_options = Portfolio.all.sum { |s| s.total_options }
     #sum-up a Portfolio
+    
     # Portfolio.find_by_name('R').stocks.sum { |s| s.quantity }.to_s
   end
 
