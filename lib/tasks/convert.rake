@@ -17,7 +17,7 @@ namespace :convert do
           puts stocks.count
       stocks.each do |s|
         s = Stock.create!( :portfolio_id => Portfolio.find_by_name(s[0]).id, :symbol => s[1], :quantity => s[2], :stock_option => s[3], )
-      end      
+      end  
     end
 
   desc 'Create Options'
@@ -42,4 +42,10 @@ namespace :convert do
       end      
     end
 
+    desc 'Refresh Prices'
+        task :refresh => :environment do
+      Stock.check_all_for_funds    
+      Stock.refresh_all_prices
+    end
+    
 end
