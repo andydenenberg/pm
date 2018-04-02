@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cash: 9.99
+  stocks: 9.99
+  stocks_count: 1
+  options: 9.99
+  options_count: 9.99
+  total: 9.99
+  snapshot_date: 2018-04-01 18:47:45
+  portfolio_id: 1
+  daily_dividend: 9.99
+  daily_dividend_date: 2018-04-01 18:47:45
+
+two:
+  cash: 9.99
+  stocks: 9.99
+  stocks_count: 1
+  options: 9.99
+  options_count: 9.99
+  total: 9.99
+  snapshot_date: 2018-04-01 18:47:45
+  portfolio_id: 1
+  daily_dividend: 9.99
+  daily_dividend_date: 2018-04-01 18:47:45

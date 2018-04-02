@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @history.cash %>
+</p>
+
+<p>
+  <strong>Stocks:</strong>
+  <%= @history.stocks %>
+</p>
+
+<p>
+  <strong>Stocks count:</strong>
+  <%= @history.stocks_count %>
+</p>
+
+<p>
+  <strong>Options:</strong>
+  <%= @history.options %>
+</p>
+
+<p>
+  <strong>Options count:</strong>
+  <%= @history.options_count %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @history.total %>
+</p>
+
+<p>
+  <strong>Snapshot date:</strong>
+  <%= @history.snapshot_date %>
+</p>
+
+<p>
+  <strong>Portfolio:</strong>
+  <%= @history.portfolio_id %>
+</p>
+
+<p>
+  <strong>Daily dividend:</strong>
+  <%= @history.daily_dividend %>
+</p>
+
+<p>
+  <strong>Daily dividend date:</strong>
+  <%= @history.daily_dividend_date %>
+</p>
+
+<%= link_to 'Edit', edit_history_path(@history) %> |
+<%= link_to 'Back', histories_path %>

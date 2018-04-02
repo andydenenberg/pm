@@ -1,5 +1,11 @@
 namespace :convert do
 
+# heroku drop db
+# heroku pg:reset DATABASE
+
+desc 'Build the Databases'
+task :setup => ["db:migrate", "convert:portfolios", "convert:stocks", "convert:options", "convert:refresh" ]
+
   desc 'Create Portfolios'
 # Portfolio.all.collect { |i| i.cash.to_f }
   portfolios = ["ETrade", "SLAT1", "SLAT2", "A&R", "DHC", "MSA", "River North", "R", "A Roth IRA", "A 401K Rollover", "R 401K Rollover", "R Roth IRA", "HSA", "BAD Inherited Roth", "GRATS 2015"]
@@ -31,14 +37,8 @@ namespace :convert do
         puts s
         puts s[0]
         puts Portfolio.find_by_name(s[0])
-
-        s = Stock.create!( :portfolio_id => Portfolio.find_by_name(s[0]).id,
-                           :symbol => s[1],
-                           :quantity => s[2],
-                           :stock_option => s[3],
-                           :strike => s[4],
-                           :expiration_date => s[5]
-                        )
+        s = Stock.create!( :portfolio_id => Portfolio.find_by_name(s[0]).id, :symbol => s[1],
+                           :quantity => s[2], :stock_option => s[3], :strike => s[4], :expiration_date => s[5] )
       end      
     end
 

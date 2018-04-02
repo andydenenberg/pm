@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330195003) do
+ActiveRecord::Schema.define(version: 20180401234745) do
+
+  create_table "histories", force: :cascade do |t|
+    t.decimal "cash"
+    t.decimal "stocks"
+    t.integer "stocks_count"
+    t.decimal "options"
+    t.decimal "options_count"
+    t.decimal "total"
+    t.datetime "snapshot_date"
+    t.integer "portfolio_id"
+    t.decimal "daily_dividend"
+    t.datetime "daily_dividend_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "portfolios", force: :cascade do |t|
     t.integer "user_id"
