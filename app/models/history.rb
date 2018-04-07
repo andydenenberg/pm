@@ -63,7 +63,11 @@ class History < ApplicationRecord
 
   #      dates.push( date.strftime('%b %Y') )
   #      dates.push( date.strftime('%m/%d/%y') )
-        new_value = History.where(:portfolio_id => portfolio_id, snapshot_date: Time.local(year, month, day))
+#        new_value = History.where(:portfolio_id => portfolio_id, snapshot_date: Time.local(year, month, day))
+        selected_date = Time.local(year, month, day)
+        new_value = History.where(:portfolio_id => portfolio_id).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
+
+#        new_value = History.where(:portfolio_id => portfolio_id).where(['snapshot_date >= ? AND snapshot_date < ?', Time.local(year, month, day), Time.local(year, month, day+1) ])
        if new_value.last.nil? 
          new_value = 0
        else
