@@ -9,6 +9,7 @@ class PortfoliosController < ApplicationController
     @ordered = totals.sort_by { |key, value | -value }
     @total_cash = Portfolio.all.sum { |s| s.cash }
     @total_stocks = Portfolio.all.sum { |s| s.total_stocks }
+    @total_stocks_change = Portfolio.all.sum { |s| s.total_stocks_change }
     @total_options = Portfolio.all.sum { |s| s.total_options }
     #sum-up a Portfolio
     

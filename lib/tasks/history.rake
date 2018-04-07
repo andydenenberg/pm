@@ -1,7 +1,57 @@
 namespace :history do
-    
+   
+#  # Translation Table at 626 
+#  # [["ETrade", 3], ["SLAT1", 4], ["SLAT2", 5], ["A&R", 6], ["DHC", 7], ["MSA", 8], ["River North", 9], ["R", 10], ["A Roth IRA", 11], ["A 401K Rollover", 12], ["R 401K Rollover", 13], ["R Roth IRA", 14], ["HSA", 15], ["BAD Inherited Roth", 16], ["GRATS 2015", 17]] 
+#  # on Heroku
+#  # [["ETrade", 1], ["SLAT1", 2], ["SLAT2", 3], ["A&R", 4], ["DHC", 5], ["MSA", 6], ["River North", 7], ["R", 8], ["A Roth IRA", 9], ["A 401K Rollover", 10], ["R 401K Rollover", 11], ["R Roth IRA", 12], ["HSA", 13], ["BAD Inherited Roth", 14], ["GRATS 2015", 15]]
+#  home_ids = [["ETrade", 3], ["SLAT1", 4], ["SLAT2", 5], ["A&R", 6], ["DHC", 7], ["MSA", 8], ["River North", 9], ["R", 10], ["A Roth IRA", 11], ["A 401K Rollover", 12], ["R 401K Rollover", 13], ["R Roth IRA", 14], ["HSA", 15], ["BAD Inherited Roth", 16], ["GRATS 2015", 17]] 
+#  heroku_ids = [["ETrade", 1], ["SLAT1", 2], ["SLAT2", 3], ["A&R", 4], ["DHC", 5], ["MSA", 6], ["River North", 7], ["R", 8], ["A Roth IRA", 9], ["A 401K Rollover", 10], ["R 401K Rollover", 11], ["R Roth IRA", 12], ["HSA", 13], ["BAD Inherited Roth", 14], ["GRATS 2015", 15]]  
+#  home_ids.each_with_index do |home, index|
+#    h = History.where(:portfolio_id => home )
+#    h.each do |n|
+#      n.portfolio_id = heroku_ids[index][1]
+#      puts heroku_ids[index][0] + ' = ' + home_ids[index][0]
+#      n.save
+#    end
+#  end 
+
+    #    all_dates = History.by_month("January", year: 2017).distinct.pluck(:snapshot_date)
+
+ 
+    desc 'Create All Portfolios History'
+      task :all_ports => :environment do
+
+        portfolio_id = 9999  # the all portfolios record
+
+        all_dates = History.all.distinct.pluck(:snapshot_date)
+        all_dates.each do |date|
+          puts date
+          total_cash = History.where(:snapshot_date => date ).sum { |h| h.cash } 
+          total_stocks = History.where(:snapshot_date => date ).sum { |h| h.stocks }
+          total_stocks_count = History.where(:snapshot_date => date ).sum { |h| h.stocks_count } 
+          total_options = History.where(:snapshot_date => date ).sum { |h| h.options }
+          total_options_count = History.where(:snapshot_date => date ).sum { |h| h.options_count } 
+          total_daily_dividend = History.where(:snapshot_date => date ).sum { |h| h.daily_dividend || 0 }                  
+          total_all = History.where(:snapshot_date => date ).sum { |h| h.total }
+          h = History.create ( { portfolio_id: portfolio_id, cash: total_cash, snapshot_date: date,
+                                 stocks: total_stocks, stocks_count: total_stocks_count, 
+                                 options: total_options, options_count: total_options_count,
+                                 daily_dividend: total_daily_dividend, daily_dividend_date: date,
+                                 total: total_all } )
+#          STDIN.gets 
+#          History.create! (cash: total_cash, stocks: total_stocks, stocks_count: total_stocks_count, options: total_options,
+#                           daily_dividend: total_daily_dividend, total: total_all )
+        end
+        puts "All History created"     
+      end
+
+  
+  
   desc 'Upload History'
-      task :upload => :environment do
+  #   target = open('history.json', 'w')
+  #   target.write(History.all.to_json)
+  #   target.close
+      task :upload_history => :environment do
         url = "https://s3.us-east-2.amazonaws.com/her-history/history.json" 
         @agent = Mechanize.new
           page = @agent.get(url)
@@ -11,7 +61,7 @@ namespace :history do
             h = History.create!(h) 
           end
       end
-end
+  end
           #   target = open('history.json', 'w')
           #   target.write(History.all.to_json)
           #   target.close

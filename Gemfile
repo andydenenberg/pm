@@ -7,6 +7,8 @@ end
 
 gem 'mechanize'
 
+gem 'by_star'
+
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
 

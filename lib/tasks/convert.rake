@@ -4,16 +4,21 @@ namespace :convert do
 # heroku pg:reset DATABASE
 
 desc 'Build the Databases'
-task :setup => ["db:migrate", "convert:portfolios", "convert:stocks", "convert:options", "convert:refresh" ]
+task :setup => ["db:migrate", 
+                "convert:portfolios", "convert:stocks", "convert:options", 
+                "convert:refresh", "convert:upload_history",
+                "history:all_ports" ]
 
   desc 'Create Portfolios'
+  # create and dump 
 # Portfolio.all.collect { |i| i.cash.to_f }
   portfolios = ["ETrade", "SLAT1", "SLAT2", "A&R", "DHC", "MSA", "River North", "R", "A Roth IRA", "A 401K Rollover", "R 401K Rollover", "R Roth IRA", "HSA", "BAD Inherited Roth", "GRATS 2015"]
   cash = [63654.11, 1189041.0, 666362.57, 44875.91, 671063.84, 220911.51, 513802.0, 21034.79, 46141.03, 99309.92, 108924.47, 25651.99, 3800.0, 5043.44, 0.0]
     task :portfolios => :environment do
       portfolios.each_with_index do |p, i|
-        Portfolio.create!( :name => p, :cash => cash[i] )
-      end      
+        Portfolio.create!( :id => i+3, :name => p, :cash => cash[i] )
+      end 
+      puts "Portfolios Created"     
     end
     
   desc 'Create Stocks'
@@ -24,6 +29,7 @@ task :setup => ["db:migrate", "convert:portfolios", "convert:stocks", "convert:o
       stocks.each do |s|
         s = Stock.create!( :portfolio_id => Portfolio.find_by_name(s[0]).id, :symbol => s[1], :quantity => s[2], :stock_option => s[3], )
       end  
+      puts "Stock Created"     
     end
 
   desc 'Create Options'
@@ -39,13 +45,32 @@ task :setup => ["db:migrate", "convert:portfolios", "convert:stocks", "convert:o
         puts Portfolio.find_by_name(s[0])
         s = Stock.create!( :portfolio_id => Portfolio.find_by_name(s[0]).id, :symbol => s[1],
                            :quantity => s[2], :stock_option => s[3], :strike => s[4], :expiration_date => s[5] )
-      end      
+      end 
+      puts "Options Created"          
     end
 
     desc 'Refresh Prices'
-        task :refresh => :environment do
-      Stock.check_all_for_funds    
-      Stock.refresh_all_prices
-    end
+      task :refresh => :environment do
+        Stock.check_all_for_funds    
+        Stock.refresh_all_prices
+        puts "Prices Refreshed"     
+      end
+    
+    desc 'Upload History'
+    #   target = open('history.json', 'w')
+    #   target.write(History.all.to_json)
+    #   target.close
+        task :upload_history => :environment do
+          url = "https://s3.us-east-2.amazonaws.com/her-history/history.json" 
+          @agent = Mechanize.new
+            page = @agent.get(url)
+            data = JSON.parse(page.body) 
+            data.each do |h|
+              puts h.inspect
+              h = History.create!(h) 
+            end
+        end
+        
+
     
 end

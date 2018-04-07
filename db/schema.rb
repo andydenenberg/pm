@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401234745) do
+ActiveRecord::Schema.define(version: 20180406155056) do
 
   create_table "histories", force: :cascade do |t|
     t.decimal "cash"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180401234745) do
     t.datetime "daily_dividend_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["snapshot_date"], name: "index_histories_on_snapshot_date"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180401234745) do
     t.string "stock_option"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "change"
   end
 
 end

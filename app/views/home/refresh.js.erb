@@ -1,0 +1,18 @@
+$(".refresh_button").removeClass("btn-outline-secondary"); 
+$(".refresh_button").addClass("btn-outline-success");
+
+
+//chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @period_label %>" ;
+chart.data.datasets[0].data = <%= @values.to_s.html_safe %> ;
+chart.data.datasets[0].label = "<%= @name %>" ;
+
+chart.options.scales.yAxes[0].ticks.max = 5000000 ;
+chart.options.scales.yAxes[0].ticks.min = 0 ;
+chart.options.scales.yAxes[0].ticks.stepSize = 1000000 ;
+
+chart.update() ;
+
+document.getElementById("portfolio_name").innerHTML = "<%= @name %>" ; 
+
+
+//document.getElementById("dataArray").innerHTML = 'updated' ;

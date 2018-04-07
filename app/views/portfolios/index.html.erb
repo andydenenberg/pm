@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -82,14 +80,23 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 class="h2">Portfolios</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
+			<%= link_to 'Refresh', refresh_path(:key => 'Stocks'), :remote => true, class: 'btn btn-sm btn-outline-secondary refresh_button' %>
+	
           <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
+			  <%= link_to 'Table', portfolios_path, :class => 'btn btn-sm btn-outline-secondary active' %>
+			  <%= link_to 'Graph', home_path, :class => 'btn btn-sm btn-outline-secondary' %>
           </div>
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
+		<div class="dropdown">
+		  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    From Start
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#">From Start</a>
+		    <a class="dropdown-item" href="#">Year to Date</a>
+		    <a class="dropdown-item" href="#">Quarter to Date</a>
+		    <a class="dropdown-item" href="#">Month to Date</a>
+		  </div>
+		</div>
         </div>
       </div>
 
@@ -102,8 +109,7 @@
 	      <th>Stocks</th>
 	      <th>Options</th>
 	      <th>Total Value</th>
-	      <th>Monthly Dividends</th>
-	      <th>Daily Dividends</th>
+	      <th>Daily Change</th>
 	    </tr>
 	  </thead>
 
@@ -116,8 +122,7 @@
 	        <td class='text-right'><%= number_to_currency(port.total_stocks) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_options) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks+port.total_options) %></td>
-	        <td class='text-right'><%= number_with_precision(0, :precision => 0, :delimiter => ',') %></td>
-	        <td class='text-right'><%= number_with_precision(0, :precision => 0, :delimiter => ',') %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_change) %></td>
 	      </tr>		
 	    <% end %>
 	
@@ -127,8 +132,8 @@
 	        <td class='text-right'><%= number_to_currency(@total_stocks) %></td>
 	        <td class='text-right'><%= number_to_currency(@total_options) %></td>
 	        <td class='text-right'><%= number_to_currency(@total_cash+@total_stocks+@total_options) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_stocks_change) %></td>
 			<td></td>
-	        <td></td>
 	      </tr>
 	
 	  </tbody>

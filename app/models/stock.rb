@@ -12,8 +12,9 @@ class Stock < ApplicationRecord
       option = Options.option_price(self.symbol, self.strike, self.expiration_date, self.stock_option)
         price = self.quantity > 0 ? option['Bid'] : option['Ask']
       data = [ self.symbol.upcase, price, 0, option['Time'] ]
-    end        
+    end  
     self.price = data[1]
+    self.change = data[2]
     self.as_of = data[3]
     self.save
   end
