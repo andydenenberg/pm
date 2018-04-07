@@ -25,14 +25,13 @@ namespace :history do
 
         all_dates = History.all.distinct.pluck(:snapshot_date)
         all_dates.each do |date|
-          puts date
-          total_cash = History.where(:snapshot_date => date ).sum { |h| h.cash } 
-          total_stocks = History.where(:snapshot_date => date ).sum { |h| h.stocks }
-          total_stocks_count = History.where(:snapshot_date => date ).sum { |h| h.stocks_count } 
-          total_options = History.where(:snapshot_date => date ).sum { |h| h.options }
-          total_options_count = History.where(:snapshot_date => date ).sum { |h| h.options_count } 
-          total_daily_dividend = History.where(:snapshot_date => date ).sum { |h| h.daily_dividend || 0 }                  
-          total_all = History.where(:snapshot_date => date ).sum { |h| h.total }
+          total_cash = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.cash } 
+          total_stocks = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.stocks }
+          total_stocks_count = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.stocks_count } 
+          total_options = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.options }
+          total_options_count = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.options_count } 
+          total_daily_dividend = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.daily_dividend || 0 }                  
+          total_all = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.total }
           h = History.create ( { portfolio_id: portfolio_id, cash: total_cash, snapshot_date: date,
                                  stocks: total_stocks, stocks_count: total_stocks_count, 
                                  options: total_options, options_count: total_options_count,
