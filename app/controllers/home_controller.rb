@@ -25,6 +25,9 @@ class HomeController < ApplicationController
     results = History.graph_data(portfolio, period)
     
     @values = results[0]
+    
+    puts @values.inspect
+    
     @name = portfolio    
       
  #     system "rake convert:refresh RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
