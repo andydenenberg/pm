@@ -17,6 +17,10 @@ namespace :history do
 
     #    all_dates = History.by_month("January", year: 2017).distinct.pluck(:snapshot_date)
 
+    desc 'Daily Snapshot'
+        task :daily_snapshot => :environment do
+          History.daily_snapshot
+        end
  
     desc 'Create All Portfolios History'
       task :all_ports => :environment do

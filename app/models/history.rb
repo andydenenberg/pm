@@ -6,7 +6,7 @@ class History < ApplicationRecord
       years = [Date.today.year]
       months = (1..12)
       case period
-      when 'From Start'
+      when 'from Start'
         years = (2013..(Date.today.year))
       when 'Year to Date'
 
@@ -30,44 +30,18 @@ class History < ApplicationRecord
        end
        time = time[0..-1] + ' ]'
 
-      return [ values.to_s.gsub(" 0,"," ,").gsub("[0,","[ "), time ]
+      return [ values, time ]
 
     end
 
     def self.month_totals(year, month, portfolio_id)
-
-  #    dates = [ ]
-  #    values = [ ]
-
-  #    first_day = 1
-  #    last_value = 0
-  #    until last_value != 0 or first_day > 30
-  #    record = History.where(:portfolio_id => portfolio_id).by_day( Time.local(year, month, first_day) )
-  #        if record.empty?
-  #          first_day += 1
-  #        else
-  #          previous_record = History.where(:portfolio_id => portfolio_id).where("id < ?", record.last.id).last
-  #          puts record.last.id
-  #          puts previous_record.id
-  #          last_value = previous_record.total.to_f 
-  #        end
-  #    end
-
     time = ''
     values = [ ]
       last_value = 0
       (1..Time.days_in_month(month, year)).each do |day|
-  #      date = Time.local(year, month, day)
-  #      dates.push( date.strftime('%B') )
         time += " new Date(#{year}, #{month-1}, #{day}),"
-
-  #      dates.push( date.strftime('%b %Y') )
-  #      dates.push( date.strftime('%m/%d/%y') )
-#        new_value = History.where(:portfolio_id => portfolio_id, snapshot_date: Time.local(year, month, day))
         selected_date = Time.local(year, month, day)
         new_value = History.where(:portfolio_id => portfolio_id).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
-
-#        new_value = History.where(:portfolio_id => portfolio_id).where(['snapshot_date >= ? AND snapshot_date < ?', Time.local(year, month, day), Time.local(year, month, day+1) ])
        if new_value.last.nil? 
          new_value = 0
        else
@@ -77,5 +51,77 @@ class History < ApplicationRecord
       end
       return values, time
     end
+  
+  
+  def daily_snapshot_total
+            portfolio_id = 9999  # the all portfolios record
+
+            all_dates = History.all.distinct.pluck(:snapshot_date)
+            all_dates.each do |date|
+              total_cash = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.cash } 
+              total_stocks = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.stocks }
+              total_stocks_count = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.stocks_count } 
+              total_options = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.options }
+              total_options_count = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.options_count } 
+              total_daily_dividend = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.daily_dividend || 0 }                  
+              total_all = History.where(:snapshot_date => date.beginning_of_day..date.end_of_day).sum { |h| h.total }
+              h = History.create ( { portfolio_id: portfolio_id, cash: total_cash, snapshot_date: date,
+                                     stocks: total_stocks, stocks_count: total_stocks_count, 
+                                     options: total_options, options_count: total_options_count,
+                                     daily_dividend: total_daily_dividend, daily_dividend_date: date,
+                                     total: total_all } )
+    #          STDIN.gets 
+    #          History.create! (cash: total_cash, stocks: total_stocks, stocks_count: total_stocks_count, options: total_options,
+    #                           daily_dividend: total_daily_dividend, total: total_all )
+            end   
+  end
+  
+  def self.daily_snapshot # store in History record in DB
+
+    Stock.refresh_all_prices
+    Stock.refresh_all_dividends
+
+    date = Date.today
+    
+    total_cash = 0
+    total_stocks = 0
+    total_stocks_count = 0
+    total_options = 0
+    total_options_count = 0
+    total_daily_dividend = 0
+    total_all = 0
+    
+    Portfolio.all.each do |portfolio|
+      all_secs = portfolio.stocks
+      hist = History.new ( { portfolio_id: portfolio.id } )
+      hist.snapshot_date = date
+      hist.cash = portfolio.cash
+        total_cash += portfolio.cash 
+
+      stocks = all_secs.where(:stock_option => 'Stock').or(all_secs.where(:stock_option => 'Fund'))
+        hist.stocks_count = stocks.count
+          total_stocks_count += stocks.count
+        hist.stocks = stocks.reduce(0) { |sum, stock| sum + ( stock.quantity * stock.price ) }
+          total_stocks += hist.stocks
+        hist.daily_dividend = stocks.reduce(0) { |sum, stock| sum + ( stock.daily_dividend * stock.quantity ) }
+          total_daily_dividend += hist.daily_dividend
+        hist.daily_dividend_date = Time.now.beginning_of_day()
+          
+      options = all_secs.where('stock_option LIKE ?', '%' + 'Option' + '%')
+        hist.options_count = options.count
+          total_options_count += options.count
+        hist.options = options.reduce(0) { |sum, option| sum + option.quantity * option.price * 100 }
+          total_options = hist.options
+      hist.total = hist.options + hist.stocks + hist.cash
+          total_all += hist.total
+      hist.save          
+    end
+      h = History.create ( { portfolio_id: 9999, cash: total_cash, snapshot_date: date,
+                           stocks: total_stocks, stocks_count: total_stocks_count, 
+                           options: total_options, options_count: total_options_count,
+                           daily_dividend: total_daily_dividend, daily_dividend_date: date,
+                           total: total_all } )
+    
+  end
   
 end

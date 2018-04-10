@@ -4,15 +4,22 @@ $(".refresh_button").addClass("btn-outline-success");
 
 //chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @period_label %>" ;
 chart.data.datasets[0].data = <%= @values.to_s.html_safe %> ;
+chart.data.labels = <%= @time %> ;
+
 chart.data.datasets[0].label = "<%= @name %>" ;
 
-chart.options.scales.yAxes[0].ticks.max = 5000000 ;
-chart.options.scales.yAxes[0].ticks.min = 0 ;
-chart.options.scales.yAxes[0].ticks.stepSize = 1000000 ;
+//chart.options.scales.yAxes[0].ticks.max = <%= @max %> ;
+//console.log(chart.options.scales.yAxes[0].ticks.max) ;
+
+chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
+//chart.options.scales.yAxes[0].ticks.stepSize = ? ;
 
 chart.update() ;
 
+ShowChart() ;
+
 document.getElementById("portfolio_name").innerHTML = "<%= @name %>" ; 
+document.getElementById("period").innerHTML = "<%= @period %>" ; 
 
 
 //document.getElementById("dataArray").innerHTML = 'updated' ;

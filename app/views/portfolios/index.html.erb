@@ -1,102 +1,68 @@
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="<%= portfolios_path %>">
+                <span data-feather="home"></span>
+                Table <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= home_path %>">
+                <span data-feather="file"></span>
+                Graph 
+              </a>
+            </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link" href="#">
               <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Utilities 
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              Customers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-              Reports
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers"></span>
-              Integrations
-            </a>
-          </li>
-        </ul>
+          </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Saved reports</span>
-          <a class="d-flex align-items-center text-muted" href="#">
-            <span data-feather="plus-circle"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Current month
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="plus-circle"></span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Last quarter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Social engagement
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Year-end sale
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 class="h2">Portfolios</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-			<%= link_to 'Refresh', refresh_path(:key => 'Stocks'), :remote => true, class: 'btn btn-sm btn-outline-secondary refresh_button' %>
-	
-          <div class="btn-group mr-2">
-			  <%= link_to 'Table', portfolios_path, :class => 'btn btn-sm btn-outline-secondary active' %>
-			  <%= link_to 'Graph', home_path, :class => 'btn btn-sm btn-outline-secondary' %>
-          </div>
-		<div class="dropdown">
-		  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    From Start
-		  </button>
-		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		    <a class="dropdown-item" href="#">From Start</a>
-		    <a class="dropdown-item" href="#">Year to Date</a>
-		    <a class="dropdown-item" href="#">Quarter to Date</a>
-		    <a class="dropdown-item" href="#">Month to Date</a>
-		  </div>
-		</div>
+			<%= link_to 'Refresh', update_prices_path, :remote => true, class: 'btn btn-sm btn-outline-secondary refresh_button' %>
         </div>
       </div>
 
@@ -114,15 +80,14 @@
 	  </thead>
 
 	  <tbody>
-	    <% @ordered.each do |p| %>
+	    <% @ordered.each do |port| %>
 	      <tr>
-				<% port = Portfolio.find(p.first) %>
-	        <td><%= port.name %></td>
+	        <td><%= link_to port.name, portfolio_path(port.id) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_stocks) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_options) %></td>
-	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks+port.total_options) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_stocks_change) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
 	      </tr>		
 	    <% end %>
 	

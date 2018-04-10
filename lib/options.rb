@@ -4,95 +4,6 @@
 module Options
   require 'csv'
   require 'open-uri'
-
-# Get current stock price from Yahoo Finance 
-# method is optimized to pack requests in groups of up to 100 symbols
-# expects and array of symbol strings 
-
-#  def self.stock_price(symbols) 
-#    list = symbols.join(',')
-#    url = "http://download.finance.yahoo.com/d/quotes.csv?s=#{list}&f=snl1d1t1c1&e=.csv"
-#    sym_list = [ ]
-#    begin
-#      doc = open(url)     
-#      got_data = doc.read
-#      t = symbols.length
-#      t.times do |j|
-#        data = CSV.parse(got_data)[j-1]
-#        current_price = { }
-#        ['Symbol', 'Name', 'LastTrade', 'LastTradeDate', 'LastTradeTime', 'Change' ].each_with_index { |title, i| current_price[title] = data[i] }
-        
-#        date = current_price['LastTradeDate'].match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/)
-#        if !date.nil?
-#          # create rails compatible data format - LastUpdate
-#          current_price['LastUpdate'] = date[3] + '/' + date[1] + '/' + date[2] + ' ' + current_price['LastTradeTime']
-#          current_price['Error'] = nil
-#        else
-#          current_price['Error'] = 'Symbol not found.'
-#        end
-#        sym_list.push current_price
-#       end
-#      return sym_list
-#
-#    rescue Timeout::Error
-#      return ["The request timed out...skipping."]
-#    rescue => e
-#      return ["The request returned an error - #{e.inspect}."]
-#    end      
-#  end  
-
-#  def self.stock_price(symbol)
-#    require "net/http"
-#    require "uri"
-#    require 'rubygems'
-#    require 'mechanize'
-#    require 'json'
-#    require 'nokogiri'
-#
-#    @agent = Mechanize.new 
-#
-#     url = "https://finance.google.com/finance?q=NYSE:#{symbol.upcase}"    
-#     puts url
-#             begin
-#               page = @agent.get(url)
-#             rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
-#               puts '\n\n\nRetrying...\n\n\n'
-#               page = @agent.get(url)
-#             end  
-#             payload = page.body    
-#             doc = Nokogiri::HTML(payload)             
-#             last_price = doc.xpath('//span[@class="pr"]')             
-#             if !last_price.empty?
-#               last_price = last_price.children.to_s.split('">').last.gsub("</span>\n",'')
-#               change = doc.xpath('//span[@class="ch bld"]').children.first.to_s.split('">').last.gsub("</span>",'').gsub('+','')             
-#               time = Time.now.strftime("%Y/%m/%d %H:%M")
-#               ret = [symbol.upcase, last_price, change, time]
-#             else
-#               ret = [ ]
-#             end  
-#  end
-
-  def self.portfolio_total_stocks(portfolio_name)
-      total = 0
-      stocks = Portfolio.find_by_name(portfolio_name).stocks.where(:stock_option => 'Stock')
-      stocks.each do |s|
-#        puts total
-        price = Options.stock_price(s.symbol)[1]
-        if price.nil? 
-          price = Options.yahoo_price(s.symbol)
-#          puts s.symbol + ' - ' +s.stock_option+ ' is a Mutual Fund  - price:' + price
-          s.stock_option = 'Fund'  
-          s.save
-        end
-          total += price.to_f * s.quantity
-#        total += Options.yahoo_price(s.symbol).to_f * s.quantity
-      end
-      return total
-  end
-  
-  
-#   <span class="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)" data-reactid="35"><!-- react-text: 36 -->16.39<!-- /react-text --></span>
-#   <td class="C(black) W(51%)" data-reactid="38"><span data-reactid="39">Previous Close</span></td>
  
   def self.yahoo_price(symbol)     
     @agent = Mechanize.new 
@@ -107,7 +18,7 @@ module Options
     rescue => e
       return ["The request returned an error - #{e.inspect}."]
     end     
-    return [ symbol.upcase, price.to_s, change.to_s.split('(')[0], Time.now.strftime('%m/%d/%y %H:%M%p') ]       
+    return [ symbol.upcase, price.to_s, change.to_s.split('(')[0], Time.now.strftime("%Y/%m/%d %H:%M") ]       
   end  
   
   
@@ -145,37 +56,14 @@ module Options
         last_price = data['latestPrice'].to_s
         change = data["change"].to_s
         time = data["latestTime"]
-        ret = [symbol.upcase, last_price, change, time]
+        date = Date.today.strftime("%Y/%m/%d")
+        ret = [symbol.upcase, last_price, change, Time.parse(date + ' ' + time).strftime("%Y/%m/%d %H:%M")]
       rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
 #        puts "#{symbol} - Unknown Response"
       end       
     return ret
   end 
     
- 
- 
-    def self.refresh_stocks      
-      dead = [ ]
-      
-      Price.where(:sec_type => 'Stock').each do |stock|
-            result = self.stock_price(stock.symbol)
-          if !result.empty?
-            stock.last_price = result[1].gsub(',','').to_f
-            stock.last_update = result[3]
-    #        2013-11-11 19:40:00
-            stock.change = !result[2].blank? ? result[2].to_f : 0.0
-            stock.save
-          else
-            dead.push stock.symbol
-          end          
-          puts dead.count
-          puts dead.inspect          
-      end
-      return true
-    end
-
-
-
  
 # Get current Option price from yahoo
   def self.option_price(symbol,strike,date,stock_option)
@@ -187,8 +75,6 @@ module Options
     require 'nokogiri'
 
     @agent = Mechanize.new 
-
-# => 01/17/2015
      format_date =  date[8..9] + date[0..1] + date[3..4] 
      format_strike = "%08d" % ActionController::Base.helpers.number_with_precision(strike, precision: 3).to_s.split('.').join
      type = stock_option == 'Call Option' ? 'C' : 'P'     
@@ -206,9 +92,6 @@ module Options
           page = @agent.get(url)
         end  
         payload = page.body    
-
-puts payload.length
-
         doc = Nokogiri::HTML(payload)
 #        ask = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[3].to_s
         ask = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[3].to_s.split('data-reactid="55">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
@@ -219,42 +102,73 @@ puts payload.length
 #        bid = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[2].to_s
         previous_close = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[0].to_s.split('data-reactid="40">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
         bid = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[2].to_s.split('data-reactid="50">').last.split('</span>').first.split('>').last
-        time = doc.search("[text()*='EST']").first.to_s.split('">').last[5..-1].split('EST').first.strip
+        time = doc.search("[text()*='EDT']").first.to_s.split('">').last[5..-1].split('EST').first.strip
         date = Date.today.strftime("%Y/%m/%d")
-        date = date + ' ' + time
-                
-        puts "bid: #{bid} ask: #{ask} prev: #{previous_close}"
-              
+        date = date + ' ' + time                
+#        puts "bid: #{bid} ask: #{ask} prev: #{previous_close}"              
         return { 'Time' => Time.parse(date).strftime("%Y/%m/%d %H:%M"), 'Bid' => bid, 'Ask' => ask, 'Previous_Close' => previous_close }
   end
   
+  
+  def self.check_dividend(symbol,date) # "2018-02-15"
+    url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1m" 
+    puts url
+    # "paymentDate":"2018-02-15"
+    # "amount":0.63
+    @agent = Mechanize.new
+    dividends = 0
+    ret = [symbol.upcase, date, dividends]
+      begin
+        page = @agent.get(url)
+        response = page.body
+        if response.length > 3 
+          data = response
+          data = JSON.parse data
+          data.each do |d| 
+            puts d
+            paymentDate = d['paymentDate']
+            if paymentDate == date
+                dividends += d["amount"]
+                puts dividends
+            end
+          end
+           ret = [symbol.upcase, date, dividends]
+        end
+      rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
+        puts 'Unknown Reponse'
+      end       
+    puts ret.inspect
+    puts 
+    return ret
+  end
+  
 
-# Refresh the Price List
-  def self.refresh_all
-    puts "Refresh Stocks\n\n"
-    refresh_stocks
-    puts "Refresh Options\n\n"
-    refresh_options
-    puts "Refresh Dividends\n\n"
-    refresh_daily_dividend(Time.now.strftime("%Y-%m-%d"))
-    return Price.all.count  
-  end
-    
-  def self.refresh_options
-    Price.all.each do |security|
-      if security.sec_type != 'Stock'
-        update = option_price(security.symbol, security.strike, security.exp_date, security.sec_type) 
-        
-        puts 'after return'
-        
-        security.last_update = update['Time']
-        security.bid = update['Bid']
-        security.ask = update['Ask']
-        security.last_price = update['Previous_Close']
-        security.save       
-      end
-    end
-  end
+#  Refresh the Price List
+#  def self.refresh_all
+#    puts "Refresh Stocks\n\n"
+#    refresh_stocks
+#    puts "Refresh Options\n\n"
+#    refresh_options
+#    puts "Refresh Dividends\n\n"
+#    refresh_daily_dividend(Time.now.strftime("%Y-%m-%d"))
+#    return Price.all.count  
+#  end
+#    
+#  def self.refresh_options
+#    Price.all.each do |security|
+#      if security.sec_type != 'Stock'
+#        update = option_price(security.symbol, security.strike, security.exp_date, security.sec_type) 
+#        
+#        puts 'after return'
+#        
+#        security.last_update = update['Time']
+#        security.bid = update['Bid']
+#        security.ask = update['Ask']
+#        security.last_price = update['Previous_Close']
+#        security.save       
+#      end
+#    end
+#  end
 
 #  def self.refresh_stocks
 #    Price.where(:sec_type => 'Stock').each_slice(100) do |stocks|
@@ -312,214 +226,181 @@ puts payload.length
 #    return time, price, change, valid  
 #  end
 
-  def self.local_stock_price(symbol, real_time)    
-    price = Price.where(:sec_type => 'Stock', :symbol => symbol.upcase )
-    if price.empty? 
-      latest = stock_price([symbol]).last
-      #    ['Symbol', 'Name', 'LastTrade', 'LastTradeDate', 'LastTradeTime', 'Change' ]
-      price = Price.create( :sec_type => 'Stock', :symbol => symbol.upcase,
-                    :last_price => latest['LastTrade'], :last_update => latest['LastUpdate'],
-                    :change => latest['Change'], :daily_dividend => 0 )
-      return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.last_price, price.change, price.daily_dividend, price.daily_dividend_date
-    else
-      price = Price.where(:sec_type => 'Stock', :symbol => symbol.upcase ).first
-      return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.last_price, price.change, price.daily_dividend, price.daily_dividend_date
-    end
-  end  
-
-
-
-  def self.local_option_price(symbol, security_type, strike, expiration_date)
-    option = Price.where( :sec_type => security_type, :symbol => symbol.upcase,
-                          :strike => strike, :exp_date => expiration_date )
-    if option.empty?
-      latest = self.option_price(symbol, strike, expiration_date, security_type)
-       new = Price.create( :sec_type => security_type, :symbol => symbol.upcase,
-                           :strike => strike, :exp_date => expiration_date,
-                           :last_update => latest['Time'], :bid => latest['Bid'],
-                           :ask => latest['Ask'], :last_price => latest['Previous_Close'])
-       option = [ new ]
-    end
-    price = option.first
-    return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.bid, price.ask, price.last_price
-  end  
-
-  def self.valid_price?(price)
-    price.to_s.match(/^[-+]?[0-9]*\.?[0-9]+$/)
-  end
+#  def self.local_stock_price(symbol, real_time)    
+#    price = Price.where(:sec_type => 'Stock', :symbol => symbol.upcase )
+#    if price.empty? 
+#      latest = stock_price([symbol]).last
+#      #    ['Symbol', 'Name', 'LastTrade', 'LastTradeDate', 'LastTradeTime', 'Change' ]
+#      price = Price.create( :sec_type => 'Stock', :symbol => symbol.upcase,
+#                    :last_price => latest['LastTrade'], :last_update => latest['LastUpdate'],
+#                    :change => latest['Change'], :daily_dividend => 0 )
+#      return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.last_price, price.change, price.daily_dividend, price.daily_dividend_date
+#    else
+#      price = Price.where(:sec_type => 'Stock', :symbol => symbol.upcase ).first
+#      return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.last_price, price.change, price.daily_dividend, price.daily_dividend_date
+#    end
+#  end  
+#
+#
+#
+#  def self.local_option_price(symbol, security_type, strike, expiration_date)
+#    option = Price.where( :sec_type => security_type, :symbol => symbol.upcase,
+#                          :strike => strike, :exp_date => expiration_date )
+#    if option.empty?
+#      latest = self.option_price(symbol, strike, expiration_date, security_type)
+#       new = Price.create( :sec_type => security_type, :symbol => symbol.upcase,
+#                           :strike => strike, :exp_date => expiration_date,
+#                           :last_update => latest['Time'], :bid => latest['Bid'],
+#                           :ask => latest['Ask'], :last_price => latest['Previous_Close'])
+#       option = [ new ]
+#    end
+#    price = option.first
+#    return price.last_update.strftime("%H:%M%p %m/%d/%Y"), price.bid, price.ask, price.last_price
+#  end  
+#
+#  def self.valid_price?(price)
+#    price.to_s.match(/^[-+]?[0-9]*\.?[0-9]+$/)
+#  end
+#  
+#  def self.daily_snapshot # store in History record in DB
+#    refresh_all
+#    
+##    puts 'Stocks and Options refresh complete - Hit key to continue'
+##    city = gets.chomp
+#     
+#    refresh_daily_dividend( Time.now.strftime("%Y-%m-%d") ) # (Time.now - 1.day).strftime('%Y/%m/%d')  )
+#    
+##    puts 'Daily Dividend collection complete - Hit key to continue'
+##    city = gets.chomp
+#    
+#    Portfolio.all.each do |portfolio|
+#      hist = portfolio.histories.new
+#      
+#      puts portfolio.name
+#      
+#      stocks = portfolio.stocks.where(:stock_option => 'Stock')
+#        hist.stocks_count = stocks.count
+#        hist.stocks = stocks.reduce(0) { |sum, stock| sum + Price.where(symbol: stock.symbol, sec_type: 'Stock' )[0].last_price * stock.quantity }
+#        hist.daily_dividend = stocks.reduce(0) do |sum, stock| 
+#          puts "#{stock.symbol} - #{stock.quantity} - #{Price.where(symbol: 'GOOG', sec_type: 'Stock').first.daily_dividend}"
+#          sum + Price.where(symbol: 'GOOG', sec_type: 'Stock').first.daily_dividend * stock.quantity
+#        end
+#        hist.daily_dividend_date = Price.where(:sec_type => 'Stock').last.daily_dividend_date
+#      options = portfolio.stocks.where('stock_option != ?', 'Stock' )
+#        hist.options_count = options.count
+#        hist.options = options.reduce(0) do |sum,option| 
+#          
+#          puts option.symbol
+#          
+#          p = Price.where(:symbol => option.symbol, :sec_type => option.stock_option, :strike => option.strike, :exp_date => option.expiration_date ).first
+#          price = option.stock_option == 'Call Option' && option.quantity < 0 ? p.ask : p.bid 
+#          sum +  price * option.quantity * 100
+#        end
+#        hist.cash = portfolio.cash
+#        hist.total = hist.options + hist.stocks + hist.cash
+#        hist.snapshot_date = Time.now.beginning_of_day()
+#        hist.save
+#        
+##        puts "Portfolio #{portfolio.name} complete - Hit key to continue"
+##        city = gets.chomp
+#        
+#    end
+#  end
   
-  def self.daily_snapshot # store in History record in DB
-    refresh_all
-    
-#    puts 'Stocks and Options refresh complete - Hit key to continue'
-#    city = gets.chomp
-     
-    refresh_daily_dividend( Time.now.strftime("%Y-%m-%d") ) # (Time.now - 1.day).strftime('%Y/%m/%d')  )
-    
-#    puts 'Daily Dividend collection complete - Hit key to continue'
-#    city = gets.chomp
-    
-    Portfolio.all.each do |portfolio|
-      hist = portfolio.histories.new
-      
-      puts portfolio.name
-      
-      stocks = portfolio.stocks.where(:stock_option => 'Stock')
-        hist.stocks_count = stocks.count
-        hist.stocks = stocks.reduce(0) { |sum, stock| sum + Price.where(symbol: stock.symbol, sec_type: 'Stock' )[0].last_price * stock.quantity }
-        hist.daily_dividend = stocks.reduce(0) do |sum, stock| 
-          puts "#{stock.symbol} - #{stock.quantity} - #{Price.where(symbol: 'GOOG', sec_type: 'Stock').first.daily_dividend}"
-          sum + Price.where(symbol: 'GOOG', sec_type: 'Stock').first.daily_dividend * stock.quantity
-        end
-        hist.daily_dividend_date = Price.where(:sec_type => 'Stock').last.daily_dividend_date
-      options = portfolio.stocks.where('stock_option != ?', 'Stock' )
-        hist.options_count = options.count
-        hist.options = options.reduce(0) do |sum,option| 
-          
-          puts option.symbol
-          
-          p = Price.where(:symbol => option.symbol, :sec_type => option.stock_option, :strike => option.strike, :exp_date => option.expiration_date ).first
-          price = option.stock_option == 'Call Option' && option.quantity < 0 ? p.ask : p.bid 
-          sum +  price * option.quantity * 100
-        end
-        hist.cash = portfolio.cash
-        hist.total = hist.options + hist.stocks + hist.cash
-        hist.snapshot_date = Time.now.beginning_of_day()
-        hist.save
-        
-#        puts "Portfolio #{portfolio.name} complete - Hit key to continue"
-#        city = gets.chomp
-        
-    end
-  end
+#  def self.db_daily_snapshot # retrieve for display in graph
+#    arr = [ ]
+#    Portfolio.all.each do |port|
+#      sub_arr = [ ]
+#      port.histories.each do |hist|
+#        sub_arr.push [ hist.created_at.strftime('%m-%d-%Y') + ' 05:00PM', hist.total.to_s ]
+#      end
+#      arr.push sub_arr
+#    end
+##    colors = [ '#4bb2c5', "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12" ] 
+##  	names = portfolios.collect { |u| User.find(u.user_id).name }
+#  	
+#    return arr   # , colors, names    
+#  end
   
-  def self.db_daily_snapshot # retrieve for display in graph
-    arr = [ ]
-    Portfolio.all.each do |port|
-      sub_arr = [ ]
-      port.histories.each do |hist|
-        sub_arr.push [ hist.created_at.strftime('%m-%d-%Y') + ' 05:00PM', hist.total.to_s ]
-      end
-      arr.push sub_arr
-    end
-#    colors = [ '#4bb2c5', "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12" ] 
-#  	names = portfolios.collect { |u| User.find(u.user_id).name }
-  	
-    return arr   # , colors, names    
-  end
+#  def self.daily_totals(start_date='07/01/2013', days=27, portfolios = [ 1, 2 ])
+#    all_lines = [ ]
+#    portfolios.count.times { all_lines.push [] }
+#    total_line = [ ]
+#    date = start_date.split('/')
+#    start = Time.new(date[2].to_i,date[0].to_i,date[1].to_i,0,0,0)
+#
+#    (0..days).each do |day|
+#      day_values = History.where(:snapshot_date => start + day.days)      
+#      total_day = day_values.collect { |h| h.total }.inject(0) { |sum,tot| sum + tot }.to_i      
+#      if total_day != 0  
+#        total_line.push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', total_day  ]
+#      else
+#        total_line.push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', 'null'  ]        
+#      end
+#      portfolios.each_with_index do |port, idx|
+#        port_value = day_values.select { |hist| hist.portfolio_id == port }
+#        if !port_value.empty? 
+#          all_lines[idx].push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', port_value.first.total.to_i ]
+#        else
+#          all_lines[idx].push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', 'null' ]          
+#        end
+#      end        
+#    end
+#    
+#    return [ total_line, all_lines ]
+#  end
   
-  def self.daily_totals(start_date='07/01/2013', days=27, portfolios = [ 1, 2 ])
-    all_lines = [ ]
-    portfolios.count.times { all_lines.push [] }
-    total_line = [ ]
-    date = start_date.split('/')
-    start = Time.new(date[2].to_i,date[0].to_i,date[1].to_i,0,0,0)
-
-    (0..days).each do |day|
-      day_values = History.where(:snapshot_date => start + day.days)      
-      total_day = day_values.collect { |h| h.total }.inject(0) { |sum,tot| sum + tot }.to_i      
-      if total_day != 0  
-        total_line.push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', total_day  ]
-      else
-        total_line.push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', 'null'  ]        
-      end
-      portfolios.each_with_index do |port, idx|
-        port_value = day_values.select { |hist| hist.portfolio_id == port }
-        if !port_value.empty? 
-          all_lines[idx].push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', port_value.first.total.to_i ]
-        else
-          all_lines[idx].push [ (start+day.days).strftime('%m-%d-%Y') + ' 05:00PM', 'null' ]          
-        end
-      end        
-    end
-    
-    return [ total_line, all_lines ]
-  end
-  
-  def self.fix_date
-    History.all.each do |hist|
-      dates = hist.snapshot_date.strftime('%Y,%m,%d').split(',').collect { |val| val.to_i }
-      y = dates[0]
-      m = dates[1]
-      d = dates[2]
-      hist.snapshot_date = Time.new(y,m,d)
-      hist.save
-    end
-  end
+#   def self.fix_date
+#     History.all.each do |hist|
+#       dates = hist.snapshot_date.strftime('%Y,%m,%d').split(',').collect { |val| val.to_i }
+#       y = dates[0]
+#       m = dates[1]
+#       d = dates[2]
+#       hist.snapshot_date = Time.new(y,m,d)
+#       hist.save
+#     end
+#   end
   
 #History.where(:snapshot_date => '2013/07/25 22:00:00').collect { |hist| hist.total }.inject(0) { |result, element| result + element }.to_s
   
-  def self.hist_dump
-    list = [ ]
-    History.all.each do |hist|
-      list.push "#{hist.portfolio.name}, #{hist.snapshot_date}, #{hist.cash}, #{hist.stocks_count}, #{hist.stocks}, #{hist.options_count}, #{hist.options}, #{hist.total}"
-    end
-    list.each { |item| puts item }
-    return nil
-  end
+#   def self.hist_dump
+#     list = [ ]
+#     History.all.each do |hist|
+#       list.push "#{hist.portfolio.name}, #{hist.snapshot_date}, #{hist.cash}, #{hist.stocks_count}, #{hist.stocks}, #{hist.options_count}, #{hist.options}, #{hist.total}"
+#     end
+#     list.each { |item| puts item }
+#     return nil
+#   end
   
-  def self.get_annual(symbol)
-    start_date = Date.new(2013, 01, 01)
-    end_date = Date.today
-    total = 0
-    divs = [ ]
-    begin
-       resp = self.check_dividend(symbol, start_date.strftime("%Y-%m-%d") )
-#       resp = self.check_dividend(symbol, start_date.strftime("%m/%d/%Y") )
-       if resp['Date']
-         total += resp[2]
-         divs.push [resp['Date'], resp['Dividends']]
-       end   
-       start_date += 1.days
-    end while start_date < end_date
-    return total, divs
-  end
+#   def self.get_annual(symbol)
+#     start_date = Date.new(2013, 01, 01)
+#     end_date = Date.today
+#     total = 0
+#     divs = [ ]
+#     begin
+#        resp = self.check_dividend(symbol, start_date.strftime("%Y-%m-%d") )
+# #       resp = self.check_dividend(symbol, start_date.strftime("%m/%d/%Y") )
+#        if resp['Date']
+#          total += resp[2]
+#          divs.push [resp['Date'], resp['Dividends']]
+#        end   
+#        start_date += 1.days
+#     end while start_date < end_date
+#     return total, divs
+#   end
   
-  def self.refresh_daily_dividend(date)
-      Price.all.each do |security|
-        if security.sec_type == 'Stock'
-#          today = (Time.now).strftime("%Y-%m-%d")
-          div = check_dividend(security.symbol, date)
-          security.daily_dividend = div[2] ||= 0
-          security.daily_dividend_date = date
-          puts div
-         security.save
-        end
-      end
-  end
-  
-  def self.check_dividend(symbol,date) # "2018-02-15"
-    url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1m" 
-    puts url
-    # "paymentDate":"2018-02-15"
-    # "amount":0.63
-    @agent = Mechanize.new
-    ret = [ symbol.upcase, date, nil ]
-    dividends = 0
-      begin
-        page = @agent.get(url)
-        response = page.body
-        if response.length > 3 
-          data = response
-          data = JSON.parse data
-          data.each do |d| 
-            puts d
-            paymentDate = d['paymentDate']
-            if paymentDate == date
-                dividends += d["amount"]
-                puts dividends
-            end
-          end
-           ret = [symbol.upcase, date, dividends]
-        end
-      rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
-        puts 'Unknown Reponse'
-      end       
-    puts ret.inspect
-    puts 
-    return ret
-  end
-  
+#   def self.refresh_daily_dividend(date)
+#       Price.all.each do |security|
+#         if security.sec_type == 'Stock'
+#            today = (Time.now).strftime("%Y-%m-%d")
+#           div = check_dividend(security.symbol, date)
+#           security.daily_dividend = div[2] ||= 0
+#           security.daily_dividend_date = date
+#           puts div
+#          security.save
+#         end
+#       end
+#   end
 #  def self.check_dividend(symbol,date)
 #        comps = date.split('/')
 #        year = comps[0]

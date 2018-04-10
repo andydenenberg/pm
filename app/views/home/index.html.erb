@@ -1,22 +1,27 @@
-</style>
+
   <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link" href="<%= portfolios_path %>">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Table 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link active" href="<%= home_path %>">
                   <span data-feather="file"></span>
-                  Orders
+                  Graph <span class="sr-only">(current)</span>
                 </a>
               </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="home"></span>
+                Utilities 
+              </a>
+            </li>
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -59,19 +64,12 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">History</h1>
 
-			<h3><span id='portfolio_name'>All Portfolios</span> <span id='period'>from Start</span></h3>
-
           <div class="btn-toolbar mb-2 mb-md-0">
 	
-            <div class="btn-group mr-2">
-			  <%= link_to 'Table', portfolios_path, :class => 'btn btn-sm btn-outline-secondary' %>
-			  <%= link_to 'Graph', home_path, :class => 'btn btn-sm btn-outline-secondary active' %>
-            </div>
-
 			<div class="dropdown">
 			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Portfolio
+			    <span id='portfolio_name'>All Portfolios</span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			    	<a class="dropdown-item" href="#">All</a>
@@ -88,13 +86,12 @@
 			<div class="dropdown">
 			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Change Duration
+			    <span id='period'>from Start</span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			    <a id='the_but' class="dropdown-item" href="#">From Start</a>
-			    <a class="dropdown-item" href="#">Year to Date</a>
-			    <a class="dropdown-item" href="#">Quarter to Date</a>
-			    <a class="dropdown-item" href="#">Month to Date</a>
+					<% @periods.each do |p| %>
+				    <a onclick="ChangePeriod('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
+					<% end %>
 			  </div>
 			</div>
 			<%= link_to 'Refresh', refresh_path(:portfolio => 8),  :remote => true, :method => :get,
@@ -103,6 +100,7 @@
           </div>
         </div>
 
+		<div class="my-4 loader d-none" id="chartSpinner"></div>
 		<canvas class="my-4" id="chartCanvas" ></canvas>
 
       </main>
@@ -112,9 +110,6 @@
   <!-- Graphs -->
 
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script>
 
 var chart
@@ -129,7 +124,6 @@ function create_chart (){
 	        fill: false,
 	       	animation: false,
 			responsive: true,
-
 			tooltips: {
 			    callbacks: {
 			      label: function(tooltipItem, data) {
@@ -142,8 +136,7 @@ function create_chart (){
 					return title;
 					}
 			    }
-		  	},
-		  
+		  	},		  
 	        scales: {
 	            xAxes: [{
 	                type: 'time',
@@ -170,11 +163,10 @@ function create_chart (){
 			           	},
 						fontSize: 14,
 //						beginAtZero: true,
-						max: 35000000,
+//						max: 35000000,
 						min: 20000000,
 						fontSize: 16,
-			            stepSize: 5000000,
-			            
+			            stepSize: 5000000,			            
 	                },
 	                display: true,
 	                scaleLabel: {
@@ -190,12 +182,15 @@ function create_chart (){
 	chart.data.labels = <%= @time %> ;
 	chart.data.datasets.push({
 	  fill: false,
+	pointRadius: 0,
+	spanGaps: true,
 	  label: "<%= raw @name %>",
 	  borderColor: 'green',
-	  backgroundColor: '#fe8b36',
+	  backgroundColor: 'green',
 	  lineTension: 0,
 	  data: <%= @values %>
 	});
+	chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
 	chart.options.scales.xAxes[0].scaleLabel.labelString = "2017" ;
 	chart.options.scales.xAxes[0].scaleLabel.fontSize = 16 ;
 	
@@ -205,9 +200,28 @@ function create_chart (){
 	
 }
 
+function HideChart() {
+	$("#chartSpinner").removeClass("d-none"); 
+	$("#chartCanvas").addClass("d-none");
+};
+function ShowChart() {
+	$("#chartCanvas").removeClass("d-none"); 
+	$("#chartSpinner").addClass("d-none");	
+}
+
+
 function ChangePortfolio(portfolio) {
+	HideChart() ;
 	var period = document.getElementById("period").innerHTML
+	console.log(portfolio_name + period) ;
 	$.get("refresh.js", { portfolio:portfolio, period:period });
+};
+
+function ChangePeriod(period) {
+	HideChart() ;
+	var portfolio_name = document.getElementById("portfolio_name").innerHTML
+	console.log(portfolio_name + period) ;
+	$.get("refresh.js", { portfolio:portfolio_name, period:period });
 };
 	
 $('#exampleSelect1').change(function() {
@@ -216,7 +230,7 @@ $('#exampleSelect1').change(function() {
 	$.get("refresh.js", { portfolio:portname });
 });
 
-$(document).ready(function() {	
+$(document).ready(function() {
   create_chart();
  });
 

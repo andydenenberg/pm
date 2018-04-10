@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406155056) do
+ActiveRecord::Schema.define(version: 20180409145954) do
 
   create_table "histories", force: :cascade do |t|
     t.decimal "cash"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20180406155056) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "change"
+    t.decimal "daily_dividend"
+    t.datetime "daily_dividend_date"
   end
 
 end

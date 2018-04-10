@@ -5,12 +5,12 @@ class PortfoliosController < ApplicationController
   # GET /portfolios.json
   def index
     totals = Hash.new
-    Portfolio.all.each { |p| totals[p.id] = (p.cash + p.total_stocks + p.total_options).to_f }
-    @ordered = totals.sort_by { |key, value | -value }
+    Portfolio.all.each { |p| totals[p.id] = (p.cash + p.total_stocks_value + p.total_options_value).to_f }
+    @ordered = Portfolio.find(totals.sort_by { |key, value | -value }.collect { |id, value| id })
     @total_cash = Portfolio.all.sum { |s| s.cash }
-    @total_stocks = Portfolio.all.sum { |s| s.total_stocks }
-    @total_stocks_change = Portfolio.all.sum { |s| s.total_stocks_change }
-    @total_options = Portfolio.all.sum { |s| s.total_options }
+    @total_stocks = Portfolio.all.sum { |s| s.total_stocks_value }
+    @total_stocks_change = Portfolio.all.sum { |s| s.total_stocks_change_value }
+    @total_options = Portfolio.all.sum { |s| s.total_options_value }
     #sum-up a Portfolio
     
     # Portfolio.find_by_name('R').stocks.sum { |s| s.quantity }.to_s
@@ -19,6 +19,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
+    @stocks = @portfolio.stocks
   end
 
   # GET /portfolios/new

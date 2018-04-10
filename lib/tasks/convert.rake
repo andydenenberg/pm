@@ -10,8 +10,8 @@ desc 'Build the Databases'
 #  end
 task :setup => ["db:migrate", 
                 "convert:portfolios", "convert:stocks", "convert:options", 
-                "convert:refresh", "convert:upload_history",
-                "history:all_ports" ]
+                "convert:check_for_funds", "convert:refresh", 
+                "convert:upload_history", "history:all_ports" ]
 
   desc 'Create Portfolios'
   # create and dump 
@@ -55,8 +55,13 @@ task :setup => ["db:migrate",
 
     desc 'Refresh Prices'
       task :refresh => :environment do
-        Stock.check_all_for_funds    
         Stock.refresh_all_prices
+        puts "Prices Refreshed"     
+      end
+      
+    desc 'Check for Funds'
+      task :check_for_funds => :environment do
+        Stock.check_all_for_funds    
         puts "Prices Refreshed"     
       end
     

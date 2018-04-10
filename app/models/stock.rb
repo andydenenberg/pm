@@ -15,15 +15,30 @@ class Stock < ApplicationRecord
     end  
     self.price = data[1]
     self.change = data[2]
-    self.as_of = data[3]
+    self.as_of = data[3] # Time.parse(data[3]).strftime("%Y/%m/%d %H:%M")
     self.save
   end
    
+  def update_daily_dividend
+      div = Options.check_dividend(self.symbol, Date.today.strftime('%Y-%m-%d')) 
+       self.daily_dividend = div[2] ||= 0
+       self.daily_dividend_date = div[1]
+       self.save      
+  end 
+  
   def self.refresh_all_prices
     self.all.each do |s|
       s.update_price
     end
   end 
+
+  def self.refresh_all_dividends
+    self.all.each do |s|
+      s.update_daily_dividend
+    end
+  end 
+
+  
   
   def check_if_fund
     if self.stock_option == 'Stock'
