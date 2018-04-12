@@ -3,6 +3,7 @@ class History < ApplicationRecord
     def self.graph_data(portfolio_name, period)
       colors = [ 'Green', 'Yellow', 'Brown', 'Orange', 'Red', 'Pink', 'Purple', 'Maroon', 'Olive', 'Cyan', 'LightBlue', 'Magenta', 'Black','Blue','Gray'  ]
 
+      year = Time.current.year
       years = [Date.today.year]
       months = (1..12)
       case period
@@ -11,6 +12,7 @@ class History < ApplicationRecord
       when 'Year to Date'
 
       when 'Last Year'
+        year = year - 1
         years = [Date.today.year-1]
       when 'Month to Date'
         months = [Date.today.month]
@@ -30,7 +32,7 @@ class History < ApplicationRecord
        end
        time = time[0..-1] + ' ]'
 
-      return [ values, time ]
+      return [ values, time, year ]
 
     end
 

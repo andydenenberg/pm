@@ -140,10 +140,10 @@ function create_chart (){
 	        scales: {
 	            xAxes: [{
 	                type: 'time',
-					time:
-					 { 
-						displayFormats: 
-						{ day: 'MMMM' },
+					time: { 
+					    //unit: 'day',
+					    //unitStepSize: 1,
+					    displayFormats: { 'day': 'MMM DD' }
 					},
 					distribution: 'linear',
 	                display: true,
@@ -191,7 +191,7 @@ function create_chart (){
 	  data: <%= @values %>
 	});
 	chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
-	chart.options.scales.xAxes[0].scaleLabel.labelString = "2017" ;
+	chart.options.scales.xAxes[0].scaleLabel.labelString = "All Years" ;
 	chart.options.scales.xAxes[0].scaleLabel.fontSize = 16 ;
 	
 	chart.options.scales.yAxes[0].scaleLabel.labelString = "Total Value (all securities)" ;

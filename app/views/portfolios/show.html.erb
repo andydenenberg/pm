@@ -90,6 +90,7 @@
 	      <th>Quantity</th>
 	      <th>Price</th>
 	      <th>Value</th>
+		  <th>Daily Change</th>
 	    </tr>
 	  </thead>
 
@@ -100,6 +101,7 @@
 	        <td class='text-right'><%= number_with_precision(stock.quantity, delimiter: ',', precision: 2) %></td>
 	        <td class='text-right'><%= number_to_currency(stock.price) %></td>
 	        <td class='text-right'><%= number_to_currency(stock.price * stock.quantity) %></td>
+	        <td class='text-right'><%= number_to_currency(stock.change * stock.quantity) %></td>
 	      </tr>		
 	    <% end %>
 	

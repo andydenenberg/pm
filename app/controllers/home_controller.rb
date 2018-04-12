@@ -37,7 +37,12 @@ class HomeController < ApplicationController
     @min = @values.min * 0.9
     @values = @values.to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")
     @time = results[1]
+    @year = results[2].to_s
     @name = portfolio 
+    
+    puts @time.inspect
+    puts @values.inspect
+    
     
     respond_to do |format|
         format.js

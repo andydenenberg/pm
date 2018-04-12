@@ -4,10 +4,13 @@ namespace :convert do
 # heroku pg:reset DATABASE
 
 desc 'Build the Databases'
+
 # heroku pg:reset DATABASE_URL
+
 #  ActiveRecord::Base.connection.tables.each do |t|
 #    ActiveRecord::Base.connection.reset_pk_sequence!(t)
 #  end
+
 task :setup => ["db:migrate", 
                 "convert:portfolios", "convert:stocks", "convert:options", 
                 "convert:check_for_funds", "convert:refresh", 
