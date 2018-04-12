@@ -4,7 +4,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.all
+    @histories = History.order(snapshot_date: :desc).limit(50)
   end
 
   # GET /histories/1

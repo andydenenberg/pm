@@ -10,7 +10,7 @@ class History < ApplicationRecord
       when 'from Start'
         years = (2013..(Date.today.year))
       when 'Year to Date'
-
+        months = (1..Date.today.month+1)
       when 'Last Year'
         year = year - 1
         years = [Date.today.year-1]
@@ -30,8 +30,8 @@ class History < ApplicationRecord
              time += results[1]
          end
        end
-       time = time[0..-1] + ' ]'
-
+       time = time[0..-2] + ' ]'
+       
       return [ values, time, year ]
 
     end
@@ -43,7 +43,7 @@ class History < ApplicationRecord
       (1..Time.days_in_month(month, year)).each do |day|
         time += " new Date(#{year}, #{month-1}, #{day}),"
         selected_date = Time.local(year, month, day)
-        new_value = History.where(:portfolio_id => portfolio_id).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
+        new_value = History.where(:portfolio_id => portfolio_id).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)        
        if new_value.last.nil? 
          new_value = 0
        else
@@ -83,7 +83,7 @@ class History < ApplicationRecord
     Stock.refresh_all_prices
     Stock.refresh_all_dividends
 
-    date = Date.today
+    date = Time.now.beginning_of_day()
     
     total_cash = 0
     total_stocks = 0

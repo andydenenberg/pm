@@ -9,15 +9,10 @@ class HomeController < ApplicationController
     results = History.graph_data('All Portfolios', period)
     @values = results[0]
     @max = (@values.max * 1.1).to_s.length
-    @min = @values.min * 0.9
-    
-    @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")
-    @time = results[1]
-    
+    @min = @values.min * 0.9    
+    @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")    
+    @time = results[1]    
     @name = 'All Portfolios'
-    
-    puts @values.inspect
-    
   end
 
   def update_prices
@@ -35,14 +30,10 @@ class HomeController < ApplicationController
     @values = results[0]
     @max = (@values.max * 1.1).to_s.length
     @min = @values.min * 0.9
-    @values = @values.to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")
+    @values = @values.to_s.gsub(" 0," , " ,").gsub("[0," , "[ ,").gsub("0]"," ]")
     @time = results[1]
     @year = results[2].to_s
     @name = portfolio 
-    
-    puts @time.inspect
-    puts @values.inspect
-    
     
     respond_to do |format|
         format.js
