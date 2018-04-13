@@ -75,6 +75,7 @@
 	    <tr>
 	      <th>Portfolio ID</th>
 	      <th>Snapshot Date</th>
+	      <th>Created at</th>
 	      <th>Total Value</th>
 	    </tr>
 	  </thead>
@@ -84,6 +85,7 @@
 	      <tr>
 	        <td><%= history.portfolio_id %></td>
 	        <td class='text-right'><%= history.snapshot_date %></td>
+	        <td class='text-right'><%= history.created_at %></td>
 			<td class='text-right'><%= number_to_currency(history.total) %></td>
 	      </tr>		
 	    <% end %>
