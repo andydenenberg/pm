@@ -28,7 +28,9 @@ class Stock < ApplicationRecord
   
   def self.refresh_all_prices
     self.all.each do |s|
-      s.update_price
+      if s.stock_option == 'Stock'
+        s.update_price
+      end
     end
   end 
 
