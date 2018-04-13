@@ -68,7 +68,7 @@
         </div>
       </div>
 
-  <div class='col-6'>
+  <div class='col-8'>
   <div class="table-responsive">
 	<table class="table table-bordered table-striped table-sm">
 	  <thead>
@@ -76,6 +76,7 @@
 	      <th>Portfolio ID</th>
 	      <th>Snapshot Date</th>
 	      <th>Created at</th>
+	      <th>ID</th>
 	      <th>Total Value</th>
 	    </tr>
 	  </thead>
@@ -86,6 +87,7 @@
 	        <td><%= history.portfolio_id %></td>
 	        <td class='text-right'><%= history.snapshot_date %></td>
 	        <td class='text-right'><%= history.created_at %></td>
+	        <td class='text-right'><%= history.id %></td>
 			<td class='text-right'><%= number_to_currency(history.total) %></td>
 	      </tr>		
 	    <% end %>
