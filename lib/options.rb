@@ -18,7 +18,7 @@ module Options
     rescue => e
       return ["The request returned an error - #{e.inspect}."]
     end     
-    return [ symbol.upcase, price.to_s, change.to_s.split('(')[0], Time.now.strftime("%Y/%m/%d %H:%M") ]       
+    return [ symbol.upcase, price.to_s, change.to_s.split('(')[0], Time.now.strftime("%Y/%m/%d %H:%M%p") ]       
   end  
   
   
@@ -57,7 +57,7 @@ module Options
         change = data["change"].to_s
         time = data["latestTime"]
         date = Date.today.strftime("%Y/%m/%d")
-        ret = [symbol.upcase, last_price, change, Time.parse(date + ' ' + time).strftime("%Y/%m/%d %H:%M")]
+        ret = [symbol.upcase, last_price, change, Time.parse(date + ' ' + time).strftime("%Y/%m/%d %H:%M%p")]
       rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
 #        puts "#{symbol} - Unknown Response"
       end       
@@ -106,7 +106,7 @@ module Options
         date = Date.today.strftime("%Y/%m/%d")
         date = date + ' ' + time                
 #        puts "bid: #{bid} ask: #{ask} prev: #{previous_close}"              
-        return { 'Time' => Time.parse(date).strftime("%Y/%m/%d %H:%M"), 'Bid' => bid, 'Ask' => ask, 'Previous_Close' => previous_close }
+        return { 'Time' => Time.parse(date).strftime("%Y/%m/%d %H:%M%p"), 'Bid' => bid, 'Ask' => ask, 'Previous_Close' => previous_close }
   end
   
   

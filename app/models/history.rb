@@ -32,6 +32,8 @@ class History < ApplicationRecord
        end
        time = time[0..-2] + ' ]'
        
+       puts values.inspect
+       
       return [ values, time, year ]
 
     end
@@ -47,7 +49,7 @@ class History < ApplicationRecord
        if new_value.last.nil? 
          new_value = 0
        else
-         new_value = new_value.last.total.to_f 
+         new_value = new_value.last.total.to_f.round(0) 
        end
         values.push( new_value )
       end

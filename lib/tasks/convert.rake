@@ -3,14 +3,18 @@ namespace :convert do
 # heroku drop db
 # heroku pg:reset DATABASE
 
+desc 'Reset PG Indexes'
+task :reset_pg_index => :environment do
+  
+  # heroku pg:reset DATABASE_URL
+
+    ActiveRecord::Base.connection.tables.each do |t|
+      ActiveRecord::Base.connection.reset_pk_sequence!(t)
+    end
+end
+  
+
 desc 'Build the Databases'
-
-# heroku pg:reset DATABASE_URL
-
-#  ActiveRecord::Base.connection.tables.each do |t|
-#    ActiveRecord::Base.connection.reset_pk_sequence!(t)
-#  end
-
 task :setup => ["db:migrate", 
                 "convert:portfolios", "convert:stocks", "convert:options", 
                 "convert:check_for_funds", "convert:refresh", 
@@ -65,23 +69,23 @@ task :setup => ["db:migrate",
     desc 'Check for Funds'
       task :check_for_funds => :environment do
         Stock.check_all_for_funds    
-        puts "Prices Refreshed"     
+        puts "Funds converted"     
       end
     
-    desc 'Upload History'
-    #   target = open('history.json', 'w')
-    #   target.write(History.all.to_json)
-    #   target.close
-        task :upload_history => :environment do
-          url = "https://s3.us-east-2.amazonaws.com/her-history/history.json" 
-          @agent = Mechanize.new
-            page = @agent.get(url)
-            data = JSON.parse(page.body) 
-            data.each do |h|
-              puts h.inspect
-              h = History.create!(h) 
-            end
-        end
+#   desc 'Upload History'
+#   #   target = open('history.json', 'w')
+#   #   target.write(History.all.to_json)
+#   #   target.close
+#       task :upload_history => :environment do
+#         url = "https://s3.us-east-2.amazonaws.com/her-history/history.json" 
+#         @agent = Mechanize.new
+#           page = @agent.get(url)
+#           data = JSON.parse(page.body) 
+#           data.each do |h|
+#             puts h.inspect
+#             h = History.create!(h) 
+#           end
+#       end
         
 
     

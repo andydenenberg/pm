@@ -15,13 +15,6 @@ class HomeController < ApplicationController
     @name = 'All Portfolios'
   end
 
-  def update_prices
-    system "rake convert:refresh RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-    respond_to do |format|
-        format.js
-    end
-  end
-  
   def refresh
     portfolio = params[:portfolio]
     @period = params[:period]

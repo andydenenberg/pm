@@ -1,0 +1,52 @@
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <h1 class="h2">Portfolios</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+			<button id='last_update' type="button" class="btn btn-sm btn-outline-secondary" disabled>
+					Prices from <%= "#{time_ago_in_words( @last_update )} ago " %> 
+		    </button>
+			<span id='refresh_spinner' class="refresh_spinner d-none"></span>
+			<button id='refresh_button'onclick="RefreshPrices();return false;" class='btn btn-sm btn-outline-secondary refresh_button'>Rfresh </button>
+			
+			
+			<%= link_to 'Refresh', portfolios_path, :remote => true, class: 'btn btn-sm btn-outline-secondary refresh_button' %>
+      </div>
+    </div>
+
+<div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Cash</th>
+	      <th>Stocks</th>
+	      <th>Options</th>
+	      <th>Total Value</th>
+	      <th>Daily Change</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @ordered.each do |port| %>
+	      <tr>
+	        <td><%= link_to port.name, portfolio_path(port.id) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
+	      </tr>		
+	    <% end %>
+	
+	      <tr>
+	        <td></td>
+	        <td class='text-right'><%= number_to_currency(@total_cash) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_stocks) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_options) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_cash+@total_stocks+@total_options) %></td>
+	        <td class='text-right'><%= number_to_currency(@total_stocks_change) %></td>
+			<td></td>
+	      </tr>
+	
+	  </tbody>
+	</table>
+</div>

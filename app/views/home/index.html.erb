@@ -1,4 +1,4 @@
-
+	
   <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -17,7 +17,7 @@
                 </a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<%= histories_path %>">
                 <span data-feather="home"></span>
                 Utilities 
               </a>
@@ -64,7 +64,9 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">History</h1>
 
-          <div class="btn-toolbar mb-2 mb-md-0">
+         <div class="btn-toolbar mb-2 mb-md-0">
+	
+	<button type="button" class="btn btn-sm btn-info">Info</button>
 	
 			<div class="dropdown">
 			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -114,10 +116,7 @@
 
 var chart
 
-function create_chart (){
-	
-	const ctx1 = document.getElementById('chartCanvas').getContext('2d');
-	const options = {
+	var options = {
 	    type: 'line',
 //	    data: data,
 	    options: {
@@ -131,8 +130,6 @@ function create_chart (){
                     return label; },
 				  title: function(tooltipItem, data) {
 					var title = tooltipItem[0].xLabel.toLocaleDateString("en-US") ;
-					console.log(data) ;
-					console.log(tooltipItem) ;
 					return title;
 					}
 			    }
@@ -177,71 +174,42 @@ function create_chart (){
 	        }
 	    }
 	}
-	
-	chart = new Chart(ctx1, options);
-	chart.data.labels = <%= @time %> ;
-	chart.data.datasets.push({
-	  fill: false,
-	pointRadius: 3,
-	spanGaps: true,
-	  label: "<%= raw @name %>",
-	  borderColor: 'green',
-	  backgroundColor: 'green',
-	  lineTension: 0,
-	  data: <%= @values %>
-	});
-	chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
-	chart.options.scales.xAxes[0].scaleLabel.labelString = "All Years" ;
-	chart.options.scales.xAxes[0].scaleLabel.fontSize = 16 ;
-	
-	chart.options.scales.yAxes[0].scaleLabel.labelString = "Total Value (all securities)" ;
 
-	chart.update() ;
-	
-}
+//function create_chart (){
 
-function HideChart() {
-	$("#chartSpinner").removeClass("d-none"); 
-	$("#chartCanvas").addClass("d-none");
-};
-function ShowChart() {
-	$("#chartCanvas").removeClass("d-none"); 
-	$("#chartSpinner").addClass("d-none");	
-}
-
-
-function ChangePortfolio(portfolio) {
-	HideChart() ;
-	var period = document.getElementById("period").innerHTML
-	console.log(portfolio_name + period) ;
-	$.get("refresh.js", { portfolio:portfolio, period:period });
-};
-
-function ChangePeriod(period) {
-	HideChart() ;
-	var portfolio_name = document.getElementById("portfolio_name").innerHTML
-	console.log(portfolio_name + period) ;
-	$.get("refresh.js", { portfolio:portfolio_name, period:period });
-};
-	
-$('#exampleSelect1').change(function() {
-	var portname = $(this).val() ;
-	console.log(portname) ;
-	$.get("refresh.js", { portfolio:portname });
-});
 
 $(document).ready(function() {
-  create_chart();
+	
+	HideChart();
+	//	
+		var ctx1 = document.getElementById('chartCanvas').getContext('2d');
+
+
+		chart = new Chart(ctx1, options);
+		chart.data.labels = <%= @time %> ;
+		chart.data.datasets.push({
+		  fill: false,
+		  pointRadius: 3,
+		  spanGaps: true,
+		  borderColor: 'green',
+		  backgroundColor: 'green',
+		  lineTension: 0,
+		  label: "<%= raw @name %>",
+		  data: <%= @values %>
+		});
+
+		chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
+		chart.options.scales.xAxes[0].scaleLabel.labelString = "All Years" ;
+		chart.options.scales.xAxes[0].scaleLabel.fontSize = 16 ;
+
+		chart.options.scales.yAxes[0].scaleLabel.labelString = "Total Value (all securities)" ;
+
+		chart.update() ;
+ShowChart();
+	//}
+	
+//  create_chart();
  });
 
-function millions(value) {
-	// Convert the number to a string and splite the string every 3 charaters from the end
-    value = value.toString().slice(0,-6);
-    value = value.split(/(?=(?:...)*$)/);
-
-    // Convert the array to a string and format the output
-    value = value.join(',');
-    return '$' + value + 'M' ;
-}
 
 </script>
