@@ -26,11 +26,11 @@ class Stock < ApplicationRecord
        self.save      
   end 
   
-  def self.refresh_all_prices
+  def self.refresh_all(stock_option)
     self.all.each do |s|
-#      if s.stock_option == 'Stock'
+      if s.stock_option.include?(stock_option)
         s.update_price
-#      end
+      end
     end
   end 
 

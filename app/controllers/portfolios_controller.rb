@@ -24,7 +24,11 @@ class PortfoliosController < ApplicationController
   def index
     
     if request.xhr?
-      system "rake convert:refresh RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      if params[:stock_option] == 'Stock'
+        system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      else
+        system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      end
     end
     
     totals = Hash.new

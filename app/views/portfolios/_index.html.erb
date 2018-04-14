@@ -5,10 +5,11 @@
 					Prices from <%= "#{time_ago_in_words( @last_update )} ago " %> 
 		    </button>
 			<span id='refresh_spinner' class="refresh_spinner d-none"></span>
-			<button id='refresh_button'onclick="RefreshPrices();return false;" class='btn btn-sm btn-outline-secondary refresh_button'>Rfresh </button>
+			<button onclick="RefreshPrices('Stock');return false;" 
+					class='btn btn-sm btn-outline-secondary refresh_button'>Refresh Stocks </button>
+			<button onclick="RefreshPrices('Options & Funds');return false;" 
+					class='btn btn-sm btn-outline-secondary refresh_button'>Refresh Options & Funds </button>
 			
-			
-			<%= link_to 'Refresh', portfolios_path, :remote => true, class: 'btn btn-sm btn-outline-secondary refresh_button' %>
       </div>
     </div>
 
