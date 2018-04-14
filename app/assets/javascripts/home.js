@@ -5,11 +5,14 @@
 function millions(value) {
 	// Convert the number to a string and splite the string every 3 charaters from the end
 	//    value = value.toString().slice(0,-6);
-    value = value.toString().split(/(?=(?:...)*$)/);
-
-    // Convert the array to a string and format the output
-    value = value.join(',');
-    return '$' + value ; //+ 'M' ;
+	if ( (value % 5000000) === 0 ) {
+		value = value.toString().split(/(?=(?:...)*$)/);
+		// Convert the array to a string and format the output
+	    value = '$' + value.join(',');	    
+	} else {
+		value = ''
+	}
+    return value ; //+ 'M' ;
 };
 
 function HideChart() {
@@ -26,14 +29,14 @@ function ChangePortfolio(portfolio) {
 	HideChart() ;
 	var period = document.getElementById("period").innerHTML
 	console.log(portfolio_name + period) ;
-	$.get("refresh.js", { portfolio:portfolio, period:period });
+	$.get("home.js", { portfolio:portfolio, period:period });
 };
 
 function ChangePeriod(period) {
 	HideChart() ;
 	var portfolio_name = document.getElementById("portfolio_name").innerHTML
 	console.log(portfolio_name + period) ;
-	$.get("refresh.js", { portfolio:portfolio_name, period:period });
+	$.get("home.js", { portfolio:portfolio_name, period:period });
 };
 	
 

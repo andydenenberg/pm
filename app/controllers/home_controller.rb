@@ -4,33 +4,23 @@ class HomeController < ApplicationController
     @portfolios.unshift "All Portfolios"
     @periods = ['from Start', 'Year to Date', 'Last Year', 'Month to Date']
     
-    period = "from Start"
-
-    results = History.graph_data('All Portfolios', period)
+    @period = params[:period] ||= "from Start"
+    @portfolio = params[:portfolio] ||= 'All Portfolios'
+    
+    results = History.graph_data(@portfolio, @period)
     @values = results[0]
     @max = (@values.max * 1.1).to_s.length
     @min = @values.min * 0.9    
     @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")    
-    @time = results[1]    
-    @name = 'All Portfolios'
-  end
-
-  def refresh
-    portfolio = params[:portfolio]
-    @period = params[:period]
-    results = History.graph_data(portfolio, @period)
-    
-    @values = results[0]
-    @max = (@values.max * 1.1).to_s.length
-    @min = @values.min * 0.9
-    @values = @values.to_s.gsub(" 0," , " ,").gsub("[0," , "[ ,").gsub("0]"," ]")
     @time = results[1]
     @year = results[2].to_s
-    @name = portfolio 
-    
+    @name = @portfolio
+
     respond_to do |format|
+        format.html
         format.js
     end
+    
   end
   
   

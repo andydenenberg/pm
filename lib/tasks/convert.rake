@@ -17,7 +17,7 @@ end
 desc 'Build the Databases'
 task :setup => ["db:migrate", 
                 "convert:portfolios", "convert:stocks", "convert:options", 
-                "convert:check_for_funds", "convert:refresh", 
+                "convert:check_for_funds", "convert:refresh_stocks", "convert:refresh_options_funds",
                 "convert:upload_history", "history:all_ports" ]
 
   desc 'Create Portfolios'

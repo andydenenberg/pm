@@ -63,25 +63,25 @@
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">History</h1>
-
-         <div class="btn-toolbar mb-2 mb-md-0">
+         <div class="btn-toolbar mb-2 mb-md-0">	
 	
-	<button type="button" class="btn btn-sm btn-info">Info</button>
-	
+			<div class="form-check form-check-inline">
+			  <label class="form-check-label">
+			    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Tooltip 
+			  </label>
+			</div>
+						
 			<div class="dropdown">
 			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span id='portfolio_name'>All Portfolios</span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			    	<a class="dropdown-item" href="#">All</a>
-			<div class="dropdown-divider"></div>
 					<% @portfolios.each do |p| %>
 				    <a onclick="ChangePortfolio('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
 					<% end %>
-				<h6 class="dropdown-header">Dropdown header</h6>
-			  		<a class="dropdown-item" href="#">SLATs</a>
-			  
+					<h6 class="dropdown-header">Dropdown header</h6>
+			  		<a class="dropdown-item" href="#">SLATs</a>			  
 			  </div>
 			</div>
 
@@ -96,18 +96,17 @@
 					<% end %>
 			  </div>
 			</div>
-			<%= link_to 'Refresh', refresh_path(:portfolio => 8),  :remote => true, :method => :get,
-			 	class: 'btn btn-sm btn-outline-secondary refresh_button' %>
+         </div>
 
-          </div>
         </div>
 
-		<div class="my-4 loader d-none" id="chartSpinner"></div>
-		<canvas class="my-4" id="chartCanvas" ></canvas>
+		<div class="my-4 loader" id="chartSpinner"></div>
+		<canvas class="my-4 d-none" id="chartCanvas" ></canvas>
 
       </main>
-    </div>
-  </div>
+
+    </div><!-- row -->
+  </div><!-- container-fluid -->
 
   <!-- Graphs -->
 
@@ -124,6 +123,7 @@ var chart
 	       	animation: false,
 			responsive: true,
 			tooltips: {
+				enabled:true,
 			    callbacks: {
 			      label: function(tooltipItem, data) {
 					label = millions(tooltipItem.yLabel) ;
@@ -163,7 +163,7 @@ var chart
 //						max: 35000000,
 						min: 20000000,
 						fontSize: 16,
-			            stepSize: 5000000,			            
+			            stepSize: 1000000,			            
 	                },
 	                display: true,
 	                scaleLabel: {

@@ -1,28 +1,7 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
-#  def update_prices
-#    system "rake convert:refresh RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-#
-#    totals = Hash.new
-#    Portfolio.all.each { |p| totals[p.id] = (p.cash + p.total_stocks_value + p.total_options_value).to_f }
-#    @ordered = Portfolio.find(totals.sort_by { |key, value | -value }.collect { |id, value| id })
-#    @total_cash = Portfolio.all.sum { |s| s.cash }
-#    @total_stocks = Portfolio.all.sum { |s| s.total_stocks_value }
-#    @total_stocks_change = Portfolio.all.sum { |s| s.total_stocks_change_value }
-#    @total_options = Portfolio.all.sum { |s| s.total_options_value }
-#    
-#    @last_update = Stock.where(stock_option: 'Stock').last.updated_at    
-#
-#    respond_to do |format|
-#        format.js
-#    end
-#  end
-  
-  # GET /portfolios
-  # GET /portfolios.json
   def index
-    
     if request.xhr?
       if params[:stock_option] == 'Stock'
         system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
@@ -41,10 +20,6 @@ class PortfoliosController < ApplicationController
     
     @last_update = Stock.where(stock_option: 'Stock').last.updated_at
     
-    #sum-up a Portfolio
-    
-    # Portfolio.find_by_name('R').stocks.sum { |s| s.quantity }.to_s
-    
     respond_to do |format|
         format.html
         format.js
@@ -55,7 +30,8 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
-    @stocks = @portfolio.stocks
+    stocks = @portfolio.stocks
+    @stocks = stocks.collect { |s| [ s.quantity * s.price, s.id ]  }.sort_by { |value, id| -value }.collect { |value, id| Stock.find(id) }
   end
 
   # GET /portfolios/new

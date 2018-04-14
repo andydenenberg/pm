@@ -53,6 +53,9 @@ module Options
       begin
         page = @agent.get(url)
         data = JSON.parse(page.body) 
+        
+        puts data
+        
         last_price = data['latestPrice'].to_s
         change = data["change"].to_s
         time = data["latestTime"]
