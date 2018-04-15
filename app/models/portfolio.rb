@@ -1,5 +1,5 @@
 class Portfolio < ApplicationRecord
-#  belongs_to :user
+  belongs_to :group
   has_many :stocks, :dependent => :destroy  
   has_many :histories, :dependent => :destroy  
   

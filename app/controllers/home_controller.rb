@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     @portfolios = Portfolio.all.collect { |p| p.name }
-    @portfolios.unshift "Personel Portfolios"
     @portfolios.unshift "All Portfolios"
+    @portfolios.unshift "Personel Portfolios"
     @portfolios.unshift "All SLATs"
     @portfolios.unshift "Retirement Portfolios"
     
