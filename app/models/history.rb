@@ -17,15 +17,29 @@ class History < ApplicationRecord
       when 'Month to Date'
         months = [Date.today.month]
       end
-
-      portfolio_id = portfolio_name == 'All Portfolios' ? 9999 : Portfolio.find_by_name(portfolio_name).id
-
+      
+      group_id = nil
+      case portfolio_name
+        when 'All Portfolios' 
+          portfolio_id = 9999
+        when 'Personel Portfolios'
+          portfolio_id = 0
+          group_id = 1
+        when 'All SLATs'
+          portfolio_id = 0
+          group_id = 2
+        when 'Retirement Portfolios'
+          portfolio_id = 0
+          group_id = 3
+        else
+          portfolio_id = Portfolio.find_by_name(portfolio_name).id
+        end
        dates = [ ]
        values = [ ]
        time = '[ '
        years.each do |year|
          months.each do |month|
-             results = month_totals(year,month,portfolio_id)
+             results = group_id ? month_totals_group(year, month, group_id) : month_totals(year,month,portfolio_id) 
              values += results[0]
              time += results[1]
          end
@@ -37,6 +51,20 @@ class History < ApplicationRecord
       return [ values, time, year ]
 
     end
+
+    def self.month_totals_group(year, month, group_id)
+    time = ''
+    values = [ ]
+      (1..Time.days_in_month(month, year)).each do |day|
+        time += " new Date(#{year}, #{month-1}, #{day}),"
+        selected_date = Time.local(year, month, day)
+        group = Portfolio.where(group_id: group_id).collect { |p| p.id }
+        new_value = History.where(portfolio_id: group).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day).sum(0) { |v| v.total.to_f.round(0) }        
+        values.push( new_value )
+      end
+      return values, time
+    end
+
 
     def self.month_totals(year, month, portfolio_id)
     time = ''
@@ -82,7 +110,9 @@ class History < ApplicationRecord
   
   def self.daily_snapshot # store in History record in DB
 
-    Stock.refresh_all_prices
+    Stock.refresh_all('Stock')
+    Stock.refresh_all('Option')
+    Stock.refresh_all('Fund')
     Stock.refresh_all_dividends
 
     date = Time.now.beginning_of_day()

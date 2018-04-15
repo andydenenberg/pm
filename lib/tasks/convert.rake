@@ -16,7 +16,8 @@ end
 
 desc 'Build the Databases'
 task :setup => ["db:migrate", 
-                "convert:portfolios", "convert:stocks", "convert:options", 
+                "convert:portfolios", "convert:portfolio_groups",
+                "convert:stocks", "convert:options", 
                 "convert:check_for_funds", "convert:refresh_stocks", "convert:refresh_options_funds",
                 "convert:upload_history", "history:all_ports" ]
 
@@ -31,6 +32,20 @@ task :setup => ["db:migrate",
       end 
       puts "Portfolios Created"     
     end
+
+  desc 'Create Portfolio Groups'
+  # create and dump 
+    group_ids = [ ["ETrade", 1], ["SLAT1", 2], ["SLAT2", 2], ["A&R", 1], ["DHC", 1], ["MSA", 1], ["River North", 1], ["R", 1], 
+                  ["A Roth IRA", 3], ["A 401K Rollover", 3], ["R 401K Rollover", 3], ["R Roth IRA", 3], ["HSA", 3], ["BAD Inherited Roth", 3], ["GRATS 2015", 1 ] ]
+    task :portfolio_groups => :environment do
+      group_ids.each do |p|
+        port = Portfolio.find_by_name(p[0])
+        port.group_id = p[1]
+        port.save
+      end 
+      puts "Portfolios Groups Created"     
+    end
+    
     
   desc 'Create Stocks'
       task :stocks => :environment do

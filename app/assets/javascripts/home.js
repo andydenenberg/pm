@@ -2,6 +2,15 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+function ToolTip_Millions(value) {
+	// Convert the number to a string and splite the string every 3 charaters from the end
+	    //value = value.toString().slice(0,-6);
+		value = value.toString().split(/(?=(?:...)*$)/);
+		// Convert the array to a string and format the output
+	    value = '$' + value.join(',');	    
+    return value ; //+ 'M' ;
+};
+
 function millions(value) {
 	// Convert the number to a string and splite the string every 3 charaters from the end
 	//    value = value.toString().slice(0,-6);
