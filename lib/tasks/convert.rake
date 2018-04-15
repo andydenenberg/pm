@@ -22,7 +22,6 @@ task :setup => ["db:migrate",
                 "convert:upload_history", "history:all_ports" ]
 
   desc 'Create Portfolios'
-  # create and dump 
 # Portfolio.all.collect { |i| i.cash.to_f }
   portfolios = ["ETrade", "SLAT1", "SLAT2", "A&R", "DHC", "MSA", "River North", "R", "A Roth IRA", "A 401K Rollover", "R 401K Rollover", "R Roth IRA", "HSA", "BAD Inherited Roth", "GRATS 2015"]
   cash = [63654.11, 1189041.0, 666362.57, 44875.91, 671063.84, 220911.51, 513802.0, 21034.79, 46141.03, 99309.92, 108924.47, 25651.99, 3800.0, 5043.44, 0.0]
@@ -34,7 +33,6 @@ task :setup => ["db:migrate",
     end
 
   desc 'Create Portfolio Groups'
-  # create and dump 
     task :create_groups => :environment do
       ['Personel Portfolios', "All SLATs", "Retirement Portfolios"].each do |name|
         Group.create! ( { name: name } )
@@ -43,7 +41,6 @@ task :setup => ["db:migrate",
     end
 
   desc 'Populate Portfolio Groups'
-  # create and dump 
     group_ids = [ ["ETrade", 1], ["SLAT1", 2], ["SLAT2", 2], ["A&R", 1], ["DHC", 1], ["MSA", 1], ["River North", 1], ["R", 1], 
                   ["A Roth IRA", 3], ["A 401K Rollover", 3], ["R 401K Rollover", 3], ["R Roth IRA", 3], ["HSA", 3], ["BAD Inherited Roth", 3], ["GRATS 2015", 1 ] ]
     task :populate_groups => :environment do

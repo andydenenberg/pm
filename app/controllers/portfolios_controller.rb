@@ -10,15 +10,8 @@ class PortfoliosController < ApplicationController
       end
     end
     
-    totals = Hash.new
-    Portfolio.where(group_id: 1).each { |p| totals[p.id] = (p.cash + p.total_stocks_value + p.total_options_value).to_f }
-    @ordered = Portfolio.find(totals.sort_by { |key, value | -value }.collect { |id, value| id })
-    @total_cash = Portfolio.where(group_id: 1).sum { |s| s.cash }
-    @total_stocks = Portfolio.where(group_id: 1).sum { |s| s.total_stocks_value }
-    @total_stocks_change = Portfolio.where(group_id: 1).sum { |s| s.total_stocks_change_value }
-    @total_options = Portfolio.where(group_id: 1).sum { |s| s.total_options_value }
-    
-    @last_update = Stock.where(stock_option: 'Stock').last.updated_at
+    @all = Portfolio.table_data(nil)
+    @personel = Portfolio.table_data(1)
     
     respond_to do |format|
         format.html
