@@ -1,11 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @portfolios = Portfolio.all.collect { |p| p.name }
-    @portfolios.unshift "All Portfolios"
-    @portfolios.unshift "Personel Portfolios"
-    @portfolios.unshift "All SLATs"
-    @portfolios.unshift "Retirement Portfolios"
-    
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
     @periods = ['from Start', 'Year to Date', 'Last Year', 'Month to Date']
     
     @period = params[:period] ||= "from Start"
