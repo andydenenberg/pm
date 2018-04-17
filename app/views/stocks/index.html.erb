@@ -81,10 +81,10 @@
 	  <thead>
 	    <tr>
 	      <th>Symbol</th>
-	      <th>Quantity</th>
-	      <th>Value</th>
+	      <th class='text-right'>Quantity</th>
+	      <th class='text-right'>Value</th>
 	      <th>Change</th>
-	      <th>Portfolios</th>
+	      <th class='text-right'>Portfolios</th>
 	    </tr>
 	  </thead>
 
@@ -95,7 +95,7 @@
 	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
 	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
-	        <td><%= stock[4] %></td>
+	        <td class='text-right'><%= stock[4] %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
