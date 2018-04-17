@@ -92,10 +92,10 @@
 	    <% @stocks.each do |stock| %>
 	      <tr>
 	        <td><%= stock[0] %></td>
-	        <td><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
+	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
 	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
-	        <td class='text-right'><%= stock[4] %></td>
+	        <td><%= stock[4] %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
