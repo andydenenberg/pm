@@ -9,9 +9,11 @@ class PortfoliosController < ApplicationController
         system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
       end
     end
-    
-    @all = Portfolio.table_data(nil)
-    @personel = Portfolio.table_data(1)
+    @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
+    @all_data = [ Portfolio.table_data(nil),
+             Portfolio.table_data(1),
+             Portfolio.table_data(2),
+             Portfolio.table_data(3) ]
     
     respond_to do |format|
         format.html

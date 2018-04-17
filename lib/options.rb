@@ -54,13 +54,15 @@ module Options
         page = @agent.get(url)
         data = JSON.parse(page.body) 
         
-        puts data
+        #puts data
         
         last_price = data['latestPrice'].to_s
         change = data["change"].to_s
         time = data["latestTime"]
-        date = Date.today.strftime("%Y/%m/%d")
-        ret = [symbol.upcase, last_price, change, Time.parse(date + ' ' + time).strftime("%Y/%m/%d %H:%M%p")]
+        date = Time.parse(time) - 1.hour
+        puts time
+        
+        ret = [symbol.upcase, last_price, change, date.strftime("%Y/%m/%d %H:%M%p")]
       rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
 #        puts "#{symbol} - Unknown Response"
       end       

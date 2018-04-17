@@ -1,8 +1,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-      <h1 class="h2">Portfolios</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
 			<button id='last_update' type="button" class="btn btn-sm btn-outline-secondary" disabled>
-					Prices from <%= "#{time_ago_in_words( @all[5] )} ago " %> 
+					Prices from <%= "#{time_ago_in_words( @all_data[0][5] )} ago " %> 
 		    </button>
 			<span id='refresh_spinner' class="refresh_spinner d-none"></span>
 			<button onclick="RefreshPrices('Stock');return false;" 
@@ -13,6 +12,8 @@
       </div>
     </div>
 
+<% @all_data.each_with_index do |data,i| %>
+<h3><%= @group_names[i] %></h3>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped table-sm">
 	  <thead>
@@ -25,11 +26,11 @@
 	      <th>Daily Change</th>
 	    </tr>
 	  </thead>
-
+	
 	  <tbody>
-	    <% @all[0].each do |port| %>
+	    <% data[0].each do |port| %>
 	      <tr>
-	        <td><%= link_to port.name, portfolio_path(port.id) %> (<%= port.group_id %>)</td>
+	        <td><%= link_to port.name, portfolio_path(port.id) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
@@ -40,57 +41,21 @@
 	
 	      <tr>
 	        <td></td>
-	        <td class='text-right'><%= number_to_currency(@all[1]) %></td>
-	        <td class='text-right'><%= number_to_currency(@all[2]) %></td>
-	        <td class='text-right'><%= number_to_currency(@all[3]) %></td>
-	        <td class='text-right'><%= number_to_currency(@all[1]+@all[2]+@all[3]) %></td>
-	        <td class='text-right'><%= number_to_currency(@all[4]) %></td>
+	        <td class='text-right'><%= number_to_currency(data[1]) %></td>
+	        <td class='text-right'><%= number_to_currency(data[2]) %></td>
+	        <td class='text-right'><%= number_to_currency(data[3]) %></td>
+	        <td class='text-right'><%= number_to_currency(data[1]+data[2]+data[3]) %></td>
+	        <td class='text-right'><%= number_to_currency(data[4]) %></td>
 			<td></td>
 	      </tr>
 	
 	  </tbody>
 	</table>
+	
+	<% end %>
+	
 </div>
 
 <br>
 <br>
-
-<div class="table-responsive">
-	<table class="table table-bordered table-striped table-sm">
-	  <thead>
-	    <tr>
-	      <th>Name</th>
-	      <th>Cash</th>
-	      <th>Stocks</th>
-	      <th>Options</th>
-	      <th>Total Value</th>
-	      <th>Daily Change</th>
-	    </tr>
-	  </thead>
-
-	  <tbody>
-	    <% @personel[0].each do |port| %>
-	      <tr>
-	        <td><%= link_to port.name, portfolio_path(port.id) %> (<%= port.group_id %>)</td>
-	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
-	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
-	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
-	      </tr>		
-	    <% end %>
-	
-	      <tr>
-	        <td></td>
-	        <td class='text-right'><%= number_to_currency(@personel[1]) %></td>
-	        <td class='text-right'><%= number_to_currency(@personel[2]) %></td>
-	        <td class='text-right'><%= number_to_currency(@personel[3]) %></td>
-	        <td class='text-right'><%= number_to_currency(@personel[1]+@personel[2]+@personel[3]) %></td>
-	        <td class='text-right'><%= number_to_currency(@personel[4]) %></td>
-			<td></td>
-	      </tr>
-	
-	  </tbody>
-	</table>
-</div>
 

@@ -4,7 +4,16 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = Stock.all
+    
+    s = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund')).distinct.pluck(:symbol)
+    s = s.collect { |sym| [ sym, Stock.where(symbol: sym).sum(0) { |data| (data.quantity * data.price).to_f }] }
+    @stocks = s.collect { |sym, value| [ sym, 
+                        Stock.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
+                        value,
+                        (Stock.where(symbol: sym).first.change.to_f * Stock.where(symbol: sym).first.change * Stock.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+                        Stock.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', ')
+                     ] }.sort_by {|data| -data[3] }
+    
   end
 
   # GET /stocks/1

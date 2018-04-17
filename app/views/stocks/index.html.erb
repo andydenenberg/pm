@@ -2,46 +2,34 @@
 
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="<%= portfolios_path %>">
+                <span data-feather="home"></span>
+                Portfolios <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="<%= stocks_path %>">
+                <span data-feather="file"></span>
+                Stocks 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= home_path %>">
+                <span data-feather="file"></span>
+                Graph 
+              </a>
+            </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link" href="<%= histories_path %>">
               <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Utilities 
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              Customers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2"></span>
-              Reports
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers"></span>
-              Integrations
-            </a>
-          </li>
-        </ul>
+          </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
@@ -80,16 +68,11 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Portfolios</h1>
+        <h1 class="h2">Stocks and Funds</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
-            <button class="btn btn-sm btn-outline-secondary">Export</button>
+
           </div>
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
         </div>
       </div>
 
@@ -97,36 +80,22 @@
 	<table class="table table-bordered table-striped table-sm">
 	  <thead>
 	    <tr>
-	      <th>Portfolio</th>
-	      <th>Purchase price</th>
-	      <th>Quantity</th>
 	      <th>Symbol</th>
-	      <th>Name</th>
-	      <th>Portfolio</th>
-	      <th>Purchase date</th>
-	      <th>Strike</th>
-	      <th>Expiration date</th>
-	      <th>Stock option</th>
-	      <th colspan="3"></th>
+	      <th>Quantity</th>
+	      <th>Value</th>
+	      <th>Change</th>
+	      <th>Portfolios</th>
 	    </tr>
 	  </thead>
 
 	  <tbody>
 	    <% @stocks.each do |stock| %>
 	      <tr>
-	        <td><%= stock.portfolio %></td>
-	        <td class='text-right'><%= number_to_currency(stock.purchase_price) %></td>
-	        <td class='text-right'><%= number_with_precision(stock.quantity, :precision => 0, :delimiter => ',') %></td>
-	        <td><%= stock.symbol.upcase %></td>
-	        <td><%= stock.name %></td>
-	        <td><%= stock.portfolio_id %></td>
-	        <td><%= stock.purchase_date %></td>
-	        <td><%= stock.strike %></td>
-	        <td><%= stock.expiration_date %></td>
-	        <td><%= stock.stock_option %></td>
-	        <td><%= link_to 'Show', stock %></td>
-	        <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-	        <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	        <td><%= stock[0] %></td>
+	        <td><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
+	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
+	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
+	        <td class='text-right'><%= stock[4] %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
