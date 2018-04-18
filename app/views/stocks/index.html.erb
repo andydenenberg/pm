@@ -97,7 +97,7 @@
 	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
 	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
-	        <td class='text-right'><%= number_to_currency( Stock.where(symbol: stock[0]).last.price.to_f ) %> (<%= number_to_currency( Stock.where(symbol: stock[0]).last.change.to_f ) %>)</td>
+	        <td class='text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
 	        <td class='text-right'><%= Stock.where(symbol: stock[0]).last.as_of %></td>
 	        <td class='text-right'><%= stock[4] %></td>
 	      </tr>

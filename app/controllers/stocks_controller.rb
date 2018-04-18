@@ -5,13 +5,22 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     
-    s = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund')).distinct.pluck(:symbol)
-    s = s.collect { |sym| [ sym, Stock.where(symbol: sym).sum(0) { |data| (data.quantity * data.price).to_f }] }
-    @stocks = s.collect { |sym, value| [ sym, 
-                        Stock.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
+    stocks_funds = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund'))
+    options = Stock.where(stock_option: 'Call Option').or(Stock.where(stock_option: 'Put Option'))
+    
+    symbols = stocks_funds.distinct.pluck(:symbol)
+    values = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.price).to_f }] }
+
+    values = values.sort_by { |sym, value| -value }
+    @total_value = values.sum(0) { |sym, value| value }.to_f
+    
+    @stocks = values.collect { |sym, value| [ sym, 
+                        stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
                         value,
-                        (Stock.where(symbol: sym).first.change * Stock.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
-                        Stock.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', ')
+                        (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+                        stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
+                        stocks_funds.where(symbol: sym).first.price,
+                        stocks_funds.where(symbol: sym).first.change
                      ] }.sort_by {|data| -data[3] }
     
   end
