@@ -14,14 +14,23 @@ class StocksController < ApplicationController
     values = values.sort_by { |sym, value| -value }
     @total_value = values.sum(0) { |sym, value| value }.to_f
     
-    @stocks = values.collect { |sym, value| [ sym, 
+    @stocks_up = values.collect { |sym, value| [ sym, 
                         stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
                         value,
                         (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
                         stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
                         stocks_funds.where(symbol: sym).first.price,
                         stocks_funds.where(symbol: sym).first.change
-                     ] }.sort_by {|data| -data[3] }
+                     ] }.sort_by {|data| -data[3] }[0..5]
+
+   @stocks_down = values.collect { |sym, value| [ sym, 
+                       stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
+                       value,
+                       (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+                       stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
+                       stocks_funds.where(symbol: sym).first.price,
+                       stocks_funds.where(symbol: sym).first.change
+                    ] }.sort_by {|data| data[3] }[0..5]
     
   end
 

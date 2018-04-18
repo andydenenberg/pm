@@ -76,6 +76,22 @@
         </div>
       </div>
 
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link active" href="#">Gains/Losses</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Dividends</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Link</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#">Disabled</a>
+	  </li>
+	</ul>
+
+<h3>Winners</h3>
   <div class="table-responsive">
 	<table class="table table-bordered table-striped table-sm">
 	  <thead>
@@ -86,12 +102,11 @@
 	      <th class='text-right'>Change</th>
 	      <th class='text-right'>Price</th>
 	      <th class='text-right'>As of</th>
-	      <th class='text-right'>Portfolios</th>
 	    </tr>
 	  </thead>
 
 	  <tbody>
-	    <% @stocks.each do |stock| %>
+	    <% @stocks_up.each do |stock| %>
 	      <tr>
 	        <td><%= stock[0] %></td>
 	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
@@ -99,7 +114,35 @@
 	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
 	        <td class='text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
 	        <td class='text-right'><%= Stock.where(symbol: stock[0]).last.as_of %></td>
-	        <td class='text-right'><%= stock[4] %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+  </div>
+
+<h3>Losers</h3>
+  <div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      <th>Symbol</th>
+	      <th class='text-right'>Quantity</th>
+	      <th class='text-right'>Value</th>
+	      <th class='text-right'>Change</th>
+	      <th class='text-right'>Price</th>
+	      <th class='text-right'>As of</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @stocks_down.each do |stock| %>
+	      <tr>
+	        <td><%= stock[0] %></td>
+	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
+	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
+	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
+	        <td class='text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
+	        <td class='text-right'><%= Stock.where(symbol: stock[0]).last.as_of %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
