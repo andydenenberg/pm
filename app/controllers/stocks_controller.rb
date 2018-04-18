@@ -10,7 +10,7 @@ class StocksController < ApplicationController
     @stocks = s.collect { |sym, value| [ sym, 
                         Stock.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
                         value,
-                        (Stock.where(symbol: sym).first.change.to_f * Stock.where(symbol: sym).first.change * Stock.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+                        (Stock.where(symbol: sym).first.change * Stock.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
                         Stock.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', ')
                      ] }.sort_by {|data| -data[3] }
     
