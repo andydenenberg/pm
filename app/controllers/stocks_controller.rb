@@ -31,7 +31,10 @@ class StocksController < ApplicationController
                        stocks_funds.where(symbol: sym).first.price,
                        stocks_funds.where(symbol: sym).first.change
                     ] }.sort_by {|data| data[3] }[0..5]
-    
+
+    dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }] }
+    @dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
+     
   end
 
   # GET /stocks/1

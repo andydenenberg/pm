@@ -113,7 +113,7 @@
 	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
 	        <td class='text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
-	        <td class='text-right'><%= Stock.where(symbol: stock[0]).last.as_of %></td>
+	        <td class='text-right'><%= "#{time_ago_in_words( Stock.where(symbol: stock[0]).last.as_of )} ago " %> (<%= Stock.where(symbol: stock[0]).last.as_of %>)</td>
 	      </tr>
 	    <% end %>
 	  </tbody>
@@ -148,6 +148,11 @@
 	  </tbody>
 	</table>
   </div>
+
+<br>
+
+<h3>Dividends</h3>
+<h4><%= @dividends.inspect %></h4>
 
     </main>
   </div>
