@@ -11,10 +11,10 @@ function ToolTip_Millions(value) {
     return value ; //+ 'M' ;
 };
 
-function millions(value) {
+function yTickLabel(value, tick_label) {
 	// Convert the number to a string and splite the string every 3 charaters from the end
 	//    value = value.toString().slice(0,-6);
-	if ( (value % 5000000) === 0 ) {
+	if ( (value % tick_label) === 0 ) {
 		value = value.toString().split(/(?=(?:...)*$)/);
 		// Convert the array to a string and format the output
 	    value = '$' + value.join(',');	    

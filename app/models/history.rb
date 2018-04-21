@@ -10,7 +10,7 @@ class History < ApplicationRecord
       when 'from Start'
         years = (2013..(Date.today.year))
       when 'Year to Date'
-        months = (1..Date.today.month+1)
+        months = (1..12) # Date.today.month+1)
       when 'Last Year'
         year = year - 1
         years = [Date.today.year-1]

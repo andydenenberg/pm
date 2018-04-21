@@ -153,14 +153,13 @@ var chart
 	            }],
 	            yAxes: [{
 	                ticks: {
-	                    beginAtZero: true,
 						userCallback: function(value, index, values) {
-							return millions(value) ;
+							return yTickLabel(value, 2000000) ;
 			           	},
 						fontSize: 14,
 //						beginAtZero: true,
 //						max: 35000000,
-						min: 20000000,
+//						min: 20000000,
 						fontSize: 16,
 			            stepSize: 1000000,			            
 	                },

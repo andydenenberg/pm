@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     results = History.graph_data(@portfolio, @period)
     @values = results[0]
     
-    max = (@values.max * 1.1).round.to_s
+    max = (@values.max * 1.05).round.to_s
     puts 'max: ' + max
     @max = pad_with_zeros(max)
     puts @max
@@ -17,7 +17,7 @@ class HomeController < ApplicationController
     min_vals = @values.reject {|x| x == 0 }
     puts
     puts min_vals.min
-    min = (min_vals.min * 0.9).round.to_s
+    min = (min_vals.min * 0.95).round.to_s
     puts 'min: ' + min
     @min = pad_with_zeros(min)
     puts @min
