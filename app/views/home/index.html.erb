@@ -197,6 +197,7 @@ $(document).ready(function() {
 		  data: <%= @values %>
 		});
 
+		chart.options.scales.yAxes[0].ticks.max = <%= @max %> ;
 		chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
 		chart.options.scales.xAxes[0].scaleLabel.labelString = "All Years" ;
 		chart.options.scales.xAxes[0].scaleLabel.fontSize = 16 ;

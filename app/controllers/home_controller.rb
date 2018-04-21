@@ -8,8 +8,20 @@ class HomeController < ApplicationController
     
     results = History.graph_data(@portfolio, @period)
     @values = results[0]
-    @max = (@values.max * 1.1).to_s.length
-    @min = @values.min * 0.9    
+    
+    max = (@values.max * 1.1).round.to_s
+    puts 'max: ' + max
+    @max = pad_with_zeros(max)
+    puts @max
+    
+    min_vals = @values.reject {|x| x == 0 }
+    puts
+    puts min_vals.min
+    min = (min_vals.min * 0.9).round.to_s
+    puts 'min: ' + min
+    @min = pad_with_zeros(min)
+    puts @min
+      
     @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")    
     @time = results[1]
     @year = results[2].to_s
@@ -21,6 +33,16 @@ class HomeController < ApplicationController
     end
     
   end
+  
+  private
+
+    def pad_with_zeros(value)
+      value = value.split(/(?=(?:...)*$)/)
+      padded = [value[0]]
+      (value.count-1).times { |b| padded += ['000'] }
+      padded = padded.join
+      return padded
+    end
   
   
 end
