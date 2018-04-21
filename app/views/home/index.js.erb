@@ -2,8 +2,6 @@
 //chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @period_label %>" ;
 chart.data.datasets[0].data = <%= @values.to_s.html_safe %> ;
 
-chart.data.datasets[0].pointRadius = 0 ;
-
 chart.data.labels = <%= @time %> ;
 
 chart.data.datasets[0].label = "<%= @name %>" ;

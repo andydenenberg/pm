@@ -2,6 +2,14 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+function ShowMarker() {
+    if ($("#show_marker").prop('checked'))
+    { chart.data.datasets[0].pointRadius = 3 ; } 
+	else 
+	{ chart.data.datasets[0].pointRadius = 0 ; }
+	chart.update() ;
+};
+
 function ToolTip_Millions(value) {
 	// Convert the number to a string and splite the string every 3 charaters from the end
 	    //value = value.toString().slice(0,-6);
