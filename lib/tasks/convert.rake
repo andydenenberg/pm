@@ -81,6 +81,22 @@ task :setup => ["db:migrate",
       puts "Options Created"          
     end
 
+    desc 'Refresh on Request'
+      task :refresh_on_request => :environment do
+        
+        @ironcache = IronCache::Client.new
+        @cache = @ironcache.cache("my_cache")
+        if @cache.get("poll_request").value == 'true'
+          Stock.refresh_all('Stock')
+          Stock.refresh_all('Option')
+          Stock.refresh_all('Fund')
+          @cache.put("poll_request", 'false')
+          @cache.put("poll_request_time", Time.now.to_s)
+        end 
+        
+        puts "Prices Refreshed"     
+      end
+
     desc 'Refresh Stock Prices'
       task :refresh_stocks => :environment do
         Stock.refresh_all('Stock')

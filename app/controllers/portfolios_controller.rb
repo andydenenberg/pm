@@ -2,10 +2,6 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
-    
-    puts 'ENV_ENV:'
-    puts ENV['RACK_ENV']
-    
     if ENV['RACK_ENV'] != 'development'
       @ironcache = IronCache::Client.new
       @cache = @ironcache.cache("my_cache")
@@ -17,18 +13,18 @@ class PortfoliosController < ApplicationController
       puts
     end
     
-#    if request.xhr?
-#      if params[:stock_option] == 'Stock'
-#        system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-#      else
-#        system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-#      end
-#    end
-#    @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
-#    @all_data = [ Portfolio.table_data(nil),
-#             Portfolio.table_data(1),
-#             Portfolio.table_data(2),
-#             Portfolio.table_data(3) ]
+    if request.xhr?
+      if params[:stock_option] == 'Stock'
+        system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      else
+        system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      end
+    end
+    @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
+    @all_data = [ Portfolio.table_data(nil),
+             Portfolio.table_data(1),
+             Portfolio.table_data(2),
+             Portfolio.table_data(3) ]
     
     respond_to do |format|
         format.html
