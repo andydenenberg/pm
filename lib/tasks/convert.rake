@@ -94,7 +94,6 @@ task :setup => ["db:migrate",
           @cache.put("poll_request_time", Time.now.to_s)
         end 
         
-        puts "Prices Refreshed"     
       end
 
     desc 'Refresh All Prices'
