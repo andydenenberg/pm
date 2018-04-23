@@ -2,18 +2,24 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    heroku = ENV['RACK_ENV'] != 'development'
+    if heroku
+      @ironcache = IronCache::Client.new
+      @cache = @ironcache.cache("my_cache")
+      @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
+    else
+      @poll_request_time = 'development'      
+    end
+    
+    
     if request.xhr?
-      if ENV['RACK_ENV'] == 'development'
-        @poll_request_time = 'development'
+      if !heroku
         if params[:stock_option] == 'Stock'
           system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
         else
           system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
         end
       else
-        @ironcache = IronCache::Client.new
-        @cache = @ironcache.cache("my_cache")
         @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
         if @cache.get("poll_request").value == 'false'
           @cache.put("poll_request", 'true')
