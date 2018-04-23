@@ -6,11 +6,7 @@ class PortfoliosController < ApplicationController
 
     if request.xhr?
       if !heroku
-        if params[:stock_option] == 'Stock'
-          system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-        else
-          system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-        end
+        system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
       else
         @ironcache = IronCache::Client.new
         @cache = @ironcache.cache("my_cache")

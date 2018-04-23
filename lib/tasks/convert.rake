@@ -97,17 +97,12 @@ task :setup => ["db:migrate",
         puts "Prices Refreshed"     
       end
 
-    desc 'Refresh Stock Prices'
-      task :refresh_stocks => :environment do
+    desc 'Refresh All Prices'
+      task :refresh_all => :environment do
         Stock.refresh_all('Stock')
-        puts "Prices Refreshed"     
-      end
-
-    desc 'Refresh Option & Funds Prices'
-      task :refresh_options_funds => :environment do
         Stock.refresh_all('Option')
         Stock.refresh_all('Fund')
-        puts "Options & Funds Prices Refreshed"     
+        puts "Prices Refreshed"     
       end
       
     desc 'Check for Funds'
