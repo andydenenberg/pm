@@ -3,15 +3,7 @@ class PortfoliosController < ApplicationController
 
   def index
     heroku = ENV['RACK_ENV'] != 'development'
-    if heroku
-      @ironcache = IronCache::Client.new
-      @cache = @ironcache.cache("my_cache")
-      @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
-    else
-      @poll_request_time = 'development'      
-    end
-    
-    
+
     if request.xhr?
       if !heroku
         if params[:stock_option] == 'Stock'
@@ -32,6 +24,14 @@ class PortfoliosController < ApplicationController
              Portfolio.table_data(1),
              Portfolio.table_data(2),
              Portfolio.table_data(3) ]
+             
+     if heroku
+       @ironcache = IronCache::Client.new
+       @cache = @ironcache.cache("my_cache")
+       @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
+     else
+       @poll_request_time = @all_data[0][5]      
+     end
     
     respond_to do |format|
         format.html
