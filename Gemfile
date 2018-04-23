@@ -9,6 +9,7 @@ gem 'mechanize'
 
 gem 'by_star'
 gem 'iron_cache'
+gem 'sendgrid-ruby'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0'
