@@ -19,11 +19,10 @@ namespace :history do
 
     desc 'Daily Snapshot'
         task :daily_snapshot => :environment do
-#          History.daily_snapshot
+          History.daily_snapshot
           
           require 'sendgrid-ruby'
           include SendGrid
-
           body = "Finished at: #{Time.now}"
 
           from = Email.new(email: 'her17@denfam.com')
