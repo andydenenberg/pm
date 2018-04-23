@@ -12,6 +12,8 @@ class PortfoliosController < ApplicationController
           system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
         end
       else
+        @ironcache = IronCache::Client.new
+        @cache = @ironcache.cache("my_cache")
         @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
         if @cache.get("poll_request").value == 'false'
           @cache.put("poll_request", 'true')
