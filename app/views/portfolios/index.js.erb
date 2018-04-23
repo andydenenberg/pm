@@ -1,6 +1,8 @@
-document.getElementById("last_update").innerHTML = " Prices from <%= "#{time_ago_in_words( @all_data[0][5] )} ago "%>" ; 
+document.getElementById("last_update").innerHTML = " Prices from <%= "#{time_ago_in_words( @poll_request_time )} ago "%>" ; 
 $(".refresh_button").toggleClass("d-none"); 
 $(".refresh_spinner").toggleClass("d-none"); 
+
+alert('<%= @poll_request_time %>') ;
 
 $('#index_table').html("<%= j render 'index' %>")
 

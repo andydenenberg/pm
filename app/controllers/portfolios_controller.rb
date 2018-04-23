@@ -2,23 +2,24 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
-    if ENV['RACK_ENV'] != 'development'
-      @ironcache = IronCache::Client.new
-      @cache = @ironcache.cache("my_cache")
-      @cache.put("poll_request", 'true')
-      poll_request = @cache.get("poll_request").value
-      puts
-      puts 'poll_request:'
-      puts poll_request
-      puts
-    end
-    
+
     if request.xhr?
-      if params[:stock_option] == 'Stock'
-        system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      if ENV['RACK_ENV'] == 'development'
+        @poll_request_time = 'development'
+        if params[:stock_option] == 'Stock'
+          system "rake convert:refresh_stocks RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+        else
+          system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+        end
       else
-        system "rake convert:refresh_options_funds RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-      end
+        @ironcache = IronCache::Client.new
+        @cache = @ironcache.cache("my_cache")
+        @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
+        if @cache.get("poll_request").value == 'false'
+          @cache.put("poll_request", 'true')
+        end
+      end 
+      
     end
     @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
     @all_data = [ Portfolio.table_data(nil),
