@@ -23,7 +23,7 @@ namespace :history do
           
           require 'sendgrid-ruby'
           include SendGrid
-          body = "Finished at: #{Time.now}<br>Total Value: #{totals[0].to_s}<br>Total change: #{totals[1].to_s}<br>"
+          body = "Finished at: #{Time.now}<br>Total Value: #{helper.number_with_delimiter(totals[0].round)}<br>Total change: #{helper.number_with_delimiter(totals[1].round)}<br>"
 
           from = Email.new(email: 'winnetkadrone@gmail.com')
           subject = 'Her17 Daily Snapshot complete'
