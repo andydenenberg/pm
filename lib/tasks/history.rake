@@ -28,7 +28,7 @@ namespace :history do
           from = Email.new(email: 'winnetkadrone@gmail.com')
           subject = 'Her17 Daily Snapshot complete'
           to = Email.new(email: 'andy@denenberg.net')
-          content = Content.new(type: 'text/plain', value: body.html_safe)
+          content = Content.new(type: 'text/html', value: body)
           mail = SendGrid::Mail.new(from, subject, to, content)
 
           sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
