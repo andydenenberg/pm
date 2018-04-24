@@ -119,6 +119,7 @@ class History < ApplicationRecord
     
     total_cash = 0
     total_stocks = 0
+    total_stocks_change = 0
     total_stocks_count = 0
     total_options = 0
     total_options_count = 0
@@ -137,6 +138,10 @@ class History < ApplicationRecord
           total_stocks_count += stocks.count
         hist.stocks = stocks.reduce(0) { |sum, stock| sum + ( stock.quantity * stock.price ) }
           total_stocks += hist.stocks
+
+        stocks_change = stocks.reduce(0) { |sum, stock| sum + ( stock.quantity * stock.change ) }
+          total_stocks_change += stocks_change
+
         hist.daily_dividend = stocks.reduce(0) { |sum, stock| sum + ( stock.daily_dividend * stock.quantity ) }
           total_daily_dividend += hist.daily_dividend
         hist.daily_dividend_date = Time.now.beginning_of_day()
@@ -155,7 +160,9 @@ class History < ApplicationRecord
                            options: total_options, options_count: total_options_count,
                            daily_dividend: total_daily_dividend, daily_dividend_date: date,
                            total: total_all } )
-    
+
+    return total_all, total_stocks_change
+
   end
   
 end
