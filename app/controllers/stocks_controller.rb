@@ -1,39 +1,31 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   # GET /stocks
   # GET /stocks.json
   def index
+
+    @test = sort_column + " " + sort_direction
+    translate = { value: 2, change: 3 }
+    column = translate[sort_column.to_sym]
     
     stocks_funds = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund'))
-    options = Stock.where(stock_option: 'Call Option').or(Stock.where(stock_option: 'Put Option'))
-    
     symbols = stocks_funds.distinct.pluck(:symbol)
     values = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.price).to_f }] }
-
-    values = values.sort_by { |sym, value| -value }
     @total_value = values.sum(0) { |sym, value| value }.to_f
     
-    @stocks_up = values.collect { |sym, value| [ sym, 
+    @stocks = values.collect { |sym, value| [ sym, 
                         stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
                         value,
                         (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
                         stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
                         stocks_funds.where(symbol: sym).first.price,
-                        stocks_funds.where(symbol: sym).first.change
-                     ] }.sort_by {|data| -data[3] }[0..5]
-
-   @stocks_down = values.collect { |sym, value| [ sym, 
-                       stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
-                       value,
-                       (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
-                       stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
-                       stocks_funds.where(symbol: sym).first.price,
-                       stocks_funds.where(symbol: sym).first.change
-                    ] }.sort_by {|data| data[3] }[0..5]
-
-    dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }] }
-    @dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
+                        stocks_funds.where(symbol: sym).first.change,
+                        stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }, # dividends
+                        stocks_funds.where(symbol: sym).collect { |s| "#{Portfolio.find(s.portfolio_id).name}: #{s.quantity}" }.to_s #portfolios
+                     ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
      
   end
 
@@ -101,4 +93,13 @@ class StocksController < ApplicationController
     def stock_params
       params.require(:stock).permit(:portfolio_id, :title, :body, :purchase_price, :quantity, :symbol, :name, :portfolio_id, :purchase_date, :strike, :expiration_date, :stock_option)
     end
+
+    def sort_column
+      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+    
 end
