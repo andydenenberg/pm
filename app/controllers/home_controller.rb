@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
-    @periods = ['from Start', 'Year to Date', 'Last Year', 'Month to Date']
+    @periods = ['from Start', 'Last 3 Years', 'Last Year', 'Year to Date', 'Month to Date']
     
     @period = params[:period] ||= "from Start"
     @portfolio = params[:portfolio] ||= 'All Portfolios'    

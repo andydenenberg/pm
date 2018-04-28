@@ -9,11 +9,14 @@ class History < ApplicationRecord
       case period
       when 'from Start'
         years = (2013..(Date.today.year))
-      when 'Year to Date'
-        months = (1..12) # Date.today.month+1)
+      when 'Last 3 Years'
+        year = "#{year-2}-#{year}"
+        years = [Date.today.year-2, Date.today.year-1, Date.today.year]
       when 'Last Year'
         year = year - 1
         years = [Date.today.year-1]
+      when 'Year to Date'
+        months = (1..12) # Date.today.month+1)
       when 'Month to Date'
         months = [Date.today.month]
       end
