@@ -104,11 +104,11 @@ class StocksController < ApplicationController
 
     def sort_column
 #      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
-      params[:sort]
+      params[:sort] =|| 'dividends'
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
     
 end
