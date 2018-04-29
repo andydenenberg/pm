@@ -1,14 +1,14 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :select_tab
 
   # GET /stocks
   # GET /stocks.json
   def index
 
-    @test = sort_column + " " + sort_direction
-    translate = { value: 2, change: 3 }
+#    @test = sort_column + " " + sort_direction
+    translate = { value: 2, change: 3, dividends: 7 }
     column = translate[sort_column.to_sym]
     
     stocks_funds = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund'))
@@ -24,8 +24,16 @@ class StocksController < ApplicationController
                         stocks_funds.where(symbol: sym).first.price,
                         stocks_funds.where(symbol: sym).first.change,
                         stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }, # dividends
-                        stocks_funds.where(symbol: sym).collect { |s| "#{Portfolio.find(s.portfolio_id).name}: #{s.quantity}" }.to_s #portfolios
+                        stocks_funds.where(symbol: sym).collect { |s| #portfolios
+                          "#{Portfolio.find(s.portfolio_id).name}: #{s.quantity.round.to_s.split(/(?=(?:...)*$)/).join(',')}"
+                           }.to_s.gsub('"','').gsub('[','').gsub(']',''),
+                        stocks_funds.where(symbol: sym).first.daily_dividend.to_f, # dividend / share
+                         
                      ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
+                     
+     dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }] }
+     @dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
+    
      
   end
 
@@ -95,7 +103,8 @@ class StocksController < ApplicationController
     end
 
     def sort_column
-      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
+#      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
+      params[:sort]
     end
 
     def sort_direction

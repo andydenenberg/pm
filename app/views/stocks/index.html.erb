@@ -1,3 +1,12 @@
+<style>
+.toggleDisplay {
+  display: none;
+}
+.toggleDisplay.in {
+  display: table-cell;
+}
+</style>
+
 <p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
@@ -78,40 +87,14 @@
 
 	<ul class="nav nav-tabs">
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Gains/Losses</a>
+		<a onclick="toggle_display();return false;" class="toggleTab nav-link active" href="#">Value/Change/Dividend</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="#">Dividends</a>
+		<a onclick="toggle_display();return false;" class="toggleTab nav-link" href="#">Other info</a>
 	  </li>
 	</ul>
 
-  <div class="table-responsive">
-	<table class="table table-bordered table-striped table-sm">
-	  <thead>
-	    <tr>
-	      <th>Symbol</th>
-	      <th class='text-right'>Quantity</th>
-	      <th class='text-right'><%= sortable 'value' %>  </th>	
-	      <th class='text-right'><%= sortable 'change' %> </th>
-	      <th class='text-right'>Price</th>
-	      <th class='text-right'>As of</th>
-	    </tr>
-	  </thead>
-
-	  <tbody>
-	    <% @stocks.each do |stock| %>
-	      <tr>
-	        <td><%= stock[0] %></td>
-	        <td class='text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
-	        <td class='text-right'><%= number_to_currency(stock[2]) %></td>
-	        <td class='text-right'><%= number_to_currency(stock[3]) %></td>
-	        <td class='text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
-	        <td class='text-right'><%= "#{time_ago_in_words( Time.parse(Stock.where(symbol: stock[0]).last.as_of ) ) } ago " %> (<%= Stock.where(symbol: stock[0]).last.as_of %>)</td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
-  </div>
+	<%= render 'gains_losses' %>
 
     </main>
   </div>
@@ -122,7 +105,15 @@
 <%= link_to 'New Stock', new_stock_path %>
 
 <script>
+
+function toggle_display() {
+	$(".table .toggleDisplay").toggleClass("in");
+	$(".toggleTab").toggleClass("active");
+};
+
 $(document).ready(function() {
   feather.replace() ;	
  });
+
+
 </script>
