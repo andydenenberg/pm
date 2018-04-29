@@ -3,8 +3,8 @@ class History < ApplicationRecord
     def self.graph_data(portfolio_name, period)
       colors = [ 'Green', 'Yellow', 'Brown', 'Orange', 'Red', 'Pink', 'Purple', 'Maroon', 'Olive', 'Cyan', 'LightBlue', 'Magenta', 'Black','Blue','Gray'  ]
 
-      year = Time.current.year
-      years = [Date.today.year]
+      year = Date.current.year
+      years = [year]
       months = (1..12)
       case period
       when 'from Start'
