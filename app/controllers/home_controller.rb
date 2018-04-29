@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
     @periods = ['from Start', 'Last 3 Years', 'Last 2 Years', 'Year to Date', 'Month to Date']
     
-    @period = params[:period] ||= "from Start"
+    @period = params[:period] ||= "Last 2 Years"
     @portfolio = params[:portfolio] ||= 'All Portfolios'    
     
     results = History.graph_data(@portfolio, @period)
