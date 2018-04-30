@@ -8,6 +8,7 @@ class History < ApplicationRecord
       months = (1..12)
       case period
       when 'from Start'
+        year = "2013-#{year}"
         years = (2013..(Date.today.year))
       when 'Last 3 Years'
         year = "#{year-2}-#{year}"

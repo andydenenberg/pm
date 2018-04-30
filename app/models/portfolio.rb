@@ -24,7 +24,8 @@ class Portfolio < ApplicationRecord
     total = 0
     stocks = self.stocks.where(:stock_option => 'Stock').or(self.stocks.where(:stock_option => 'Fund'))
     stocks.each do |s|
-      total += s.quantity * s.price
+      sub_total = s.quantity * s.price 
+      total += sub_total ||= 0
     end
     return total
   end

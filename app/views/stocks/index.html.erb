@@ -76,14 +76,27 @@
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Stocks and Funds</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
 
-          </div>
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 id='portfolio_name' class="h2"><%= @portfolio_name %></h1>
+         <div class="btn-toolbar mb-2 mb-md-0">	
+	
+			<div class="dropdown">
+			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span id='portfolio_name'>All Portfolios</span>
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<% @portfolios.each do |p| %>
+				    <a onclick="SelectPortfolio('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
+					<% end %>
+			  </div>
+			</div>
+
+         </div>
+
         </div>
-      </div>
 
 	<ul class="nav nav-tabs">
 	  <li class="nav-item">
@@ -94,7 +107,9 @@
 	  </li>
 	</ul>
 
-	<%= render 'gains_losses' %>
+	<div id='index_table'>
+		<%= render 'gains_losses' %>
+	</div>	
 
     </main>
   </div>
