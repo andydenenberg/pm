@@ -8,14 +8,16 @@ class Stock < ApplicationRecord
       data = Options.stock_price(self.symbol)
     when 'Fund'
       data = Options.yahoo_price(self.symbol)
-    else 
+    when 'Call Option' || 'Put Option'
       option = Options.option_price(self.symbol, self.strike, self.expiration_date, self.stock_option)
         price = self.quantity > 0 ? option['Bid'] : option['Ask']
       data = [ self.symbol.upcase, price, 0, option['Time'] ]
+    else
+    data = [ 0, 0, 0, Time.parse(data[3]).strftime("%Y/%m/%d %H:%M") ]
     end  
     self.price = data[1]
     self.change = data[2]
-    self.as_of = data[3] # Time.parse(data[3]).strftime("%Y/%m/%d %H:%M")
+    self.as_of = data[3]
     self.save
   end
    

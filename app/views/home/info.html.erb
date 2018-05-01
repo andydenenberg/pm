@@ -1,0 +1,34 @@
+https://github.com/heroku/heroku-fork
+
+# install fork
+heroku plugins:install heroku-fork
+
+# create the new app
+heroku fork --from her17  --to heraga  
+
+# add the git repo  
+git remote add forked git@heroku.com:heraga.git
+
+# monitor the apps
+heroku logs --tail --app heraga
+heroku logs --tail --app her17
+
+# run console for apps
+heroku run console --app heraga
+heroku run console --app her17
+
+# get info on apps
+heroku info heraga
+heroku info heraga
+
+# push new code to apps
+git push forked master
+git push heroku master
+
+# setup the ironcache store
+@ironcache = IronCache::Client.new
+@cache = @ironcache.cache("my_cache")
+@cache.put("poll_request", 'false')
+@cache.put("poll_request_time", Time.now.to_s)
+
+
