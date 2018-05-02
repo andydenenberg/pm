@@ -8,10 +8,10 @@ module Lib
         when 'All Portfolios' 
           portfolio_ids = Portfolio.all.collect { |p| p.id }
         else # individual portfolios
-          portfolio_ids = Group.find_by_name(group_name).portfolios.collect { |p| p.id }
+          portfolio_ids = Portfolio.find_by_name(portfolio_name).collect { |p| p.id }
         end
       else # Group of portfolios
-        portfolio_ids = Group.find_by_name(group_name).portfolios.collect { |p| p.id }
+        portfolio_ids = Group.find_by_name(portfolio_name).portfolios.collect { |p| p.id }
       end
     return portfolio_ids
   end
