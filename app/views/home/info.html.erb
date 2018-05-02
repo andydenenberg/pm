@@ -1,3 +1,5 @@
+<pre>
+
 https://github.com/heroku/heroku-fork
 
 # install fork
@@ -34,17 +36,11 @@ git push heroku master
 heroku run history:daily_snapshot --app heraga
 
 
-The solution with ENV['URL'] will only work during requests.
-
 So if you need to know the app id outside a request, you's set a config variable like this
 
 heroku config:add APP_NAME=<myappname> --app <myappname>
 And enable lab feature that allows you to use them during compile
-
-heroku labs:enable user-env-compile -a myapp
-And now I have my app name available here:
-
 ENV["APP_NAME"] # '<myappname>'
 This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
 
-
+</pre>
