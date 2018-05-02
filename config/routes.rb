@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :portfolios
   resources :stocks
   root 'portfolios#index'
-  get 'home', to: 'home#index'  
+  get 'home', to: 'home#index'
+  get 'info', to: 'home#info'  
   
 #  get "/update_prices" => 'portfolios#update_prices', as: 'update_prices'
   
