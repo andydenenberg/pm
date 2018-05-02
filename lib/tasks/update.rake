@@ -4,7 +4,7 @@ desc "Update Portfolios"
   task :update_holdings => :environment do
     require 'csv'
 
-    base_dir = '~/Desktop/Hellemb_B/heraga'
+    base_dir = '/Users/andydenenberg/Desktop/Hellemb_B/heraga'
     files = Dir["#{base_dir}/*"]
   
 # find the portfolios
@@ -19,7 +19,7 @@ desc "Update Portfolios"
     end
     
     new_portfolios = ''
-    id = 1
+    portfolio_id = 1
 # for each portfolio
     portfolios.each do |portfolio, file|
  
@@ -32,8 +32,7 @@ desc "Update Portfolios"
     stocks = CSV.read(file)  # Andy.CSV')
     stock_total = stocks[3..-3].inject(0) { |result, element| result + element[6].gsub('$','').gsub(',','').to_f }
     cash = stocks[-2][6].gsub('$','').gsub(',','').to_f
-    new_portfolios +=  "Portfolio.create!( id: #{id}, name: '#{portfolio}', cash: #{cash}, group_id: 1 )\n"
-    id += 1
+    new_portfolios +=  "Portfolio.create!( id: #{portfolio_id}, name: '#{portfolio}', cash: #{cash}, group_id: 1 )\n"
         
     port_stocks = ''
     puts portfolio
@@ -60,12 +59,17 @@ desc "Update Portfolios"
       when 'ETFs & Closed End Funds'
         stock_option = 'Fund'
       else
-        stock_option = 'Other'
+        stock_option = 'Fund'
       end
        
-      portfolio_id = 1         
+       
+       
+       
+#       ["VTKLF", "BRKB", "NSRGY", "RHHBY", "BRKB"]
+       
+       
       port_stocks +=
-      "s = Stock.create!(" +
+      "Stock.create!(" +
       "symbol: '#{symbol}', " +
       "name: '#{s[1][0..15]}', " +
       "quantity: #{quantity}, " +
@@ -83,6 +87,7 @@ desc "Update Portfolios"
       
       puts port_stocks
       puts
+      portfolio_id += 1
             
     end # portfolios
         

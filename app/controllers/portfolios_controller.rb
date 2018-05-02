@@ -18,10 +18,12 @@ class PortfoliosController < ApplicationController
       
     end
     @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
-    @all_data = [ Portfolio.table_data(nil),
-             Portfolio.table_data(1),
-             Portfolio.table_data(2),
-             Portfolio.table_data(3) ]
+    group_ids = [ nil ] + Group.all.collect { |g| g.id }
+    @all_data = group_ids.collect { |i| Portfolio.table_data(i) }
+#    @all_data = [ Portfolio.table_data(nil),
+#             Portfolio.table_data(1),
+#             Portfolio.table_data(2),
+#             Portfolio.table_data(3) ]
              
      if heroku
        @ironcache = IronCache::Client.new
