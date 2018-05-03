@@ -1,46 +1,52 @@
 <pre>
 
-https://github.com/heroku/heroku-fork
+	<div class="container-fluid">
+	  <div class="row">
 
-# install fork
-heroku plugins:install heroku-fork
+	https://github.com/heroku/heroku-fork
 
-# create the new app
-heroku fork --from her17  --to heraga  
+	# install fork
+	heroku plugins:install heroku-fork
 
-# add the git repo  
-git remote add forked git@heroku.com:heraga.git
+	# create the new app
+	heroku fork --from her17  --to heraga  
 
-# monitor the apps
-heroku logs --tail --app heraga
-heroku logs --tail --app her17
+	# add the git repo  
+	git remote add forked git@heroku.com:heraga.git
 
-# run console for apps
-heroku run console --app heraga
-heroku run console --app her17
+	# monitor the apps
+	heroku logs --tail --app heraga
+	heroku logs --tail --app her17
 
-# get info on apps
-heroku info heraga
-heroku info heraga
+	# run console for apps
+	heroku run console --app heraga
+	heroku run console --app her17
 
-# push new code to apps
-git push forked master
-git push heroku master
+	# get info on apps
+	heroku info heraga
+	heroku info heraga
 
-# setup the ironcache store
-@ironcache = IronCache::Client.new
-@cache = @ironcache.cache("my_cache")
-@cache.put("poll_request", 'false')
-@cache.put("poll_request_time", Time.now.to_s)
+	# push new code to apps
+	git push forked master
+	git push heroku master
 
-heroku run history:daily_snapshot --app heraga
+	# setup the ironcache store
+	@ironcache = IronCache::Client.new
+	@cache = @ironcache.cache("my_cache")
+	@cache.put("poll_request", 'false')
+	@cache.put("poll_request_time", Time.now.to_s)
+
+	heroku run history:daily_snapshot --app heraga
 
 
-So if you need to know the app id outside a request, you's set a config variable like this
+	So if you need to know the app id outside a request, you's set a config variable like this
 
-heroku config:add APP_NAME=<myappname> --app <myappname>
-And enable lab feature that allows you to use them during compile
-ENV["APP_NAME"] # '<myappname>'
-This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
+	heroku config:add APP_NAME=<myappname> --app <myappname>
+	And enable lab feature that allows you to use them during compile
+	ENV["APP_NAME"] # '<myappname>'
+	This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
 
 </pre>
+
+  </div><!-- row -->
+</div><!-- container-fluid -->
