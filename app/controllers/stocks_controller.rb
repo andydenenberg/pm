@@ -13,7 +13,7 @@ class StocksController < ApplicationController
     translate = { value: 2, change: 3, dividends: 7 }
     column = translate[sort_column.to_sym]
     
-    stocks = Stock.where(portfolio_id: Lib.translate_groupids(@portfolio_name) )
+    stocks = Stock.where(portfolio_id: Lib.translate_groupids(@portfolio_name).first )
     stocks_funds = stocks.where(stock_option: 'Stock').or(stocks.where(stock_option: 'Fund'))
     
     symbols = stocks_funds.distinct.pluck(:symbol)

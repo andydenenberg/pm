@@ -22,67 +22,79 @@ class History < ApplicationRecord
         months = [Date.today.month]
       end
       
-      group_id = nil
-      case portfolio_name
-        when 'All Portfolios' 
-          portfolio_id = 9999
-        when 'Personel Portfolios'
-          portfolio_id = 0
-          group_id = 1
-        when 'All SLATs'
-          portfolio_id = 0
-          group_id = 2
-        when 'Retirement Portfolios'
-          portfolio_id = 0
-          group_id = 3
-        else
-          portfolio_id = Portfolio.find_by_name(portfolio_name).id
-        end
+#     group_id = nil
+#     case portfolio_name
+#       when 'All Portfolios' 
+#         portfolio_id = 9999
+#       when 'Personel Portfolios'
+#         portfolio_id = 0
+#         group_id = 1
+#       when 'All SLATs'
+#         portfolio_id = 0
+#         group_id = 2
+#       when 'Retirement Portfolios'
+#         portfolio_id = 0
+#         group_id = 3
+#       else
+#         portfolio_id = Portfolio.find_by_name(portfolio_name).id
+#       end
+                
+       p_ids_group = Lib.translate_groupids(portfolio_name)
+       
+       if !p_ids_group[1] and p_ids_group[0].is_a?(Array) # All Portfolios not a group, but multiples
+         p_ids_group[0] = 9999
+       end
+
+
+
+        
        dates = [ ]
        values = [ ]
        time = '[ '
        years.each do |year|
          months.each do |month|
-             results = group_id ? month_totals_group(year, month, group_id) : month_totals(year,month,portfolio_id) 
+#             results = group_id ? month_totals_group(year, month, group_id) : month_totals(year,month,portfolio_id) 
+             results = month_totals(year,month,p_ids_group ) 
              values += results[0]
              time += results[1]
          end
        end
        time = time[0..-2] + ' ]'
-       
-       puts values.inspect
-       
       return [ values, time, year ]
 
     end
 
-    def self.month_totals_group(year, month, group_id)
-    time = ''
-    values = [ ]
-      (1..Time.days_in_month(month, year)).each do |day|
-        time += " new Date(#{year}, #{month-1}, #{day}),"
-        selected_date = Time.local(year, month, day)
-        group = Portfolio.where(group_id: group_id).collect { |p| p.id }
-        new_value = History.where(portfolio_id: group).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day).sum(0) { |v| v.total.to_f.round(0) }        
-        values.push( new_value )
-      end
-      return values, time
-    end
+#   def self.month_totals_group(year, month, group_id)
+#   time = ''
+#   values = [ ]
+#     (1..Time.days_in_month(month, year)).each do |day|
+#       time += " new Date(#{year}, #{month-1}, #{day}),"
+#       selected_date = Time.local(year, month, day)
+#       group = Portfolio.where(group_id: group_id).collect { |p| p.id }
+#       new_value = History.where(portfolio_id: group).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day).sum(0) { |v| v.total.to_f.round(0) }        
+#       values.push( new_value )
+#     end
+#     return values, time
+#   end
 
 
-    def self.month_totals(year, month, portfolio_id)
+    def self.month_totals(year, month, p_ids)
     time = ''
     values = [ ]
       last_value = 0
       (1..Time.days_in_month(month, year)).each do |day|
         time += " new Date(#{year}, #{month-1}, #{day}),"
         selected_date = Time.local(year, month, day)
-        new_value = History.where(:portfolio_id => portfolio_id).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)        
-       if new_value.last.nil? 
-         new_value = 0
-       else
-         new_value = new_value.last.total.to_f.round(0) 
-       end
+        new_value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
+        if p_ids[1] # group is true
+          new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
+        else                 
+           if new_value.last.nil? 
+             new_value = 0
+           else
+             new_value = new_value.last.total.to_f.round(0) 
+           end
+        end
         values.push( new_value )
       end
       return values, time

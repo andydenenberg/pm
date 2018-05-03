@@ -8,8 +8,11 @@ chart.data.datasets[0].label = "<%= @name %>" ;
 chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @year %>" ;
 
 chart.options.scales.yAxes[0].ticks.max = <%= @max %> ;
+
+step = <%= @step %> ;
+
 chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
-//chart.options.scales.yAxes[0].ticks.stepSize = ? ;
+chart.options.scales.yAxes[0].ticks.stepSize = <%= @step %> ;
 
 document.getElementById("portfolio_name").innerHTML = "<%= @name %>" ; 
 document.getElementById("period").innerHTML = "<%= @period %>" ; 

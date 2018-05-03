@@ -26,7 +26,6 @@ namespace :history do
           body = "Finished at: #{Time.now}<br>Total Value: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[0].round)}<br>Total change: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[1].round)}<br>"
 
           from = Email.new(email: 'winnetkadrone@gmail.com')
-          ENV["APP_NAME"]
           subject = "#{ENV["APP_NAME"]} Daily Snapshot complete"
           to = Email.new(email: 'andy@denenberg.net')
           content = Content.new(type: 'text/html', value: body)
