@@ -8,6 +8,10 @@ class PortfoliosController < ApplicationController
       if !heroku
         system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
       else
+        
+        system "heroku rake convert:refresh_all --app heraga"
+#        system "rake demo:refresh_all RAILS_ENV=#{Rails.env} REALTIME=#{params[:real_time]} --trace >> #{Rails.root}/log/rake.log &"
+        
         @ironcache = IronCache::Client.new
         @cache = @ironcache.cache("my_cache")
         @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
