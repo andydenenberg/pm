@@ -9,9 +9,7 @@ class PortfoliosController < ApplicationController
         system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
       else
         
-puts 'got here'
-
-        system "heroku rake convert:refresh_all --app heraga"
+#        system "heroku rake convert:refresh_all --app heraga"
 #        system "rake demo:refresh_all RAILS_ENV=#{Rails.env} REALTIME=#{params[:real_time]} --trace >> #{Rails.root}/log/rake.log &"
         
         @ironcache = IronCache::Client.new
