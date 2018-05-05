@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
   @cache = @ironcache.cache("my_cache")
   @pr_time = Time.parse(@cache.get("poll_request_time").value)
   
+  puts
+  puts
+  puts 'here'
+  puts @pr_time
+  puts
+  
 end
