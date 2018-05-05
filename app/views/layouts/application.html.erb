@@ -45,9 +45,9 @@
 		  <li>
 			  <%= @ironcache = IronCache::Client.new %>
 			  <%= @cache = @ironcache.cache("my_cache") %>
-			  <%= @pr_time = Time.parse(@cache.get("poll_request_time").value) %>
+			  <%= @pr_time =  %>
 
-			<%= link_to @pr_time, info_path, class: "nav-link btn", id: "time" %>
+			<%= link_to @pr_time, info_path, class: "nav-link btn" %>
 		  </li>
 		  <li>
 			<%= link_to '', '#', class: "nav-link btn", id: "time" %>
