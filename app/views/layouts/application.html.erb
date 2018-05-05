@@ -43,11 +43,9 @@
 		
         <ul class="navbar-nav ml-auto">
 		  <li>
-			  <%= @ironcache = IronCache::Client.new %>
-			  <%= @cache = @ironcache.cache("my_cache") %>
-			  <%= @pr_time = Time.parse(@cache.get("poll_request_time").value) %>
-
-			<%= link_to @pr_time, info_path, class: "nav-link btn" %>
+			  <% @ironcache = IronCache::Client.new %>
+			  <% @cache = @ironcache.cache("my_cache") %>
+			<%= link_to Time.parse(@cache.get("poll_request_time").value), info_path, class: "nav-link btn" %>
 		  </li>
 		  <li>
 			<%= link_to '', '#', class: "nav-link btn", id: "time" %>
