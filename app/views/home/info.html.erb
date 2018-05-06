@@ -4,6 +4,13 @@
 	<div class="container-fluid">
 	  <div class="row">
 
+		require 'rubygems'
+		require 'action_view'
+		include ActionView::Helpers::DateHelper
+
+		time_ago_in_words Time.now - 4 * 86400
+		
+		
 	https://github.com/heroku/heroku-fork
 
 	# install fork
