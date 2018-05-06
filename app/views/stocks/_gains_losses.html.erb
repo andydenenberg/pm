@@ -23,7 +23,7 @@
 													(<%= number_to_percentage(100*stock[2]/@total_value, precision: 2)%>)</td>
 	        <td class='toggleDisplay in text-right'><%= number_to_currency(stock[3]) %></td>
 	        <td class='toggleDisplay in text-right'><%= number_to_currency(stock[7]) %> (<%= number_to_currency(stock[9]) %>)</td>
-	        <td class='toggleDisplay in text-right'><%= "#{time_ago_in_words( Time.parse(Stock.where(symbol: stock[0]).last.as_of ) ) } ago " %> (<%= Stock.where(symbol: stock[0]).last.as_of %>)</td>
+	        <td class='toggleDisplay in text-right'><%= "#{time_ago_in_words( Time.parse(Stock.where(symbol: stock[0]).last.as_of ) ) } ago " %></td>
 	        <td class='toggleDisplay text-right'><%= stock[8] %></td>
 	      </tr>
 	    <% end %>
