@@ -53,7 +53,7 @@
 			class='nav-link btn btn-sm btn-outline-secondary refresh_button'>Refresh</button>
 	</li>
 		  <li>
-			<%= link_to Time.parse(@cache.get("poll_request_time").value), info_path, class: "nav-link btn" %>
+			<%= link_to @poll_request_time, info_path, class: "nav-link btn" %>
 		  </li>
 		  <li>
 			<%= link_to '10', '#', class: "nav-link btn", id: "time" %>
