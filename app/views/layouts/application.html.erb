@@ -43,15 +43,14 @@
 		
         <ul class="navbar-nav ml-auto">
 	<li>
-			<button id='last_update' type="button" class="nav-link btn btn-sm btn-outline-secondary" disabled>
-					Prices from <%= "#{time_ago_in_words( @poll_request_time )} ago " %> 
-		    </button>
+		<button id='last_update' type="button" class="nav-link btn btn-sm btn-outline-secondary" disabled>
+				Prices from <%= "#{time_ago_in_words( @poll_request_time )} ago " %> 
+	    </button>
 	</li>
 	<li><span id='refresh_spinner' class="nav-link refresh_spinner d-none"></span></li>
     <li>
-				<button onclick="RefreshPrices('All');return false;" 
-					class='nav-link btn btn-sm btn-outline-secondary refresh_button'>Refresh</button>
-	</li>
+		<button onclick="RefreshPrices('All');return false;" 
+			class='nav-link btn btn-sm btn-outline-secondary refresh_button'>Refresh</button>
 	</li>
 		  <li>
 			<%= link_to Time.parse(@cache.get("poll_request_time").value), info_path, class: "nav-link btn" %>
