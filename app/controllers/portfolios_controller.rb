@@ -13,7 +13,7 @@ class PortfoliosController < ApplicationController
                 
         @ironcache = IronCache::Client.new
         @cache = @ironcache.cache("my_cache")
-        @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
+        @poll_request_time = Time.parse(@cache.get("poll_request_time").value)+5.hours
         if @cache.get("poll_request").value == 'false'
           @cache.put("poll_request", 'true')
         end

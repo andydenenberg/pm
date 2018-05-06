@@ -16,8 +16,6 @@ class HomeController < ApplicationController
     
     scale = Lib.graph_scale(@values)
     
-    puts scale
-    
     @max = scale[0]
     @min = scale[1]
     @step = scale[2]
