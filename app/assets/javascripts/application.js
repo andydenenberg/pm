@@ -26,7 +26,7 @@ var myVar = setInterval(myTimer, 1000);
 function myTimer() {
     var d = new Date();
 	var minutes = d.getMinutes();
-	document.getElementById("time").innerHTML = minutes % 10 ;
+	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
 //    document.getElementById("time").innerHTML = d.toLocaleTimeString();
 };
 
