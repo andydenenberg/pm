@@ -5,9 +5,9 @@
 	      <th>Symbol</th>
 	      <th class='toggleDisplay in text-right'>Quantity</th>
 	      <th class='toggleDisplay in text-right'>Price</th>
-	      <th class='toggleDisplay in text-right'><%= sortable 'value' %>  </th>	
-	      <th class='toggleDisplay in text-right'><%= sortable 'change' %> </th>
-	      <th class='toggleDisplay in text-right'><%= sortable 'dividends','Dividends(share)' %></th>	
+	      <th class='toggleDisplay in text-right'><%= sortable @portfolio_name, 'value' %>  </th>	
+	      <th class='toggleDisplay in text-right'><%= sortable @portfolio_name, 'change' %> </th>
+	      <th class='toggleDisplay in text-right'><%= sortable @portfolio_name, 'dividends','Dividends(share)' %></th>	
 	      <th class='toggleDisplay in text-right'>As of</th>
 	      <th class='toggleDisplay text-right'>Portfolios</th>
 	    </tr>
@@ -33,7 +33,7 @@
 	      <td></td>
 	      <td></td>
 	      <td class='text-right'><%= number_to_currency(@total_value) %></td>	
-	      <td></td>
+	      <td class='text-right'><%= number_to_currency(@total_change) %></td>	
 	      <td></td>	
 	      <td></td>
 	      <td></td>

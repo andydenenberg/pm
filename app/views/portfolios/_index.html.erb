@@ -16,7 +16,7 @@
 	  <tbody>
 	    <% data[0].each do |port| %>
 	      <tr>
-	        <td><%= link_to port.name, portfolio_path(port.id) %></td>
+	        <td><%= link_to port.name, stocks_path(portfolio_name: port.name ) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>

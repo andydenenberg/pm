@@ -19,6 +19,8 @@ class StocksController < ApplicationController
     symbols = stocks_funds.distinct.pluck(:symbol)
     values = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.price).to_f }] }
     @total_value = values.sum(0) { |sym, value| value }.to_f
+    change = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.change).to_f }] }
+    @total_change = change.sum(0) { |sym, value| value }.to_f
     
     @stocks = values.collect { |sym, value| [ sym, 
         stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
