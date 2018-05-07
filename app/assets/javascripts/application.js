@@ -30,15 +30,8 @@ function myTimer() {
 //    document.getElementById("time").innerHTML = d.toLocaleTimeString();
 
 	$.getJSON( "poll_check.js", function( data ) {
-	  var poll_state = data[1];
-	  var poll_check_request = data[0];
-	  console.log(data) ;
-//	  console.log(poll_check_request) ;
-	
-	console.log(poll_state == 'checking') ;
 
-	if (poll_state == 'checking') {
-		console.log('checking') ;
+	if (data['poll_request'] == 'checking') {
 		$("#poll_request_button").removeClass("btn-warning");  
 		$("#poll_request_button").addClass("btn-success");  		
 	}
