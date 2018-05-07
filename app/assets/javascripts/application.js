@@ -52,7 +52,7 @@ function myTimer() {
 
 function RefreshPrices(stock_option) {
 	
-	document.getElementById("last_update").innerHTML = "Refreshing " + stock_option + " Prices" ; 
+	document.getElementById("poll_request_time").innerHTML = "Refreshing " + stock_option + " Prices" ; 
 
 	$(".refresh_button").toggleClass("d-none"); 
 	$(".refresh_spinner").toggleClass("d-none"); 
