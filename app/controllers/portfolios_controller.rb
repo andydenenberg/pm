@@ -3,7 +3,7 @@ class PortfoliosController < ApplicationController
 
   def poll_check
     ironcache = IronCache::Client.new
-    cache = @ironcache.cache("my_cache")
+    cache = ironcache.cache("my_cache")
     @poll_request_time = cache.get("poll_request_time").value
     @data = Hash.new
     @data['poll_request'] = cache.get("poll_request").value
