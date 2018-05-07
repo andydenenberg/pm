@@ -28,6 +28,26 @@ function myTimer() {
 	var minutes = d.getMinutes();
 	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
 //    document.getElementById("time").innerHTML = d.toLocaleTimeString();
+
+	$.getJSON( "poll_check.js", function( data ) {
+	  var poll_state = data[1];
+	  var poll_check_request = data[0];
+	  console.log(data) ;
+//	  console.log(poll_check_request) ;
+
+	document.getElementById("poll_request_time").innerHTML = data['poll_request_time'] ; 
+	document.getElementById("poll_request").innerHTML = data['poll_request'] ; 
+
+			//  $.each( data, function( key, val ) {
+			//    items.push( "<li id='" + key + "'>" + val + "</li>" );
+			//  });
+			// 
+			//  $( "<ul/>", {
+			//    "class": "my-new-list",
+			//    html: items.join( "" )
+			//  }).appendTo( "body" );
+	});
+	
 };
 
 function RefreshPrices(stock_option) {

@@ -1,6 +1,18 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
+  def poll_check
+    ironcache = IronCache::Client.new
+    cache = @ironcache.cache("my_cache")
+    @poll_request_time = cache.get("poll_request_time").value
+    @data = Hash.new
+    @data['poll_request'] = cache.get("poll_request").value
+      respond_to do |format|
+          format.js
+      end
+
+  end
+  
   def index
     heroku = ENV['RACK_ENV'] != 'development'
 
@@ -11,11 +23,11 @@ class PortfoliosController < ApplicationController
         
 #        system "rake convert:refresh_all" run on Heroku
                 
-        @ironcache = IronCache::Client.new
-        @cache = @ironcache.cache("my_cache")
-        if @cache.get("poll_request").value == 'false'
-          @cache.put("poll_request", 'true')
-        end
+       @ironcache = IronCache::Client.new
+       @cache = @ironcache.cache("my_cache")
+       if @cache.get("poll_request").value == 'false'
+         @cache.put("poll_request", 'true')
+       end
       end 
       
     end
