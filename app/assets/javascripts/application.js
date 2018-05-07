@@ -57,6 +57,8 @@ function RefreshPrices(stock_option) {
 	$(".refresh_button").toggleClass("d-none"); 
 	$(".refresh_spinner").toggleClass("d-none"); 
 
+	$("#poll_request_button").removeClass("btn-secondary");  
+	$("#poll_request_button").addClass("btn-warning");  
 	
 	$.get("portfolios.js", { stock_option: stock_option } );
 };

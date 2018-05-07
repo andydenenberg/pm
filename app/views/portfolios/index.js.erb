@@ -5,5 +5,12 @@
 $(".refresh_button").toggleClass("d-none"); 
 $(".refresh_spinner").toggleClass("d-none"); 
 
+$("#poll_request_button").removeClass("btn-warning");  
+$("#poll_request_button").addClass("btn-success");  
+
 $('#index_table').html("<%= j render 'index' %>")
 
+// three states
+// idle = secondary
+// waiting = warning
+// finished = success
