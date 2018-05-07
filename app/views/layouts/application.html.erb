@@ -42,7 +42,10 @@
 		</ul>
 		
         <ul class="navbar-nav ml-auto">
-			<li><button class="nav-link btn btn-sm btn-outline-secondary"><span id='poll_request'></span></button></li>
+			<li><button class="nav-link btn btn-sm btn-success">
+				<span data-feather="bell"></span>
+				<span id='poll_request'> ? </span></button>
+			</li>
 			<li>
 				<button type="button" class="nav-link btn btn-sm btn-outline-secondary" disabled>
 						<span id='poll_request_time'>Prices from ?</span> 
@@ -52,7 +55,7 @@
 			<li><span id='refresh_spinner' class="nav-link refresh_spinner d-none"></span></li>
 		    <li>
 				<button onclick="RefreshPrices('All');return false;" 
-					class='nav-link btn btn-sm btn-outline-secondary refresh_button'>Refresh</button>
+					class='nav-link btn btn-sm btn-info refresh_button'>Refresh</button>
 			</li>
         </ul>
      </div>
