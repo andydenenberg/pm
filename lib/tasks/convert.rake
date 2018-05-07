@@ -87,6 +87,7 @@ task :setup => ["db:migrate",
         @ironcache = IronCache::Client.new
         @cache = @ironcache.cache("my_cache")
         if @cache.get("poll_request").value == 'true'
+          @cache.put("poll_request", 'checking')
           Stock.refresh_all('Stock')
           Stock.refresh_all('Option')
           Stock.refresh_all('Fund')
