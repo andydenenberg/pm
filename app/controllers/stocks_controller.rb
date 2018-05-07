@@ -35,8 +35,10 @@ class StocksController < ApplicationController
               "#{sym}: #{quantity.round.to_s.split(/(?=(?:...)*$)/).join(',')}"}.to_s.gsub('"','').gsub('[','').gsub(']',''),
         stocks_funds.where(symbol: sym).first.daily_dividend.to_f, # dividend / share
          
-     ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
-                     
+#     ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
+      ] }.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] } 
+      
+                         
      dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }] }
      @dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
     
