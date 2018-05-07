@@ -34,8 +34,11 @@ function myTimer() {
 	  var poll_check_request = data[0];
 	  console.log(data) ;
 //	  console.log(poll_check_request) ;
+	
+	console.log(poll_state == 'checking') ;
 
 	if (poll_state == 'checking') {
+		console.log('checking') ;
 		$("#poll_request_button").removeClass("btn-warning");  
 		$("#poll_request_button").addClass("btn-success");  		
 	}
