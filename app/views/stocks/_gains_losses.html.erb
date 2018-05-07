@@ -2,7 +2,7 @@
 	<table class="table table-bordered table-striped table-sm">
 	  <thead>
 	    <tr>
-	      <th>Symbol</th>
+	      <th><%= sortable @portfolio_name, 'symbol' %>  </th>
 	      <th class='toggleDisplay in text-right'>Quantity</th>
 	      <th class='toggleDisplay in text-right'>Price</th>
 	      <th class='toggleDisplay in text-right'><%= sortable @portfolio_name, 'value' %>  </th>	

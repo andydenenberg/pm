@@ -10,7 +10,7 @@ class StocksController < ApplicationController
 
     @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
     
-    translate = { value: 2, change: 3, dividends: 7 }
+    translate = { symbol: 0, value: 2, change: 3, dividends: 7 }
     column = translate[sort_column.to_sym]
     
     stocks = Stock.where(portfolio_id: Lib.translate_groupids(@portfolio_name).first )
