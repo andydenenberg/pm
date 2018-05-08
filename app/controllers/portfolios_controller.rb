@@ -19,14 +19,12 @@ class PortfoliosController < ApplicationController
     if request.xhr?
       if !heroku
         system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-      else
-        
-#        system "rake convert:refresh_all" run on Heroku
-                
+      else        
+#        system "rake convert:refresh_all" run on Heroku      
        @ironcache = IronCache::Client.new
        @cache = @ironcache.cache("my_cache")
-       if @cache.get("poll_request").value == 'false'
-         @cache.put("poll_request", 'true')
+       if @cache.get("poll_request").value == 'Idle'
+         @cache.put("poll_request", 'Waiting')
        end
       end 
       
@@ -34,10 +32,6 @@ class PortfoliosController < ApplicationController
     @group_names = ['All Portfolios'] + Group.all.collect { |g| g.name }
     group_ids = [ nil ] + Group.all.collect { |g| g.id }
     @all_data = group_ids.collect { |i| Portfolio.table_data(i) }
-#    @all_data = [ Portfolio.table_data(nil),
-#             Portfolio.table_data(1),
-#             Portfolio.table_data(2),
-#             Portfolio.table_data(3) ]
              
      if heroku
        @ironcache = IronCache::Client.new

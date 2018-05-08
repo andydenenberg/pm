@@ -31,35 +31,26 @@ function myTimer() {
 
 	$.getJSON( "poll_check.js", function( data ) {
 
-	if (data['poll_request'] == 'checking') {
+	if (data['poll_request'] == 'Updating') {
 		$("#poll_request_button").removeClass("btn-warning");  
+		$("#poll_request_button").addClass("btn-primary");  		
+	} else if ( data['poll_request'] == 'Waiting' ) {
+		$("#poll_request_button").removeClass("btn-secondary");  
+		$("#poll_request_button").addClass("btn-warning");  		
+	} else if ( data['poll_request'] == 'Complete' ) {
+		$("#poll_request_button").removeClass("btn-primary");  
 		$("#poll_request_button").addClass("btn-success");  		
 	}
 
 	document.getElementById("poll_request_time").innerHTML = data['poll_request_time'] ; 
 	document.getElementById("poll_request").innerHTML = data['poll_request'] ; 
 
-			//  $.each( data, function( key, val ) {
-			//    items.push( "<li id='" + key + "'>" + val + "</li>" );
-			//  });
-			// 
-			//  $( "<ul/>", {
-			//    "class": "my-new-list",
-			//    html: items.join( "" )
-			//  }).appendTo( "body" );
 	});
 	
 };
 
 function RefreshPrices(stock_option) {
-	
-	document.getElementById("poll_request_time").innerHTML = "Refreshing " + stock_option + " Prices" ; 
-
 	$(".refresh_button").toggleClass("d-none"); 
-	$(".refresh_spinner").toggleClass("d-none"); 
-
-	$("#poll_request_button").removeClass("btn-secondary");  
-	$("#poll_request_button").addClass("btn-warning");  
-	
+	$(".refresh_spinner").toggleClass("d-none"); 	
 	$.get("portfolios.js", { stock_option: stock_option } );
 };
