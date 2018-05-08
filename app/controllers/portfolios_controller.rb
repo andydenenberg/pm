@@ -25,6 +25,8 @@ class PortfoliosController < ApplicationController
        @cache = @ironcache.cache("my_cache")
        if @cache.get("poll_request").value == 'Idle'
          @cache.put("poll_request", 'Waiting')
+       elsif @cache.get("poll_request").value == 'Complete'
+         @cache.put("poll_request", 'Idle')
        end
       end 
       
