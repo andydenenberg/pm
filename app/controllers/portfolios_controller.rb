@@ -25,8 +25,6 @@ class PortfoliosController < ApplicationController
        @cache = @ironcache.cache("my_cache")
        if @cache.get("poll_request").value == 'Idle'
          @cache.put("poll_request", 'Waiting')
-       elsif @cache.get("poll_request").value == 'Complete'
-         @cache.put("poll_request", 'Idle')
        end
       end 
       
@@ -39,6 +37,9 @@ class PortfoliosController < ApplicationController
        @ironcache = IronCache::Client.new
        @cache = @ironcache.cache("my_cache")
        @poll_request_time = Time.parse(@cache.get("poll_request_time").value)
+       if @cache.get("poll_request").value == 'Complete'
+         @cache.put("poll_request", 'Idle')
+       end
      else
        @poll_request_time = @all_data[0][5]      
      end
