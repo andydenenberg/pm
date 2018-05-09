@@ -42,6 +42,22 @@ class Stock < ApplicationRecord
     end
   end 
 
+#  def self.refresh_all_dividends
+#    i = 0
+#    loop do
+#        date = (Date.today-i.day).strftime('%Y-%m-%d')
+#        puts date
+#          self.all.each do |s|
+##            puts "#{s.symbol} #{date}"
+#            s.update_daily_dividend(date)
+#          end
+#      i += 1
+#      break if i > 200
+#    end
+#
+#    return nil
+#  end 
+
   
   
   def check_if_fund

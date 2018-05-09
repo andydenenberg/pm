@@ -39,9 +39,29 @@
 	</table>
 	
 	<% end %>
+
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	      <tr>
+	        <td>Symbol</td>
+	        <td class='text-right'>Dividend</td>
+	        <td class='text-right'>Date</td>
+	      </tr>		
+	 </thead>
+	
+	<tbody>
+	    <% @dividends.each do |div| %>
+	      <tr>
+	        <td><%= div.portfolio_id %></td>
+	        <td class='text-right'><%= number_to_currency(div.daily_dividend) %></td>
+	        <td class='text-right'><%= div.daily_dividend_date %></td>
+	      </tr>
+	    <% end %>
+	
+	  </tbody>
+	</table>
 	
 </div>
 
-<br>
-<br>
+
 

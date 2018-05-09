@@ -117,8 +117,8 @@ module Options
   
   
   def self.check_dividend(symbol,date) # "2018-02-15"
-    url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1m" 
-    puts url
+    url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1y" 
+#    puts url
     # "paymentDate":"2018-02-15"
     # "amount":0.63
     @agent = Mechanize.new
@@ -131,20 +131,20 @@ module Options
           data = response
           data = JSON.parse data
           data.each do |d| 
-            puts d
+#            puts d
             paymentDate = d['paymentDate']
             if paymentDate == date
                 dividends += d["amount"]
-                puts dividends
+#                puts dividends
             end
           end
            ret = [symbol.upcase, date, dividends]
         end
       rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
-        puts 'Unknown Reponse'
+#        puts "Unknown Reponse: #{symbol}"
       end       
-    puts ret.inspect
-    puts 
+#    puts ret.inspect
+#    puts 
     return ret
   end
   
