@@ -1,5 +1,85 @@
 namespace :update do
 
+  desc "Update single portfolio"
+    task :update_portfolio => :environment do
+      require 'csv'
+
+      file = '/Users/andydenenberg/Desktop/Hellemb_A/May_2018/R 401K Rollover.CSV'
+      portfolio_name = File.basename(file).split('.').first   
+
+  # first find and delete old stocks
+  #      stocks = portfolio.stocks
+  #      puts "#{stocks.count} stocks found and deleted"
+  #      stocks.delete_all
+
+  # then add the new stocks    
+      stocks = CSV.read(file)  # Andy.CSV')
+      stock_total = stocks[3..-3].inject(0) { |result, element| result + element[6].gsub('$','').gsub(',','').to_f }
+      cash = stocks[-2][6].gsub('$','').gsub(',','').to_f
+      if Portfolio.where(:name => portfolio_name).empty?
+        portfolio =  "Portfolio.create!( name: '#{portfolio_name}', cash: #{cash}, group_id: 1 )\n"
+        portfolio_id = '?'
+      else
+        portfolio = "p = Portfolio.where(:name => '#{portfolio_name}').first\n"
+        portfolio += "p.cash = #{cash}\n"
+        portfolio += "p.save\n"
+        portfolio_id = Portfolio.where(:name => portfolio_name).first.id
+      end
+      puts
+      puts portfolio
+      puts
+      
+      port_stocks = ''
+      stocks[3..-3].each do |s|
+        symbol = s[0]
+
+        strike = nil
+        expiration_date = nil
+        quantity = s[2].gsub(',','').to_f
+        purchase_price = s[9].gsub('$','').gsub(',','').to_f / quantity
+
+        case s[15]
+        when 'Equity'
+          stock_option = 'Stock'
+        when 'Option'
+          stock_option = s[1][0..15].include?('CALL') ? 'Call Option' : 'Put Option'
+          #        BIDU 06/19/2015 210.00 C
+                   option = s[0].split(' ')
+                   strike = option[2].to_f
+                   symbol = option[0]
+                   expiration_date = option[1]
+        when 'Fixed Income'
+          stock_option = 'Fixed Income'
+        when 'ETFs & Closed End Funds'
+          stock_option = 'Fund'
+        else
+          stock_option = 'Fund'
+        end
+
+        port_stocks +=
+        "Stock.create!(" +
+        "symbol: '#{symbol}', " +
+        "name: '#{s[1][0..15]}', " +
+        "quantity: #{quantity}, " +
+        "daily_dividend: 0, " +
+        "price: 0, " +
+        "change: 0, " +
+        "as_of: '2018/04/26 23:00PM', " +
+        "purchase_price: #{purchase_price}, " +
+        "portfolio_id: #{portfolio_id}, " +
+        "stock_option: '#{stock_option}', " +
+        "strike: #{strike.inspect}, " +
+        "expiration_date: #{expiration_date.inspect})\n"
+
+        end # stocks
+
+        puts port_stocks
+
+      end # update_portfolio
+
+
+
+
 desc "Update Portfolios"
   task :update_holdings => :environment do
     require 'csv'

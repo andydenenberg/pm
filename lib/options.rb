@@ -128,14 +128,11 @@ module Options
         page = @agent.get(url)
         response = page.body
         if response.length > 3 
-          data = response
-          data = JSON.parse data
+          data = JSON.parse response
           data.each do |d| 
-#            puts d
             paymentDate = d['paymentDate']
             if paymentDate == date
                 dividends += d["amount"]
-#                puts dividends
             end
           end
            ret = [symbol.upcase, date, dividends]
@@ -143,11 +140,25 @@ module Options
       rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
 #        puts "Unknown Reponse: #{symbol}"
       end       
-#    puts ret.inspect
-#    puts 
     return ret
   end
   
+syms = ["K", "HPQ", "PGF", "AAPL", "CSCO", "CVS", "GS", "MCD", "MO", "MSFT", "NKE", "PFE", "PM", "STT", "SYK", "UTX", "WBA", "XOM", "ZBRA", "INTC", "RWX", "QLD", "EWG", "BTI", "HPE", "DXC", "AMAT", "CRM", "ABB", "ABBV", "ACN", "ASIX", "AFL", "GOOGL", "AMGN", "BA", "CAT", "KO", "DISH", "EBAY", "EMR", "GBDC", "HON", "KSU", "NOK", "PYPL", "PPG", "TEL", "USB", "UNH", "VZ", "V", "WMT", "WFC", "EWH", "SPY", "MOAT", "VGK", "DXJ", "GE", "GIS", "STX", "TOT", "UPS", "BIF", "LQD", "A", "AMZN", "AXP", "AMP", "CNDT", "IBM", "KEYS", "MFGP", "ORCL", "VOD", "XRX", "XLI", "VWO", "T", "ADI", "ARMK", "CLX", "CL", "COP", "CSX", "CMI", "DRI", "ETN", "FNB", "FCPT", "ITW", "IVZ", "JNJ", "KMB", "KMI", "MRK", "MCHP", "OKE", "PEP", "PG", "SBUX", "UMPQ", "WM", "MMM", "ABT", "APD", "BHF", "COF", "SNP", "CMCSA", "MET", "UNP", "VSM", "PRF", "QQQ", "GOOG", "BWA", "BP", "CVX", "COST", "FB", "FLS", "FCX", "HYH", "JPM", "NBR", "PSX", "SLB", "RIG", "EFA", "EZM", "IVV", "DVY", "ADSK", "CCL", "CTL", "CB", "DE", "DLR", "DWDP", "GD", "GEF", "HRL", "MDT", "MON", "PH", "DIS", "IWM", "ADM", "AGR", "BMO", "BG", "DEO", "EGP", "HIG", "HUM", "MNK", "NVS", "PAYX", "PX", "QCOM", "EWT"]
+divs = [ ]
+(1..10).each do |day|
+  date = '2018-05-' + "%02d" % day
+  days = [ date ]
+  syms.each do |sym| 
+    div = Options.check_dividend(sym,date)
+    if div[2] > 0
+      days.push [ div[0], div[2] ]
+    end 
+  end
+  divs.push days
+  puts days.inspect
+end
+
+[["NKE", "2018-04-02", 0.2], ["WMT", "2018-04-02", 0.52], ["AGR", "2018-04-02", 0.432], ["HIG", "2018-04-02", 0.25], ["KMB", "2018-04-03", 1], ["KSU", "2018-04-04", 0.36], ["DEO", "2018-04-11", 1.423244], ["SLB", "2018-04-13", 0.5], ["GE", "2018-04-25", 0.12]]
 
 #  Refresh the Price List
 #  def self.refresh_all
