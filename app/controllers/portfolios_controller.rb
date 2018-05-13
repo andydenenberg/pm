@@ -43,8 +43,6 @@ class PortfoliosController < ApplicationController
        @poll_request_time = @all_data[0][5]      
      end
     
-    @dividends = History.where.not(daily_dividend: 0.0)
-    
     respond_to do |format|
         format.html
         format.js

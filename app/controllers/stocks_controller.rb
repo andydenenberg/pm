@@ -3,6 +3,16 @@ class StocksController < ApplicationController
 
   helper_method :sort_column, :sort_direction, :select_tab
 
+  def dividends
+    @dates = Stock.all_dividend_dates
+#    portfolios = Portfolio.where(group_id: Group.where(name: 'Personel Portfolios').last.id )
+    portfolios = Portfolio.all.collect { |p| p.id }
+    @divs = Stock.monthly_dividends(portfolios)
+    @annual_divs = Stock.annual_dividends(@divs)
+    @total_monthly = Stock.total_monthly_dividends(@divs)
+    @funds = Stock.where(stock_option: 'Fund')
+  end
+  
   # GET /stocks
   # GET /stocks.json
   def index    
