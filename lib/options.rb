@@ -139,6 +139,7 @@ module Options
 
       url = "https://finance.yahoo.com/quote/#{symbol}/history?period1=#{period1}&period2=#{period2}&interval=#{interval}" +
             "&filter=#{filter}&frequency=#{frequency}" 
+            
       @agent = Mechanize.new 
 #            loop do 
               begin

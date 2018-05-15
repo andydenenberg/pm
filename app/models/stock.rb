@@ -60,6 +60,68 @@ class Stock < ApplicationRecord
 #		return totals	
 #  end
 
+# rails g model Dividend symbol:string year:integer month:integer amount:decimal date:datetime
+  def self.refresh_dividends
+    syms = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund')).distinct.pluck(:symbol).sort
+    syms.each do |sym|
+      
+      stockorfund = Options.yahoo_dividends(sym)
+       stockorfund.each do |date_div|
+         amount = date_div[1] == '' ? 0 : date_div[1] # check for missing value
+           Dividend.create ( { symbol: sym, year: date_div[0][0..3].to_i, month: date_div[0][5..6].to_i, amount: amount, date: date_div[0] } )  
+           # divs.push [date_div[0][0..3].to_i, date_div[0][5..6].to_i, amount, date_div[0] ]
+       end
+      
+    end
+  end
+
+    def self.calc_dividends(portfolios, stock_option_fund)
+      stocks_funds = Stock.where(stock_option: stock_option_fund).where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
+      symbols = stocks_funds.distinct.pluck(:symbol).sort
+      all_divs = [ ]
+      all_total = 0
+      monthly_totals = { }
+      (1..12).each { |i| m = "%02d" % i ; monthly_totals[m] = 0 }
+      symbols.each do |sym|
+        total_year = 0
+        quantity = 0
+#        divs = [ ]
+        quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
+        
+  #      stockorfund = stock_option_fund == 'Stock' ? Options.get_dividends(sym) : Options.yahoo_dividends(sym)
+  #      stockorfund = Options.yahoo_dividends(sym)
+          stockorfund = Dividend.where(symbol: sym)
+          amount = stockorfund.sum(0) { |sf| sf.amount }
+          
+#          stockorfund.each do |date_div|
+#            amount = date_div.sum() == '' ? 0 : date_div[1] # check for missing value
+            total_year += (amount * quantity)
+              # [["2018-05-11", "0.73"], ["2018-02-09", "0.63"], ["2017-11-10", "0.63"], ["2017-08-10", "0.63"]]
+#              divs.push [date_div[0][0..3].to_i, date_div[0][5..6].to_i, amount, date_div[0] ]
+              divs = stockorfund.collect { |sf| [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ] }
+              stockorfund.each do |sf|                
+                monthly_totals["%02d" % sf.month] += (sf.amount * quantity)
+              end
+#          end
+          
+          
+        all_total += total_year
+        price = Stock.find_by_symbol(sym).price
+        annual_yield = 100 * (total_year / ( price * quantity) )
+        all_divs.push [sym, divs, quantity, total_year, annual_yield]
+      end
+
+      value_total = 0
+      stocks_funds.each do |s|
+        price = s.price ||= 0
+        sub_total = s.quantity * price 
+        value_total += sub_total
+      end
+
+      return [all_divs, monthly_totals, all_total, value_total]
+    end
+  
+  
   def self.yahoo_dividends(portfolios, stock_option_fund)
     stocks_funds = Stock.where(stock_option: stock_option_fund).where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
     symbols = stocks_funds.distinct.pluck(:symbol).sort
@@ -72,7 +134,8 @@ class Stock < ApplicationRecord
       quantity = 0
       divs = [ ]
       quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
-      stockorfund = stock_option_fund == 'Stock' ? Options.get_dividends(sym) : Options.yahoo_dividends(sym)
+#      stockorfund = stock_option_fund == 'Stock' ? Options.get_dividends(sym) : Options.yahoo_dividends(sym)
+       stockorfund = Options.yahoo_dividends(sym)
         stockorfund.each do |date_div|
           amount = date_div[1] == '' ? 0 : date_div[1] # check for missing value
           total_year += (amount * quantity)
@@ -81,35 +144,45 @@ class Stock < ApplicationRecord
             monthly_totals[date_div[0][5..6]] += (amount * quantity)
         end
       all_total += total_year
-      all_divs.push [sym, divs, quantity, total_year]
+      price = Stock.find_by_symbol(sym).price
+      annual_yield = 100 * (total_year / ( price * quantity) )
+      all_divs.push [sym, divs, quantity, total_year, annual_yield]
     end
-    return [all_divs, monthly_totals, all_total]
+    
+    value_total = 0
+    stocks_funds.each do |s|
+      price = s.price ||= 0
+      sub_total = s.quantity * price 
+      value_total += sub_total
+    end
+    
+    return [all_divs, monthly_totals, all_total, value_total]
   end
   
-  def self.monthly_dividends(portfolios) # using IEX data
-    stocks_funds = Stock.where(stock_option: 'Stock').where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
-    symbols = stocks_funds.distinct.pluck(:symbol).sort
-    divs = [ ]
-    total = 0
-    symbols.each do |sym|
-      dividends = [ ]
-      quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
-      Options.get_dividends(sym).each do |div|
-        if !div['paymentDate'].blank?
-            dividends.push [div['paymentDate'][0..3].to_i, div['paymentDate'][5..6].to_i, div['amount'], div['paymentDate'] ]
-        end
-      end
-      divs.push [sym, dividends, quantity]
-    end
-    return divs
-  end
+#  def self.monthly_dividends(portfolios) # using IEX data
+#    stocks_funds = Stock.where(stock_option: 'Stock').where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
+#    symbols = stocks_funds.distinct.pluck(:symbol).sort
+#    divs = [ ]
+#    total = 0
+#    symbols.each do |sym|
+#      dividends = [ ]
+#      quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
+#      Options.get_dividends(sym).each do |div|
+#        if !div['paymentDate'].blank?
+#            dividends.push [div['paymentDate'][0..3].to_i, div['paymentDate'][5..6].to_i, div['amount'], div['paymentDate'] ]
+#        end
+#      end
+#      divs.push [sym, dividends, quantity]
+#    end
+#    return divs
+#  end
    
-  def update_daily_dividend
-      div = Options.check_dividend(self.symbol, Date.today.strftime('%Y-%m-%d')) 
-       self.daily_dividend = div[2] ||= 0
-       self.daily_dividend_date = div[1]
-       self.save      
-  end 
+#  def update_daily_dividend
+#      div = Options.check_dividend(self.symbol, Date.today.strftime('%Y-%m-%d')) 
+#       self.daily_dividend = div[2] ||= 0
+#       self.daily_dividend_date = div[1]
+#       self.save      
+#  end 
   
   def self.refresh_all(stock_option)
     self.all.each do |s|
@@ -119,11 +192,11 @@ class Stock < ApplicationRecord
     end
   end 
 
-  def self.refresh_all_dividends
-    self.all.each do |s|
-      s.update_daily_dividend
-    end
-  end 
+#  def self.refresh_all_dividends
+#    self.all.each do |s|
+#      s.update_daily_dividend
+#    end
+#  end 
 
 #  def self.refresh_all_dividends
 #    i = 0
@@ -164,5 +237,4 @@ class Stock < ApplicationRecord
   
 end
 
-#   rails g scaffold Stock purchase_price:decimal quantity:decimal symbol:string name:string purchase_date:string strike:decimal expiration_date:string stock_option:string
 

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  year: 1
+  month: 1
+  amount: 9.99
+  date: 2018-05-15 09:57:14
+
+two:
+  symbol: MyString
+  year: 1
+  month: 1
+  amount: 9.99
+  date: 2018-05-15 09:57:14
