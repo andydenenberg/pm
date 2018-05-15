@@ -84,7 +84,10 @@
 	  <thead>
 	    <tr>
 	      	<th>Symbol</th>
-	      	<th>Total</th>
+			<th class='text-right'>Shares</th>
+	      	<th class='text-right'>Investment</th>
+			<th class='text-right'>Annual_Divs</th>			
+			<th class='text-right'>Yield</th>			
 			<% (0..11).each do |i| %>
 		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[@dates[i][1]]}-#{@dates[i][0].to_s[2..3]}" %></th>
 			<% end %>
@@ -96,7 +99,10 @@
     <% @stock_divs.each do |sym| %>
       <tr>
 	    <td><%= sym[0] %></td>
+	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2) %></td>
+	    <td class='text-right'><%= number_to_currency(sym[3] * Stock.find_by_symbol(sym[0]).price) %></td>
 	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
+	    <td class='text-right'><%= number_to_percentage( 100 * ( sym[3] / (sym[3] * Stock.find_by_symbol(sym[0]).price) ) ) %></td>
 		<% (0..11).each do |date| %>
 		<% month = @dates[date][1] %>
 			<% if sym[1].select { |d| d[1] == month }.empty? %>
@@ -111,7 +117,11 @@
 
 	<tr>
 		<td></td>
+		<td></td>
+		<td></td>
 		<td class='text-right'><%= number_to_currency(@monthly_stock_divs_total) %></td>
+		<td></td>
+		
 		<% ['05','04','03','02','01','12','11','10','09','08','07','06'].each do |month| %>
 		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month]) %></td>
 		<% end %>
@@ -140,9 +150,7 @@
 	  </thead>
 
   <tbody>
-	
-	CHECK LQD in december
-			    
+
     <% @fund_divs.each do |sym| %>
       <tr>
 	    <td><%= sym[0] %></td>
