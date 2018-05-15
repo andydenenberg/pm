@@ -32,39 +32,66 @@ class Stock < ApplicationRecord
 
 #[[1, [["A", 0.149, 707.0], ["AGR", 0.432, 630.0], ["BIF", 0.034, 6242.0], ["CB", 0.71, 1674.0], ["CMCSA", 0.1575, 2260.0], ["CSCO", 0.29, 54616.0], ["DIS", 0.84, 2100.0], ["DLR", 0.93, 1896.0], ["DXC", 0.18, 254.0], ["FCPT", 0.275, 64.0], ["FLS", 0.19, 705.0], ["FLS", 0.19, 705.0], ["GE", 0.12, 2000.0], ["GEF", 0.42, 800.0], ["HIG", 0.25, 360.0], ["HPE", 0.075, 2988.0], ["HPQ", 0.1393, 2988.0], ["HUM", 0.4, 270.0], ["ITW", 0.78, 105.0], ["JPM", 0.56, 1310.0], ["KMB", 0.97, 970.0], ["KSU", 0.36, 300.0], ["MDT", 0.46, 1960.0], ["MO", 0.66, 1786.0], ["MON", 0.54, 900.0], ["MRK", 0.48, 1331.0], ["NKE", 0.2, 6400.0], ["ORCL", 0.19, 1275.0], ["PEP", 0.805, 983.0], ["PGF", 0.08, 23300.0], ["PM", 1.07, 1246.0], ["QLD", "", 14248.0], ["QLD", "", 14248.0], ["SLB", 0.5, 250.0], ["SPY", 1.35133, 1300.0], ["SPY", 1.351333, 1300.0], ["STT", 0.42, 378.0], ["STX", 0.63, 400.0], ["SYK", 0.47, 2130.0], ["TOT", 0.745302, 980.0], ["UMPQ", 0.18, 513.0], ["USB", 0.3, 1000.0], ["WMT", 0.51, 300.0], ["WMT", 0.51, 300.0], ["XRX", 0.25, 250.0]]]
 
-  def self.total_monthly_dividends(all_divs)
-    monthly = [ ]
-    [5,4,3,2,1,12,11,10,9,8,7,6].each do |month| # each month
-      month_divs = 0
-      all_divs.each do |divs| # scan all dividends
-        divs[1].each do |quart| # look at all quarterlys for monthly
-          if quart[1] == month
-            month_divs += (quart[2] * divs[2]).to_f
-          end
-        end
-      end
-    monthly.push [ month, month_divs]
-		end	
-		return monthly	
-  end
+#  def self.total_monthly_dividends(all_divs)
+#    monthly = [ ]
+#    [5,4,3,2,1,12,11,10,9,8,7,6].each do |month| # each month
+#      month_divs = 0
+#      all_divs.each do |divs| # scan all dividends
+#        divs[1].each do |quart| # look at all quarterlys for monthly
+#          if quart[1] == month
+#            month_divs += (quart[2] * divs[2]).to_f
+#          end
+#        end
+#      end
+#    monthly.push [ month, month_divs]
+#		end	
+#		return monthly	
+#  end
 
-  def self.annual_dividends(all_divs)
-    totals = [ ]
-      all_divs.each do |divs| # scan all dividends
-        sub = 0
-        divs[1].each do |quart| # look at all quarterlys for monthly
-          sub += (quart[2] * divs[2]).to_f
-        end
-      totals.push [ divs[0], sub]
-		end	
-		return totals	
-  end
+#  def self.annual_dividends(all_divs) # uses the output of self.monthly_dividends(portfolios)
+#    totals = [ ]
+#      all_divs.each do |divs| # scan all dividends
+#        sub = 0
+#        divs[1].each do |quart| # look at all quarterlys for monthly
+#          sub += (quart[2] * divs[2]).to_f
+#        end
+#      totals.push [ divs[0], sub]
+#		end	
+#		return totals	
+#  end
 
-  def self.monthly_dividends(portfolios)
+  def self.yahoo_dividends(portfolios, stock_option_fund)
+    stocks_funds = Stock.where(stock_option: stock_option_fund).where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
+    symbols = stocks_funds.distinct.pluck(:symbol).sort
+    all_divs = [ ]
+    all_total = 0
+    monthly_totals = { }
+    (1..12).each { |i| m = "%02d" % i ; monthly_totals[m] = 0 }
+    symbols.each do |sym|
+      total_year = 0
+      quantity = 0
+      divs = [ ]
+      quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
+      stockorfund = stock_option_fund == 'Stock' ? Options.get_dividends(sym) : Options.yahoo_dividends(sym)
+        stockorfund.each do |date_div|
+          amount = date_div[1] == '' ? 0 : date_div[1] # check for missing value
+          total_year += (amount * quantity)
+            # [["2018-05-11", "0.73"], ["2018-02-09", "0.63"], ["2017-11-10", "0.63"], ["2017-08-10", "0.63"]]
+            divs.push [date_div[0][0..3].to_i, date_div[0][5..6].to_i, amount, date_div[0] ]
+            monthly_totals[date_div[0][5..6]] += (amount * quantity)
+        end
+      all_total += total_year
+      all_divs.push [sym, divs, quantity, total_year]
+    end
+    return [all_divs, monthly_totals, all_total]
+  end
+  
+  def self.monthly_dividends(portfolios) # using IEX data
     stocks_funds = Stock.where(stock_option: 'Stock').where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
-    @symbols = stocks_funds.distinct.pluck(:symbol).sort
-    @divs = [ ]
-    @symbols.each do |sym|
+    symbols = stocks_funds.distinct.pluck(:symbol).sort
+    divs = [ ]
+    total = 0
+    symbols.each do |sym|
       dividends = [ ]
       quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
       Options.get_dividends(sym).each do |div|
@@ -72,10 +99,9 @@ class Stock < ApplicationRecord
             dividends.push [div['paymentDate'][0..3].to_i, div['paymentDate'][5..6].to_i, div['amount'], div['paymentDate'] ]
         end
       end
-      @divs.push [sym, dividends, quantity]
+      divs.push [sym, dividends, quantity]
     end
-    return @divs
-    # ["XRX", [[2018, 1, 0.25, "2018-01-31"], [2017, 10, 0.25, "2017-10-31"], [2017, 7, 0.25, "2017-07-31"] 
+    return divs
   end
    
   def update_daily_dividend

@@ -5,12 +5,27 @@ class StocksController < ApplicationController
 
   def dividends
     @dates = Stock.all_dividend_dates
-#    portfolios = Portfolio.where(group_id: Group.where(name: 'Personel Portfolios').last.id )
+#    portfolios = Group.where(name: 'Personel Portfolios').last.portfolios.collect { |p| p.id }
+#    portfolios = Portfolio.where(name: 'R').last.id 
     portfolios = Portfolio.all.collect { |p| p.id }
-    @divs = Stock.monthly_dividends(portfolios)
-    @annual_divs = Stock.annual_dividends(@divs)
-    @total_monthly = Stock.total_monthly_dividends(@divs)
-    @funds = Stock.where(stock_option: 'Fund')
+
+    stock_divs = Stock.yahoo_dividends(portfolios, 'Stock') 
+    @annual_stock_divs_total = stock_divs[1]
+    @stock_divs = stock_divs[0]  # [ symbol, [ symbol_monthly_divs ], symbol_quantity, symbol_annual_total ]
+    @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
+
+    fund_divs = Stock.yahoo_dividends(portfolios, 'Fund') 
+    @annual_fund_divs_total = fund_divs[1]
+    @fund_divs = fund_divs[0]  # [ symbol, [ symbol_monthly_divs ], symbol_quantity, symbol_annual_total ]
+    @monthly_fund_divs_total = fund_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
+
+
+#    portfolios = Portfolio.all.collect { |p| p.id }
+#    @divs = Stock.monthly_dividends(portfolios)
+#    @annual_divs = Stock.annual_dividends(@divs)
+#    @total_monthly = Stock.total_monthly_dividends(@divs)
+#    @funds = Stock.yahoo_dividends
+
   end
   
   # GET /stocks

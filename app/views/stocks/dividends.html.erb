@@ -73,15 +73,11 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 id='portfolio_name' class="h2">Dividends</h1>
-         <div class="btn-toolbar mb-2 mb-md-0">	
-	
-
-         </div>
-
-        </div>
-
+   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+     <h1 id='portfolio_name' class="h2">Stock Dividends</h1>
+	     <div class="btn-toolbar mb-2 mb-md-0">	
+	     </div>
+   </div>
 
   <div class="table-responsive">
 	<table class="table table-bordered table-striped table-sm">
@@ -90,16 +86,17 @@
 	      	<th>Symbol</th>
 	      	<th>Total</th>
 			<% (0..11).each do |i| %>
-		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[@dates[i][1]]} #{@dates[i][0].to_s[2..3]}" %></th>
+		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[@dates[i][1]]}-#{@dates[i][0].to_s[2..3]}" %></th>
 			<% end %>
 	    </tr>
 	  </thead>
 
   <tbody>
-    <% @divs.each do |sym| %>
+			    
+    <% @stock_divs.each do |sym| %>
       <tr>
 	    <td><%= sym[0] %></td>
-	    <td class='text-right'><%= number_to_currency(@annual_divs.select { |s| s[0] == sym[0] }.last.last ) %></td>
+	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 		<% (0..11).each do |date| %>
 		<% month = @dates[date][1] %>
 			<% if sym[1].select { |d| d[1] == month }.empty? %>
@@ -114,39 +111,64 @@
 
 	<tr>
 		<td></td>
-		<td class='text-right'><%= number_to_currency(@annual_divs.sum(0) { |d| d[1] }) %></td>
-		<% @total_monthly.each do |sym| %>
-		    <td class='text-right'><%= number_to_currency(sym[1]) %></td>
+		<td class='text-right'><%= number_to_currency(@monthly_stock_divs_total) %></td>
+		<% ['05','04','03','02','01','12','11','10','09','08','07','06'].each do |month| %>
+		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month]) %></td>
 		<% end %>
 	</tr>
   </tbody>
 </table>
-		<br>
-		
-		<div class="table-responsive">
-		<table class="table table-bordered table-striped table-sm">
-		  <thead>
-		    <tr>
-		      	<th>Symbol</th>
-		      	<th>Quantity</th>
-		      	<th>Price</th>
-		      	<th>Value</th>	
-		    </tr>
-		  </thead>
 
-		  <tbody>
-		    <% @funds.each do |fund| %>
-		      <tr>
-			    <td><%= fund.symbol %></td>
-			    <td class='text-right'><%= number_with_precision(fund.quantity ) %></td>
-			    <td class='text-right'><%= number_to_currency(fund.price ) %></td>
-			    <td class='text-right'><%= number_to_currency(fund.quantity * fund.price) %></td>
-			 </tr>
-		    <% end %>
-		  </tbody>
-		</table>	  
 
+
+   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+     <h1 id='portfolio_name' class="h2">Fund Dividends</h1>
+	     <div class="btn-toolbar mb-2 mb-md-0">	
+	     </div>
+   </div>
+
+  <div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      	<th>Symbol</th>
+	      	<th>Total</th>
+			<% (0..11).each do |i| %>
+		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[@dates[i][1]]}-#{@dates[i][0].to_s[2..3]}" %></th>
+			<% end %>
+	    </tr>
+	  </thead>
+
+  <tbody>
 	
+	CHECK LQD in december
+			    
+    <% @fund_divs.each do |sym| %>
+      <tr>
+	    <td><%= sym[0] %></td>
+	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
+		<% (0..11).each do |date| %>
+		<% month = @dates[date][1] %>
+			<% if sym[1].select { |d| d[1] == month }.empty? %>
+				<% val = '' %>
+			<% else %>
+			<% val = number_to_currency(sym[1].select { |d| d[1] == month }.sum(0) { |t| t[2].to_f * sym[2].to_f }) %>
+			<% end %>
+        <td class='text-right'><%=  val %></td>
+		<% end %>
+	 </tr>
+    <% end %>
+
+	<tr>
+		<td></td>
+		<td class='text-right'><%= number_to_currency(@monthly_fund_divs_total) %></td>
+		<% ['05','04','03','02','01','12','11','10','09','08','07','06'].each do |month| %>
+		    <td class='text-right'><%= number_to_currency(@annual_fund_divs_total[month]) %></td>
+		<% end %>
+	</tr>
+  </tbody>
+</table>
+
     </main>
   </div>
 </div>

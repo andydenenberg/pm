@@ -123,58 +123,83 @@ module Options
         begin
           page = @agent.get(url)
           response = page.body
-          data = JSON.parse(response)
+          data = JSON.parse(response).collect { |d| [ d['exDate'], d['amount'] ] }
         rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
         end       
       return data
     end
 
-  def self.check_dividend(symbol,date) # "2018-02-15"
-    url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1y" 
-#    puts url
-    # "paymentDate":"2018-02-15"
-    # "amount":0.63
-    @agent = Mechanize.new
-    dividends = 0
-    ret = [symbol.upcase, date, dividends]
-      begin
-        page = @agent.get(url)
-        response = page.body
-        if response.length > 3 
-          data = JSON.parse response
-          data.each do |d| 
-            paymentDate = d['paymentDate']
-            if paymentDate == date
-                dividends += d["amount"]
+  def self.yahoo_dividends(symbol)  
+      #  https://finance.yahoo.com/quote/SPY/history?period1=1494651600&period2=1526187600&interval=div%7Csplit&filter=div&frequency=1mo
+      period1 = (Time.now-1.year).to_i
+      period2 = (Time.now).to_i
+      interval = "div%7Csplit" # "div|split"
+      filter = "div"
+      frequency = "1mo"
+
+      url = "https://finance.yahoo.com/quote/#{symbol}/history?period1=#{period1}&period2=#{period2}&interval=#{interval}" +
+            "&filter=#{filter}&frequency=#{frequency}" 
+      @agent = Mechanize.new 
+#            loop do 
+              begin
+                page = @agent.get(url)
+              rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
+                puts '\n\n\nRetrying...\n\n\n'
+                page = @agent.get(url)
+              end  
+              payload = page.body    
+              doc = Nokogiri::HTML(payload)
+      #        ask = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[3].to_s
+                dates = []
+                doc.xpath('//table[@class="W(100%) M(0)"]//tr//td//span').collect { |d| d }.each do |date|
+                  begin
+                     d = Date.parse(date.to_s.split('>').last.split('<').first).to_s
+                     dates.push(d)
+                  rescue
+                  end
+                end
+                amounts = []
+                doc.xpath('//table[@class="W(100%) M(0)"]//tr//td//strong').each do |amount|
+                  begin
+                    v = amount.to_s.split('>').last.split('<').first
+                     amounts.push(v.to_f)
+                  rescue
+                  end
+                end
+            divs = [ ]    
+            dates.each_with_index do |d,i|
+             divs.push [ d, amounts[i] ]
             end
-          end
-           ret = [symbol.upcase, date, dividends]
-        end
-      rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
-#        puts "Unknown Reponse: #{symbol}"
-      end       
-    return ret
+            return divs
+      
   end
 
-def experiment  
-  syms = ["K", "HPQ", "PGF", "AAPL", "CSCO", "CVS", "GS", "MCD", "MO", "MSFT", "NKE", "PFE", "PM", "STT", "SYK", "UTX", "WBA", "XOM", "ZBRA", "INTC", "RWX", "QLD", "EWG", "BTI", "HPE", "DXC", "AMAT", "CRM", "ABB", "ABBV", "ACN", "ASIX", "AFL", "GOOGL", "AMGN", "BA", "CAT", "KO", "DISH", "EBAY", "EMR", "GBDC", "HON", "KSU", "NOK", "PYPL", "PPG", "TEL", "USB", "UNH", "VZ", "V", "WMT", "WFC", "EWH", "SPY", "MOAT", "VGK", "DXJ", "GE", "GIS", "STX", "TOT", "UPS", "BIF", "LQD", "A", "AMZN", "AXP", "AMP", "CNDT", "IBM", "KEYS", "MFGP", "ORCL", "VOD", "XRX", "XLI", "VWO", "T", "ADI", "ARMK", "CLX", "CL", "COP", "CSX", "CMI", "DRI", "ETN", "FNB", "FCPT", "ITW", "IVZ", "JNJ", "KMB", "KMI", "MRK", "MCHP", "OKE", "PEP", "PG", "SBUX", "UMPQ", "WM", "MMM", "ABT", "APD", "BHF", "COF", "SNP", "CMCSA", "MET", "UNP", "VSM", "PRF", "QQQ", "GOOG", "BWA", "BP", "CVX", "COST", "FB", "FLS", "FCX", "HYH", "JPM", "NBR", "PSX", "SLB", "RIG", "EFA", "EZM", "IVV", "DVY", "ADSK", "CCL", "CTL", "CB", "DE", "DLR", "DWDP", "GD", "GEF", "HRL", "MDT", "MON", "PH", "DIS", "IWM", "ADM", "AGR", "BMO", "BG", "DEO", "EGP", "HIG", "HUM", "MNK", "NVS", "PAYX", "PX", "QCOM", "EWT"]
-  divs = [ ]
-  (1..10).each do |day|
-    date = '2018-05-' + "%02d" % day
-    days = [ date ]
-    syms.each do |sym| 
-      div = Options.check_dividend(sym,date)
-      if div[2] > 0
-        days.push [ div[0], div[2] ]
-      end 
-    end
-    divs.push days
-    puts days.inspect
-  end
-
-[["NKE", "2018-04-02", 0.2], ["WMT", "2018-04-02", 0.52], ["AGR", "2018-04-02", 0.432], ["HIG", "2018-04-02", 0.25], ["KMB", "2018-04-03", 1], ["KSU", "2018-04-04", 0.36], ["DEO", "2018-04-11", 1.423244], ["SLB", "2018-04-13", 0.5], ["GE", "2018-04-25", 0.12]]
-
-end
+#    def self.check_dividend(symbol,date) # "2018-02-15"
+#      url = "https://api.iextrading.com/1.0/stock/#{symbol.upcase}/dividends/1y" 
+#  #    puts url
+#      # "paymentDate":"2018-02-15"
+#      # "amount":0.63
+#      @agent = Mechanize.new
+#      dividends = 0
+#      ret = [symbol.upcase, date, dividends]
+#        begin
+#          page = @agent.get(url)
+#          response = page.body
+#          if response.length > 3 
+#            data = JSON.parse response
+#            data.each do |d| 
+#              paymentDate = d['paymentDate']
+#              if paymentDate == date
+#                  dividends += d["amount"]
+#              end
+#            end
+#             ret = [symbol.upcase, date, dividends]
+#          end
+#        rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
+#  #        puts "Unknown Reponse: #{symbol}"
+#        end       
+#      return ret
+#    end
 
 #  Refresh the Price List
 #  def self.refresh_all

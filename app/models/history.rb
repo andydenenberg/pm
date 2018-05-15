@@ -139,7 +139,7 @@ class History < ApplicationRecord
     total_stocks_count = 0
     total_options = 0
     total_options_count = 0
-#    total_daily_dividend = 0
+    total_daily_dividend = 0
     total_all = 0
     
     Portfolio.all.each do |portfolio|
