@@ -113,7 +113,17 @@ class Stock < ApplicationRecord
         value_total += sub_total
       end
 
-      return [all_divs, monthly_totals, all_total, value_total]
+      current_year = [ ]
+        all_dividend_dates.each do |year,month|
+          ctotal = 0
+          all_divs.each do |sym| # [sym, divs, quantity, total_year, annual_yield]
+                                    # divs = [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ]
+            ctotal += sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2] * sym[2] }
+          end
+          current_year.push ctotal.to_f
+        end
+
+      return [all_divs, monthly_totals, all_total, value_total, current_year]
     end
   
   

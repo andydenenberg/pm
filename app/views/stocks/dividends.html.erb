@@ -136,6 +136,10 @@
   </tbody>
 </table>
 
+<br>
+Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.updated_at %> ago
+<br><br><br><br>
+
     </main>
   </div>
 </div>
