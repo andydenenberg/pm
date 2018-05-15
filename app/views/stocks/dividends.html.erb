@@ -74,7 +74,7 @@
 
 
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-     <h1 id='portfolio_name' class="h2">Stock Dividends</h1>
+     <h1 id='portfolio_name' class="h2">Dividends</h1>
 	     <div class="btn-toolbar mb-2 mb-md-0">	
 	     </div>
    </div>
@@ -127,58 +127,6 @@
 		
 		<% ['05','04','03','02','01','12','11','10','09','08','07','06'].each do |month| %>
 		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month]) %></td>
-		<% end %>
-	</tr>
-  </tbody>
-</table>
-
-
-
-
-
-
-
-   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-     <h1 id='portfolio_name' class="h2">Fund Dividends</h1>
-	     <div class="btn-toolbar mb-2 mb-md-0">	
-	     </div>
-   </div>
-
-  <div class="table-responsive">
-	<table class="table table-bordered table-striped table-sm">
-	  <thead>
-	    <tr>
-	      	<th>Symbol</th>
-	      	<th>Total</th>
-			<% (0..11).each do |i| %>
-		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[@dates[i][1]]}-#{@dates[i][0].to_s[2..3]}" %></th>
-			<% end %>
-	    </tr>
-	  </thead>
-
-  <tbody>
-
-    <% @fund_divs.each do |sym| %>
-      <tr>
-	    <td><%= sym[0] %></td>
-	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
-		<% (0..11).each do |date| %>
-		<% month = @dates[date][1] %>
-			<% if sym[1].select { |d| d[1] == month }.empty? %>
-				<% val = '' %>
-			<% else %>
-			<% val = number_to_currency(sym[1].select { |d| d[1] == month }.sum(0) { |t| t[2].to_f * sym[2].to_f }) %>
-			<% end %>
-        <td class='text-right'><%=  val %></td>
-		<% end %>
-	 </tr>
-    <% end %>
-
-	<tr>
-		<td></td>
-		<td class='text-right'><%= number_to_currency(@monthly_fund_divs_total) %></td>
-		<% ['05','04','03','02','01','12','11','10','09','08','07','06'].each do |month| %>
-		    <td class='text-right'><%= number_to_currency(@annual_fund_divs_total[month]) %></td>
 		<% end %>
 	</tr>
   </tbody>

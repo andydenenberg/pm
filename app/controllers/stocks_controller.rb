@@ -9,24 +9,11 @@ class StocksController < ApplicationController
 #    portfolios = Portfolio.where(name: 'R').last.id 
     portfolios = Portfolio.all.collect { |p| p.id }
 
-    stock_divs = Stock.calc_dividends(portfolios, 'Stock') 
+    stock_divs = Stock.calc_dividends(portfolios, ['Stock','Fund']) 
     @stock_divs = stock_divs[0].sort_by { |y| -y[4] }  # [sym, divs, quantity, total_year, annual_yield]
     @annual_stock_divs_total = stock_divs[1]
     @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
     @value_stock_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
-
-    fund_divs = Stock.calc_dividends(portfolios, 'Fund') 
-    @annual_fund_divs_total = fund_divs[1]
-    @fund_divs = fund_divs[0]  # [ symbol, [ symbol_monthly_divs ], symbol_quantity, symbol_annual_total ]
-    @monthly_fund_divs_total = fund_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
-    @value_fund_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
-
-
-#    portfolios = Portfolio.all.collect { |p| p.id }
-#    @divs = Stock.monthly_dividends(portfolios)
-#    @annual_divs = Stock.annual_dividends(@divs)
-#    @total_monthly = Stock.total_monthly_dividends(@divs)
-#    @funds = Stock.yahoo_dividends
 
   end
   
