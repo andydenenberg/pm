@@ -102,7 +102,8 @@
 	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2) %></td>
 	    <td class='text-right'><%= number_to_currency(sym[3] * Stock.find_by_symbol(sym[0]).price) %></td>
 	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
-	    <td class='text-right'><%= number_to_percentage( 100 * ( sym[3] / (sym[3] * Stock.find_by_symbol(sym[0]).price) ) ) %></td>
+				<% y = sym[3] > 0 ? 100 * ( sym[3] / (sym[3] * Stock.find_by_symbol(sym[0]).price) ) : 0 %>
+	    <td class='text-right'><%= number_to_percentage( y ) %></td>
 		<% (0..11).each do |date| %>
 		<% month = @dates[date][1] %>
 			<% if sym[1].select { |d| d[1] == month }.empty? %>
