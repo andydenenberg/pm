@@ -88,21 +88,21 @@ class Stock < ApplicationRecord
       all_divs = [ ]
       all_total = 0
       monthly_totals = { }
-      (1..12).each { |i| m = "%02d" % i ; monthly_totals[m] = 0 }
+      (1..12).each { |i| monthly_totals[i] = 0 } # m = "%02d" % i 
       symbols.each do |sym|
         total_year = 0
         quantity = 0
         quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
+        price = Stock.find_by_symbol(sym).price
+        annual_yield = 100 * (total_year / ( price * quantity) )
           stockorfund = Dividend.where(symbol: sym)
           amount = stockorfund.sum(0) { |sf| sf.amount }
             total_year += (amount * quantity)
               divs = stockorfund.collect { |sf| [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ] }
               stockorfund.each do |sf|                
-                monthly_totals["%02d" % sf.month] += (sf.amount * quantity)
+                monthly_totals[sf.month] += (sf.amount * quantity)
               end
-        all_total += total_year
-        price = Stock.find_by_symbol(sym).price
-        annual_yield = 100 * (total_year / ( price * quantity) )
+          all_total += total_year
         all_divs.push [sym, divs, quantity, total_year, annual_yield]
       end
 

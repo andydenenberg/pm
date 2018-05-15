@@ -14,6 +14,16 @@ class StocksController < ApplicationController
     @annual_stock_divs_total = stock_divs[1]
     @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
     @value_stock_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
+    
+  @current_year = [ ]
+    @dates.each do |year,month|
+      total = 0
+      @stock_divs.each do |sym| # [sym, divs, quantity, total_year, annual_yield]
+                                # divs = [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ]
+        total += sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2] * sym[2] }
+      end
+      @current_year.push total.to_f
+    end
 
   end
   
