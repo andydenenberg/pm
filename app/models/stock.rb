@@ -94,7 +94,6 @@ class Stock < ApplicationRecord
         quantity = 0
         quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
         price = Stock.find_by_symbol(sym).price
-        annual_yield = 100 * (total_year / ( price * quantity) )
           stockorfund = Dividend.where(symbol: sym)
           amount = stockorfund.sum(0) { |sf| sf.amount }
             total_year += (amount * quantity)
@@ -102,6 +101,7 @@ class Stock < ApplicationRecord
               stockorfund.each do |sf|                
                 monthly_totals[sf.month] += (sf.amount * quantity)
               end
+          annual_yield = 100 * (total_year / ( price * quantity) )
           all_total += total_year
         all_divs.push [sym, divs, quantity, total_year, annual_yield]
       end
