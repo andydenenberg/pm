@@ -71,7 +71,7 @@ class Stock < ApplicationRecord
 
 # rails g model Dividend symbol:string year:integer month:integer amount:decimal date:datetime
   def self.refresh_dividends
-    Dividends.all.delete_all
+    Dividend.all.delete_all
     syms = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund')).distinct.pluck(:symbol).sort
     syms.each do |sym|      
       stockorfund = Options.yahoo_dividends(sym)
