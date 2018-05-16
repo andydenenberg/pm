@@ -42,7 +42,11 @@
 		</ul>
 		
         <ul class="navbar-nav ml-auto">
-			<li><button id='poll_request_button' class="nav-link btn btn-sm btn-secondary">
+			<li>
+				<button id='poll_active_button' onclick="ToggleActivePoll();return false;" class="nav-link btn btn-sm btn-success">Polling</button>
+			</li>
+			<li>
+				<button id='poll_request_button' class="nav-link btn btn-sm btn-secondary">
 				<span id='poll_request_time'>Prices from ?</span>
 				<span data-feather="bell"></span>
 				<span id='poll_request'>Idle</span>

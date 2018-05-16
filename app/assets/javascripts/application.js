@@ -56,3 +56,15 @@ function RefreshPrices(stock_option) {
 	$(".refresh_spinner").toggleClass("d-none"); 	
 	$.get("portfolios.js", { stock_option: stock_option } );
 };
+
+function ToggleActivePoll(stock_option) {
+if (poll) { 
+	poll = false ;
+	$("#poll_active_button").removeClass("btn-success");  
+	$("#poll_active_button").addClass("btn-danger");  			
+	} else { 
+	poll = true
+	$("#poll_active_button").removeClass("btn-danger");  
+	$("#poll_active_button").addClass("btn-success");  			
+	};
+};
