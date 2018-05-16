@@ -103,6 +103,7 @@ class Stock < ApplicationRecord
               stockorfund.each do |sf|                
                 monthly_totals[sf.month] += (sf.amount * quantity)
               end
+              puts "total_year:#{total_year}, price:#{price}, quantity:#{quantity}"
           annual_yield = 100 * (total_year / ( price * quantity) )
           all_total += total_year
         all_divs.push [sym, divs, quantity, total_year, annual_yield]
