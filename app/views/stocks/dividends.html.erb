@@ -76,69 +76,25 @@
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
      <h1 id='portfolio_name' class="h2">Dividends</h1>
 	     <div class="btn-toolbar mb-2 mb-md-0">	
+		
+			<div class="dropdown">
+			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span id='portfolio_name'>All Portfolios</span>
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<% @portfolios.each do |p| %>
+				    <a onclick="SelectDividendPortfolio('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
+					<% end %>
+			  </div>
+			</div>
+		
 	     </div>
    </div>
 
-  <div class="table-responsive">
-	<table class="table table-bordered table-striped table-sm">
-	  <thead>
-	    <tr>
-	      	<th>Symbol</th>
-			<th class='text-right'>Shares</th>
-			<th class='text-right'>Price</th>
-	      	<th class='text-right'>Investment</th>
-			<th class='text-right'>Annual_Divs</th>			
-			<th class='text-right'>Yield</th>			
-			<% @dates.each do |d| %>
-		      <th class='text-right'><%= "#{Date::ABBR_MONTHNAMES[d[1]]}-#{d[0].to_s}" %></th>
-			<% end %>
-	    </tr>
-	  </thead>
-
-  <tbody>
-			    
-    <% @stock_divs.each do |sym| %>
-      <tr>
-	    <td><%= sym[0] %></td>
-	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
-	    <td class='text-right'><%= number_to_currency(Stock.find_by_symbol(sym[0]).price) %></td>
-	    <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
-	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
-	    <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-		<% @dates.each do |year,month| %>
-			<% val = sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2].to_f * sym[2].to_f } %>
-			<% value = val != 0 ? number_to_currency(val) : '' %>
-        <td class='text-right'><%= value %></td>
-		<% end %>
-	 </tr>
-    <% end %>
-
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td class='text-right'><%= number_to_currency(@value_stock_total) %></td>
-		<td></td>
-		<td class='text-right'></td>
-		<% @current_year.each do |cy| %>
-		    <td class='text-right'><%= number_to_currency(cy) %></td>
-		<% end %>
-	</tr>
-
-	<tr>
-		<td colspan=4 class='text-right'>Annualized</td>
-		<td class='text-right'><%= number_to_currency(@monthly_stock_divs_total) %></td>
-		<td class='text-right'><%= number_to_percentage( 100 * (@monthly_stock_divs_total/@value_stock_total) ) %></td>
-		<% @dates.each do |year,month| %>
-		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month]) %></td>
-		<% end %>
-	</tr>
-  </tbody>
-</table>
-
-<br>
-Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.updated_at %> ago
-<br><br><br><br>
+	<div id='dividends_table'>
+		<%= render 'dividends' %>
+	</div>	
 
     </main>
   </div>

@@ -4,17 +4,22 @@ class StocksController < ApplicationController
   helper_method :sort_column, :sort_direction, :select_tab
 
   def dividends
-    @dates = Stock.all_dividend_dates
-#    portfolios = Group.where(name: 'Personel Portfolios').last.portfolios.collect { |p| p.id }
-#    portfolios = Portfolio.where(name: 'R').last.id 
-    portfolios = Portfolio.all.collect { |p| p.id }
 
-    stock_divs = Stock.calc_dividends(portfolios, ['Stock','Fund']) 
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+
+    @dates = Stock.all_dividend_dates
+    stock_divs = Stock.calc_dividends(@portfolio_name, ['Stock','Fund']) 
     @stock_divs = stock_divs[0].sort_by { |y| -y[4] }  # [sym, divs, quantity, total_year, annual_yield]
     @annual_stock_divs_total = stock_divs[1]
     @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
     @value_stock_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
     @current_year = stock_divs[4]
+
+    respond_to do |format|
+        format.html
+        format.js
+    end
 
   end
   
@@ -22,7 +27,6 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index    
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
-
     @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
     
     translate = { symbol: 0, value: 2, change: 3, dividends: 7 }

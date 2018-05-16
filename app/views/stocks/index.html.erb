@@ -95,7 +95,7 @@
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<% @portfolios.each do |p| %>
-				    <a onclick="SelectPortfolio('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
+				    <a onclick="SelectDividendPortfolio('<%= p %>');return false;" class="dropdown-item" href="#"><%= p %></a>
 					<% end %>
 			  </div>
 			</div>

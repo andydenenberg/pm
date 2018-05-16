@@ -5,3 +5,7 @@
 function SelectPortfolio(portfolio) {
 	$.get("/stocks.js", { portfolio_name: portfolio });
 };
+
+function SelectDividendPortfolio(portfolio) {
+	$.get("/dividends.js", { portfolio_name: portfolio });
+};

@@ -83,8 +83,9 @@ class Stock < ApplicationRecord
     end
   end
 
-    def self.calc_dividends(portfolios, stock_option_fund)
-      stocks_funds = Stock.where(stock_option: stock_option_fund).where(portfolio_id: portfolios)  # .or(Stock.where(stock_option: 'Fund'))
+    def self.calc_dividends(portfolio_name, stock_option_fund)
+      portfolio_ids = Lib.translate_groupids(portfolio_name).first
+      stocks_funds = Stock.where(stock_option: stock_option_fund).where(portfolio_id: portfolio_ids )  # .or(Stock.where(stock_option: 'Fund'))
       symbols = stocks_funds.distinct.pluck(:symbol).sort
       all_divs = [ ]
       all_total = 0
