@@ -159,9 +159,9 @@ class History < ApplicationRecord
         stocks_change = stocks.reduce(0) { |sum, stock| sum + ( stock.quantity * stock.change ) }
           total_stocks_change += stocks_change
 
-#        hist.daily_dividend = stocks.reduce(0) { |sum, stock| sum + ( stock.daily_dividend * stock.quantity ) }
-#          total_daily_dividend += hist.daily_dividend
-#        hist.daily_dividend_date = Time.now.beginning_of_day()
+        hist.daily_dividend = stocks.reduce(0) { |sum, stock| sum + ( stock.daily_dividend * stock.quantity ) }
+          total_daily_dividend += hist.daily_dividend
+        hist.daily_dividend_date = Time.now.beginning_of_day()
           
       options = all_secs.where('stock_option LIKE ?', '%' + 'Option' + '%')
         hist.options_count = options.count

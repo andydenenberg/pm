@@ -72,7 +72,8 @@ class Stock < ApplicationRecord
 # rails g model Dividend symbol:string year:integer month:integer amount:decimal date:datetime
   def self.refresh_dividends
     Dividend.all.delete_all
-    syms = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund')).distinct.pluck(:symbol).sort
+    stocks = Stock.where(stock_option: 'Stock').or(Stock.where(stock_option: 'Fund'))
+    syms = stocks.distinct.pluck(:symbol).sort
     syms.each do |sym|      
       stockorfund = Options.yahoo_dividends(sym)
        stockorfund.each do |date_div|
@@ -80,6 +81,14 @@ class Stock < ApplicationRecord
            Dividend.create ( { symbol: sym, year: date_div[0][0..3].to_i, month: date_div[0][5..6].to_i, amount: amount, date: date_div[0] } )  
            # divs.push [date_div[0][0..3].to_i, date_div[0][5..6].to_i, amount, date_div[0] ]
        end      
+    end
+    stocks.each do |s|
+      div = Dividend.where(symbol: s.symbol, date: Date.today-1.week..Date.today)
+      if !div.empty? 
+        s.daily_dividend = div.sum(0) { |d| d.amount }
+        s.daily_dividend_date = div.last.date
+        s.save
+      end
     end
   end
 
@@ -103,7 +112,6 @@ class Stock < ApplicationRecord
               stockorfund.each do |sf|                
                 monthly_totals[sf.month] += (sf.amount * quantity)
               end
-              puts "total_year:#{total_year}, price:#{price}, quantity:#{quantity}"
           annual_yield = 100 * (total_year / ( price * quantity) )
           all_total += total_year
         all_divs.push [sym, divs, quantity, total_year, annual_yield]
