@@ -1,3 +1,11 @@
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
+<a href="#" data-toggle="tooltip" title="Hooray!<br>test\nalso">Hover over me</a>
+
 <% @all_data.each_with_index do |data,i| %>
 <h3><%= @group_names[i] %></h3>
 <div class="table-responsive">
@@ -23,7 +31,7 @@
 	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
-			<td class='text-right'><%= number_to_currency(port.total_dividends_value) %> </td>
+			<td class='text-right'><%= link_to number_to_currency(port.total_dividends_value), stocks_path(portfolio_name: port.name) %> </td>
 	      </tr>		
 	    <% end %>
 	
