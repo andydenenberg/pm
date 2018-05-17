@@ -12,8 +12,9 @@ class Portfolio < ApplicationRecord
     total_stocks = all.sum { |s| s.total_stocks_value }
     total_stocks_change = all.sum { |s| s.total_stocks_change_value }
     total_options = all.sum { |s| s.total_options_value }
+    total_dividends = all.sum { |s| s.total_dividends_value }
     last_update = Stock.where(stock_option: 'Stock').last.updated_at
-    return [ordered, total_cash, total_stocks, total_options, total_stocks_change, last_update ]      
+    return [ordered, total_cash, total_stocks, total_options, total_stocks_change, last_update, total_dividends ]      
   end
   
   def self.stocks_total(name)
