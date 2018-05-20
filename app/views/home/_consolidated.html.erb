@@ -1,0 +1,80 @@
+<table>
+	<tr><td>View </td>
+		<td>
+
+			<div class="dropdown">
+			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span id='perspective'><%= @perspective %></span>
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<%= link_to 'Consolidated', consolidated_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Positions', positions_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Graphs', graphs_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+			  </div>
+			</div>
+
+
+</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;Scope </td>
+		
+<td>
+	<div class="dropdown">
+	  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+	 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span id='portfolio_Name'><%= @portfolio_name %></span>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<% @portfolios.each do |p| %>
+		    <a onclick="Consolidated_Portfolio('<%= @perspective %>', '<%= p %>' );return false;" class="dropdown-item" href="#"><%= p %></a>
+			<% end %>
+	  </div>
+	</div>
+		
+</td>
+</tr>
+</table>
+<br>
+
+
+<div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Cash</th>
+	      <th>Stocks</th>
+	      <th>Options</th>
+	      <th>Total Value</th>
+		  <th>Weekly Dividends</th>
+	      <th>Daily Change</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @portfolios_data[0].each do |port| %>
+	      <tr>
+	        <td><%= link_to port.name, positions_path(portfolio_name: port.name ) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
+	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
+			<td class='text-right'><%= link_to number_to_currency(port.total_dividends_value), stocks_path(portfolio_name: port.name) %> </td>
+	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
+	      </tr>		
+	    <% end %>
+
+	      <tr>
+	        <td></td>
+	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]) %></td>
+	        <td class='text-right'><%= number_to_currency(@portfolios_data[2]) %></td>
+	        <td class='text-right'><%= number_to_currency(@portfolios_data[3]) %></td>
+	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]+@portfolios_data[2]+@portfolios_data[3]) %></td>
+			<td class='text-right'><%= number_to_currency(@portfolios_data[6]) %></td>
+	        <td class='text-right'><%= number_to_currency(@portfolios_data[4]) %></td>
+	      </tr>
+
+	  </tbody>
+	</table>
+
+</div>

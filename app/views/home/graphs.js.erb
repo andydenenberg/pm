@@ -1,0 +1,26 @@
+document.getElementById("portfolio_name").innerHTML = "<%= @portfolio_name %>" ; 
+document.getElementById("perspective").innerHTML = "<%= @perspective %>" ; 
+document.getElementById("period").innerHTML = "<%= @period %>" ; 
+
+//chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @period_label %>" ;
+chart.data.datasets[0].data = <%= @values.to_s.html_safe %> ;
+
+chart.data.labels = <%= @time %> ;
+
+chart.data.datasets[0].label = "<%= @portfolio_name %>" ;
+chart.options.scales.xAxes[0].scaleLabel.labelString = "<%= @year %>" ;
+
+chart.options.scales.yAxes[0].ticks.max = <%= @max %> ;
+
+step = <%= @step %> ;
+
+chart.options.scales.yAxes[0].ticks.min = <%= @min %> ;
+chart.options.scales.yAxes[0].ticks.stepSize = <%= @step %> ;
+
+chart.update() ;
+
+ShowChart() ;
+
+
+
+//document.getElementById("dataArray").innerHTML = 'updated' ;

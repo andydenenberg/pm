@@ -41,7 +41,7 @@ module Lib
       max = 500000 
     end 
     
-    min_val = values.reject {|x| x == 0 }.min # throw out negatives
+    min_val = values.reject {|y| y < 0 }.min # throw out negatives
     if min_val < 500000
       min = 0
     elsif min_val < 1000000

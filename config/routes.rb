@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :histories
   resources :portfolios
   resources :stocks
-  root 'portfolios#index'
+  root 'home#consolidated'
+  get 'consolidated', to: 'home#consolidated'
+  get 'positions', to: 'home#positions'
+  get 'graphs', to: 'home#graphs'
+#  get 'demo', to: 'home#demo'
   get 'home', to: 'home#index'
   get 'info', to: 'home#info' 
   get 'poll_check', to: 'portfolios#poll_check' 

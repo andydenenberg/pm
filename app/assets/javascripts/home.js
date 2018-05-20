@@ -2,6 +2,24 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+function Consolidated_Portfolio(perspective, portfolio_name) {
+	$.get("/consolidated.js", { portfolio_name: portfolio_name, perspective: perspective }); 
+};
+
+function Positions_Portfolio(perspective, portfolio_name) {
+	$.get("/positions.js", { portfolio_name: portfolio_name, perspective: perspective }); 
+};
+
+
+
+function Select_Perspective(perspective, portfolio_name) {
+	$.get("/demo.js", { portfolio_name: portfolio_name, perspective: perspective });
+};
+
+function Select_Portfolio(perspective, portfolio_name) {
+	$.get("/demo.js", { portfolio_name: portfolio_name, perspective: perspective });
+};
+
 function ShowMarker() {
     if ($("#show_marker").prop('checked'))
     { chart.data.datasets[0].pointRadius = 3 ; } 
@@ -46,18 +64,18 @@ function ShowChart() {
 };
 
 
-function ChangePortfolio(portfolio) {
+function ChangePortfolio(portfolio_name) {
 	HideChart() ;
 	var period = document.getElementById("period").innerHTML
 	console.log(portfolio_name + period) ;
-	$.get("home.js", { portfolio:portfolio, period:period });
+	$.get("graphs.js", { portfolio_name:portfolio_name, period:period });
 };
 
 function ChangePeriod(period) {
 	HideChart() ;
 	var portfolio_name = document.getElementById("portfolio_name").innerHTML
 	console.log(portfolio_name + period) ;
-	$.get("home.js", { portfolio:portfolio_name, period:period });
+	$.get("graphs.js", { portfolio_name:portfolio_name, period:period });
 };
 	
 

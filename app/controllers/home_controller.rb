@@ -1,7 +1,130 @@
 class HomeController < ApplicationController
+
+  helper_method :sort_column, :sort_direction
+  
+  def consolidated
+    @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
+    @perspective = params[:perspective] ||= 'Consolidated'
+    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    
+    group_id = Group.find_by_name(@portfolio_name).nil? ? nil : Group.find_by_name(@portfolio_name).id
+    @portfolios_data = Portfolio.table_data(group_id)  
+
+    respond_to do |format|
+        format.html  { render :layout => false }   
+        format.js { render :layout => false, :template => "home/consolidated" }  
+    end    
+  end
+  
+  def positions
+    @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
+    @perspective = params[:perspective] ||= 'Positions'
+    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+    table_data = Stock.table_data(@portfolio_name, sort_column, sort_direction)    
+    @stocks = table_data[0]
+    @dividends = table_data[1]
+    @total_value = table_data[2]
+    @total_change = table_data[3]
+    
+    respond_to do |format|
+        format.html  { render :layout => false }   
+        format.js { render :layout => false, :template => "home/positions" }  
+    end       
+  end
+  
+  def graphs
+    @perspective = params[:perspective] ||= 'Graphs'
+    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+  
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+    @periods = ['from Start', 'Last 3 Years', 'Last 2 Years', 'Year to Date', 'Month to Date']
+
+    @period = params[:period] ||= "Last 2 Years"
+
+    results = History.graph_data(@portfolio_name, @period)
+    @values = results[0]
+
+    scale = Lib.graph_scale(@values)
+
+    @max = scale[0]
+    @min = scale[1]
+    @step = scale[2]
+
+    @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")    
+    @time = results[1]
+    @year = results[2].to_s
+    @name = @portfolio
+
+    respond_to do |format|
+        format.html  { render :layout => false }   
+        format.js { render :layout => false, :template => "home/graphs" }  
+    end       
+    
+  end
+
+
+
+
+
+#  def demo    
+#    @perspectives = [ 'Consolidated', 'Stocks', 'Graphs', 'Dividends' ]
+#    @perspective = params[:perspective] ||= 'Consolidated'
+#    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+#
+#    if @perspective == 'Stocks' 
+#      @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+#      table_data = Stock.table_data(@portfolio_name, sort_column, sort_direction)    
+#      @stocks = table_data[0]
+#      @dividends = table_data[1]
+#      @total_value = table_data[2]
+#      @total_change = table_data[3]
+#      
+#      render :layout => false, :template => "home/stocks"
+#      
+#    elsif @perspective == 'Consolidated'
+#      @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    
+#      group_id = Group.find_by_name(@portfolio_name).nil? ? nil : Group.find_by_name(@portfolio_name).id
+#      @portfolios_data = Portfolio.table_data(group_id)  
+#      respond_to do |format|
+#          format.html  { render :layout => false }   
+#          format.js { render :layout => false, :template => "home/portfolios" }  
+#      end
+#          
+#    else
+#      @perspective = params[:perspective] ||= 'Consolidated'
+#      @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+#    
+#      @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+#      @periods = ['from Start', 'Last 3 Years', 'Last 2 Years', 'Year to Date', 'Month to Date']
+#
+#      @period = params[:period] ||= "Last 2 Years"
+#      @portfolio = params[:portfolio] ||= 'All Portfolios'    
+#
+#      results = History.graph_data(@portfolio, @period)
+#      @values = results[0]
+#
+#      scale = Lib.graph_scale(@values)
+#
+#      @max = scale[0]
+#      @min = scale[1]
+#      @step = scale[2]
+#
+#      @values = results[0].to_s.gsub(" 0,"," ,").gsub("[0,","[ ").gsub("0]"," ]")    
+#      @time = results[1]
+#      @year = results[2].to_s
+#      @name = @portfolio
+#
+#      render :layout => false, :template => "home/graph"
+#    
+#    end
+#
+#  end
   
   def info
-        #render :layout => false   
+    render :layout => false   
   end
   
   def index
@@ -42,5 +165,14 @@ class HomeController < ApplicationController
       return padded
     end
   
+    def sort_column
+#      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
+      params[:sort] ||= 'dividends'
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
   
 end
