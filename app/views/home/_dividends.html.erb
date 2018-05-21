@@ -48,7 +48,8 @@
 	      	<th class='text-right'>Investment</th>
 			<th class='text-right'>Annual_Divs</th>			
 			<th class='text-right'>Yield</th>			
-			<th class='text-right'>Weekly Dividends</th>			
+			<th class='text-right'>Recent Dividends</th>			
+			<th class='text-right'></th>			
 	    </tr>
 	  </thead>
 
@@ -63,6 +64,12 @@
 	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 	    <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
 	    <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend.to_f ) %></td>
+		<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
+		<% if !div.empty? %>
+        	<td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
+		<% else %>
+			<td></td>
+		<% end %>
 	 </tr>
     <% end %>
 
@@ -72,12 +79,15 @@
 		<td></td>
 		<td class='text-right'><%= number_to_currency(@value_stock_total) %></td>
 		<td></td>
+		<td></td>
+		<td colspan=2 class='text-right'></td>
 	</tr>
 
 	<tr>
 		<td colspan=4 class='text-right'>Annualized</td>
 		<td class='text-right'><%= number_to_currency(@monthly_stock_divs_total) %></td>
 		<td class='text-right'><%= number_to_percentage( 100 * (@monthly_stock_divs_total/@value_stock_total) ) %></td>
+		<td colspan=2 class='text-right'></td>
 	</tr>
   </tbody>
 </table>
