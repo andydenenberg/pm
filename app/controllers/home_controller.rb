@@ -26,6 +26,13 @@ class HomeController < ApplicationController
   end
   
   def consolidated
+    ironcache = IronCache::Client.new
+    cache = ironcache.cache("my_cache")
+    state = @cache.get("poll_request").value
+    if state == 'Complete'
+      @cache.put("poll_request", 'Idle')
+    end
+
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Consolidated'
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    

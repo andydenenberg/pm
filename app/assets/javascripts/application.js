@@ -46,7 +46,6 @@ if (poll) {
 				
 	} else if ( data['poll_request'] == 'Complete' ) {
 		
-		alert('complete') ;
 		location.reload();
 		
 		$("#poll_request_button").removeClass("btn-primary");  
