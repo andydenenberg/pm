@@ -67,8 +67,8 @@ function RefreshPrices(stock_option) {
 };
 
 function RefreshSet() {
-	$(".refresh_button").toggleClass("d-none"); 
-	$(".refresh_spinner").toggleClass("d-none"); 	
+//	$(".refresh_button").toggleClass("d-none"); 
+//	$(".refresh_spinner").toggleClass("d-none"); 	
 	$.get("poll_set.js");
 };
 

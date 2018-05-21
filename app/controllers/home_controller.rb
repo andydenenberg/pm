@@ -16,9 +16,9 @@ class HomeController < ApplicationController
   def poll_set
       if ENV['RACK_ENV'] != 'development'      
 #        system "rake convert:refresh_all" run on Heroku      
-       ironcache = IronCache::Client.new
-       cache = ironcache.cache("my_cache")
-       state = cache.get("poll_request").value
+       @ironcache = IronCache::Client.new
+       @cache = @ironcache.cache("my_cache")
+       state = @cache.get("poll_request").value
        if state == 'Idle' || state == 'Complete'
          @cache.put("poll_request", 'Waiting')
        end

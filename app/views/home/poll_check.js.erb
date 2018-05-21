@@ -1,4 +1,4 @@
-<% if @data == 'Complete' %>
+<% if @data['poll_request'] == 'Complete' %>
 	$('#data_table').html("<%= j render 'consolidated' %>") ;
 <% end %>
 
