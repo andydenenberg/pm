@@ -1,3 +1,6 @@
+<% if @data['poll_request'] == 'Complete' %>
+	location.reload();
+<% end %>
 
 <% @data['poll_request_time'] = "#{time_ago_in_words( @poll_request_time )}" %>
 <%= raw @data.to_json %>
