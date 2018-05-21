@@ -45,6 +45,10 @@ if (poll) {
 		$('#poll_set').find("path, polygon, circle").attr("fill", "orange");
 				
 	} else if ( data['poll_request'] == 'Complete' ) {
+		
+		alert('complete') ;
+		location.reload();
+		
 		$("#poll_request_button").removeClass("btn-primary");  
 		$("#poll_request_button").addClass("btn-success");  
 		
