@@ -88,7 +88,7 @@
 		<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
 		<% if !div.empty? %>
 		   <% dividend = sym[2] * div.last.amount %>
-		   <% total_divs =+ dividend %>
+		   <% total_divs += dividend %>
 		   <td class='text-right'><%= number_to_currency( dividend ) %></td>
 		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
 		<% else %>
