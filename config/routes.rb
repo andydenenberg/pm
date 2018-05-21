@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'graphs', to: 'home#graphs'
   get 'dividends_new', to: 'home#dividends'
   get 'poll_check_new', to: 'home#poll_check' 
+  get 'poll_set', to: 'home#poll_set' 
   
 #  get 'demo', to: 'home#demo'
   get 'home', to: 'home#index'

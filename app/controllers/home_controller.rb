@@ -13,6 +13,19 @@ class HomeController < ApplicationController
       end
   end
   
+  def poll_set
+      if !heroku
+        system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
+      else        
+#        system "rake convert:refresh_all" run on Heroku      
+       @ironcache = IronCache::Client.new
+       @cache = @ironcache.cache("my_cache")
+       if @cache.get("poll_request").value == 'Idle'
+         @cache.put("poll_request", 'Waiting')
+       end
+      end     
+  end
+  
   def consolidated
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Consolidated'

@@ -57,6 +57,12 @@ function RefreshPrices(stock_option) {
 	$.get("portfolios.js", { stock_option: stock_option } );
 };
 
+function RefreshSet() {
+	$(".refresh_button").toggleClass("d-none"); 
+	$(".refresh_spinner").toggleClass("d-none"); 	
+	$.get("poll_set.js");
+};
+
 function ToggleActivePoll(stock_option) {
 if (poll) { 
 	poll = false ;
