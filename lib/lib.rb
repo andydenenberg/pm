@@ -64,15 +64,17 @@ module Lib
       min = 15000000
     end
     
-    istep = (max - min) / 10    
+    istep = (max - min) / 5    
     if istep < 100000
-      step = 5000
+      step = 50000
     elsif istep <  500000
       step = 200000
     elsif istep <  1000000
       step = 500000
-    else
+    elsif istep <  5000000
       step = 1000000
+    else
+      step = 2000000
     end
     
     return [ max, min, step ]

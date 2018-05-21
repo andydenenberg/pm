@@ -5,10 +5,15 @@ class HomeController < ApplicationController
   def consolidated
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Consolidated'
-    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
-
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    
-    group_id = Group.find_by_name(@portfolio_name).nil? ? nil : Group.find_by_name(@portfolio_name).id
+    if Group.find_by_name(params[:portfolio_name])
+      @portfolio_name = params[:portfolio_name]
+      group_id = Group.find_by_name(@portfolio_name).id
+    else 
+      @portfolio_name = 'All Portfolios'
+      group_id = nil
+    end
+
     @portfolios_data = Portfolio.table_data(group_id)  
 
     respond_to do |format|
@@ -65,7 +70,26 @@ class HomeController < ApplicationController
     
   end
 
+  def dividends 
+    @perspective = params[:perspective] ||= 'Dividends'    
+    @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
+    @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
 
+    @dates = Stock.all_dividend_dates
+    stock_divs = Stock.calc_dividends(@portfolio_name, ['Stock','Fund']) 
+    @stock_divs = stock_divs[0].sort_by { |y| -y[4] }  # [sym, divs, quantity, total_year, annual_yield]
+    @annual_stock_divs_total = stock_divs[1]
+    @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
+    @value_stock_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
+    @current_year = stock_divs[4]
+
+    respond_to do |format|
+        format.html  { render :layout => false }   
+        format.js { render :layout => false, :template => "home/dividends" }  
+    end       
+    
+    
+  end
 
 
 

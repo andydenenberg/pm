@@ -1,0 +1,87 @@
+<table>
+	<tr><td>View </td>
+		<td>
+
+			<div class="dropdown">
+			  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+			 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span id='perspective'><%= @perspective %></span>
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<%= link_to 'Consolidated', consolidated_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Positions', positions_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Graphs', graphs_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Dividends', dividends_new_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+			  </div>
+			</div>
+
+
+</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;Scope </td>
+		
+<td>
+	<div class="dropdown">
+	  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+	 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span id='portfolio_Name'><%= @portfolio_name %></span>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<% @portfolios.each do |p| %>
+		    <a onclick="Dividends_Portfolio('<%= @perspective %>', '<%= p %>' );return false;" class="dropdown-item" href="#"><%= p %></a>
+			<% end %>
+	  </div>
+	</div>
+		
+</td>
+</tr>
+</table>
+<br>
+
+
+  <div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      	<th>Symbol</th>
+			<th class='text-right'>Shares</th>
+			<th class='text-right'>Price</th>
+	      	<th class='text-right'>Investment</th>
+			<th class='text-right'>Annual_Divs</th>			
+			<th class='text-right'>Yield</th>			
+			<th class='text-right'>Weekly Dividends</th>			
+	    </tr>
+	  </thead>
+
+  <tbody>
+			    
+    <% @stock_divs.each do |sym| %>
+      <tr>
+	    <td><%= sym[0] %></td>
+	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
+	    <td class='text-right'><%= number_to_currency(Stock.find_by_symbol(sym[0]).price) %></td>
+	    <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
+	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
+	    <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
+	    <td class='text-right'><%= number_to_currency( Stock.find_by_symbol(sym[0]).daily_dividend ) %></td>
+	 </tr>
+    <% end %>
+
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td class='text-right'><%= number_to_currency(@value_stock_total) %></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td colspan=4 class='text-right'>Annualized</td>
+		<td class='text-right'><%= number_to_currency(@monthly_stock_divs_total) %></td>
+		<td class='text-right'><%= number_to_percentage( 100 * (@monthly_stock_divs_total/@value_stock_total) ) %></td>
+	</tr>
+  </tbody>
+</table>
+
+<br>
+Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.updated_at %> ago
+<br><br><br><br>

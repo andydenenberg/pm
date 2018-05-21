@@ -7,9 +7,10 @@
 			    <span id='perspective'><%= @perspective %></span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<%= link_to 'Consolidated', consolidated_path, class: "dropdown-item" %>
-					<%= link_to 'Positions', positions_path, class: "dropdown-item" %>
-					<%= link_to 'Graphs', graphs_path, class: "dropdown-item" %>
+					<%= link_to 'Consolidated', consolidated_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Positions', positions_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Graphs', graphs_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Dividends', dividends_new_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
 			  </div>
 			</div>
 		</td>
