@@ -31,6 +31,8 @@ class HomeController < ApplicationController
     state = cache.get("poll_request").value
     if state == 'Complete'
       cache.put("poll_request", 'Idle')
+    elsif state == 'Idle'
+      cache.put("poll_request", 'Waiting')
     end
 
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
