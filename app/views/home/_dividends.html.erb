@@ -72,7 +72,9 @@
 	  </thead>
 
   <tbody>
-			    
+
+<% total_divs = 0 %>
+
   <% @stock_divs.each do |sym| %>
     <tr>
 	<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
@@ -83,11 +85,14 @@
 		   <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
 		   <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 		   <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-		   <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend.to_f ) %></td>
 		<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
 		<% if !div.empty? %>
+		   <% dividend = sym[2] * div.last.amount %>
+		   <% total_divs =+ dividend %>
+		   <td class='text-right'><%= number_to_currency( dividend ) %></td>
 		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
 		<% else %>
+			<td></td>
 			<td></td>
 		<% end %>
 	<% end %>
@@ -99,9 +104,9 @@
 		<td></td>
 		<td></td>
 		<td class='text-right'><%= number_to_currency(@value_stock_total) %></td>
-		<td></td>
-		<td></td>
 		<td colspan=2 class='text-right'></td>
+		<td class='text-right'><%= number_to_currency(total_divs) %></td>
+		<td></td>
 	</tr>
 
 	<tr>
