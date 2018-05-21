@@ -62,7 +62,7 @@
 	    <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
 	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 	    <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-	    <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend ) %></td>
+	    <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend.to_f ) %></td>
 	 </tr>
     <% end %>
 
