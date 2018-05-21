@@ -1,6 +1,3 @@
-<% if @data['poll_request'] == 'Complete' %>
-	$('#data_table').html("<%= j render 'consolidated' %>") ;
-<% end %>
 
 <% @data['poll_request_time'] = "#{time_ago_in_words( @poll_request_time )}" %>
 <%= raw @data.to_json %>
