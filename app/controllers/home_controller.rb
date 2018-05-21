@@ -1,6 +1,17 @@
 class HomeController < ApplicationController
 
   helper_method :sort_column, :sort_direction
+
+  def poll_check
+    ironcache = IronCache::Client.new
+    cache = ironcache.cache("my_cache")
+    @poll_request_time = cache.get("poll_request_time").value
+    @data = Hash.new
+    @data['poll_request'] = cache.get("poll_request").value
+      respond_to do |format|
+          format.js
+      end
+  end
   
   def consolidated
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
