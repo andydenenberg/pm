@@ -28,9 +28,9 @@ class HomeController < ApplicationController
   def consolidated
     ironcache = IronCache::Client.new
     cache = ironcache.cache("my_cache")
-    state = @cache.get("poll_request").value
+    state = cache.get("poll_request").value
     if state == 'Complete'
-      @cache.put("poll_request", 'Idle')
+      cache.put("poll_request", 'Idle')
     end
 
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
