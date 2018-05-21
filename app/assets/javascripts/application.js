@@ -34,13 +34,22 @@ if (poll) {
 
 	if (data['poll_request'] == 'Updating') {
 		$("#poll_request_button").removeClass("btn-warning");  
-		$("#poll_request_button").addClass("btn-primary");  		
+		$("#poll_request_button").addClass("btn-primary");  
+		
+		$('#poll_set').find("path, polygon, circle").attr("fill", "blue");
+				
 	} else if ( data['poll_request'] == 'Waiting' ) {
 		$("#poll_request_button").removeClass("btn-secondary");  
-		$("#poll_request_button").addClass("btn-warning");  		
+		$("#poll_request_button").addClass("btn-warning");  
+		
+		$('#poll_set').find("path, polygon, circle").attr("fill", "orange");
+				
 	} else if ( data['poll_request'] == 'Complete' ) {
 		$("#poll_request_button").removeClass("btn-primary");  
-		$("#poll_request_button").addClass("btn-success");  		
+		$("#poll_request_button").addClass("btn-success");  
+		
+		$('#poll_set').find("path, polygon, circle").attr("fill", "green");
+				
 	}
 
 	document.getElementById("poll_request_time").innerHTML = data['poll_request_time'] ; 
