@@ -26,8 +26,26 @@
 	    <span id='portfolio_Name'><%= @portfolio_name %></span>
 	  </button>
 	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<% @portfolios.each do |p| %>
-		    <a onclick="Dividends_Portfolio('<%= @perspective %>', '<%= p %>' );return false;" class="dropdown-item" href="#"><%= p %></a>
+			<% @displays.each do |p| %>
+		    <a onclick="Dividends_Portfolio('<%= @perspective %>', '<%= p %>', );return false;" class="dropdown-item" href="#"><%= p %></a>
+			<% end %>
+	  </div>
+	</div>
+		
+</td>
+
+</td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;Display </td>
+		
+<td>
+	<div class="dropdown">
+	  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+	 	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span id='display_divs'><%= @display %></span>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<% @displays.each do |d| %>
+		    <a onclick="Display_Dividends('<%= @perspective %>', '<%= @portfolio_name %>', '<%= d %>' );return false;" class="dropdown-item" href="#"><%= d %></a>
 			<% end %>
 	  </div>
 	</div>
@@ -55,23 +73,26 @@
 
   <tbody>
 			    
-    <% @stock_divs.each do |sym| %>
-      <tr>
-	    <td><%= sym[0] %></td>
-	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
-	    <td class='text-right'><%= number_to_currency(Stock.find_by_symbol(sym[0]).price) %></td>
-	    <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
-	    <td class='text-right'><%= number_to_currency(sym[3]) %></td>
-	    <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-	    <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend.to_f ) %></td>
+  <% @stock_divs.each do |sym| %>
+    <tr>
+	<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
+	<% if !div.empty? or @display == 'All' %>
+		   <td><%= sym[0] %></td>
+		   <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
+		   <td class='text-right'><%= number_to_currency(Stock.find_by_symbol(sym[0]).price) %></td>
+		   <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
+		   <td class='text-right'><%= number_to_currency(sym[3]) %></td>
+		   <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
+		   <td class='text-right'><%= number_to_currency( sym[2] * Stock.find_by_symbol(sym[0]).daily_dividend.to_f ) %></td>
 		<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
 		<% if !div.empty? %>
-        	<td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
+		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
 		<% else %>
 			<td></td>
 		<% end %>
-	 </tr>
-    <% end %>
+	<% end %>
+	</tr>
+  <% end %>
 
 	<tr>
 		<td></td>

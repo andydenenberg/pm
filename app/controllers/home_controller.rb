@@ -74,6 +74,8 @@ class HomeController < ApplicationController
     @perspective = params[:perspective] ||= 'Dividends'    
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
     @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+    @displays = [ 'All', 'Recent Dividends' ]
+    @display = params[:display] ||= @displays.last
 
     @dates = Stock.all_dividend_dates
     stock_divs = Stock.calc_dividends(@portfolio_name, ['Stock','Fund']) 

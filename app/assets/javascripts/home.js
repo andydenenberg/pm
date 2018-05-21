@@ -10,8 +10,12 @@ function Positions_Portfolio(perspective, portfolio_name) {
 	$.get("/positions.js", { portfolio_name: portfolio_name, perspective: perspective }); 
 };
 
-function Dividends_Portfolio(perspective, portfolio_name) {
-	$.get("/dividends_new.js", { portfolio_name: portfolio_name, perspective: perspective }); 
+function Dividends_Portfolio(perspective, portfolio_name, display) {
+	$.get("/dividends_new.js", { portfolio_name: portfolio_name, perspective: perspective, display:display }); 
+};
+
+function Display_Dividends(perspective, portfolio_name, display) {
+	$.get("/dividends_new.js", { portfolio_name: portfolio_name, perspective: perspective, display:display }); 
 };
 
 
