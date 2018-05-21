@@ -14,9 +14,7 @@ class HomeController < ApplicationController
   end
   
   def poll_set
-      if !heroku
-        system "rake convert:refresh_all RAILS_ENV=#{Rails.env}" #  --trace >> #{Rails.root}/log/rake.log &"
-      else        
+      if ENV['RACK_ENV'] != 'development'      
 #        system "rake convert:refresh_all" run on Heroku      
        @ironcache = IronCache::Client.new
        @cache = @ironcache.cache("my_cache")
