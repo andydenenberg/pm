@@ -18,7 +18,8 @@ class HomeController < ApplicationController
 #        system "rake convert:refresh_all" run on Heroku      
        @ironcache = IronCache::Client.new
        @cache = @ironcache.cache("my_cache")
-       if @cache.get("poll_request").value == 'Idle'
+       state = @cache.get("poll_request").value
+       if state == 'Idle' || state == 'Complete'
          @cache.put("poll_request", 'Waiting')
        end
       end     
