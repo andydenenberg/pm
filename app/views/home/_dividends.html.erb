@@ -26,7 +26,7 @@
 	    <span id='portfolio_Name'><%= @portfolio_name %></span>
 	  </button>
 	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<% @displays.each do |p| %>
+			<% @portfolios.each do |p| %>
 		    <a onclick="Dividends_Portfolio('<%= @perspective %>', '<%= p %>', );return false;" class="dropdown-item" href="#"><%= p %></a>
 			<% end %>
 	  </div>
