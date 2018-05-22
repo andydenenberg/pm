@@ -43,12 +43,12 @@
 	  <thead>
 	    <tr>
 	      <th>Name</th>
-	      <th>Cash</th>
+	      <th><%= link_to 'Cash', consolidated_path(portfolio_name: @portfolio_name, sort_by: 2) %></th>
 	      <th>Stocks</th>
 	      <th>Options</th>
-	      <th>Total Value</th>
+	      <th><%= link_to 'Total Value', consolidated_path(portfolio_name: @portfolio_name, sort_by: 0) %></th>
 		  <th>Weekly Dividends</th>
-	      <th>Daily Change</th>
+	      <th><%= link_to 'Daily Change', consolidated_path(portfolio_name: @portfolio_name, sort_by: 1) %></th>
 	    </tr>
 	  </thead>
 

@@ -37,6 +37,7 @@ class HomeController < ApplicationController
       end
     end
     
+    @sort_by = params[:sort_by].to_i ||= 1
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Consolidated'
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    
@@ -48,7 +49,7 @@ class HomeController < ApplicationController
       group_id = nil
     end
 
-    @portfolios_data = Portfolio.table_data(group_id)  
+    @portfolios_data = Portfolio.table_data(group_id, @sort_by)  
 
     respond_to do |format|
         format.html  { render :layout => false }   

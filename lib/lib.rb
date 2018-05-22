@@ -63,7 +63,7 @@ module Lib
     else
       min = 15000000
     end
-    
+        
     istep = (max - min) / 5    
     if istep < 100000
       step = 50000
@@ -76,6 +76,13 @@ module Lib
     else
       step = 2000000
     end
+    
+    
+#    if max > 25000000
+#      min = 15000000
+#      step = 2000000
+#    end
+    
     
     return [ max, min, step ]
     
