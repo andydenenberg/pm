@@ -65,7 +65,7 @@ class Stock < ApplicationRecord
     end
   end 
 
-  def self.all_dividend_dates
+  def self.current_year_dividend_dates
     dates = [ ]
     (0..11).each do |d|
       date = (Date.today - d.month)
@@ -160,7 +160,7 @@ class Stock < ApplicationRecord
       end
 
       current_year = [ ]
-        all_dividend_dates.each do |year,month|
+        current_year_dividend_dates.each do |year,month|
           ctotal = 0
           all_divs.each do |sym| # [sym, divs, quantity, total_year, annual_yield]
                                     # divs = [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ]

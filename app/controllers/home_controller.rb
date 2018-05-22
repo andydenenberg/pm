@@ -112,7 +112,7 @@ class HomeController < ApplicationController
     @displays = [ 'All', 'Recent Dividends' ]
     @display = params[:display] ||= @displays.last
 
-    @dates = Stock.all_dividend_dates
+    @current_year_dates = Stock.current_year_dividend_dates
     stock_divs = Stock.calc_dividends(@portfolio_name, ['Stock','Fund']) 
     @stock_divs = stock_divs[0].sort_by { |y| -y[4] }  # [sym, divs, quantity, total_year, annual_yield]
     @annual_stock_divs_total = stock_divs[1]
