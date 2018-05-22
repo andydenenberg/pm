@@ -26,15 +26,17 @@ class HomeController < ApplicationController
   end
   
   def consolidated
-    ironcache = IronCache::Client.new
-    cache = ironcache.cache("my_cache")
-    state = cache.get("poll_request").value
-    if state == 'Complete'
-      cache.put("poll_request", 'Idle')
-    elsif state == 'Idle'
-      cache.put("poll_request", 'Waiting')
+    if ENV['RACK_ENV'] != 'development'      
+      ironcache = IronCache::Client.new
+      cache = ironcache.cache("my_cache")
+      state = cache.get("poll_request").value
+      if state == 'Complete'
+        cache.put("poll_request", 'Idle')
+      elsif state == 'Idle'
+        cache.put("poll_request", 'Waiting')
+      end
     end
-
+    
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Consolidated'
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } #+ Portfolio.all.collect { |p| p.name }    
