@@ -21,47 +21,6 @@ $(document).ready(function() {
   feather.replace() ;	
  });
 
-var myVar = setInterval(myTimer, 1000);
-var poll = true ;
-
-function myTimer() {
-    var d = new Date();
-	var minutes = d.getMinutes();
-	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
-//    document.getElementById("time").innerHTML = d.toLocaleTimeString();
-if (poll) {
-	$.getJSON( "poll_check_new.js", function( data ) {
-
-	if (data['poll_request'] == 'Updating') {
-		$("#poll_request_button").removeClass("btn-warning");  
-		$("#poll_request_button").addClass("btn-primary");  
-		
-		$('#poll_set').find("path, polygon, circle").attr("fill", "blue");
-				
-	} else if ( data['poll_request'] == 'Waiting' ) {
-		$("#poll_request_button").removeClass("btn-secondary");  
-		$("#poll_request_button").addClass("btn-warning");  
-		
-		$('#poll_set').find("path, polygon, circle").attr("fill", "orange");
-				
-	} else if ( data['poll_request'] == 'Complete' ) {
-		
-		location.reload();
-		
-		$("#poll_request_button").removeClass("btn-primary");  
-		$("#poll_request_button").addClass("btn-success");  
-		
-		$('#poll_set').find("path, polygon, circle").attr("fill", "green");
-				
-	}
-
-	document.getElementById("poll_request_time").innerHTML = data['poll_request_time'] ; 
-	document.getElementById("poll_request").innerHTML = data['poll_request'] ; 
-
-	});	
-}
-	
-};
 
 function RefreshPrices(stock_option) {
 	$(".refresh_button").toggleClass("d-none"); 
