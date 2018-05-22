@@ -77,7 +77,7 @@
 
   <% @stock_divs.each do |sym| %>
     <tr>
-	<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
+	<% div = Dividend.where(symbol: sym[0], date: Date.today.beginning_of_month..Date.today) %>
 	<% if !div.empty? or @display == 'All' %>
 		   <td><%= sym[0] %></td>
 		   <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
