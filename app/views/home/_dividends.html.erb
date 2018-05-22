@@ -85,7 +85,6 @@
 		   <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
 		   <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 		   <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-		<% div = Dividend.where(symbol: sym[0], date: Date.today-1.week..Date.today) %>
 		<% if !div.empty? %>
 		   <% dividend = sym[2] * div.last.amount %>
 		   <% total_divs += dividend %>
