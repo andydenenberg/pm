@@ -31,7 +31,7 @@ class HomeController < ApplicationController
       cache = ironcache.cache("my_cache")
       state = cache.get("poll_request").value
       if state == 'Complete'
-        cache.put("poll_request", 'Idle')
+        cache.put("poll_request", 'Waiting')
       elsif state == 'Idle'
         cache.put("poll_request", 'Waiting')
       end
