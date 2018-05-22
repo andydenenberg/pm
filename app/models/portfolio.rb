@@ -55,7 +55,10 @@ class Portfolio < ApplicationRecord
     total = 0
     stocks = self.stocks.where(:stock_option => 'Stock').or(self.stocks.where(:stock_option => 'Fund'))
     stocks.each do |s|
-      total += s.quantity * s.daily_dividend
+      div = Dividend.where(symbol: s.symbol, date: Date.today-1.week..Date.today)
+      if !div.empty?
+        total += s.quantity * div.last.amount
+      end
     end
     return total    
   end
