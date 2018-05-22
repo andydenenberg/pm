@@ -78,10 +78,10 @@ module Lib
     end
     
     
-#    if max > 25000000
-#      min = 15000000
-#      step = 2000000
-#    end
+    if max > 25000000
+      min = 12000000
+      step = 2000000
+    end
     
     
     return [ max, min, step ]
