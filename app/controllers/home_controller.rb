@@ -115,6 +115,8 @@ class HomeController < ApplicationController
     @current_year_dates = Stock.current_year_dividend_dates
     stock_divs = Stock.calc_dividends(@portfolio_name, ['Stock','Fund']) 
     @stock_divs = stock_divs[0].sort_by { |y| -y[4] }  # [sym, divs, quantity, total_year, annual_yield]
+    @current_divs = stock_divs[0].reject { |cd| cd[5].nil? }.sort_by { |y| -y[5].to_i }
+
     @annual_stock_divs_total = stock_divs[1]
     @monthly_stock_divs_total = stock_divs[2] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...
     @value_stock_total = stock_divs[3] # {:"01"=>0, :"02"=>0, :"03"=>182.1184, ...

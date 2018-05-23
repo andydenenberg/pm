@@ -8,7 +8,7 @@
 			    <span id='perspective'><%= @perspective %></span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<%= link_to 'Consolidated', consolidated_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Consolidated', consolidated_path, class: "dropdown-item" %>
 					<%= link_to 'Positions', positions_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
 					<%= link_to 'Graphs', graphs_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
 					<%= link_to 'Dividends', dividends_new_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
@@ -71,7 +71,7 @@
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[3]) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]+@portfolios_data[2]+@portfolios_data[3]) %></td>
-			<td class='text-right'><%= number_to_currency(@portfolios_data[6]) %></td>
+			<td class='text-right'><%= link_to number_to_currency(@portfolios_data[6]), dividends_new_path %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[4]) %></td>
 	      </tr>
 

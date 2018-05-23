@@ -8,7 +8,7 @@
 			    <span id='perspective'><%= @perspective %></span>
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<%= link_to 'Consolidated', consolidated_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
+					<%= link_to 'Consolidated', consolidated_path, class: "dropdown-item" %>
 					<%= link_to 'Positions', positions_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
 					<%= link_to 'Graphs', graphs_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
 					<%= link_to 'Dividends', dividends_new_path(portfolio_name: @portfolio_name), class: "dropdown-item" %>
@@ -75,26 +75,22 @@
 
 <% total_divs = 0 %>
 
-  <% @stock_divs.each do |sym| %>
+<% divs = @display == 'All' ? @stock_divs : @current_divs %>
+	<% divs.each do |sym| %>
+
     <tr>
+	
 	<% div = Dividend.where(symbol: sym[0], date: Date.today.beginning_of_month..Date.today) %>
-	<% if !div.empty? or @display == 'All' %>
 		   <td><%= sym[0] %></td>
 		   <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
 		   <td class='text-right'><%= number_to_currency(Stock.find_by_symbol(sym[0]).price) %></td>
 		   <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
 		   <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 		   <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-		<% if !div.empty? %>
 		   <% dividend = sym[2] * div.last.amount %>
 		   <% total_divs += dividend %>
 		   <td class='text-right'><%= number_to_currency( dividend ) %></td>
-		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share on <%= div.last.date.strftime('%m-%d-%Y') %></td>
-		<% else %>
-			<td></td>
-			<td></td>
-		<% end %>
-	<% end %>
+		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share, <%= time_ago_in_words (div.last.date) %> ago</td>
 	</tr>
   <% end %>
 
@@ -123,7 +119,7 @@ Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.up
 
 
   <div class="table-responsive">
-	<table class="table table-bordered table-striped table-sm">
+	<table class="table calendar_table table-bordered table-striped table-sm">
 	  <thead>
 	    <tr>
 	      	<th>Symbol</th>
@@ -142,7 +138,7 @@ Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.up
 	    <td class='text-right'><%= number_with_precision(sym[2], precision: 2, delimiter: ',') %></td>
 		<% @current_year_dates.each do |year,month| %>
 			<% val = sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2].to_f * sym[2].to_f } %>
-			<% value = val != 0 ? number_to_currency(val) : '' %>
+			<% value = val != 0 ? number_to_currency(val, precision: 0) : '' %>
         <td class='text-right'><%= value %></td>
 		<% end %>
 	 </tr>
@@ -151,14 +147,14 @@ Last Updated: <%= time_ago_in_words Dividend.all.order(updated_at: :asc).last.up
 	<tr>
 		<td colspan=2 class='text-right'>Year to Date</td>
 		<% @current_year.each do |cy| %>
-		    <td class='text-right'><%= number_to_currency(cy) %></td>
+		    <td class='text-right'><%= number_to_currency(cy, precision: 0) %></td>
 		<% end %>
 	</tr>
 
 	<tr>
 		<td colspan=2 class='text-right'>Annualized</td>
 		<% @current_year_dates.each do |year,month| %>
-		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month]) %></td>
+		    <td class='text-right'><%= number_to_currency(@annual_stock_divs_total[month], precision: 0) %></td>
 		<% end %>
 	</tr>
   </tbody>

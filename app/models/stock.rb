@@ -136,6 +136,11 @@ class Stock < ApplicationRecord
       monthly_totals = { }
       (1..12).each { |i| monthly_totals[i] = 0 } # m = "%02d" % i 
       symbols.each do |sym|
+        
+        div = Dividend.where(symbol: sym, date: Date.today.beginning_of_month..Date.today)
+
+        current_dividend_date = div.empty? ? nil : div.last.date
+        
         total_year = 0
         quantity = 0
         quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
@@ -149,7 +154,7 @@ class Stock < ApplicationRecord
               end
           annual_yield = 100 * (total_year / ( price * quantity) )
           all_total += total_year
-        all_divs.push [sym, divs, quantity, total_year, annual_yield]
+        all_divs.push [ sym, divs, quantity, total_year, annual_yield, current_dividend_date ]
       end
 
       value_total = 0
@@ -168,7 +173,7 @@ class Stock < ApplicationRecord
           end
           current_year.push ctotal.to_f
         end
-
+  
       return [all_divs, monthly_totals, all_total, value_total, current_year]
     end
   
