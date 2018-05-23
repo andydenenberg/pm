@@ -87,10 +87,15 @@
 		   <td class='text-right'><%= number_to_currency(sym[2] * Stock.find_by_symbol(sym[0]).price) %></td>
 		   <td class='text-right'><%= number_to_currency(sym[3]) %></td>
 		   <td class='text-right'><%= number_to_percentage( sym[4] ) %></td>
-		   <% dividend = sym[2] * div.last.amount %>
-		   <% total_divs += dividend %>
-		   <td class='text-right'><%= number_to_currency( dividend ) %></td>
-		   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share, <%= time_ago_in_words (div.last.date) %> ago</td>
+		   <% if div.last.nil? %>
+				<td></td>
+				<td></td>
+		   <% else %>
+			   <%  dividend = sym[2] * div.last.amount%>
+			   <% total_divs += dividend %>
+			   <td class='text-right'><%= number_to_currency( dividend ) %></td>
+			   <td class='text-right'> <%= number_to_currency( div.sum(0) { |d| d.amount }) %>/share, <%= time_ago_in_words (div.last.date) %> ago</td>
+		   <% end %>
 	</tr>
   <% end %>
 
