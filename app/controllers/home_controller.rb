@@ -230,7 +230,7 @@ class HomeController < ApplicationController
   
     def sort_column
 #      Stock.column_names.include?(params[:sort]) ? params[:sort] : "value"
-      params[:sort] ||= 'dividends'
+      params[:sort] ||= 'change'
     end
 
     def sort_direction
