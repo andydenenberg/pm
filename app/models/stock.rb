@@ -144,7 +144,7 @@ class Stock < ApplicationRecord
         total_year = 0
         quantity = 0
         quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
-        price = Stock.find_by_symbol(sym).price
+        price = Stock.find_by_symbol(sym).price ||= 0
           stockorfund = Dividend.where(symbol: sym)
           amount = stockorfund.sum(0) { |sf| sf.amount }
             total_year += (amount * quantity)
