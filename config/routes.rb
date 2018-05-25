@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'consolidated', to: 'home#consolidated'
   get 'positions', to: 'home#positions'
   get 'graphs', to: 'home#graphs'
+  get 'highlights', to: 'home#highlights'
   get 'dividends_new', to: 'home#dividends'
   get 'poll_check_new', to: 'home#poll_check' 
   get 'poll_set', to: 'home#poll_set' 

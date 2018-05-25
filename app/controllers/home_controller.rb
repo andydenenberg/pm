@@ -2,6 +2,12 @@ class HomeController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  def highlights
+    respond_to do |format|
+        format.html  { render :layout => false }   
+    end    
+  end
+  
   def poll_check
     ironcache = IronCache::Client.new
     cache = ironcache.cache("my_cache")
