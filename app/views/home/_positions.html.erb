@@ -56,7 +56,8 @@
 	    <% @stocks.each do |stock| %>
 	      <tr>
 	        <td><%= stock[0] %></td>
-	        <td class='toggleDisplay in text-right'><%= number_with_precision(stock[1], :precision => 0, :delimiter => ',') %></td>
+	        <td class='toggleDisplay in text-right'><%= link_to number_with_precision(stock[1], :precision => 0, :delimiter => ','), 
+						portfolio_name: @portfolio_name, individual: stock[0], perspective: @perspective %></td>
 	        <td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
 	        <td class='toggleDisplay in text-right'><%= number_to_currency(stock[2]) %>
 													(<%= number_to_percentage(100*stock[2]/@total_value, precision: 2)%>)</td>

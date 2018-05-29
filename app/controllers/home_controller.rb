@@ -67,6 +67,7 @@ class HomeController < ApplicationController
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
     @perspective = params[:perspective] ||= 'Positions'
     @portfolio_name = params[:portfolio_name] ||= 'All Portfolios'
+    @individual = params[:individual]
 
     @portfolios = ["All Portfolios"] + Group.all.collect { |group| group.name } + Portfolio.all.collect { |p| p.name }    
     table_data = Stock.table_data(@portfolio_name, sort_column, sort_direction)    

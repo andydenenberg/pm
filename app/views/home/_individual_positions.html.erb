@@ -1,0 +1,29 @@
+
+<%= link_to 'Back', positions_path(portfolio_name: @portfolio_name, individual: nil, perspective: @perspective), class: "btn btn-sm btn-outline-secondary" %>
+
+<div class="table-responsive">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+	    <tr>
+	      <th class='text-right'>Portfolio</th>
+	      <th class='text-right'>Quantity</th>
+	      <th class='text-right'>Value</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+		
+<% Stock.where(symbol: @individual).each do |s| %>
+<tr>
+  <td class='text-right'><%= Portfolio.find(s.portfolio_id).name %></td>
+  <td class='text-right'><%= number_with_precision(s.quantity, :precision => 0, :delimiter => ',') %></td>
+  <td class='text-right'><%= number_to_currency( s.quantity * s.price ) %></td>
+</tr>
+<% end %>
+	  </tbody>
+	</table>
+</div>
+
+@perspective
+@portfolio_name
+@stocks
