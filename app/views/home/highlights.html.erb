@@ -85,10 +85,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .875rem;
 }
 
-.card-img-right {
-  height: 100%;
-  border-radius: 0 3px 3px 0;
-}
 
 .flex-auto {
   -ms-flex: 0 0 auto;
@@ -161,6 +157,15 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+/* borderless table */
+.table.table-borderless td, .table.table-borderless th {
+    border: 0 !important;
+}
+
+.table.table-borderless {
+    margin-bottom: 0px;
+}
 </style>
 
 
@@ -187,26 +192,82 @@ h1, h2, h3, h4, h5, h6 {
 	    </div>
 	  </header>
 
+<div class='row'>
+		<div class="col-4">
+		
+          <strong class="d-inline-block mb-2 text-primary">Portfolios</strong>
+	      <table class='table table-sm'>
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th class='text-right'>Value</th>
+				<th class='text-right'>Change</th>
+			</tr>
+			</thead>
+			<tbody>
+			<% @portfolios_data[0].each do |p| %>
+			<tr>
+				<td><%= p.name %></td>
+				<td class='text-right'><%= number_to_currency(p.cash+p.total_stocks_value + p.total_options_value, precision: 0) %></td>
+				<td class='text-right'><%= number_to_currency(p.total_stocks_change_value, precision: 0) %></td>
+			</tr>
+			<% end %>
+			</tbody>
+		 </table>
+		
+	  </div>
 
-		<div class="card-deck">
-		  <div class="card">
-		    <div class="card-body">
-	          <strong class="d-inline-block mb-2 text-primary">Biggest Gainers</strong>
-	          <p class="card-text mb-auto">AMGN - $180.23 +1.45 - 0.23%<br>
-	          								AMAT - $50.78 +0.78 - 0.15%<br>
-	         								DIS - $100.92 +1.88 - 0.13%</p>
-	          <br>
-	          <strong class="d-inline-block mb-2 text-primary">Biggest Loosers</strong>
-	          <p class="card-text mb-auto">AMGN - $180.23 +1.45 - 0.23%<br>
-	          								AMAT - $50.78 +0.78 - 0.15%<br>
-	         								DIS - $100.92 +1.88 - 0.13%</p>
-			  <br>
-	          <a href="#">Complete report</a>
-		    </div>
-		  </div>
-		  <div class="card">
-		    <div class="card-body">
-	          <strong class="d-inline-block mb-2 text-primary">Recent Dividends</strong>
+		<div class="col-4">
+		
+          <strong class="d-inline-block mb-2 text-primary">Gainers</strong>
+	      <table class='table table-sm'>
+			<thead>
+			<tr>
+				<th>Symbol</th>
+				<th class='text-right'>Price</th>
+				<th class='text-right'>Change</th>
+			</tr>
+			</thead>
+			<tbody>
+		    <% @winners[0..6].each do |stock| %>
+		      <tr>
+		        <td><%= stock[0] %></td>
+				<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
+				<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
+			</tr>
+			<% end %>
+			</tbody>
+		 </table>
+
+          <strong class="d-inline-block mb-2 text-primary">Loosers</strong>
+	      <table class='table table-sm'>
+			<thead>
+			<tr>
+				<th>Symbol</th>
+				<th class='text-right'>Price</th>
+				<th class='text-right'>Change</th>
+			</tr>
+			</thead>
+			<tbody>
+		    <% @loosers[0..6].each do |stock| %>
+		      <tr>
+		        <td><%= stock[0] %></td>
+				<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
+				<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
+			</tr>
+			<% end %>
+			</tbody>
+		 </table>
+		
+	  </div>
+	
+	
+		<div class="col-4">
+		
+	          <strong class="d-inline-block mb-2 text-primary">History</strong>
+			<%= line_chart History.where(portfolio_id: 9999).collect { |h| [ h.snapshot_date, h.total ]  } %>		
+		
+		      <strong class="d-inline-block mb-2 text-primary">Recent Dividends</strong>
 		      <table class='table table-sm'>
 				<thead>
 				<tr>
@@ -216,30 +277,22 @@ h1, h2, h3, h4, h5, h6 {
 					<th>Total</th>
 				</tr>
 				</thead>
-				<tr>
-					<td>AAPL</td>
-					<td>1 day ago</td>
-					<td>$1.54</td>
-					<td>$5,623</td>
+				<tbody>
+			    <% @dividends[0..6].each do |div| %>
+			      <tr>
+			        <td><%= div.symbol %></td>
+					<td class='text-right'> <%= time_ago_in_words (div.date) %> ago</td>
+					<td class='text-right'> <%= number_to_currency( div.amount ) %>/share</td>
+					<td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td>
 				</tr>
-				<tr>
-					<td>XOM</td>
-					<td>3 days ago</td>
-					<td>$0.96</td>
-					<td>$768</td>
-				</tr>
+				<% end %>
+				</tbody>
 			 </table>
-		    </div>
-		  </div>
-		</div>
+	    
+	  </div>
+	
+</div>
 
-		  <div class="card">
-		    <div class="card-body">
-	          <strong class="d-inline-block mb-2 text-primary">History</strong>
-			<%= line_chart History.where(portfolio_id: 9999).collect { |h| [ h.snapshot_date, h.total ]  } %>		
-		    </div>
-		  </div>
-		</div>
 
 </div><!-- container -->
 

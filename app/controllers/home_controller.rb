@@ -3,6 +3,11 @@ class HomeController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def highlights
+    @portfolios_data = Portfolio.table_data(nil, 1)  
+    @winners = Stock.table_data('All Portfolios', 'change', 'asc')[0]
+    @loosers = Stock.table_data('All Portfolios', 'change', 'desc')[0]
+    @dividends = Dividend.order('date desc')
+    
     respond_to do |format|
         format.html  { render :layout => false }   
     end    
