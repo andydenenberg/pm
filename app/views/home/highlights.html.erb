@@ -213,6 +213,13 @@ h1, h2, h3, h4, h5, h6 {
 				<td class='text-right'><%= number_to_currency(p.total_stocks_change_value, precision: 0) %></td>
 			</tr>
 			<% end %>
+			<tr>
+				<td></td>
+				<td class='text-right'><%= number_to_currency(Portfolio.all.sum { |s| s.total_stocks_value } +
+															  Portfolio.all.sum { |s| s.cash } +
+															  Portfolio.all.sum { |s| s.total_options_value }	, precision: 0) %></td>
+				<td class='text-right'><%= number_to_currency(Portfolio.all.sum { |s| s.total_stocks_change_value }	, precision: 0) %></td>
+			</tr>
 			</tbody>
 		 </table>		
         </td>
@@ -240,55 +247,67 @@ h1, h2, h3, h4, h5, h6 {
 			  </table>
 	          </td>
 				<td class="align-top pl-2 pt-2 pr-2">
-					<strong class="d-inline-block mb-2 text-primary">History</strong>
-				<%= line_chart History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), h.total ]  }, thousands: ",", prefix: "$", min: 27000000, max: 32000000 %>		
+
+					<strong class="d-inline-block mb-2 text-primary">Loosers</strong>
+			      <table class='table table-sm'>
+					<thead>
+					<tr>
+						<th>Symbol</th>
+						<th class='text-right'>Price</th>
+						<th class='text-right'>Change</th>
+					</tr>
+					</thead>
+					<tbody>
+				    <% @loosers[0..6].each do |stock| %>
+				      <tr>
+				        <td>
+						<%= stock[0] %></td>
+						<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
+						<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
+					</tr>
+					<% end %>
+					</tbody>
+				  </table>
+
+
+
+
+
 		      </td>
 			</tr>
 			<tr>
 				<td class="align-top pl-2 pt-2 pr-2">
-				<strong class="d-inline-block mb-2 text-primary">Loosers</strong>
-		      <table class='table table-sm'>
-				<thead>
-				<tr>
-					<th>Symbol</th>
-					<th class='text-right'>Price</th>
-					<th class='text-right'>Change</th>
-				</tr>
-				</thead>
-				<tbody>
-			    <% @loosers[0..6].each do |stock| %>
-			      <tr>
-			        <td>
-					<%= stock[0] %></td>
-					<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
-					<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
-				</tr>
-				<% end %>
-				</tbody>
-			  </table>
+
+					<strong class="d-inline-block mb-2 text-primary">Recent Dividends</strong>
+				  <table class='table table-sm'>
+						<thead>
+						<tr>
+							<th>Symbol</th>
+							<th>When</th>
+							<th>per Share</th>
+							<th>Total</th>
+						</tr>
+						</thead>
+						<tbody>
+					    <% @dividends[0..6].each do |div| %>
+					      <tr>
+					        <td><%= div.symbol %></td>
+							<td class='text-right'> <%= time_ago_in_words (div.date) %> ago</td>
+							<td class='text-right'> <%= number_to_currency( div.amount ) %>/share</td>
+							<td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td>
+						</tr>
+						<% end %>
+						</tbody>
+				  </table>
+
+
 				</td>
 				<td class="align-top pl-2 pt-2 pr-5">
-				<strong class="d-inline-block mb-2 text-primary">Recent Dividends</strong>
-			  <table class='table table-sm'>
-					<thead>
-					<tr>
-						<th>Symbol</th>
-						<th>When</th>
-						<th>per Share</th>
-						<th>Total</th>
-					</tr>
-					</thead>
-					<tbody>
-				    <% @dividends[0..6].each do |div| %>
-				      <tr>
-				        <td><%= div.symbol %></td>
-						<td class='text-right'> <%= time_ago_in_words (div.date) %> ago</td>
-						<td class='text-right'> <%= number_to_currency( div.amount ) %>/share</td>
-						<td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td>
-					</tr>
-					<% end %>
-					</tbody>
-			  </table>
+					
+					
+						<strong class="d-inline-block mb-2 text-primary">History</strong>
+					<%= line_chart History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), h.total ]  }, thousands: ",", prefix: "$", min: 27000000, max: 32000000 %>		
+					
 			  </td>
 			</tr>
 			</table>
