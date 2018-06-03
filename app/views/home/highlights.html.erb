@@ -226,7 +226,9 @@ h1, h2, h3, h4, h5, h6 {
 		<td><table border=0>
 			<tr>
 				<td class="align-top pl-2 pt-2 pr-2">
-			  <strong class="d-inline-block mb-2 text-primary">Gainers</strong>
+			  <strong class="d-inline-block mb-2 text-primary">
+				<%= link_to 'Gainers', highlights_modal_path(port_gl: 'positions'), remote: true %>
+			  </strong>
 		      <table class='table table-sm'>
 				<thead>
 				<tr>

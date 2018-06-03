@@ -1,6 +1,6 @@
 <!-- Modal Header -->
 <div class="modal-header">
-  <h4 class="modal-title"><%= @stocks.count %> positions held in <%= @portfolio.name %></h4>
+  <h4 class="modal-title"><%= @stocks.count %> positions held in <%= @portfolio_name %></h4>
   <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
@@ -33,20 +33,20 @@
 		<% end %>
 		<tr>
 			<td colspan=2 class='text-right'></td>
-			<td class='text-right'><%= number_to_currency( @portfolio.total_stocks_value, precision: 0 ) %></td>
-			<td class='text-right'><%= number_to_currency( @portfolio.total_stocks_change_value, precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( @total_stocks_value, precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( @total_change, precision: 0 ) %></td>
 		</tr>
 		<tr><td colspan=3><td>
 		</tr>
 		<tr>
 			<td colspan=2 class='text-right'>Cash:</td>
-			<td class='text-right'><%= number_to_currency( @portfolio.cash) %>
+			<td class='text-right'><%= number_to_currency( @cash) %>
 			<td></td>
 		</tr>	
 		<tr><td colspan=3><td>
 		<tr>
 			<td colspan=2 class='text-right'>Total Value:</td>
-			<td class='text-right'><%= number_to_currency( @portfolio.cash + @portfolio.total_stocks_value + @portfolio.total_options_value) %>
+			<td class='text-right'><%= number_to_currency( @cash + @total_stocks_value + @total_options_value) %>
 			<td></td>
 		</tr>	
 		</tbody>

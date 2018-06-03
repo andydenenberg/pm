@@ -4,15 +4,30 @@ class HomeController < ApplicationController
 
   def highlights_modal
     @port_gl = params[:port_gl]
-    if @port_gl == 'port'
-      @portfolio = Portfolio.find_by_name(params[:portfolio_name])
-      @stocks = Stock.where(portfolio_id: @portfolio.id, stock_option: ['Stock', 'Fund']).order('symbol ASC')
-      @options = Stock.where(portfolio_id: @portfolio.id, stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
-      render 'highlights_portfolio'
-    else
+    case @port_gl
+      when 'port'
+      portfolio = Portfolio.find_by_name(params[:portfolio_name])
+      @portfolio_name = portfolio.name
+      @stocks = Stock.where(portfolio_id: portfolio.id, stock_option: ['Stock', 'Fund']).order('symbol ASC')
+      @options = Stock.where(portfolio_id: portfolio.id, stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
+      @cash = portfolio.cash
+      @total_options_value = portfolio.total_options_value
+      @total_stocks_value = portfolio.total_stocks_value
+      @total_stocks_change = portfolio.total_stocks_change_value
+      render 'home/highlights/highlights_portfolio'
+    when 'gl'
       @stocks = Stock.where(symbol: params[:symbol], stock_option: ['Stock', 'Fund']).order('quantity DESC')
       @options = Stock.where(symbol: params[:symbol], stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
-      render 'highlights_modal'
+      render 'home/highlights/highlights_stock'
+    else
+      @portfolio_name = 'All Portfolios'
+      @stocks = Stock.where(stock_option: ['Stock', 'Fund']).order('symbol ASC')
+      @options = Stock.where(stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
+      @cash = Portfolio.all.sum(0) { |p| p.cash }
+      @total_options_value = Portfolio.all.sum { |p| p.total_options_value }
+      @total_stocks_value = Portfolio.all.sum { |p| p.total_stocks_value }
+      @total_stocks_change = Portfolio.all.sum { |p| p.total_stocks_change_value }
+      render 'home/highlights/highlights_portfolio'
     end
     
   end
