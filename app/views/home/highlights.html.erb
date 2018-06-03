@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 			<tbody>
 			<% @portfolios_data[0].each do |p| %>
 			<tr>
-				<td><%= p.name %></td>
+				<td><%= link_to p.name, highlights_modal_path(portfolio_name: p.name, port_gl: 'port'), remote: true %></td>
 				<td class='text-right'><%= number_to_currency(p.cash+p.total_stocks_value + p.total_options_value, precision: 0) %></td>
 				<td class='text-right'><%= number_to_currency(p.total_stocks_change_value, precision: 0) %></td>
 			</tr>
@@ -237,8 +237,8 @@ h1, h2, h3, h4, h5, h6 {
 				</thead>
 				<tbody>
 			    <% @winners[0..6].each do |stock| %>
-			      <tr>
-			        <td><%= stock[0] %></td>
+			      <tr>			
+			        <td><%= link_to stock[0], highlights_modal_path(symbol: stock[0], port_gl: 'gl'), remote: true %></td>
 					<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
 					<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
 				</tr>
@@ -260,8 +260,7 @@ h1, h2, h3, h4, h5, h6 {
 					<tbody>
 				    <% @loosers[0..6].each do |stock| %>
 				      <tr>
-				        <td>
-						<%= stock[0] %></td>
+				        <td><%= link_to stock[0], highlights_modal_path(symbol: stock[0], port_gl: 'gl'), remote: true %></td>
 						<td class='toggleDisplay in text-right'><%= number_to_currency( stock[5].to_f ) %> (<%= number_to_currency( stock[6].to_f ) %>)</td>
 						<td class='toggleDisplay in text-right'><%= number_to_currency(stock[3], precision: 0) %></td>
 					</tr>
@@ -319,6 +318,28 @@ h1, h2, h3, h4, h5, h6 {
 	
 
 </div><!-- container -->
+
+
+
+
+<!-- The Modal -->
+<div class="modal" id="highlightsModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+	  <div id='highlightsModal_table'></div>
+	
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 <footer class="blog-footer">
   <p>Portfolios @AMD</p>

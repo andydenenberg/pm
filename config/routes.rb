@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :portfolios
   resources :stocks
   root 'home#consolidated'
+  get 'highlights_modal', to: 'home#highlights_modal'
   get 'consolidated', to: 'home#consolidated'
   get 'positions', to: 'home#positions'
   get 'graphs', to: 'home#graphs'

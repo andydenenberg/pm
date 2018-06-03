@@ -2,6 +2,21 @@ class HomeController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  def highlights_modal
+    @port_gl = params[:port_gl]
+    if @port_gl == 'port'
+      @portfolio = Portfolio.find_by_name(params[:portfolio_name])
+      @stocks = Stock.where(portfolio_id: @portfolio.id, stock_option: ['Stock', 'Fund']).order('symbol ASC')
+      @options = Stock.where(portfolio_id: @portfolio.id, stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
+      render 'highlights_portfolio'
+    else
+      @stocks = Stock.where(symbol: params[:symbol], stock_option: ['Stock', 'Fund']).order('quantity DESC')
+      @options = Stock.where(symbol: params[:symbol], stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
+      render 'highlights_modal'
+    end
+    
+  end
+  
   def highlights
     @portfolios_data = Portfolio.table_data(nil, 1)  
     @winners = Stock.table_data('All Portfolios', 'change', 'asc')[0]

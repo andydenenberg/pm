@@ -1,0 +1,42 @@
+<!-- Modal Header -->
+<div class="modal-header">
+  <h4 class="modal-title">Positions of <%= @stocks.first.symbol %> held</h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="modal-body">
+	<table class="table table-bordered table-striped table-sm">
+	  <thead>
+		<tr>
+			<th>Portfolio</th>
+			<th class='text-right'>Quantity</th>
+			<th class='text-right'>Value</th>
+			<th class='text-right'>Change</th>
+		</tr>
+		</thead>
+		<tbody>
+		<% @stocks.each do |s| %>
+		<tr>
+			<td><%= Portfolio.find(s.portfolio_id).name %></td>
+			<td class='text-right'><%= number_with_precision( s.quantity, precision: 0, delimiter: ',' ) %></td>
+			<td class='text-right'><%= number_to_currency( s.quantity * s.price, precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( s.quantity * s.change, precision: 0 ) %></td>
+		</tr>
+		<% end %>
+		<% @options.each do |s| %>
+		<tr>
+			<td><%= Portfolio.find(s.portfolio_id).name %> (<%= s.strike %> <%= s.expiration_date %>)</td>
+			<td class='text-right'><%= number_with_precision( s.quantity, precision: 0, delimiter: ',' ) %></td>
+			<td class='text-right'><%= number_to_currency( s.quantity * s.price * 100, precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( s.quantity * s.change * 100, precision: 0 ) %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan=2 class='text-right'><%= number_with_precision(@stocks.sum(:quantity), precision: 0, delimiter: ',' ) %></td>
+			<td class='text-right'><%= number_to_currency( @stocks.sum(:quantity) * @stocks.first.price, precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( @stocks.sum(:quantity) * @stocks.first.change, precision: 0 ) %></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
