@@ -21,7 +21,12 @@ class HomeController < ApplicationController
       render 'home/highlights/highlights_stock'
     else
       @portfolio_name = 'All Portfolios'
-      @stocks = Stock.where(stock_option: ['Stock', 'Fund']).order('symbol ASC')
+      table_data = Stock.table_data(@portfolio_name, sort_column, sort_direction)    
+      @stocks = table_data[0]
+      @total_value = table_data[2]
+      @total_change = table_data[3]
+      
+#      @stocks = Stock.where(stock_option: ['Stock', 'Fund']).order('symbol ASC')
       @options = Stock.where(stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
       @cash = Portfolio.all.sum(0) { |p| p.cash }
       @total_options_value = Portfolio.all.sum { |p| p.total_options_value }

@@ -17,10 +17,10 @@
 		<tbody>
 		<% @stocks.each do |s| %>
 		<tr>
-			<td><%= s.symbol %></td>
-			<td class='text-right'><%= number_with_precision( s.quantity, precision: 0, delimiter: ',' ) %></td>
-			<td class='text-right'><%= number_to_currency( s.quantity * s.price, precision: 0 ) %></td>
-			<td class='text-right'><%= number_to_currency( s.quantity * s.change, precision: 0 ) %></td>
+			<td><%= s[0] %></td>
+			<td class='text-right'><%= number_with_precision( s[1], precision: 0, delimiter: ',' ) %></td>
+			<td class='text-right'><%= number_to_currency( s[2], precision: 0 ) %></td>
+			<td class='text-right'><%= number_to_currency( s[3], precision: 0 ) %></td>
 		</tr>
 		<% end %>
 		<% @options.each do |s| %>
