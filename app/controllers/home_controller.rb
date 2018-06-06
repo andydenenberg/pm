@@ -38,6 +38,9 @@ class HomeController < ApplicationController
   end
   
   def highlights
+
+    reload_update
+    
     @portfolios_data = Portfolio.table_data(nil, 1)  
     @winners = Stock.table_data('All Portfolios', 'change', 'asc')[0]
     @loosers = Stock.table_data('All Portfolios', 'change', 'desc')[0]
@@ -72,16 +75,8 @@ class HomeController < ApplicationController
   end
   
   def consolidated
-    if ENV['RACK_ENV'] != 'development'      
-      ironcache = IronCache::Client.new
-      cache = ironcache.cache("my_cache")
-      state = cache.get("poll_request").value
-      if state == 'Complete'
-        cache.put("poll_request", 'Waiting')
-      elsif state == 'Idle'
-        cache.put("poll_request", 'Waiting')
-      end
-    end
+
+    reload_update
     
     @sort_by = params[:sort_by].to_i ||= 1
     @perspectives = [ 'Consolidated', 'Positions', 'Graphs', 'Dividends' ]
@@ -267,6 +262,19 @@ class HomeController < ApplicationController
   
   private
 
+    def reload_update
+      if ENV['RACK_ENV'] != 'development'      
+        ironcache = IronCache::Client.new
+        cache = ironcache.cache("my_cache")
+        state = cache.get("poll_request").value
+        if state == 'Complete'
+          cache.put("poll_request", 'Waiting')
+        elsif state == 'Idle'
+          cache.put("poll_request", 'Waiting')
+        end
+      end  
+    end
+    
     def pad_with_zeros(value)
       value = value.split(/(?=(?:...)*$)/)
       padded = [value[0]]
