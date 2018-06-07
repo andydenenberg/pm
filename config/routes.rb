@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  resources :users
   resources :histories
   resources :portfolios
   resources :stocks
+  
+  resources :sessions
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  
+  
   root 'home#consolidated'
   get 'highlights_modal', to: 'home#highlights_modal'
   get 'consolidated', to: 'home#consolidated'

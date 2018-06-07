@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515145714) do
+ActiveRecord::Schema.define(version: 20180607151300) do
 
   create_table "dividends", force: :cascade do |t|
     t.string "symbol"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(version: 20180515145714) do
     t.decimal "change"
     t.decimal "daily_dividend"
     t.datetime "daily_dividend_date"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
