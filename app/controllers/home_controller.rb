@@ -47,7 +47,7 @@ class HomeController < ApplicationController
     @dividends = Dividend.order('date desc')
     
     respond_to do |format|
-        format.html  { render :layout => false }   
+        format.html 
     end    
   end
   
@@ -93,7 +93,7 @@ class HomeController < ApplicationController
     @portfolios_data = Portfolio.table_data(group_id, @sort_by)  
 
     respond_to do |format|
-        format.html  { render :layout => false }   
+        format.html  #{ render :layout => false }   
         format.js { render :layout => false, :template => "home/consolidated" }  
     end    
   end
@@ -112,7 +112,7 @@ class HomeController < ApplicationController
     @total_change = table_data[3]
     
     respond_to do |format|
-        format.html  { render :layout => false }   
+        format.html
         format.js { render :layout => false, :template => "home/positions" }  
     end       
   end
@@ -141,7 +141,7 @@ class HomeController < ApplicationController
     @name = @portfolio
 
     respond_to do |format|
-        format.html  { render :layout => false }   
+        format.html
         format.js { render :layout => false, :template => "home/graphs" }  
     end       
     
@@ -165,7 +165,7 @@ class HomeController < ApplicationController
     @current_year = stock_divs[4]
 
     respond_to do |format|
-        format.html  { render :layout => false }   
+        format.html
         format.js { render :layout => false, :template => "home/dividends" }  
     end       
     
