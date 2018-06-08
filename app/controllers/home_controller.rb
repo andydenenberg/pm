@@ -8,7 +8,8 @@ class HomeController < ApplicationController
       when 'port'
       portfolio = Portfolio.find_by_name(params[:portfolio_name])
       @portfolio_name = portfolio.name
-      @stocks = Stock.where(portfolio_id: portfolio.id, stock_option: ['Stock', 'Fund']).order('symbol ASC')
+      table_data = Stock.table_data(@portfolio_name, sort_column, sort_direction)    
+      @stocks = table_data[0]
       @options = Stock.where(portfolio_id: portfolio.id, stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
       @cash = portfolio.cash
       @total_options_value = portfolio.total_options_value
