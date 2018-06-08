@@ -37,7 +37,7 @@ class Stock < ApplicationRecord
       stocks = values.collect { |sym, value| [ sym, 
           stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
           value,
-          (stocks_funds.where(symbol: sym).first.change * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+          ( (stocks_funds.where(symbol: sym).first.change ||= 0 ) * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
           stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
           stocks_funds.where(symbol: sym).first.price,
           stocks_funds.where(symbol: sym).first.change,
