@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :users
-  resources :histories
-  resources :portfolios
-  resources :stocks
+#  resources :histories
+#  resources :portfolios
+#  resources :stocks
   
   resources :sessions
   get 'signup', to: 'users#new', as: 'signup'

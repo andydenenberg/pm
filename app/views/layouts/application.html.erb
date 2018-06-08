@@ -33,17 +33,14 @@ body .table {
 }
 
 .blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-size: 2rem;
+  font-family: 'Helvetica'; 
 }
 
 .blog-header-logo:hover {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-}
 
 .display-4 {
   font-size: 2.5rem;
@@ -157,9 +154,51 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+
+.form-signin {
+  font-family: 'Helvetica'; 
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 </style>
 
-  <body>	
-    <%= yield %>
+  <body>
+	<% if logged_in? or controller_path == 'users'%>	
+    	<%= yield %>
+	<% elsif controller_path == 'home' %>
+		<%= render 'sessions/new' %>
+	<% end %>	
   </body>
 </html>
