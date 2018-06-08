@@ -51,7 +51,7 @@ class Stock < ApplicationRecord
         ] }.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] } 
 
 
-       dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }] }
+       dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.daily_dividend ||= 0) ).to_f }] }
        dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
         
       return [ stocks, dividends, total_value, total_change ]
