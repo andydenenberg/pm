@@ -1,176 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Her</title>
-    <%= csrf_meta_tags %>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
-  </head>
-
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-
-<style>
-/* stylelint-disable selector-list-comma-newline-after */
-
-body {
-  padding-top: 0
-}
-
-body .table {
-  font-size: .90rem;
-}
-
-.blog-header {
-  line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.blog-header-logo {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  font-size: 2rem;
-}
-
-.blog-header-logo:hover {
-  text-decoration: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-}
-
-.display-4 {
-  font-size: 2.5rem;
-}
-@media (min-width: 768px) {
-  .display-4 {
-    font-size: 3rem;
-  }
-}
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.nav-scroller .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
-}
-
-.card-img-right {
-  height: 100%;
-  border-radius: 0 3px 3px 0;
-}
-
-.flex-auto {
-  -ms-flex: 0 0 auto;
-  -webkit-box-flex: 0;
-  flex: 0 0 auto;
-}
-
-.h-250 { height: 250px; }
-@media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
-}
-
-.border-top { border-top: 1px solid #e5e5e5; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
-
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-/*
- * Blog name and description
- */
-.blog-title {
-  margin-bottom: 0;
-  font-size: 2rem;
-  font-weight: 400;
-}
-.blog-description {
-  font-size: 1.1rem;
-  color: #999;
-}
-
-@media (min-width: 40em) {
-  .blog-title {
-    font-size: 3.5rem;
-  }
-}
-
-/* Pagination */
-.blog-pagination {
-  margin-bottom: 4rem;
-}
-.blog-pagination > .btn {
-  border-radius: 2rem;
-}
-
-/*
- * Blog posts
- */
-.blog-post {
-  margin-bottom: 4rem;
-}
-.blog-post-title {
-  margin-bottom: .25rem;
-  font-size: 2.5rem;
-}
-.blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #999;
-}
-
-/*
- * Footer
- */
-.blog-footer {
-  padding: 2.5rem 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
-}
-.blog-footer p:last-child {
-  margin-bottom: 0;
-}
-</style>
-
 
 <div class="container">
 	  <header class="blog-header py-3">
 	    <div class="row flex-nowrap justify-content-between align-items-center">
-	      <div class="col-1">
-		    <a class="btn btn-sm btn-outline-secondary" href="#">Sign in</a>		
-	      </div>
-	      <div class="col-3 d-flex justify-content-end align-items-center">
-			<%= link_to 'Info', info_path, class: "active float-right btn btn-sm btn-outline-secondary" %>
-			<%= link_to 'Highlights', highlights_path, class: "float-right btn btn-sm btn-outline-secondary" %>
-			<%= link_to 'Reports', consolidated_path, class: "float-right btn btn-sm btn-outline-secondary" %>
+	      <div class="col-4">
+		    <a class="btn btn-sm btn-outline-secondary" href="/">Home</a>		
 	      </div>
 
 	      <div class="col-4 text-center">
@@ -195,123 +28,85 @@ h1, h2, h3, h4, h5, h6 {
         <h2 class="blog-post-title">Bits and Pieces about this App</h2>
         <p class="blog-post-meta">May 25, 2018 by <a href="#">Andy</a></p>
 
-<pre>
+
 	
-Authentication from Scratch in Rails 5
-https://rubyplus.com/articles/4171-Authentication-from-Scratch-in-Rails-5
+<h5>Authentication from Scratch in Rails 5</h5>
+Implemented this on June 7th, 2018<br>
+<a href='https://rubyplus.com/articles/4171-Authentication-from-Scratch-in-Rails-5'> rubyplus.com/articles/4171-Authentication-from-Scratch-in-Rails-5</a>
+<hr>
+
+<h5>How to rename a Heroku remote app</h5>
+Useful when cloning or duplicating an app<br>
+<a href='https://devcenter.heroku.com/articles/git#renaming-remotes'> https://devcenter.heroku.com/articles/git#renaming-remotes</a>
+<hr>
+
+<h5>Useful Heroku commands</h5>
+<p><b>run a rake task</b><br>
+heroku rake convert:refresh_on_request --app her17
+</p>
+<p><b>Open the scheduler</b><br>
+heroku addons:open scheduler</p>
+<p>
+<p><b>monitor an app log</b><br>
+heroku logs --tail --app heraga
+</p>
+<p><b>run rails console</b><br>
+heroku run console --app heraga
+</p>
+<p><b>get info on app</b><br>
+heroku info heraga
+</p>
+<hr>
+
+<h5>Create a clone of a Heroku App</h5>
+<a href='https://github.com/heroku/heroku-fork'>https://github.com/heroku/heroku-fork</a><br>
+<p><b>install fork</b><br>
+heroku plugins:install heroku-fork
+</p>
+<p><b>add the git repo</b><br>  
+git remote add forked git@heroku.com:heraga.git
+</p>
+<p><b>create the new app</b><br>
+heroku fork --from her17  --to heraga
+</p>  
+<p><b>push new code to apps</b><br>
+git push forked master<br>
+git push heroku master
+</p>
+<hr>
+
+<h5>Using Ironstore cache on Heroku</h5>
+<p><b>setup the ironcache store</b><br>
+ironcache = IronCache::Client.new<br>
+@cache = ironcache.cache("my_cache")<br>
+@cache.put("poll_request", 'false')<br>
+@cache.put("poll_request_time", Time.now.to_s)
+</p>
+<hr>
+
+<h5>Rails wrapper for chart.js</h5>
+<p><b>Useful to plug in a simple graph on a page</b><br>
+<a href='https://www.chartkick.com/'>https://www.chartkick.com/</a>
+</p>
+<hr>
+
+<h5>Inform app of it's instance name</h5>
+<p><b>Useful to customize specifics for instance</b><br>	
+First, set a config variable like this
+<pre>heroku config:add APP_NAME=<myappname> --app <myappname></pre>
+Then access the variable in rails
+<pre>ENV["APP_NAME"] # '<myappname>'</pre>
+This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
 
 
-https://devcenter.heroku.com/articles/git#renaming-remotes
-
-heroku rake convert:refresh_on_request --app her17</a>
-
-heroku addons:open scheduler
-
-https://www.chartkick.com/
-
-
-        <hr>
-
-		<p>https://github.com/heroku/heroku-fork></p>
-
-		<p># install fork
-		heroku plugins:install heroku-fork</p>
-
-		<p># create the new app
-		heroku fork --from her17  --to heraga</p>  
-
-		<pre>
-		# add the git repo  
-		git remote add forked git@heroku.com:heraga.git
-
-		# monitor the apps
-		heroku logs --tail --app heraga
-		heroku logs --tail --app her17
-
-		# run console for apps
-		heroku run console --app heraga
-		heroku run console --app her17
-
-		# get info on apps
-		heroku info heraga
-		heroku info heraga
-
-		# push new code to apps
-		git push forked master
-		git push heroku master
-
-		# setup the ironcache store
-		@ironcache = IronCache::Client.new
-		@cache = @ironcache.cache("my_cache")
-		@cache.put("poll_request", 'false')
-		@cache.put("poll_request_time", Time.now.to_s)
-
-		heroku run history:daily_snapshot --app heraga
-
-
-		So if you need to know the app id outside a request, you's set a config variable like this
-
-		heroku config:add APP_NAME=<myappname> --app <myappname>
-
-		And enable lab feature that allows you to use them during compile
-		ENV["APP_NAME"] # '<myappname>'
-		This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
-
-		</pre>
-
-
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <h2>Heading</h2>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        <pre><code>Example code block</code></pre>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <ul>
-          <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-          <li>Donec id elit non mi porta gravida at eget metus.</li>
-          <li>Nulla vitae elit libero, a pharetra augue.</li>
-        </ul>
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-        <ol>
-          <li>Vestibulum id ligula porta felis euismod semper.</li>
-          <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-          <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-        </ol>
-        <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
       </div><!-- /.blog-post -->
 
       <div class="blog-post">
-        <h2 class="blog-post-title">Another blog post</h2>
-        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <h2 class="blog-post-title">Another post</h2>
+        <p class="blog-post-meta">Future Date by <a href="#">Andy</a></p>
+		<p>Nothing yet...</p>
       </div><!-- /.blog-post -->
 
-      <div class="blog-post">
-        <h2 class="blog-post-title">New feature</h2>
-        <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <ul>
-          <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-          <li>Donec id elit non mi porta gravida at eget metus.</li>
-          <li>Nulla vitae elit libero, a pharetra augue.</li>
-        </ul>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-      </div><!-- /.blog-post -->
 
       <nav class="blog-pagination">
         <a class="btn btn-outline-primary" href="#">Older</a>
@@ -323,24 +118,13 @@ https://www.chartkick.com/
     <aside class="col-md-4 blog-sidebar">
       <div class="p-3 mb-3 bg-light rounded">
         <h4 class="font-italic">About</h4>
-        <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+        <p class="mb-0">This app was created to track portfolios that are held on separate accounts. It is designed to highlight important events, trends and situations</p>
       </div>
 
       <div class="p-3">
         <h4 class="font-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-          <li><a href="#">January 2014</a></li>
-          <li><a href="#">December 2013</a></li>
-          <li><a href="#">November 2013</a></li>
-          <li><a href="#">October 2013</a></li>
-          <li><a href="#">September 2013</a></li>
-          <li><a href="#">August 2013</a></li>
-          <li><a href="#">July 2013</a></li>
-          <li><a href="#">June 2013</a></li>
-          <li><a href="#">May 2013</a></li>
-          <li><a href="#">April 2013</a></li>
+          <li><a href="#">June 2018</a></li>
         </ol>
       </div>
 
@@ -365,74 +149,3 @@ https://www.chartkick.com/
   </p>
 </footer>
 
-<pre>
-
-	<div class="container-fluid">
-	  <div class="row">
-
-	      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-	        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	          <h1 class="h2">History</h1>
-	         <div class="btn-toolbar mb-2 mb-md-0">	
-
-
-<h3>Add last_synced field to portfolios record</h3>
-
-		require 'rubygems'
-		require 'action_view'
-		include ActionView::Helpers::DateHelper
-
-		time_ago_in_words Time.now - 4 * 86400
-		
-		
-	https://github.com/heroku/heroku-fork
-
-	# install fork
-	heroku plugins:install heroku-fork
-
-	# create the new app
-	heroku fork --from her17  --to heraga  
-
-	# add the git repo  
-	git remote add forked git@heroku.com:heraga.git
-
-	# monitor the apps
-	heroku logs --tail --app heraga
-	heroku logs --tail --app her17
-
-	# run console for apps
-	heroku run console --app heraga
-	heroku run console --app her17
-
-	# get info on apps
-	heroku info heraga
-	heroku info heraga
-
-	# push new code to apps
-	git push forked master
-	git push heroku master
-
-	# setup the ironcache store
-	@ironcache = IronCache::Client.new
-	@cache = @ironcache.cache("my_cache")
-	@cache.put("poll_request", 'false')
-	@cache.put("poll_request_time", Time.now.to_s)
-
-	heroku run history:daily_snapshot --app heraga
-
-
-	So if you need to know the app id outside a request, you's set a config variable like this
-
-	heroku config:add APP_NAME=<myappname> --app <myappname>
-		
-	And enable lab feature that allows you to use them during compile
-	ENV["APP_NAME"] # '<myappname>'
-	This is handy if you want to load different config file (say with oauth credentials) based on the app's name or id.
-
-</pre>
-</div>
-</div>
-</main>
-
-  </div><!-- row -->
-</div><!-- container-fluid -->

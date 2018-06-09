@@ -230,7 +230,7 @@ class HomeController < ApplicationController
 #  end
   
   def info
-    render :layout => false   
+#    render :layout => false   
   end
   
   def index
