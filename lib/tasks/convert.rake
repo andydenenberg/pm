@@ -18,7 +18,7 @@ desc 'Build the Databases'
 task :setup => ["db:migrate", 
                 "convert:portfolios", "convert:create_groups", "convert:populate_groups",
                 "convert:stocks", "convert:options", 
-                "convert:check_for_funds", "convert:refresh_stocks", "convert:refresh_options_funds",
+                "convert:check_for_funds", "convert:refresh_all",
                 "convert:upload_history", "history:all_ports" ]
 
   desc 'Create Portfolios'
@@ -27,7 +27,7 @@ task :setup => ["db:migrate",
   cash = [63654.11, 1189041.0, 666362.57, 44875.91, 671063.84, 220911.51, 513802.0, 21034.79, 46141.03, 99309.92, 108924.47, 25651.99, 3800.0, 5043.44, 0.0]
     task :portfolios => :environment do
       portfolios.each_with_index do |p, i|
-        Portfolio.create!( :id => i+3, :name => p, :cash => cash[i] )
+        Portfolio.create!( :id => i+3, :name => p, :cash => cash[i], group_id: 1 )
       end 
       puts "Portfolios Created"     
     end

@@ -4,7 +4,8 @@ namespace :update do
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '/Users/andydenenberg/Desktop/Hellemb_A/May_2018/R 401K Rollover.CSV'
+      file = '/Users/andydenenberg/Downloads/FTMLLC.CSV'
+#      file = '/Users/andydenenberg/Desktop/Hellemb_A/May_2018/R 401K Rollover.CSV'
       portfolio_name = File.basename(file).split('.').first   
 
   # first find and delete old stocks
