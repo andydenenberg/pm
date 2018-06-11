@@ -44,7 +44,12 @@ Useful when cloning or duplicating an app<br>
 <p><b>run a rake task</b><br>
 heroku rake convert:refresh_on_request --app her17
 </p>
-<p><b>Open the scheduler</b><br>
+
+<p><b>Install Sendgrid Mailer</b><br>
+heroku addons:create sendgrid:starter
+</p>
+<p><b>Install and open the scheduler</b><br>
+heroku addons:create scheduler:standard
 heroku addons:open scheduler</p>
 <p>
 <p><b>monitor an app log</b><br>
