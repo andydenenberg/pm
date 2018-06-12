@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 #  get 'demo', to: 'home#demo'
   get 'home', to: 'home#index'
   get 'info', to: 'home#info' 
-  get 'poll_check', to: 'portfolios#poll_check' 
-  get 'dividends', to: 'stocks#dividends'
+#  get 'poll_check', to: 'portfolios#poll_check' 
+#  get 'dividends', to: 'stocks#dividends'
 
   
 #  get "/update_prices" => 'portfolios#update_prices', as: 'update_prices'
