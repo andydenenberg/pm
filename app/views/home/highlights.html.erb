@@ -22,7 +22,7 @@
 			  		<circle cx="15" cy="15" r="10" stroke="black" stroke-width="0" fill="green" />
 				</svg>
 			</a>
-			<span id='poll_request'>Idle</span> (<span id='time'>10</span>)
+			<span id='poll_request'>Idle</span>
 			<a  id='poll_active_dot' onclick="ToggleActivePoll();return false;" class="text-muted" href="#">
 				<svg height="30" width="30">
 			  		<circle cx="15" cy="15" r="10" stroke="black" stroke-width="0" fill="green" />
@@ -190,14 +190,12 @@ var myVar = setInterval(myTimer, 1000);
 var poll = true ;
 
 function myTimer() {
-    var d = new Date();
-	var minutes = d.getMinutes();
-	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
+//    var d = new Date();
+//	var minutes = d.getMinutes();
+//	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
 //    document.getElementById("time").innerHTML = d.toLocaleTimeString();
 if (poll) {
 	$.getJSON( "poll_check_new.js", function( data ) {
-
-	console.log(data['poll_request_time']) ;
 
 	if (data['poll_request'] == 'Updating') {
 		$("#poll_request_button").removeClass("btn-warning");  
