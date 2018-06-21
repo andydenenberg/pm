@@ -44,7 +44,8 @@ class HomeController < ApplicationController
     
     @portfolios_data = Portfolio.table_data(nil, 1)  
     @winners = Stock.table_data('All Portfolios', 'change', 'asc')[0]
-    @loosers = Stock.table_data('All Portfolios', 'change', 'desc')[0]
+    @loosers = @winners.sort { |x,y| x[3] <=> y[3] } # sort by daiy change in value
+     #Stock.table_data('All Portfolios', 'change', 'desc')[0]
     @dividends = Dividend.order('date desc')
     
     @min = 200000

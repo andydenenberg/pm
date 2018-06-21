@@ -3,6 +3,12 @@ class Portfolio < ApplicationRecord
   has_many :stocks, :dependent => :destroy  
   has_many :histories, :dependent => :destroy  
   
+  def self.portfolio_names
+    pnames = { }
+    Portfolio.all.each { |p| pnames[p.id] = p.name }
+    return pnames
+  end
+  
   def self.table_data(group_id, sort_by)
     totals = Hash.new
     all = group_id.nil? ? Portfolio.all : Portfolio.where(group_id: group_id)

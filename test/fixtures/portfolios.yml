@@ -1,11 +1,78 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  name: MyString
-  cash: 9.99
-
-two:
-  user: two
-  name: MyString
-  cash: 9.99
+0:
+  user_id: 1
+  id: 3
+  name: ETrade
+  cash: 63654.11
+1:
+  user_id: 1
+  id: 4
+  name: SLAT1
+  cash: 1189041.0
+2:
+  user_id: 1
+  id: 5
+  name: SLAT2
+  cash: 666362.57
+3:
+  user_id: 1
+  id: 6
+  name: AR
+  cash: 44875.91
+4:
+  user_id: 1
+  id: 7
+  name: DHC
+  cash: 671063.84
+5:
+  user_id: 1
+  id: 8
+  name: MSA
+  cash: 220911.51
+6:
+  user_id: 1
+  id: 9
+  name: River North
+  cash: 513802.0
+7:
+  user_id: 1
+  id: 10
+  name: R
+  cash: 21034.79
+8:
+  user_id: 1
+  id: 11
+  name: A Roth IRA
+  cash: 46141.03
+9:
+  user_id: 1
+  id: 12
+  name: A 401K Rollover
+  cash: 99309.92
+10:
+  user_id: 1
+  id: 13
+  name: R 401K Rollover
+  cash: 108924.47
+11:
+  user_id: 1
+  id: 14
+  name: R Roth IRA
+  cash: 25651.99
+12:
+  user_id: 1
+  id: 15
+  name: HSA
+  cash: 3800.0
+13:
+  user_id: 1
+  id: 16
+  name: BAD Inherited Roth
+  cash: 5043.44
+14:
+  user_id: 1
+  id: 17
+  name: GRATS 2015
+  cash: 0.0
+  

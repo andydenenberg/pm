@@ -1,29 +1,6555 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+0:
+  id: 1
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 300.0
+  symbol: K
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 61.06
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -0.43
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
 
-one:
-  portfolio: one
-  title: MyString
-  body: MyText
-  purchase_price: 9.99
-  quantity: 9.99
-  symbol: MyString
-  name: MyString
-  portfolio_id: 1
-  purchase_date: MyString
-  strike: 9.99
-  expiration_date: MyString
-  stock_option: MyString
+1:
+  id: 2
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 88.0
+  symbol: HPQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 22.335
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: 0.105
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
 
-two:
-  portfolio: two
-  title: MyString
-  body: MyText
-  purchase_price: 9.99
-  quantity: 9.99
-  symbol: MyString
-  name: MyString
-  portfolio_id: 1
-  purchase_date: MyString
-  strike: 9.99
-  expiration_date: MyString
-  stock_option: MyString
+2:
+  id: 3
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 1500.0
+  symbol: PGF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.264
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -0.026
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+3:
+  id: 4
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 840.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.02
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -0.16
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+4:
+  id: 5
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 13300.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+5:
+  id: 6
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 800.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+6:
+  id: 7
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 690.0
+  symbol: CVS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.98
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -0.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+7:
+  id: 8
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 80.0
+  symbol: GS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 241.72
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+8:
+  id: 9
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 260.0
+  symbol: MCD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 162.68
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+9:
+  id: 10
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 300.0
+  symbol: MO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.2
+  as_of: 2018-05-17 10:38:52 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:52 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+10:
+  id: 11
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 7153.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.14
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+11:
+  id: 12
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 1000.0
+  symbol: NKE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 71.44
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+12:
+  id: 13
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 290.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.665
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.015
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+13:
+  id: 14
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 340.0
+  symbol: PM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 80.815
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.075
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+14:
+  id: 15
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 377.0
+  symbol: STT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 101.47
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.37
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+15:
+  id: 16
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 2130.0
+  symbol: SYK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 171.3
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.46
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+16:
+  id: 17
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 400.0
+  symbol: UTX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.53
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.45
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+17:
+  id: 18
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 840.0
+  symbol: WBA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.55
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+18:
+  id: 19
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 500.0
+  symbol: XOM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 82.07
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+19:
+  id: 20
+  portfolio_id: 8
+  purchase_price: 
+  quantity: 750.0
+  symbol: ZBRA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 155.35
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.69
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+20:
+  id: 21
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 200.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+21:
+  id: 22
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 500.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+22:
+  id: 23
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 200.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.14
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+23:
+  id: 24
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 200.0
+  symbol: RWX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 40.03
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.16
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+24:
+  id: 25
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 272.84
+  symbol: MGRIX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 19.64
+  as_of: 2018-05-17 10:39:17 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:17 UTC
+  change: 0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+25:
+  id: 26
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 180.78
+  symbol: TGVAX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 24.38
+  as_of: 2018-05-17 10:39:18 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:18 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+26:
+  id: 27
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 185.34
+  symbol: PEOPX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.32
+  as_of: 2018-05-17 10:39:19 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:19 UTC
+  change: 0.24
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+27:
+  id: 28
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 216.1
+  symbol: GGSAX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 16.0
+  as_of: 2018-05-17 10:39:20 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:20 UTC
+  change: 0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+28:
+  id: 29
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 75.4
+  symbol: VSMAX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 73.71
+  as_of: 2018-05-17 10:39:21 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:21 UTC
+  change: 0.57
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+29:
+  id: 30
+  portfolio_id: 15
+  purchase_price: 
+  quantity: 27.44
+  symbol: VIMAX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 195.1
+  as_of: 2018-05-17 10:39:22 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:22 UTC
+  change: 0.88
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+30:
+  id: 31
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 152.64
+  symbol: VITSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 68.38
+  as_of: 2018-05-17 10:39:23 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:23 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+31:
+  id: 32
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 148.48
+  symbol: DODFX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 46.2
+  as_of: 2018-05-17 10:39:24 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:24 UTC
+  change: -0.02
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+32:
+  id: 33
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 800.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+33:
+  id: 34
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 300.0
+  symbol: EWG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 33.015
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.195
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+34:
+  id: 35
+  portfolio_id: 3
+  purchase_price: 
+  quantity: 45.0
+  symbol: BTI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 51.47
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+35:
+  id: 36
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 88.0
+  symbol: HPE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 17.675
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.045
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+36:
+  id: 37
+  portfolio_id: 10
+  purchase_price: 
+  quantity: 7.0
+  symbol: DXC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 100.65
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+37:
+  id: 38
+  portfolio_id: 17
+  purchase_price: 
+  quantity: 5326.0
+  symbol: AMAT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.25
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.92
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+38:
+  id: 39
+  portfolio_id: 17
+  purchase_price: 
+  quantity: 1973.0
+  symbol: CRM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 127.79
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.98
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+39:
+  id: 40
+  portfolio_id: 17
+  purchase_price: 
+  quantity: 1545.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+40:
+  id: 41
+  portfolio_id: 17
+  purchase_price: 
+  quantity: 2007.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.14
+  as_of: 2018-05-17 10:38:53 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:53 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+41:
+  id: 42
+  portfolio_id: 17
+  purchase_price: 
+  quantity: 5272.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+42:
+  id: 43
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: ABB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 24.055
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.145
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+43:
+  id: 44
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: ABBV
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.94
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+44:
+  id: 45
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 300.0
+  symbol: ACN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 155.0
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.92
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+45:
+  id: 46
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 24.0
+  symbol: ASIX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.125
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.365
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+46:
+  id: 47
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 700.0
+  symbol: AFL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 45.52
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+47:
+  id: 48
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 100.0
+  symbol: GOOGL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1087.64
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 3.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+48:
+  id: 49
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 46.0
+  symbol: MO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.2
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+49:
+  id: 50
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 400.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 174.43
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.63
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+50:
+  id: 51
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 151.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.11
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+51:
+  id: 52
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 200.0
+  symbol: BA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 343.34
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 2.37
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+52:
+  id: 53
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 300.0
+  symbol: CAT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 154.47
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.67
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+53:
+  id: 54
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 2016.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+54:
+  id: 55
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: KO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 42.115
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.565
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+55:
+  id: 56
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 3500.0
+  symbol: DTEGY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 16.68
+  as_of: 2018-05-17 10:39:25 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:39:25 UTC
+  change: 0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+56:
+  id: 57
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: DISH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.94
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+57:
+  id: 58
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: EBAY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.655
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.305
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+58:
+  id: 59
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 400.0
+  symbol: EMR
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 72.81
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.86
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+59:
+  id: 60
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 18.0
+  symbol: XOM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 82.07
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+60:
+  id: 61
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: GBDC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.545
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.09
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+61:
+  id: 62
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 600.0
+  symbol: HON
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 147.31
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.505
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+62:
+  id: 63
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 3425.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+63:
+  id: 64
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 300.0
+  symbol: KSU
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 108.87
+  as_of: 2018-05-17 10:38:54 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:54 UTC
+  change: -0.09
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+64:
+  id: 65
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 411.0
+  symbol: MCD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 162.68
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:06 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+65:
+  id: 66
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1030.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.14
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+66:
+  id: 67
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 5.0
+  symbol: NOK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 6.215
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.025
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+67:
+  id: 68
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: PYPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 78.72
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.9
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+68:
+  id: 69
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 5.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.665
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.015
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+69:
+  id: 70
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 6.0
+  symbol: PM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 80.815
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.075
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+70:
+  id: 71
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 400.0
+  symbol: PPG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.41
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.91
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+71:
+  id: 72
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1.0
+  symbol: STT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 101.47
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.37
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+72:
+  id: 73
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: TEL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 95.66
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.35
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+73:
+  id: 74
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: USB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 51.005
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.015
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+74:
+  id: 75
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 400.0
+  symbol: UNH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 242.99
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 1.27
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+75:
+  id: 76
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: VZ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 47.78
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+76:
+  id: 77
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 600.0
+  symbol: V
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 130.45
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.2301
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+77:
+  id: 78
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1500.0
+  symbol: WBA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.55
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+78:
+  id: 79
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 300.0
+  symbol: WMT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 85.08
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -1.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+79:
+  id: 80
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: WFC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.26
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.78
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+80:
+  id: 81
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 2000.0
+  symbol: EWH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 26.0
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.25
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+81:
+  id: 82
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 4000.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+82:
+  id: 83
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 600.0
+  symbol: SPY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 272.74
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.5
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+83:
+  id: 84
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 1000.0
+  symbol: MOAT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 42.694
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.104
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+84:
+  id: 85
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 700.0
+  symbol: VGK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 60.19
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.27
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+85:
+  id: 86
+  portfolio_id: 6
+  purchase_price: 
+  quantity: 500.0
+  symbol: DXJ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 58.595
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: 0.485
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+86:
+  id: 87
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 1050.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.11
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+87:
+  id: 88
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 500.0
+  symbol: DISH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.94
+  as_of: 2018-05-17 10:38:55 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:55 UTC
+  change: -0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+88:
+  id: 89
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 1000.0
+  symbol: GE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 15.18
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: 0.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+89:
+  id: 90
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 100.0
+  symbol: GIS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 42.83
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: -0.22
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+90:
+  id: 91
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 250.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+91:
+  id: 92
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 200.0
+  symbol: STX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 59.33
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: -0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+92:
+  id: 93
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 500.0
+  symbol: TOT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 64.18
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: 0.97
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+93:
+  id: 94
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 150.0
+  symbol: UPS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 117.08
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+94:
+  id: 95
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 500.0
+  symbol: WFC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.26
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: -0.78
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+95:
+  id: 96
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 6242.0
+  symbol: BIF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 10.89
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: -0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+96:
+  id: 97
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 100.0
+  symbol: LQD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 113.955
+  as_of: 2018-05-17 10:38:56 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:56 UTC
+  change: -0.075
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+97:
+  id: 98
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 1600.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+98:
+  id: 99
+  portfolio_id: 12
+  purchase_price: 
+  quantity: 750.0
+  symbol: MOAT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 42.694
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.104
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+99:
+  id: 100
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 100.0
+  symbol: ACN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 155.0
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.92
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+100:
+  id: 101
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 152.0
+  symbol: A
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 63.085
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 1.145
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+101:
+  id: 102
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 10.0
+  symbol: AMZN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1589.82
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 2.54
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+102:
+  id: 103
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 300.0
+  symbol: AXP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 101.47
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.88
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+103:
+  id: 104
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 60.0
+  symbol: AMP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 141.19
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 1.28
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+104:
+  id: 105
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 280.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.11
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: -0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+105:
+  id: 106
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 2160.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+106:
+  id: 107
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 200.0
+  symbol: CNDT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 19.095
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.145
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+107:
+  id: 108
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 68.0
+  symbol: DXC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 100.65
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: -0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+108:
+  id: 109
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 800.0
+  symbol: HPE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 17.675
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.045
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+109:
+  id: 110
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 800.0
+  symbol: HPQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 22.335
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.105
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+110:
+  id: 111
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 180.0
+  symbol: IBM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 144.73
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+111:
+  id: 112
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 76.0
+  symbol: KEYS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 53.775
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.245
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+112:
+  id: 113
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 109.0
+  symbol: MFGP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.09
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+113:
+  id: 114
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 375.0
+  symbol: ORCL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 47.015
+  as_of: 2018-05-17 10:38:57 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:57 UTC
+  change: 0.285
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+114:
+  id: 115
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 250.0
+  symbol: VOD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 26.76
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.16
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+115:
+  id: 116
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 250.0
+  symbol: XRX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 28.81
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.26
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+116:
+  id: 117
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 300.0
+  symbol: XLI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 75.07
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.47
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+117:
+  id: 118
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 100.0
+  symbol: SPY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 272.74
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.5
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+118:
+  id: 119
+  portfolio_id: 11
+  purchase_price: 
+  quantity: 300.0
+  symbol: VWO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 45.555
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.455
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+119:
+  id: 120
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 118.0
+  symbol: T
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.135
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.165
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+120:
+  id: 121
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 155.0
+  symbol: ABBV
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.94
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+121:
+  id: 122
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 90.0
+  symbol: ACN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 155.0
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.92
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+122:
+  id: 123
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 117.0
+  symbol: ADI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 94.95
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.18
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+123:
+  id: 124
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 236.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.11
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+124:
+  id: 125
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 50.0
+  symbol: ARMK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.32
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.18
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+125:
+  id: 126
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 318.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+126:
+  id: 127
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 84.0
+  symbol: CLX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 117.44
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.94
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+127:
+  id: 128
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 118.0
+  symbol: CL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 62.055
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -0.035
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+128:
+  id: 129
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 147.0
+  symbol: COP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 70.56
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.71
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+129:
+  id: 130
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 304.0
+  symbol: CSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 63.98
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+130:
+  id: 131
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 58.0
+  symbol: CMI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 146.88
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.78
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+131:
+  id: 132
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 142.0
+  symbol: DRI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 86.005
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: -1.215
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+132:
+  id: 133
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 115.0
+  symbol: ETN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 77.85
+  as_of: 2018-05-17 10:38:58 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:58 UTC
+  change: 0.52
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+133:
+  id: 134
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 368.0
+  symbol: FNB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 13.56
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.02
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+134:
+  id: 135
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 64.0
+  symbol: FCPT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 21.95
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.13
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+135:
+  id: 136
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 105.0
+  symbol: ITW
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 145.77
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 1.46
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+136:
+  id: 137
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 227.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+137:
+  id: 138
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 217.0
+  symbol: IVZ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 28.78
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.27
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+138:
+  id: 139
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 90.0
+  symbol: JNJ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.65
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+139:
+  id: 140
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 40.0
+  symbol: KMB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.28
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.61
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+140:
+  id: 141
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 143.0
+  symbol: KMI
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 16.395
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.005
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+141:
+  id: 142
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 91.0
+  symbol: MCD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 162.68
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+142:
+  id: 143
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 161.0
+  symbol: MRK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 59.005
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.745
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+143:
+  id: 144
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 193.0
+  symbol: MCHP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 93.535
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.025
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+144:
+  id: 145
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 237.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.2
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+145:
+  id: 146
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 54.0
+  symbol: OKE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 66.89
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.24
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+146:
+  id: 147
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 92.0
+  symbol: PEP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.4
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+147:
+  id: 148
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 242.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.67
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+148:
+  id: 149
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 88.0
+  symbol: PG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 73.76
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: 0.23
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+149:
+  id: 150
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 66.0
+  symbol: SBUX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.095
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.055
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+150:
+  id: 151
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 513.0
+  symbol: UMPQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 23.89
+  as_of: 2018-05-17 10:38:59 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:38:59 UTC
+  change: -0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+151:
+  id: 152
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 95.0
+  symbol: UNH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 242.99
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 1.27
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+152:
+  id: 153
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 183.0
+  symbol: WM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 81.59
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+153:
+  id: 154
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 190.0
+  symbol: WFC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.29
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -0.75
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+154:
+  id: 155
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 366.7
+  symbol: SBHSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 14.08
+  as_of: 2018-05-17 10:39:26 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:26 UTC
+  change: -0.02
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+155:
+  id: 156
+  portfolio_id: 16
+  purchase_price: 
+  quantity: 315.66
+  symbol: SBHVX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 12.99
+  as_of: 2018-05-17 10:39:27 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:27 UTC
+  change: 0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+156:
+  id: 157
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 300.0
+  symbol: MMM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 200.97
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 2.12
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+157:
+  id: 158
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: ABT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 60.97
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.2
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+158:
+  id: 159
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: ABBV
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.94
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+159:
+  id: 160
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 40.0
+  symbol: ASIX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.125
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.365
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+160:
+  id: 161
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 300.0
+  symbol: APD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 166.62
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+161:
+  id: 162
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 100.0
+  symbol: GOOGL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1087.64
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 3.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+162:
+  id: 163
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 6000.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 174.43
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.63
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+163:
+  id: 164
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 4900.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.11
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -0.07
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+164:
+  id: 165
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 90.0
+  symbol: BHF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 48.01
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.43
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+165:
+  id: 166
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 750.0
+  symbol: COF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 96.88
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 1.13
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+166:
+  id: 167
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1807.0
+  symbol: SNP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 103.14
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.36
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+167:
+  id: 168
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 2000.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+168:
+  id: 169
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: CMCSA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.7
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+169:
+  id: 170
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: HON
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 147.31
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.505
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+170:
+  id: 171
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 2000.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+171:
+  id: 172
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 600.0
+  symbol: JNJ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.65
+  as_of: 2018-05-17 10:39:00 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:00 UTC
+  change: -0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+172:
+  id: 173
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: MET
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 48.07
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.18
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+173:
+  id: 174
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.2
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+174:
+  id: 175
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.67
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+175:
+  id: 176
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 400.0
+  symbol: PPG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.41
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.91
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+176:
+  id: 177
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 600.0
+  symbol: SIEGY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 69.21
+  as_of: 2018-05-17 10:39:28 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:28 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+177:
+  id: 178
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: SBUX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.095
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: -0.055
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+178:
+  id: 179
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 400.0
+  symbol: UNP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 142.82
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 1.46
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+179:
+  id: 180
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 800.0
+  symbol: UPS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 117.08
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+180:
+  id: 181
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 300.0
+  symbol: UTX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.48
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.4
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+181:
+  id: 182
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 150.0
+  symbol: VSM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 39.42
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.14
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+182:
+  id: 183
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1000.0
+  symbol: WBA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.55
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+183:
+  id: 184
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 3000.0
+  symbol: WFC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.29
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: -0.75
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+184:
+  id: 185
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 1350.0
+  symbol: LQD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 113.955
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: -0.075
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+185:
+  id: 186
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 300.0
+  symbol: PRF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 114.23
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.44
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+186:
+  id: 187
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 500.0
+  symbol: QQQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 169.16
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.18
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+187:
+  id: 188
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 4000.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+188:
+  id: 189
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 500.0
+  symbol: SPY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 272.74
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.5
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+189:
+  id: 190
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 3298.58
+  symbol: VINEX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 21.75
+  as_of: 2018-05-17 10:39:29 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:29 UTC
+  change: -0.02
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+190:
+  id: 191
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: ABT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 60.97
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.2
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+191:
+  id: 192
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: ABBV
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.94
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: -0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+192:
+  id: 193
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 8.0
+  symbol: ASIX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.01
+  as_of: 2018-05-17 10:39:01 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:01 UTC
+  change: 0.25
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+193:
+  id: 194
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 30.0
+  symbol: GOOG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1083.79
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 2.02
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+194:
+  id: 195
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: AXP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 101.46
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 0.87
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+195:
+  id: 196
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 100.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 174.43
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 0.63
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+196:
+  id: 197
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 1400.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.145
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: -0.035
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+197:
+  id: 198
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 400.0
+  symbol: BA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 343.34
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 2.37
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+198:
+  id: 199
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 800.0
+  symbol: BWA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 52.425
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 0.605
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+199:
+  id: 200
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 100.0
+  symbol: BP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 47.335
+  as_of: 2018-05-17 10:39:02 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:02 UTC
+  change: 0.625
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+200:
+  id: 201
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 150.0
+  symbol: CVX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 129.13
+  as_of: 2018-05-17 10:39:03 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:03 UTC
+  change: 0.69
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+201:
+  id: 202
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:39:03 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:03 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+202:
+  id: 203
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 400.0
+  symbol: CL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 62.055
+  as_of: 2018-05-17 10:39:03 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:03 UTC
+  change: -0.035
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+203:
+  id: 204
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: COP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 70.56
+  as_of: 2018-05-17 10:39:03 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:03 UTC
+  change: 0.71
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+204:
+  id: 205
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 120.0
+  symbol: COST
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 199.97
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 1.26
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+205:
+  id: 206
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 25.0
+  symbol: DXC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 100.65
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+206:
+  id: 207
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 250.0
+  symbol: FB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 183.25
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+207:
+  id: 208
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: FLS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 44.08
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.75
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+208:
+  id: 209
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 400.0
+  symbol: FCX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 16.905
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.265
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+209:
+  id: 210
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 1000.0
+  symbol: GE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 15.175
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.145
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+210:
+  id: 211
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 100.0
+  symbol: GS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 241.72
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+211:
+  id: 212
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 37.0
+  symbol: HYH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 53.0
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.31
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+212:
+  id: 213
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: HPE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 17.675
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.045
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+213:
+  id: 214
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: HON
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 147.31
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.505
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+214:
+  id: 215
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: HPQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 22.335
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.105
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+215:
+  id: 216
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 500.0
+  symbol: JPM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 113.19
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+216:
+  id: 217
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: KMB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.28
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.61
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+217:
+  id: 218
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: MCD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 162.68
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+218:
+  id: 219
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 41.0
+  symbol: MFGP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.09
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+219:
+  id: 220
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 500.0
+  symbol: NBR
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 8.645
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.255
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+220:
+  id: 221
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 1500.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.67
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+221:
+  id: 222
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 100.0
+  symbol: PSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 121.86
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 3.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+222:
+  id: 223
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 250.0
+  symbol: SLB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 75.08
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 1.97
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+223:
+  id: 224
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: STX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 59.33
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+224:
+  id: 225
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 800.0
+  symbol: SBUX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.095
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: -0.055
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+225:
+  id: 226
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: TOT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 64.18
+  as_of: 2018-05-17 10:39:04 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:04 UTC
+  change: 0.97
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+226:
+  id: 227
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: RIG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 14.11
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.51
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+227:
+  id: 228
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: UTX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.48
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.4
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+228:
+  id: 229
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 200.0
+  symbol: EFA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 71.67
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+229:
+  id: 230
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 30.0
+  symbol: QQQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 169.16
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.18
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+230:
+  id: 231
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 1600.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+231:
+  id: 232
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 100.0
+  symbol: SPY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 272.74
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.5
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+232:
+  id: 233
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 300.0
+  symbol: EZM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 40.015
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.165
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+233:
+  id: 234
+  portfolio_id: 13
+  purchase_price: 
+  quantity: 309.57
+  symbol: GOODX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 24.12
+  as_of: 2018-05-17 10:39:30 -0500
+  expiration_date: 
+  stock_option: Fund
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:30 UTC
+  change: 0.22
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+234:
+  id: 235
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 140.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.15
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: -0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+235:
+  id: 236
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 100.0
+  symbol: IVV
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 274.8
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+236:
+  id: 237
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 258.0
+  symbol: EFA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 71.67
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+237:
+  id: 238
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 130.0
+  symbol: DVY
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.62
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.31
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+238:
+  id: 239
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 248.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+239:
+  id: 240
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 300.0
+  symbol: VWO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 45.555
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: -0.455
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+240:
+  id: 241
+  portfolio_id: 14
+  purchase_price: 
+  quantity: 300.0
+  symbol: EZM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 40.015
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.165
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+241:
+  id: 242
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 300.0
+  symbol: MMM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 200.97
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 2.12
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+242:
+  id: 243
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 555.0
+  symbol: A
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 63.09
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 1.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+243:
+  id: 244
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 900.0
+  symbol: APD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 166.62
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+244:
+  id: 245
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 100.0
+  symbol: GOOGL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1087.64
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 3.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+245:
+  id: 246
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 300.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 174.43
+  as_of: 2018-05-17 10:39:05 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:05 UTC
+  change: 0.63
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+246:
+  id: 247
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 140.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.15
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+247:
+  id: 248
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 552.0
+  symbol: AMAT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.27
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.9
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+248:
+  id: 249
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1900.0
+  symbol: ADSK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 136.58
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.65
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+249:
+  id: 250
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 900.0
+  symbol: CCL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.25
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+250:
+  id: 251
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1012.0
+  symbol: CTL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 19.405
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.145
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+251:
+  id: 252
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1674.0
+  symbol: CB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 134.51
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.06
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+252:
+  id: 253
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 22000.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+253:
+  id: 254
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 3735.0
+  symbol: KO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 42.115
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.565
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+254:
+  id: 255
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1800.0
+  symbol: CVS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 66.07
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.06
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+255:
+  id: 256
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 154.0
+  symbol: DXC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 100.65
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+256:
+  id: 257
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 200.0
+  symbol: DE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 146.51
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.84
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+257:
+  id: 258
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1308.0
+  symbol: DLR
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 105.47
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -1.43
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+258:
+  id: 259
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 450.0
+  symbol: DWDP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 68.42
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.39
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+259:
+  id: 260
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1080.0
+  symbol: ETN
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 77.85
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.52
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+260:
+  id: 261
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1188.0
+  symbol: GD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 201.64
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 1.14
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+261:
+  id: 262
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 800.0
+  symbol: GEF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 59.53
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+262:
+  id: 263
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1800.0
+  symbol: HPE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 17.675
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: 0.045
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+263:
+  id: 264
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1600.0
+  symbol: HRL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 36.3
+  as_of: 2018-05-17 10:39:06 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:06 UTC
+  change: -0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+264:
+  id: 265
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1800.0
+  symbol: HPQ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 22.335
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.105
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+265:
+  id: 266
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 8000.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+266:
+  id: 267
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 400.0
+  symbol: JNJ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.65
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+267:
+  id: 268
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 400.0
+  symbol: K
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 61.06
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.43
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+268:
+  id: 269
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 277.0
+  symbol: KEYS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 53.775
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.245
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+269:
+  id: 270
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1970.0
+  symbol: MCD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 162.68
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+270:
+  id: 271
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1100.0
+  symbol: MDT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 85.08
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.47
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+271:
+  id: 272
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 247.0
+  symbol: MFGP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.09
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+272:
+  id: 273
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 17080.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.2
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.05
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+273:
+  id: 274
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 900.0
+  symbol: MON
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 125.48
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.04
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+274:
+  id: 275
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 5400.0
+  symbol: NKE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 71.44
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+275:
+  id: 276
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 300.0
+  symbol: PH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 178.86
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 1.99
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+276:
+  id: 277
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 891.0
+  symbol: PEP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 97.4
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+277:
+  id: 278
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 2982.0
+  symbol: PFE
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 35.67
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.01
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+278:
+  id: 279
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 900.0
+  symbol: PM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 80.79
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.1
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+279:
+  id: 280
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 780.0
+  symbol: PG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 73.76
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.23
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+280:
+  id: 281
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1000.0
+  symbol: SBUX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.095
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.055
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+281:
+  id: 282
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 810.0
+  symbol: UPS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 117.08
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+282:
+  id: 283
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1476.0
+  symbol: UTX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.48
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.4
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+283:
+  id: 284
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1496.0
+  symbol: VZ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 47.78
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+284:
+  id: 285
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 450.0
+  symbol: VSM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 39.42
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: 0.14
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+285:
+  id: 286
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1800.0
+  symbol: V
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 130.51
+  as_of: 2018-05-17 10:39:07 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:07 UTC
+  change: -0.1701
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+286:
+  id: 287
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 4800.0
+  symbol: WBA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 65.55
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+287:
+  id: 288
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1200.0
+  symbol: DIS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.55
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: -0.49
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+288:
+  id: 289
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 1000.0
+  symbol: WFC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 54.29
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: -0.75
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+289:
+  id: 290
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 940.0
+  symbol: LQD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 113.955
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: -0.075
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+290:
+  id: 291
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 9050.0
+  symbol: EFA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 71.67
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.19
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+291:
+  id: 292
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 500.0
+  symbol: IWM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 161.8
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.88
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+292:
+  id: 293
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 21800.0
+  symbol: PGF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 18.264
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: -0.026
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+293:
+  id: 294
+  portfolio_id: 4
+  purchase_price: 
+  quantity: 2000.0
+  symbol: QLD
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 84.4
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+294:
+  id: 295
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 180.0
+  symbol: MMM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 200.97
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 2.12
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+295:
+  id: 296
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 900.0
+  symbol: T
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.135
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: -0.165
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+296:
+  id: 297
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 18.0
+  symbol: ASIX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 38.01
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.25
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+297:
+  id: 298
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 100.0
+  symbol: GOOGL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 1087.64
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 3.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+298:
+  id: 299
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1440.0
+  symbol: MO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.18
+  as_of: 2018-05-17 10:39:08 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:08 UTC
+  change: 0.31
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+299:
+  id: 300
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 5600.0
+  symbol: AAPL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 188.15
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: -0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+300:
+  id: 301
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1044.0
+  symbol: ADM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 44.78
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: 0.26
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+301:
+  id: 302
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 630.0
+  symbol: AGR
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 51.55
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: -0.2
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+302:
+  id: 303
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 360.0
+  symbol: BMO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 79.08
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: -0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+303:
+  id: 304
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 500.0
+  symbol: BA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 343.34
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: 2.37
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+304:
+  id: 305
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1260.0
+  symbol: BWA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 52.425
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: 0.605
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+305:
+  id: 306
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: BG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 70.62
+  as_of: 2018-05-17 10:39:09 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:09 UTC
+  change: 0.03
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+306:
+  id: 307
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 360.0
+  symbol: COF
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 96.88
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 1.13
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+307:
+  id: 308
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 6250.0
+  symbol: CSCO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 43.99
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:07 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -1.17
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+308:
+  id: 309
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1260.0
+  symbol: CMCSA
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 32.66
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.11
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+309:
+  id: 310
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 540.0
+  symbol: CSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 63.98
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+310:
+  id: 311
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: DEO
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 146.35
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.56
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+311:
+  id: 312
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 588.0
+  symbol: DLR
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 105.47
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -1.43
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+312:
+  id: 313
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 720.0
+  symbol: DWDP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 68.42
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.39
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+313:
+  id: 314
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: EGP
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 89.34
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.24
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+314:
+  id: 315
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 405.0
+  symbol: FLS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 44.08
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.75
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+315:
+  id: 316
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: GS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 241.72
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.76
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+316:
+  id: 317
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 78.0
+  symbol: HYH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 53.0
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.31
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+317:
+  id: 318
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 360.0
+  symbol: HIG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 53.15
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.29
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+318:
+  id: 319
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: HON
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 147.31
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.505
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+319:
+  id: 320
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 270.0
+  symbol: HUM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 291.9
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 2.08
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+320:
+  id: 321
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1800.0
+  symbol: INTC
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 55.19
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.55
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+321:
+  id: 322
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 720.0
+  symbol: JNJ
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 124.65
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+322:
+  id: 323
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 810.0
+  symbol: JPM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 113.19
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.15
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+323:
+  id: 324
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 630.0
+  symbol: KMB
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.28
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.61
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+324:
+  id: 325
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 112.0
+  symbol: MNK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 16.06
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: 0.49
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+325:
+  id: 326
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 860.0
+  symbol: MDT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 85.08
+  as_of: 2018-05-17 10:39:10 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:10 UTC
+  change: -0.47
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+326:
+  id: 327
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1170.0
+  symbol: MRK
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 59.03
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.72
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+327:
+  id: 328
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 360.0
+  symbol: NVS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 77.325
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.275
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+328:
+  id: 329
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 900.0
+  symbol: ORCL
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 47.01
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 0.28
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+329:
+  id: 330
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 360.0
+  symbol: PH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 178.86
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 1.99
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+330:
+  id: 331
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 4266.0
+  symbol: PAYX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 64.75
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.21
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+331:
+  id: 332
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 720.0
+  symbol: PSX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 121.86
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 3.7
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+332:
+  id: 333
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 600.0
+  symbol: PPG
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.41
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 0.91
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+333:
+  id: 334
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 450.0
+  symbol: PX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 159.98
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 0.98
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+334:
+  id: 335
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 270.0
+  symbol: QCOM
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.03
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 0.33
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+335:
+  id: 336
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 720.0
+  symbol: SBUX
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 57.095
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.055
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+336:
+  id: 337
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 180.0
+  symbol: TOT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 64.18
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: 0.97
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+337:
+  id: 338
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 900.0
+  symbol: DIS
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 104.52
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.52
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+338:
+  id: 339
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 1800.0
+  symbol: EWH
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 26.0
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.25
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+339:
+  id: 340
+  portfolio_id: 5
+  purchase_price: 
+  quantity: 675.0
+  symbol: EWT
+  name: 
+  purchase_date: nil
+  strike: 
+  price: 36.845
+  as_of: 2018-05-17 10:39:11 -0500
+  expiration_date: 
+  stock_option: Stock
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:11 UTC
+  change: -0.425
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+340:
+  id: 341
+  portfolio_id: 7
+  purchase_price: 
+  quantity: -10.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 200.0
+  price: 0.18
+  as_of: 2018-05-17 10:39:13 -0500
+  expiration_date: 06/15/2018
+  stock_option: Call Option
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:13 UTC
+  change: 0.0
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+341:
+  id: 342
+  portfolio_id: 7
+  purchase_price: 
+  quantity: -10.0
+  symbol: AMGN
+  name: 
+  purchase_date: nil
+  strike: 210.0
+  price: 0.09
+  as_of: 2018-05-17 10:39:14 -0500
+  expiration_date: 06/15/2018
+  stock_option: Call Option
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:14 UTC
+  change: 0.0
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+342:
+  id: 343
+  portfolio_id: 7
+  purchase_price: 
+  quantity: 10.0
+  symbol: CELG
+  name: 
+  purchase_date: nil
+  strike: 120.0
+  price: 0.6
+  as_of: 2018-05-17 10:39:15 -0500
+  expiration_date: 01/18/2019
+  stock_option: Call Option
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:15 UTC
+  change: 0.0
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+343:
+  id: 344
+  portfolio_id: 4
+  purchase_price: 
+  quantity: -10.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 95.0
+  price: 3.3
+  as_of: 2018-05-17 10:39:15 -0500
+  expiration_date: 06/15/2018
+  stock_option: Call Option
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:15 UTC
+  change: 0.0
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
+344:
+  id: 345
+  portfolio_id: 4
+  purchase_price: 
+  quantity: -10.0
+  symbol: MSFT
+  name: 
+  purchase_date: nil
+  strike: 97.5
+  price: 3.5
+  as_of: 2018-05-17 10:39:16 -0500
+  expiration_date: 07/20/2018
+  stock_option: Call Option
+  created_at: 2018-04-12 22:02:08 UTC
+  updated_at: 2018-05-17 15:39:16 UTC
+  change: 0.0
+  daily_dividend: 0.0
+  daily_dividend_date: 2018-05-08 00:00:00 UTC
+
