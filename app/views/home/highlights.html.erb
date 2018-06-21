@@ -195,7 +195,7 @@ function myTimer() {
 //	document.getElementById("time").innerHTML = 10 - (minutes % 10) ;
 //    document.getElementById("time").innerHTML = d.toLocaleTimeString();
 if (poll) {
-	$.getJSON( "poll_check_new.js", function( data ) {
+	$.getJSON( "poll_check.js", function( data ) {
 
 	if (data['poll_request'] == 'Updating') {
 		$("#poll_request_button").removeClass("btn-warning");  
