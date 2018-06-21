@@ -197,6 +197,8 @@ function myTimer() {
 if (poll) {
 	$.getJSON( "poll_check_new.js", function( data ) {
 
+	console.log(data['poll_request_time']) ;
+
 	if (data['poll_request'] == 'Updating') {
 		$("#poll_request_button").removeClass("btn-warning");  
 		$("#poll_request_button").addClass("btn-primary");  
