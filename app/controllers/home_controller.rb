@@ -48,8 +48,8 @@ class HomeController < ApplicationController
      #Stock.table_data('All Portfolios', 'change', 'desc')[0]
     @dividends = Dividend.order('date desc')
     
-    @min = 300000
-    @max = 500000
+    @min = 400000
+    @max = 600000
     
     respond_to do |format|
         format.html 
