@@ -1,22 +1,5 @@
 namespace :history do
    
-#  # Translation Table at 626 
-#  # [["ETrade", 3], ["SLAT1", 4], ["SLAT2", 5], ["A&R", 6], ["DHC", 7], ["MSA", 8], ["River North", 9], ["R", 10], ["A Roth IRA", 11], ["A 401K Rollover", 12], ["R 401K Rollover", 13], ["R Roth IRA", 14], ["HSA", 15], ["BAD Inherited Roth", 16], ["GRATS 2015", 17]] 
-#  # on Heroku
-#  # [["ETrade", 1], ["SLAT1", 2], ["SLAT2", 3], ["A&R", 4], ["DHC", 5], ["MSA", 6], ["River North", 7], ["R", 8], ["A Roth IRA", 9], ["A 401K Rollover", 10], ["R 401K Rollover", 11], ["R Roth IRA", 12], ["HSA", 13], ["BAD Inherited Roth", 14], ["GRATS 2015", 15]]
-#  home_ids = [["ETrade", 3], ["SLAT1", 4], ["SLAT2", 5], ["A&R", 6], ["DHC", 7], ["MSA", 8], ["River North", 9], ["R", 10], ["A Roth IRA", 11], ["A 401K Rollover", 12], ["R 401K Rollover", 13], ["R Roth IRA", 14], ["HSA", 15], ["BAD Inherited Roth", 16], ["GRATS 2015", 17]] 
-#  heroku_ids = [["ETrade", 1], ["SLAT1", 2], ["SLAT2", 3], ["A&R", 4], ["DHC", 5], ["MSA", 6], ["River North", 7], ["R", 8], ["A Roth IRA", 9], ["A 401K Rollover", 10], ["R 401K Rollover", 11], ["R Roth IRA", 12], ["HSA", 13], ["BAD Inherited Roth", 14], ["GRATS 2015", 15]]  
-#  home_ids.each_with_index do |home, index|
-#    h = History.where(:portfolio_id => home )
-#    h.each do |n|
-#      n.portfolio_id = heroku_ids[index][1]
-#      puts heroku_ids[index][0] + ' = ' + home_ids[index][0]
-#      n.save
-#    end
-#  end 
-
-    #    all_dates = History.by_month("January", year: 2017).distinct.pluck(:snapshot_date)
-
     desc 'Daily Snapshot'
         task :daily_snapshot => :environment do
           totals = History.daily_snapshot

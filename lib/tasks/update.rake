@@ -4,8 +4,7 @@ namespace :update do
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '/Users/andydenenberg/Downloads/FTMLLC.CSV'
-#      file = '/Users/andydenenberg/Desktop/Hellemb_A/May_2018/R 401K Rollover.CSV'
+      file = '??'
       portfolio_name = File.basename(file).split('.').first   
 
   # first find and delete old stocks
@@ -85,7 +84,7 @@ desc "Update Portfolios"
   task :update_holdings => :environment do
     require 'csv'
 
-    base_dir = '/Users/andydenenberg/Desktop/Hellemb_B/heraga'
+    base_dir = '??'
     files = Dir["#{base_dir}/*"]
   
 # find the portfolios
@@ -178,26 +177,5 @@ desc "Update Portfolios"
     end # update_holdings
 
 
-  desc 'Create Portfolios'
-# Portfolio.all.collect { |i| i.cash.to_f }
-  portfolios = ["ETrade", "SLAT1", "SLAT2", "A&R", "DHC", "MSA", "River North", "R", "A Roth IRA", "A 401K Rollover", "R 401K Rollover", "R Roth IRA", "HSA", "BAD Inherited Roth", "GRATS 2015"]
-  cash = [63654.11, 1189041.0, 666362.57, 44875.91, 671063.84, 220911.51, 513802.0, 21034.79, 46141.03, 99309.92, 108924.47, 25651.99, 3800.0, 5043.44, 0.0]
-    task :portfolios => :environment do
-      portfolios.each_with_index do |p, i|
-        Portfolio.create!( :id => i+3, :name => p, :cash => cash[i] )
-      end 
-      puts "Portfolios Created"     
-    end
-
-    desc 'Create Stocks'
-        task :stocks => :environment do
-          # Stock.where(:stock_option => 'Stock').collect { |s| [ s.portfolio.name, s.symbol, s.quantity.to_f, s.stock_option ] }
-          stocks = ['MMM', '3M COMPANY', 355.0, 156.2, 1, 'Stock', nil, nil, '12/31/2012' ]
-          puts stocks.count
-      stocks.each do |s|
-        s = Stock.create!( daily_dividend: 0, symbol => s[0], :name => s[1], :quantity => s[2], :purchase_price => s[3], :portfolio_id => s[4], :stock_option => s[5] )
-      end  
-      puts "Stock Created"     
-    end
 
 end # update
