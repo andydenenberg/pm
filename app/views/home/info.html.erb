@@ -91,6 +91,7 @@ git push heroku master
 <hr>
 
 <h5>Using Ironstore cache on Heroku</h5>
+heroku addons:create iron_cache:developer<br>
 <p><b>setup the ironcache store</b><br>
 ironcache = IronCache::Client.new<br>
 @cache = ironcache.cache("my_cache")<br>
