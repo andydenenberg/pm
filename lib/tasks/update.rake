@@ -4,7 +4,7 @@ namespace :update do
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '??'
+      file = 'tmp/Grandchild Sub-Trust.CSV'
       portfolio_name = File.basename(file).split('.').first   
 
   # first find and delete old stocks
@@ -18,7 +18,6 @@ namespace :update do
       cash = stocks[-2][6].gsub('$','').gsub(',','').to_f
       if Portfolio.where(:name => portfolio_name).empty?
         portfolio =  "Portfolio.create!( name: '#{portfolio_name}', cash: #{cash}, group_id: 1 )\n"
-        portfolio_id = 2
       else
         portfolio = "p = Portfolio.where(:name => '#{portfolio_name}').first\n"
         portfolio += "p.cash = #{cash}\n"

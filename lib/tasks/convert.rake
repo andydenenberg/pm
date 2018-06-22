@@ -16,10 +16,10 @@ end
 
 desc 'Build the Databases'
 task :setup => ["db:migrate", 
-                "convert:portfolios", "convert:create_groups", "convert:populate_groups",
+                "convert:create_groups", "convert:portfolios", "convert:populate_groups",
                 "convert:stocks", "convert:options", 
-                "convert:check_for_funds", "convert:refresh_all",
-                "convert:upload_history", "history:all_ports" ]
+                "convert:check_for_funds", "convert:refresh_all"]
+                # "convert:upload_history", "history:all_ports" ]
 
   desc 'Create Portfolios'
 # Portfolio.all.collect { |i| i.cash.to_f }
