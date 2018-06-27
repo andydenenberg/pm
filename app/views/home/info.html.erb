@@ -57,8 +57,18 @@ Useful when cloning or duplicating an app<br>
 heroku rake convert:refresh_on_request --app her17
 </p>
 
+<p><b>Install Iron Cache</b><br>
+heroku addons:create iron_cache:developer
+<p><b>setup the ironcache store</b><br>
+ironcache = IronCache::Client.new<br>
+cache = ironcache.cache("my_cache")<br>
+cache.put("poll_request", 'Waiting')<br>
+cache.put("poll_request_time", Time.now.to_s)
+</p>
+
 <p><b>Install Sendgrid Mailer</b><br>
-heroku addons:create sendgrid:starter
+heroku addons:create sendgrid:starter<br>
+heroku config:add SENDGRID_API_KEY=<< ---key ---->><br>
 </p>
 <p><b>Install and open the scheduler</b><br>
 heroku addons:create scheduler:standard<br>
