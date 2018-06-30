@@ -1,0 +1,2 @@
+class Sysconfig < ApplicationRecord
+end

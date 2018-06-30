@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ytd_max: 1
+  ytd_min: 1
+  start_max: 1
+  start_min: 1
+
+two:
+  ytd_max: 1
+  ytd_min: 1
+  start_max: 1
+  start_min: 1
