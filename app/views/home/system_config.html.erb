@@ -2,7 +2,9 @@
 <%= form_tag(controller: "home", action: "system_config", method: "get", class: "form") do %>
 <%= label_tag(:max, "Maximum:") %>
 <%= text_field_tag(:max, @max) %>
+<br>
 <%= label_tag(:min, "Minimum:") %>
 <%= text_field_tag(:max, @min) %>
+<br>
 <%= submit_tag("Submit") %>
 <% end %>
