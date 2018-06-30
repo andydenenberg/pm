@@ -9,10 +9,10 @@ class HomeController < ApplicationController
   end
   def system_config_save
     @max = params[:max]
-    @min = parmas[:min]    
+    @min = params[:min]    
     s = Sysconfig.first
     s.ytd_max = params[:max]
-    s.ytd_min = parmas[:min]
+    s.ytd_min = params[:min]
     s.save
     render 'system_config'
   end
