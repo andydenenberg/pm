@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   end
   def system_config_save
     puts params.inspect
+    @max = params[:max]
     render 'system_config'
   end
   
