@@ -5,6 +5,10 @@ class HomeController < ApplicationController
   def system_config
     @max = 100
   end
+  def system_config_save
+    puts params.inspect
+    render 'system_config'
+  end
   
   def highlights_modal
     @port_gl = params[:port_gl]
