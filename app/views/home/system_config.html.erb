@@ -1,0 +1,6 @@
+
+<%= form_tag(controller: "home", action: "system_config", method: "get", class: "form") do %>
+<%= label_tag(:max, "Maximum:") %>
+<%= text_field_tag(:max, @max) %>
+<%= submit_tag("Submit") %>
+<% end %>

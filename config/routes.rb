@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   get 'highlights', to: 'home#highlights'
   get 'dividends_new', to: 'home#dividends'
   get 'poll_check', to: 'home#poll_check' 
-  get 'poll_set', to: 'home#poll_set' 
+  get 'poll_set', to: 'home#poll_set'
+  get 'system', to: 'home#systems_config' 
   
 #  get 'demo', to: 'home#demo'
 #  get 'home', to: 'home#index'

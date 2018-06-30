@@ -2,6 +2,10 @@ class HomeController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  def system_config
+    @max = 100
+  end
+  
   def highlights_modal
     @port_gl = params[:port_gl]
     case @port_gl
