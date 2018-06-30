@@ -3,11 +3,17 @@ class HomeController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def system_config
-    @max = 100
+    s = Sysconfig.first
+    @min = s.ytd_min ||= 500000
+    @max = s.ytd_max ||= 1000000
   end
   def system_config_save
-    puts params.inspect
     @max = params[:max]
+    @min = parmas[:min]    
+    s = Sysconfig.first
+    s.ytd_max = params[:max]
+    s.ytd_min = parmas[:min]
+    s.save
     render 'system_config'
   end
   
