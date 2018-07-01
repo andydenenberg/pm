@@ -160,10 +160,18 @@
 		
 <%  boy_999 = History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
 <%  boy_4 = History.where(portfolio_id: 4, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
+<%  boy_7 = History.where(portfolio_id: 7, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
+<%  boy_5 = History.where(portfolio_id: 5, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
   
   <%= line_chart [ 
   	{ name: 'Total', data: History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
   		[ h.snapshot_date.strftime("%-m/%-d"), h.total / boy_999 ]  }
+  	},
+  	{ name: 'SLAT2', data: History.where(portfolio_id: 5, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
+  		[ h.snapshot_date.strftime("%-m/%-d"), h.total / boy_5 ]  }
+  	},
+  	{ name: 'DHC', data: History.where(portfolio_id: 7, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
+  		[ h.snapshot_date.strftime("%-m/%-d"), h.total / boy_7 ]  }
   	},
   	{ name: 'SLAT1', data: History.where(portfolio_id: 4, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
   		[ h.snapshot_date.strftime("%-m/%-d"), h.total / boy_4 ]  }
