@@ -63,6 +63,10 @@ class HomeController < ApplicationController
      #Stock.table_data('All Portfolios', 'change', 'desc')[0]
     @dividends = Dividend.order('date desc')
     
+    stock_divs = Stock.calc_dividends('All Portfolios', ['Stock','Fund']) 
+    @month_to_date_divs = stock_divs[-1].first
+    @year_to_date_divs = stock_divs[-1][0..Date.today.month-1].sum
+    
     s = Sysconfig.first
     @min = s.ytd_min ||= 500000
     @max = s.ytd_max ||= 1000000

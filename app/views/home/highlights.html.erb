@@ -120,7 +120,8 @@
 			<tr>
 				<td class="align-top pl-2 pt-2 pr-2">
 
-				<b>Dividends YTD:</b> $230,786, <b>MTD:</b> $32,786" %></b>
+				<b>Dividends YTD:</b><%= number_to_currency(@year_to_date_divs, precision: 0) %>, 
+						  <b>MTD:</b><%= number_to_currency(@month_to_date_divs, precision: 0) %></b>
 				<strong class="d-inline-block mb-2 text-primary"><%= link_to 'Recent Dividends', dividends_new_path %></strong>
 				  <table class='table table-sm'>
 						<thead>
