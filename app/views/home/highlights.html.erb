@@ -168,8 +168,8 @@ boy<br>
 <% data = [ ] %>
 <% boy.each do |b| %>
 <% data.push (
-				{ name: b[0], data: History.where(portfolio_id: 9999, 
-				  snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), h.total / b[1] ]  }
+	{ name: b[0], data: History.where(portfolio_id: 9999, 
+	  snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), (h.total / b[1]).to_f ]  }
 				} ) %>
 <% end %>
 
