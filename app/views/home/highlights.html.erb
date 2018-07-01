@@ -158,7 +158,7 @@
 </table>
 
 <% boy = [ ] %>		
-<% Portfolio.all.each do |p| %>
+<% Portfolio.all[0..2].each do |p| %>
 <% boy.push [ p.name, History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total ] %>
 <% end %>
 
