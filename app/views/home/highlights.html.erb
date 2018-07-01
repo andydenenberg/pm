@@ -159,7 +159,7 @@
 		
 		
 <%  boy_999 = History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
-<%  boy_4 = History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
+<%  boy_4 = History.where(portfolio_id: 4, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
   
   <%= line_chart [ 
   	{ name: 'Total', data: History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
