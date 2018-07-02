@@ -162,6 +162,28 @@
 <% boy.push [ p.name, p.id, History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total ] %>
 <% end %>
 
+<table class='table table-sm table-bordered'>
+	<thead class="thead-light">
+	<tr>
+		<th>Name</th>
+		<th>Today</th>
+		<th>Month to Date</th>
+		<th>Year to Date</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+		<% boy.each do |b| %>
+		<tr>
+			<td>b[0]</td>
+			<td>.. </td>
+			<td>.. </td>
+			<td>.. </td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
 
 <% data = [ ] %>
 <% boy.each do |b| %>
@@ -171,7 +193,6 @@
 				} ) %>
 <% end %>
 
-<br>
 
 <%= line_chart data, id: "normal", thousands: ",", prefix: "", min: 0.9, max: 1.2, width: "1200px", height: "800px", points: false   %>							
 	
