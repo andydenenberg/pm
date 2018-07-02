@@ -169,16 +169,18 @@
 		<th>Today</th>
 		<th>Month to Date</th>
 		<th>Year to Date</th>
+		<th>Graph</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 		<% boy.each do |b| %>
 		<tr>
-			<td>b[0]</td>
+			<td><%= b[0] %></td>
 			<td>.. </td>
 			<td>.. </td>
 			<td>.. </td>
+			<td><%= check_box_tag b[1] %></td>
 		</tr>
 		<% end %>
 	</tbody>
