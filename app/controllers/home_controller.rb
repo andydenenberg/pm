@@ -60,7 +60,7 @@ class HomeController < ApplicationController
       series = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), (h.total / start_year_total).to_f ]  }      
       data.push ( { name: p.name, data: series } ) 
     end 
-    render data.json
+    render json: data
   end
 
   def highlights
