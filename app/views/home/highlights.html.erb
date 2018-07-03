@@ -187,7 +187,7 @@
 				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_month_total)/start_month_total, precision: 2 ) %>)</td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - start_year_total, precision: 0) %> 
 				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_year_total)/start_year_total, precision: 2 ) %>)</td>
-			<td class='text-center'><%= check_box_tag p.name %></td>
+			<td class='text-center'><%= check_box_tag p.name, 1, true %></td>
 		</tr>
 		<% end %>
 	</tbody>
