@@ -157,10 +157,9 @@
 	</tr>
 </table>
 
-<% boy = [ ] %>		
-<% Portfolio.find([[10, 11, 12, 14, 16, 17, 8, 3, 6, 4, 7, 5, 13, 9]]).each do |p| %>
-<% boy.push [ p.name, p.id, History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total ] %>
-<% end %>
+		
+[10, 11, 12, 14, 16, 17, 8, 3, 6, 4, 7, 5, 13, 9]
+
 
 <table class='table table-sm table-bordered'>
 	<thead class="thead-light">
@@ -174,11 +173,15 @@
 	</thead>
 	
 	<tbody>
-		<% boy.each do |b| %>
+		<% boy = [ ] %>
+		<% Portfolio.all.each do |p| %>
+		<% start_total = History.where(portfolio_id: p.id, 
+						  snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total ] %>
+		<% boy.push [ p.name, p.id, start_total %>
 		<tr>
-			<td><%= b[0] %></td>
-			<td>.. </td>
-			<td>.. </td>
+			<td><%= p.name %></td>
+			<td><%= number_to_currency(Portfolio.all.sum { |s| s.total_stocks_change_value }, precision: 0) %></td>
+			<td><%= number_to_currency(start_total, precision: 0) %></td>
 			<td>.. </td>
 			<td><%= check_box_tag b[1] %></td>
 		</tr>
