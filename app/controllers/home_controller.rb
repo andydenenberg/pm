@@ -83,13 +83,21 @@ class HomeController < ApplicationController
     @max = s.ytd_max ||= 1000000
     
     start_totals = [ ]
+    @total_value = 0
+    @day_change_total = 0
+    @month_change_total = 0
+    @year_change_total = 0
     Portfolio.all.each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
       start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total
       total = p.total_stocks_value+p.cash
-      day_change = p.total_stocks_change_value
+      day_change = p.total_stocks_change_value      
       month_change = total - start_month_total
-      year_change = total - start_year_total       
+      year_change = total - start_year_total  
+      @total_value += total
+      @day_change_total += day_change
+      @month_change_total += month_change
+      @year_change_total += year_change           
       start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f ]
     end 
       @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
