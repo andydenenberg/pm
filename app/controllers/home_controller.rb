@@ -57,7 +57,7 @@ class HomeController < ApplicationController
     puts params.inspect
     pts = params[:portfolios] ||= '5, 6'
     
-    ports = pts.split(',').map { |p| p.to_i }.inspect
+    ports = pts.split(',').map { |p| p.to_i }
     puts ports.inspect
     
     data = [ ]
