@@ -172,21 +172,15 @@
 	</thead>
 	
 	<tbody>
-		<% boy = [ ] %>
-		<% Portfolio.all.each do |p| %>
-		<% start_year_total = History.where(portfolio_id: p.id,
-			snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
-		<% start_month_total = History.where(portfolio_id: p.id,
-			snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total %>
-		<% boy.push [ p.name, p.id, start_year_total ] %>
+		<% Portfolio.all.with_index do |p, i| %>
 		<tr>
 			<td><%= "#{p.name}" %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_change_value, precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - start_month_total, precision: 0) %> 
-				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_month_total)/start_month_total, precision: 2 ) %>)</td>
-			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - start_year_total, precision: 0) %> 
-				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_year_total)/start_year_total, precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - @start_totals[i][0], precision: 0) %> 
+				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - @start_totals[i][0])/@start_totals[i][0], precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - @start_totals[i][1], precision: 0) %> 
+				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - @start_totals[i][1])/@start_totals[i][1], precision: 2 ) %>)</td>
 			<td class='text-center'><%= check_box_tag p.name, 1, true %></td>
 		</tr>
 		<% end %>
