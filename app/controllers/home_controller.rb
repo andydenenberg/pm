@@ -90,7 +90,7 @@ class HomeController < ApplicationController
       day_change = p.total_stocks_change_value
       month_change = total - start_month_total
       year_change = total - start_year_total       
-      @start_totals.push [ p.name, total, start_month_total, start_year_total, day_change, month_change, year_change ]
+      @start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f ]
     end 
       @start_totals.sort { |x,y| x[6] <=> y[6] } # sort by daiy change in value
     
