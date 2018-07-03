@@ -230,7 +230,7 @@ function refreshChart() {
 	$.getJSON("/chart_comparison.js", function(result){
 		console.log('refreshChart') ;
 		console.log(result) ;
-		Chartkick.charts["comparison"].refreshData(data1);
+		Chartkick.charts["comparison"].refreshData(result);
 		Chartkick.charts["comparison"].redraw();
     });    
 } ;
