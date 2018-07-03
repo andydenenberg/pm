@@ -181,7 +181,7 @@
 				( <%= number_to_percentage( 100*st[5]/st[1], precision: 2 ) %>)</td>
 			<td class='text-right'><%= number_to_currency(st[6], precision: 0) %> 
 				( <%= number_to_percentage( 100*st[6]/st[1], precision: 2 ) %>)</td>
-			<td class='text-center'><%= check_box_tag st[1], 1, true %></td>
+			<td class='text-center'><%= check_box_tag st[7], 1, true %></td>
 		</tr>
 		<% end %>
 		<tr>
@@ -204,8 +204,6 @@
 </div><!-- container -->
 
 
-
-
 <!-- The Modal -->
 <div class="modal" id="highlightsModal">
   <div class="modal-dialog">
@@ -223,21 +221,20 @@
   </div>
 </div>
 
-    $.getJSON('/website/RESTfulService.svc/LiveLocation/json', 
-     {
-        x: "1",
-        y: "2"
-     }, 
-     function(data) {
-         getResult(data.lat, data.lon);
-     });
-}
 
 <script>
 function refreshChart() {
+	
+	var h = [ ] ;
+	$("input").each( function () {
+		if ( $(this)[0].checked == true ) {
+			h.push($(this)[0].name) ;
+		}
+	   });
+	
 	$.getJSON("/chart_comparison.js",
 	{
-       portfolios: "1",
+       portfolios: h.toString(),
     }, 
      function(result){
 		console.log('refreshChart') ;

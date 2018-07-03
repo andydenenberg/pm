@@ -55,11 +55,7 @@ class HomeController < ApplicationController
   
   def chart_comparison
     puts params.inspect
-    if params[:portfolios]
-      ports = [8,9,10]
-    else 
-      ports = [5,6,7]
-    end
+    ports = params[:portfolios]
     data = [ ]
     Portfolio.find(ports).each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
@@ -104,7 +100,7 @@ class HomeController < ApplicationController
       @day_change_total += day_change
       @month_change_total += month_change
       @year_change_total += year_change           
-      start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f ]
+      start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id ]
     end 
       @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
     
