@@ -177,10 +177,10 @@
 			<td><%= st[0] %></td>
 			<td class='text-right'><%= number_to_currency(st[1], precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(st[4], precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(st[1], precision: 0) %> 
-				( <%= number_to_percentage( 100*st[1]/st[5], precision: 2 ) %>)</td>
-			<td class='text-right'><%= number_to_currency(st[1], precision: 0) %> 
-				( <%= number_to_percentage( 100*st[1]/st[6], precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(st[5], precision: 0) %> 
+				( <%= number_to_percentage( 100*st[5]/st[1], precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(st[6], precision: 0) %> 
+				( <%= number_to_percentage( 100*st[6]/st[1], precision: 2 ) %>)</td>
 			<td class='text-center'><%= check_box_tag st[1], 1, true %></td>
 		</tr>
 		<% end %>
