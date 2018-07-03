@@ -158,9 +158,7 @@
 </table>
 
 		
-[10, 11, 12, 14, 16, 17, 8, 3, 6, 4, 7, 5, 13, 9]
-
-
+<br>
 <table class='table table-sm table-bordered'>
 	<thead class="thead-light">
 	<tr>
@@ -182,14 +180,14 @@
 			snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total %>
 		<% boy.push [ p.name, p.id, start_year_total ] %>
 		<tr>
-			<td><%= "#{p.name}(#{p.id})" %></td>
+			<td><%= "#{p.name}" %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_change_value, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - start_month_total, precision: 0) %> 
 				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_month_total)/start_month_total, precision: 2 ) %>)</td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash - start_year_total, precision: 0) %> 
 				( <%= number_to_percentage( 100*(p.total_stocks_value+p.cash - start_year_total)/start_year_total, precision: 2 ) %>)</td>
-			<td><%= check_box_tag p.name %></td>
+			<td class='text-center'><%= check_box_tag p.name %></td>
 		</tr>
 		<% end %>
 	</tbody>
