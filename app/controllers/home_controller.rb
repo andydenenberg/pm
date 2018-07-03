@@ -92,7 +92,7 @@ class HomeController < ApplicationController
       year_change = total - start_year_total       
       start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f ]
     end 
-      @start_totals = start_totals.sort { |x,y| x[6] <=> y[6] } # sort by daiy change in value
+      @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
     
     respond_to do |format|
         format.html 
