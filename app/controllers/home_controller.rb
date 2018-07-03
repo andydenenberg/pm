@@ -86,9 +86,12 @@ class HomeController < ApplicationController
     Portfolio.all.each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
       start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total
-      @start_totals.push [ start_month_total, start_year_total ]
+      total = p.total_stocks_value+p.cash
+      day_change = p.total_stocks_change_value
+      month_change = total - start_month_total
+      year_change = total - start_year_total       
+      @start_totals.push [ p.name, total, start_month_total, start_year_total, day_change, month_change, year_change ]
     end 
-    
     
     respond_to do |format|
         format.html 
