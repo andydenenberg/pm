@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   
   def chart_comparison
     puts params.inspect
-    pts = params[:portfolios] ||= [ '5', '6' ]
+    pts = params[:portfolios] ||= '5, 6'
     
     ports = pts.split(',').map { |p| p.to_i }.inspect
     puts ports.inspect
