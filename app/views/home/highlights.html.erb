@@ -175,9 +175,8 @@
 	<tbody>
 		<% boy = [ ] %>
 		<% Portfolio.all.each do |p| %>
-		<% start_total = History.where(portfolio_id: p.id, 
-						  snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total ] %>
-		<% boy.push [ p.name, p.id, start_total %>
+		<% start_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total %>
+		<% boy.push [ p.name, p.id, start_total ] %>
 		<tr>
 			<td><%= p.name %></td>
 			<td><%= number_to_currency(Portfolio.all.sum { |s| s.total_stocks_change_value }, precision: 0) %></td>
