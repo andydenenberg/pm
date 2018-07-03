@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'consolidated', to: 'home#consolidated'
   get 'positions', to: 'home#positions'
   get 'graphs', to: 'home#graphs'
+  get 'chart_comparison', to: 'home#chart_comparison'
   get 'highlights', to: 'home#highlights'
   get 'dividends_new', to: 'home#dividends'
   get 'poll_check', to: 'home#poll_check' 
