@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   
   def chart_comparison
     puts params.inspect
-    ports = params[:portfolios].to_a ||= [ 5,6 ]
+    ports = params[:portfolios].split(',').map { |p| p.to_i } ||= [ 5,6 ]
     data = [ ]
     Portfolio.find(ports).each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
