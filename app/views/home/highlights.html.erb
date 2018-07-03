@@ -190,14 +190,14 @@
 			<td class='text-right'><%= number_to_currency(@day_change_total, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(@month_change_total, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(@year_change_total, precision: 0) %></td>
-			<td class='text-center'><button type="button" class="btn btn-primary btn-sm">Refresh Chart</button></td>
+			<td class='text-center'><button type="button" onclick="refreshChart()" class="btn btn-primary btn-sm">Refresh Chart</button></td>
 		</tr>
 	</tbody>
 </table>
 
 
 
-<%= line_chart chart_comparison_path, id: "new_normal", thousands: ",", prefix: "", min: 0.9, max: 1.2, width: "1200px", height: "800px", points: false   %>							
+<%= line_chart chart_comparison_path, id: "comparison", thousands: ",", prefix: "", min: 0.9, max: 1.2, width: "1200px", height: "800px", points: false   %>							
 
 	
 
@@ -226,6 +226,14 @@
 
 
 <script>
+function refreshChart() {
+	$.getJSON("/chart_comparison.js", function(result){
+		console.log('refreshChart') ;
+		console.log(result) ;
+		Chartkick.charts["comparison"].refreshData(data1);
+		Chartkick.charts["comparison"].redraw();
+    });    
+} ;
 
 var myVar = setInterval(myTimer, 5000);
 var poll = true ;
