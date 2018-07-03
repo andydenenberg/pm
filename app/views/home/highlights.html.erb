@@ -172,7 +172,7 @@
 	</thead>
 	
 	<tbody>
-		<% Portfolio.all.with_index do |p, i| %>
+		<% Portfolio.all.each.with_index do |p, i| %>
 		<tr>
 			<td><%= "#{p.name}" %></td>
 			<td class='text-right'><%= number_to_currency(p.total_stocks_value+p.cash, precision: 0) %></td>
