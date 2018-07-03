@@ -194,18 +194,9 @@
 </table>
 
 
-<% data = [ ] %>
-<% boy.each do |b| %>
-<% data.push (
-	{ name: b[0], data: History.where(portfolio_id: b[1], 
-	  snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), (h.total / b[2]).to_f ]  }
-				} ) %>
-<% end %>
-
 
 <%= line_chart chart_comparison_path, id: "new_normal", thousands: ",", prefix: "", min: 0.9, max: 1.2, width: "1200px", height: "800px", points: false   %>							
 
-<%= line_chart data, id: "normal", thousands: ",", prefix: "", min: 0.9, max: 1.2, width: "1200px", height: "800px", points: false   %>							
 	
 
 </div><!-- container -->

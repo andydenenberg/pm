@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   
   def chart_comparison
     data = [ ]
-    Portfolio.all.each do |p|
+    Portfolio.find([5,6,7]).each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
       series = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), (h.total / start_year_total).to_f ]  }      
       data.push ( { name: p.name, data: series } ) 
