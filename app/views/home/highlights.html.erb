@@ -183,6 +183,7 @@
 				( <%= number_to_percentage( 100*st[6]/st[1], precision: 2 ) %>)</td>
 			<td class='text-center'><%= check_box_tag st[1], 1, true %></td>
 		</tr>
+		<% end %>
 		<tr>
 			<td>Total</td>
 			<td class='text-right'><%= number_to_currency(@total, precision: 0) %></td>
@@ -190,7 +191,7 @@
 			<td class='text-right'><%= number_to_currency(@month_change_total, precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(@year_change_total, precision: 0) %></td>
 			<td></td>
-		<% end %>
+		</tr>
 	</tbody>
 </table>
 
