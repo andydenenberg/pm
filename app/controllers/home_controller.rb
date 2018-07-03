@@ -54,8 +54,14 @@ class HomeController < ApplicationController
   end
   
   def chart_comparison
+    puts params.inspect
+    if params[:portfolios]
+      ports = [8,9,10]
+    else 
+      ports = [5,6,7]
+    end
     data = [ ]
-    Portfolio.find([5,6,7]).each do |p|
+    Portfolio.find(ports).each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today.beginning_of_year+2).first.total
 #      start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total
       series = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%-m/%-d"), (h.total / start_year_total).to_f ]  }      

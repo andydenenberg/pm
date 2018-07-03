@@ -223,11 +223,23 @@
   </div>
 </div>
 
-
+    $.getJSON('/website/RESTfulService.svc/LiveLocation/json', 
+     {
+        x: "1",
+        y: "2"
+     }, 
+     function(data) {
+         getResult(data.lat, data.lon);
+     });
+}
 
 <script>
 function refreshChart() {
-	$.getJSON("/chart_comparison.js", function(result){
+	$.getJSON("/chart_comparison.js",
+	{
+       portfolios: "1",
+    }, 
+     function(result){
 		console.log('refreshChart') ;
 		console.log(result) ;
 		Chartkick.charts["comparison"].refreshData(result);
