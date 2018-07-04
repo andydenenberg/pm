@@ -238,7 +238,10 @@ function refreshChart() {
     }, 
      function(result){
 		console.log('refreshChart') ;
+		console.log('result:');
 		console.log(result) ;
+		console.log('getData:');
+		Chartkick.charts["comparison"].getData()
 		Chartkick.charts["comparison"].refreshData(result);
 		Chartkick.charts["comparison"].redraw();
     });    
