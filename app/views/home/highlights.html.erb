@@ -241,8 +241,9 @@ function refreshChart() {
 		console.log('result:');
 		console.log(result) ;
 		console.log('getData:');
-		Chartkick.charts["comparison"].getData()
-		Chartkick.charts["comparison"].refreshData(result);
+		var getData = Chartkick.charts["comparison"].getData();
+		console.log(getData);
+		console.log(Chartkick.charts["comparison"].refreshData(result) );
 		Chartkick.charts["comparison"].redraw();
     });    
 } ;
