@@ -202,7 +202,7 @@
 
 <%= line_chart chart_comparison_path, adapter: "google",
 			library: {title: "Year to Date Performance", 
-					  hAxis: {title: "Date", gridlines: { count: 50 } }, 
+					  hAxis: {title: "Date", gridlines: { count: 50 }, ticks: [new Date(2014, 0, 31), new Date(2018, 1, 28), new Date(2018, 3, 31)] }, 
 					  vAxis: {title: "Normalized Return", gridlines: { count: 50 } } },
 			id: "comparison", thousands: ",", prefix: "", min: 0.90, max: 1.10, width: "1200px", height: "800px", points: false   %>							
 
