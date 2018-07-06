@@ -119,9 +119,6 @@
 			</tr>
 			<tr>
 				<td class="align-top pl-2 pt-2 pr-2">
-
-				<b>Dividends YTD:</b><%= number_to_currency(@year_to_date_divs, precision: 0) %>, 
-						  <b>MTD:</b><%= number_to_currency(@month_to_date_divs, precision: 0) %></b>
 				<strong class="d-inline-block mb-2 text-primary"><%= link_to 'Recent Dividends', dividends_new_path %></strong>
 				  <table class='table table-sm'>
 						<thead>
@@ -141,6 +138,12 @@
 							<td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td>
 						</tr>
 						<% end %>
+						<tr>
+							<td class='text-right'><b>Dividends YTD:</b></td>
+							<td class='text-right'><%= number_to_currency(@year_to_date_divs, precision: 0) %></td>
+							<td class='text-right'><b>MTD:</b></td>
+							<td class='text-right'><%= number_to_currency(@month_to_date_divs, precision: 0) %></td>
+						</tr>
 						</tbody>
 				  </table>
 				</td>
