@@ -61,6 +61,8 @@ class HomeController < ApplicationController
     puts ports.inspect
     
     data = [ ]
+    zero_line = History.where(portfolio_id: Portfolio.first.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%Y/%m/%d"), 0 ]  } 
+    data.push ( {name: 'zero', data: zero_line } )
     Portfolio.find(ports).each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).first.total
 #      start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total
