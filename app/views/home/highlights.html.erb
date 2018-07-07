@@ -203,8 +203,8 @@
 
 
 <%= line_chart chart_comparison_path, adapter: "google",
-			library: {title: "Year to Date Performance", 
-			hAxis: {title: "Date", format: 'MMM dd', gridlines: {color: 'rgb(211,211,211)', count: 15} }, 
+			library: {title: "Year to Date Performance", chartArea: { width: '100%', height: '80%'}, 
+			hAxis: {title: "Date", format: 'MMM dd', gridlines: {color: 'rgb(211,211,211)', count: } }, 
 			vAxis: {format: 'percent', gridlines: { color: 'rgb(211,211,211)', count: 50 } } },
 			id: "comparison", thousands: ",", prefix: "", min: -0.1, max: 0.1, height: "800px", points: false   %>							
 

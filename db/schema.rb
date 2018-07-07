@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180607151300) do
+ActiveRecord::Schema.define(version: 20180630213337) do
 
   create_table "dividends", force: :cascade do |t|
     t.string "symbol"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 20180607151300) do
     t.decimal "change"
     t.decimal "daily_dividend"
     t.datetime "daily_dividend_date"
+  end
+
+  create_table "sysconfigs", force: :cascade do |t|
+    t.integer "ytd_max"
+    t.integer "ytd_min"
+    t.integer "start_max"
+    t.integer "start_min"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

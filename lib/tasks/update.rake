@@ -4,7 +4,7 @@ namespace :update do
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = 'tmp/Grandchild Sub-Trust.CSV'
+      file = 'tmp/DHC.CSV'
       portfolio_name = File.basename(file).split('.').first   
 
   # first find and delete old stocks
