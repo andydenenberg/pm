@@ -202,12 +202,12 @@
 
 
 
-<%= line_chart chart_comparison_path, adapter: "google",
-			library: {title: "Year to Date Performance", chartArea: { width: '100%', height: '80%'},
+<%= line_chart chart_comparison_path, adapter: "google", library: {
+			title: "Year to Date Performance", chartArea: { width: '100%', height: '80%'},
 			legend: { position: 'top', alignment: 'end' }, 
 			hAxis: {title: "Date", format: 'MMM dd', gridlines: {color: 'rgb(211,211,211)', count: 6 } }, 
-			vAxis: {format: 'percent', gridlines: { color: 'rgb(211,211,211)', count: 50 } } },
-			id: "comparison", thousands: ",", prefix: "", min: -0.1, max: 0.1, height: "800px", points: false   %>							
+			vAxis: {format: 'percent', gridlines: { color: 'rgb(211,211,211)', count: 50 } } 
+			}, id: "comparison", thousands: ",", prefix: "", min: -0.1, max: 0.1, points: false   %>							
 
 </div><!-- container -->
 
