@@ -205,14 +205,12 @@
 <%= line_chart chart_comparison_path, adapter: "google", library: {
 			series: {
 		      0: {
-		        type: "steppedArea",
 		        color: '#FF0000',
 		        visibleInLegend: false,
 		        areaOpacity: 0,
 		        enableInteractivity: false
 		      }
-		    },
-		    
+		    },		    
 			title: "Year to Date Performance", chartArea: { width: '90%', height: '80%'},
 			legend: { position: 'top', alignment: 'end' }, 
 			hAxis: {title: "Date", format: 'MMM dd', gridlines: {color: 'rgb(211,211,211)', count: 6 } }, 
