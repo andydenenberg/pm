@@ -89,13 +89,17 @@ class HomeController < ApplicationController
     @max = s.ytd_max ||= 1000000
     
     start_totals = [ ]
+    @start_year_total = 0
+    @start_month_total = 0
     @total_value = 0
     @day_change_total = 0
     @month_change_total = 0
     @year_change_total = 0
     Portfolio.all.each do |p|
       start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).first.total
+      @start_year_total += start_year_total
       start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today).first.total
+      @start_month_total += start_month_total
       total = p.total_stocks_value+p.cash
       day_change = p.total_stocks_change_value      
       month_change = total - start_month_total
