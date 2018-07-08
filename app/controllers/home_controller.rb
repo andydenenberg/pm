@@ -54,7 +54,7 @@ class HomeController < ApplicationController
   end
   
   def chart_comparison
-    pts = params[:portfolios] ||= "#{Portfolio.first.id}"   # '5, 6'
+    pts = params[:portfolios] ||= '10, 17, 8, 3, 6, 7, 9' #  "#{Portfolio.first.id}" 
     ports = pts.split(',').map { |p| p.to_i }
     
     data = [ ]
