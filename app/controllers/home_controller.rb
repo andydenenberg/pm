@@ -54,11 +54,8 @@ class HomeController < ApplicationController
   end
   
   def chart_comparison
-    puts params.inspect
-    pts = params[:portfolios] ||= '5, 6'
-    
+    pts = params[:portfolios] ||= "#{Portfolio.first.id}"   # '5, 6'
     ports = pts.split(',').map { |p| p.to_i }
-    puts ports.inspect
     
     data = [ ]
     zero_line = History.where(portfolio_id: Portfolio.first.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%Y/%m/%d"), 0 ]  } 
