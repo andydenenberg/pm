@@ -117,7 +117,7 @@ class HomeController < ApplicationController
     
     start_totals = [ ]
     @group_totals = { }
-    Group.all.each do |g| group_totals[g.name] = [0,0,0] end # day_change, month_change, year_change
+    Group.all.each do |g| @group_totals[g.name] = [0,0,0] end # day_change, month_change, year_change
     @start_year_total = 0
     @start_month_total = 0
     @total_value = 0
