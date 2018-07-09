@@ -138,9 +138,9 @@ class HomeController < ApplicationController
       @month_change_total += month_change
       @year_change_total += year_change           
       start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id ]
-      @group_totals[Group.find(Portfolio.find(5).group_id).name][0] += day_change
-      @group_totals[Group.find(Portfolio.find(5).group_id).name][1] += month_change
-      @group_totals[Group.find(Portfolio.find(5).group_id).name][2] += year_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][0] += day_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][1] += month_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][2] += year_change
     end 
       @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
     

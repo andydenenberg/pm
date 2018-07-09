@@ -201,7 +201,9 @@
 </table>
 
 <br>
-<%= @group_totals.inspect %>
+<% @group_totals.each do |g| %>
+day: <%= g[0].to_f %> | month: <%= g[1].to_f %> | year: <%= g[2].to_f %><br>
+<% end %>
 <br>
 
 <%= line_chart chart_comparison_path, adapter: "google", library: {
