@@ -201,8 +201,8 @@
 </table>
 
 <br>
-<% @group_totals.each do |g| %>
-day: <%= g[0] %> | month: <%= g[1] %> | year: <%= g[2] %><br>
+<% @group_totals.each do |key, val| %>
+<%= key %> - day: <%= val[0] %> | month: <%= val[1] %> | year: <%= val[2] %><br>
 <% end %>
 <br>
 
