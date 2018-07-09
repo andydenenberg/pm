@@ -53,6 +53,33 @@ class HomeController < ApplicationController
     
   end
   
+#  duration = 'daily'
+#  ids = [10, 17, 8, 3, 6, 7, 9]
+#  
+#  start = Date.today.beginning_of_year
+#  data = [ ]
+#  if duration == 'weekly'
+#    span = 1.week-1.day
+#    increment = 1.week
+#  else
+#    span = 1.day-1.minute
+#    increment = 1.day # 1.week
+#  end
+#  loop do
+#    window = [ start..start+span ]
+#    sum = 0
+#    ids.each do |id|
+#      s = History.where(portfolio_id: id, snapshot_date: window ).average(:total)
+#      if s
+#        sum += s.to_f
+#      end
+#    end
+#    data.push [ start, sum ]
+#    start += increment
+#    puts start
+#    break if start > Date.today
+#  end
+    
   def chart_comparison
     pts = params[:portfolios] ||= '10, 17, 8, 3, 6, 7, 9' #  "#{Portfolio.first.id}" 
     ports = pts.split(',').map { |p| p.to_i }
@@ -65,7 +92,8 @@ class HomeController < ApplicationController
 #      start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today.beginning_of_month+2).first.total
       series = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%Y/%m/%d"), ( (h.total / start_year_total) - 1 ) ]  }      
       data.push ( { name: p.name, data: series } ) 
-    end 
+    end
+     
     render json: data
   end
 
@@ -88,6 +116,8 @@ class HomeController < ApplicationController
     @max = s.ytd_max ||= 1000000
     
     start_totals = [ ]
+    @group_totals = { }
+    Group.all.each do |g| group_totals[g.name] = [0,0,0] end # day_change, month_change, year_change
     @start_year_total = 0
     @start_month_total = 0
     @total_value = 0
@@ -108,6 +138,9 @@ class HomeController < ApplicationController
       @month_change_total += month_change
       @year_change_total += year_change           
       start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id ]
+      @group_totals[Portfolio.find(p.id).name][0] += day_change
+      @group_totals[Portfolio.find(p.id).name][1] += month_change
+      @group_totals[Portfolio.find(p.id).name][0] += year_change
     end 
       @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
     

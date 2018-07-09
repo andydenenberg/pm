@@ -200,7 +200,9 @@
 	</tbody>
 </table>
 
-
+<br>
+<%= @group_totals.inspect %>
+<br>
 
 <%= line_chart chart_comparison_path, adapter: "google", library: {
 			seriesType: "line",
