@@ -218,13 +218,21 @@
 		<% @group_totals.each do |key, val| %>
 		<tr>
 			<td><%= key %></td>
-			<td class='text-right'></td>
 			<td class='text-right'><%= number_to_currency(val[0], precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(val[1], precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(val[2], precision: 0) %></td> 
+			<td class='text-right'><%= number_to_currency(val[3], precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(val[4], precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(val[5], precision: 0) %></td> 
 			<td class='text-center'></td>
 		</tr>
 		<% end %>
+		<tr>
+			<td>Total</td>
+			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[0]}, precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[3]}, precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[4]}, precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[5]}, precision: 0) %></td> 
+			<td class='text-center'></td>
+		</tr>
 	</tbody>
 </table>
 

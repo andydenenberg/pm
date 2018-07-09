@@ -117,7 +117,7 @@ class HomeController < ApplicationController
     
     start_totals = [ ]
     @group_totals = { }
-    Group.all.each do |g| @group_totals[g.name] = [0,0,0] end # day_change, month_change, year_change
+    Group.all.each do |g| @group_totals[g.name] = [0,0,0,0,0,0] end # day_change, month_change, year_change
     @start_year_total = 0
     @start_month_total = 0
     @total_value = 0
@@ -138,9 +138,12 @@ class HomeController < ApplicationController
       @month_change_total += month_change
       @year_change_total += year_change           
       start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id ]
-      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][0] += day_change
-      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][1] += month_change
-      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][2] += year_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][0] += total
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][1] += start_month_total
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][2] += start_year_total
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][3] += day_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][4] += month_change
+      @group_totals[Group.find(Portfolio.find(p.id).group_id).name][5] += year_change
     end 
       @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
     
