@@ -236,10 +236,6 @@
 	</tbody>
 </table>
 
-<% @group_totals.each do |key, val| %>
-<%= key %> - day: <%= val[0] %> | month: <%= val[1] %> | year: <%= val[2] %><br>
-<% end %>
-<br>
 
 <%= line_chart chart_comparison_path, adapter: "google", library: {
 			seriesType: "line",
