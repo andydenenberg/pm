@@ -215,7 +215,7 @@
 	</thead>
 	
 	<tbody>
-		<% @group_totals.each.with_index do |key, val| %>
+		<% @group_totals.each.with_index do |key, val, index| %>
 		<tr>
 			<td><%= key %></td>
 			<td class='text-right'></td>
@@ -228,6 +228,9 @@
 	</tbody>
 </table>
 
+<% @group_totals.each do |key, val| %>
+<%= key %> - day: <%= val[0] %> | month: <%= val[1] %> | year: <%= val[2] %><br>
+<% end %>
 <br>
 
 <%= line_chart chart_comparison_path, adapter: "google", library: {
