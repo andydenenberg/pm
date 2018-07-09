@@ -201,9 +201,33 @@
 </table>
 
 <br>
-<% @group_totals.each do |key, val| %>
-<%= key %> - day: <%= val[0] %> | month: <%= val[1] %> | year: <%= val[2] %><br>
-<% end %>
+
+<table class='table table-sm table-bordered'>
+	<thead class="thead-light">
+	<tr>
+		<th>Name</th>
+		<th>Total</th>
+		<th>Change Today</th>
+		<th>Month to Date</th>
+		<th>Year to Date</th>
+		<th>Graph</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+		<% @group_totals.each.with_index do |key, val| %>
+		<tr>
+			<td><%= key %></td>
+			<td class='text-right'></td>
+			<td class='text-right'><%= number_to_currency(val[0], precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(val[1], precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(val[2], precision: 0) %></td> 
+			<td class='text-center'></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
 <br>
 
 <%= line_chart chart_comparison_path, adapter: "google", library: {
