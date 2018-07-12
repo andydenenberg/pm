@@ -177,7 +177,14 @@
 	
 	<tbody>
 		<% @start_totals.each.with_index do |st, i| %>
-		<tr>
+		<% group = Group.find(Portfolio.find_by_name(st).group_id) %>
+		<% if group == 1 %>
+			<tr class="table-secondary">
+		<% elsif group == 2 %>
+			<tr class="table-info">
+		<% else %>
+			<tr>
+		<% end %>
 			<td><%= st[0] %></td>
 			<td class='text-right'><%= number_to_currency(st[1], precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(st[4], precision: 0) %></td>
