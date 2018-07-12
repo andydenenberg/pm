@@ -217,7 +217,7 @@
 	
 	<tbody>
 		<% @group_totals.each_with_index do |(key, val), index| %>
-		<%= index == 1 ? "<tr class='table-secondary' >" : "<tr>" %>
+<tr class="table-secondary">
 			<td><%= key %></td>
 			<td class='text-right'><%= number_to_currency(val[0], precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(val[3], precision: 0) %></td>
