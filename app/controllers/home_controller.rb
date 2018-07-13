@@ -132,12 +132,13 @@ class HomeController < ApplicationController
       total = p.total_stocks_value+p.cash
       day_change = p.total_stocks_change_value      
       month_change = total - start_month_total
-      year_change = total - start_year_total  
+      year_change = total - start_year_total
+      percent_change_year = year_change / start_year_total 
       @total_value += total
       @day_change_total += day_change
       @month_change_total += month_change
       @year_change_total += year_change           
-      start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id ]
+      start_totals.push [ p.name, total.to_f, start_month_total.to_f, start_year_total.to_f, day_change.to_f, month_change.to_f, year_change.to_f, p.id, percent_change_year ]
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][0] += total
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][1] += start_month_total
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][2] += start_year_total
@@ -145,7 +146,7 @@ class HomeController < ApplicationController
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][4] += month_change
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][5] += year_change
     end 
-      @start_totals = start_totals.sort { |x,y| y[6] <=> x[6] } # sort by daiy change in value
+      @start_totals = start_totals.sort { |x,y| y[6] <=> x[7] } # sort by daiy change in value
     
     respond_to do |format|
         format.html 
