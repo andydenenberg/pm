@@ -224,7 +224,7 @@
 	
 	<tbody>
 		<% @group_totals.each_with_index do |(key, val), index| %>
-		<% group = Group.find(Portfolio.find_by_name(key).group_id).id %>
+		<% group = Group.find_by_name(key).id %>
 		<% if group == 1 %>
 			<tr class="table-secondary">
 		<% elsif group == 2 %>
