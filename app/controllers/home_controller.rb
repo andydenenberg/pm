@@ -146,7 +146,7 @@ class HomeController < ApplicationController
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][4] += month_change
       @group_totals[Group.find(Portfolio.find(p.id).group_id).name][5] += year_change
     end 
-      @start_totals = start_totals.sort { |x,y| y[6] <=> x[7] } # sort by daiy change in value
+      @start_totals = start_totals.sort { |x,y| y[7] <=> x[7] } # sort by daiy change in value
     
     respond_to do |format|
         format.html 
