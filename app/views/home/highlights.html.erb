@@ -235,8 +235,10 @@
 			<td><%= key %></td>
 			<td class='text-right'><%= number_to_currency(val[0], precision: 0) %></td>
 			<td class='text-right'><%= number_to_currency(val[3], precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(val[4], precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(val[5], precision: 0) %></td> 
+			<td class='text-right'><%= number_to_currency(val[4], precision: 0) %>
+				( <%= number_to_percentage( 100*val[4]/val[6], precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(val[5], precision: 0) %> 
+				( <%= number_to_percentage( 100*val[4]/val[6], precision: 2 ) %>)</td>
 			<td class='text-center'></td>
 		</tr>
 		<% end %>
