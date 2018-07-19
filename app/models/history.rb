@@ -54,14 +54,14 @@ class History < ApplicationRecord
         selected_date = Time.local(year, month, day)
         value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if value.count == 0 
-          value = nil
+          value = 'null'
           relative = 'null'
          else
-          value = value.sum(0) { |v| v.total }
+          value = value.sum(0) { |v| v.total }.to_f
           rel = ((value / reference_level) - 1).to_f 
         end
         values.push( ["#{month-1}/#{day}/#{year}", value ] )
-        relative.push( ["#{month-1}/#{day}/#{year}", rel.to_f ] )
+        relative.push( ["#{month-1}/#{day}/#{year}", rel ] )
       end
       return values, relative
     end
