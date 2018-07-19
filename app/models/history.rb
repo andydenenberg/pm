@@ -55,7 +55,7 @@ class History < ApplicationRecord
         value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if value.count == 0 
           value = 'null'
-          relative = 'null'
+          rel = 'null'
          else
           value = value.sum(0) { |v| v.total }.to_f
           rel = ((value / reference_level) - 1).to_f 
