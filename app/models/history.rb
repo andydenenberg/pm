@@ -54,7 +54,7 @@ class History < ApplicationRecord
         selected_date = Time.local(year, month, day)
         value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if value.count == 0 
-          value = 'null'
+          value = nil
           relative = 'null'
          else
           value = value.sum(0) { |v| v.total }
