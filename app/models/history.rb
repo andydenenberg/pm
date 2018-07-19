@@ -48,21 +48,19 @@ class History < ApplicationRecord
 
 
     def self.month_totals_comparison(year, month, p_ids, reference_level)
-    time = [ ]
     values = [ ]
       last_value = 0
       (1..Time.days_in_month(month, year)).each do |day|
-        time.push "#{month-1}/#{day}/#{year}"
         selected_date = Time.local(year, month, day)
         new_value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if new_value.last.nil? 
-           # new_value = ?
+          new_value = 'null'
          else
           new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
         end
-        values.push( new_value )
+        values.push( ["#{month-1}/#{day}/#{year}", new_value ] )
       end
-      return values, time
+      return values
     end
 
 
