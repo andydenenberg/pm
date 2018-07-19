@@ -60,7 +60,7 @@ class History < ApplicationRecord
           value = value.sum(0) { |v| v.total }
           rel = (value / reference_level) - 1 
         end
-        values.push( ["#{month-1}/#{day}/#{year}", value.to_f ] )
+        values.push( ["#{month-1}/#{day}/#{year}", value == 'null' ? 'null' : value.to_f ] )
         relative.push( ["#{month-1}/#{day}/#{year}", rel.to_f ] )
       end
       return values, relative
