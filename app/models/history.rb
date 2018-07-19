@@ -57,6 +57,7 @@ class History < ApplicationRecord
           new_value = 'null'
          else
           new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
+          new_value = (new_value / reference_level) - 1 )
         end
         values.push( ["#{month-1}/#{day}/#{year}", new_value ] )
       end
