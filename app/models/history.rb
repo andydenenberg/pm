@@ -96,6 +96,7 @@ class History < ApplicationRecord
             reference_level += History.where(portfolio_id: p, snapshot_date: Date.today.beginning_of_year..Date.today).first.total
           end
           
+          
            absolute = [ ]
            relative = [ ]
            time = '[ '
@@ -116,7 +117,7 @@ class History < ApplicationRecord
     relative = [ ]
       (1..Time.days_in_month(month, year)).each do |day|
         selected_date = Time.local(year, month, day)
-        value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
+        value = History.where(:portfolio_id => p_ids).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if value.count == 0 
           value = 'null'
           rel = 'null'
