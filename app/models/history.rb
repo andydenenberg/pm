@@ -118,15 +118,12 @@ class History < ApplicationRecord
       (1..Time.days_in_month(month, year)).each do |day|
         selected_date = Time.local(year, month, day)
         value = History.where(:portfolio_id => p_ids).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
-        if value.count == 0 
-          value = 'null'
-          rel = 'null'
-         else
+        if value.count > 0 
           value = value.sum(0) { |v| v.total }.to_f
           rel = ((value / reference_level) - 1).to_f 
+          values.push( ["#{month-1}/#{day}/#{year}", value ] )
+          relative.push( ["#{month-1}/#{day}/#{year}", rel ] )
         end
-        values.push( ["#{month-1}/#{day}/#{year}", value ] )
-        relative.push( ["#{month-1}/#{day}/#{year}", rel ] )
       end
       return values, relative
     end
