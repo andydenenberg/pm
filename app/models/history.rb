@@ -45,6 +45,70 @@ class History < ApplicationRecord
 
     end
 
+    def self.month_totals(year, month, p_ids)
+    time = ''
+    values = [ ]
+      last_value = 0
+      (1..Time.days_in_month(month, year)).each do |day|
+        time += " new Date(#{year}, #{month-1}, #{day}),"
+        selected_date = Time.local(year, month, day)
+        new_value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
+        if p_ids[1] # group is true
+          new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
+        else                 
+           if new_value.last.nil? 
+             new_value = 0
+           else
+             new_value = new_value.last.total.to_f.round(0) 
+           end
+        end
+        values.push( new_value )
+      end
+      return values, time
+    end
+  
+
+
+        def self.graph_data_comparison(group_name, period)
+
+          year = Date.current.year
+          years = [year]
+          months = (1..12)
+          case period
+          when 'from Start'
+            year = "2013-#{year}"
+            years = (2013..(Date.today.year))
+          when 'Last 3 Years'
+            year = "#{year-2}-#{year}"
+            years = [Date.today.year-2, Date.today.year-1, Date.today.year]
+          when 'Last 2 Years'
+            year = "#{year-1}-#{year}"
+            years = [Date.today.year-1, Date.today.year]
+          when 'Year to Date'
+            months = (1..12) # Date.today.month+1)
+          when 'Month to Date'
+            months = [Date.today.month]
+          end
+
+          p_ids = Group.find_by_name(group_name).portfolios.collect { |p| p.id }
+          reference_level = 0
+          p_ids.each do |p|
+            reference_level += History.where(portfolio_id: p, snapshot_date: Date.today.beginning_of_year..Date.today).first.total
+          end
+          
+           absolute = [ ]
+           relative = [ ]
+           time = '[ '
+           years.each do |year|
+             months.each do |month|
+                 results = month_totals_comparison(year, month, p_ids, reference_level)
+                 absolute += results[0]
+                 relative += results[1]
+             end
+           end
+          return [ relative, absolute ]
+
+        end
 
 
     def self.month_totals_comparison(year, month, p_ids, reference_level)
@@ -68,28 +132,6 @@ class History < ApplicationRecord
 
 
 
-    def self.month_totals(year, month, p_ids)
-    time = ''
-    values = [ ]
-      last_value = 0
-      (1..Time.days_in_month(month, year)).each do |day|
-        time += " new Date(#{year}, #{month-1}, #{day}),"
-        selected_date = Time.local(year, month, day)
-        new_value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
-        if p_ids[1] # group is true
-          new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
-        else                 
-           if new_value.last.nil? 
-             new_value = 0
-           else
-             new_value = new_value.last.total.to_f.round(0) 
-           end
-        end
-        values.push( new_value )
-      end
-      return values, time
-    end
-  
   
   def daily_snapshot_total
             portfolio_id = 9999  # the all portfolios record
