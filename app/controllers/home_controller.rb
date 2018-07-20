@@ -99,7 +99,7 @@ class HomeController < ApplicationController
        series = History.graph_data_comparison(g.name, 'Year to Date')[0]
        data.push ( { name: g.name, data: series } ) 
      end
-      
+      data.push ( { name: 'test', data: [ ] } )
     render json: data
   end
 
