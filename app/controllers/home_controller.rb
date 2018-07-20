@@ -84,7 +84,7 @@ class HomeController < ApplicationController
     pts = params[:portfolios] ||= "#{Portfolio.first.id}"  # '10, 17, 8, 3, 6, 7, 9' #  "#{Portfolio.first.id}" 
     ports = pts.split(',').map { |p| p.to_i }
     
-    data = [ ]
+    data = [ { name: 'test', data: [ ] } ]
     zero_line = History.where(portfolio_id: Portfolio.first.id, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| [ h.snapshot_date.strftime("%Y/%m/%d"), 0 ]  } 
     data.push ( {name: 'zero', data: zero_line } )
     Portfolio.find(ports).each do |p|
@@ -99,7 +99,7 @@ class HomeController < ApplicationController
        series = History.graph_data_comparison(g.name, 'Year to Date')[0]
        data.push ( { name: g.name, data: series } ) 
      end
-      data.push ( { name: 'test', data: [ ] } )
+
     render json: data
   end
 
