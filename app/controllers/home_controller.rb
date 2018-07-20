@@ -94,6 +94,8 @@ class HomeController < ApplicationController
       data.push ( { name: p.name, data: series } ) 
     end
      
+     data = History.graph_data_comparison('All SLATs', 'Year to Date')[0]
+     
     render json: data
   end
 
