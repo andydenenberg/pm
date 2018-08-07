@@ -244,11 +244,13 @@
 		<% end %>
 		<tr>
 			<td>Total</td>
-			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[0]}, precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[3]}, precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[4]}, precision: 0) %></td>
-			<td class='text-right'><%= number_to_currency(@group_totals.sum(0) { |key,val| val[5]}, precision: 0) %></td> 
-			<td class='text-center'></td>
+			<td class='text-right'><%= number_to_currency(@total_value, precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(@day_change_total, precision: 0) %></td>
+			<td class='text-right'><%= number_to_currency(@month_change_total, precision: 0) %>
+				( <%= number_to_percentage( 100*@month_change_total/@start_month_total, precision: 2 ) %>)</td>
+			<td class='text-right'><%= number_to_currency(@year_change_total, precision: 0) %>
+			( <%= number_to_percentage( 100*@year_change_total/@start_year_total, precision: 2 ) %>)</td>
+			<td class='text-center'><button type="button" onclick="refreshChart()" class="btn btn-primary btn-sm">Refresh Chart</button></td>
 		</tr>
 	</tbody>
 </table>
