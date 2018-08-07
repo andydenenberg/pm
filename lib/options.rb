@@ -14,8 +14,10 @@ module Options
       price = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(b)")]//text()')
       change = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(500)")]//text()') # Pstart(10px) Fz(24px)
     rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
+      puts "symbol:#{symbol} - The request timed out...skipping."
       return ["The request timed out...skipping."]
     rescue => e
+      puts "symbol:#{symbol} - The request returned an error - #{e.inspect}."
       return ["The request returned an error - #{e.inspect}."]
     end     
     return [ symbol.upcase, price.to_s, change.to_s.split('(')[0], Time.now.to_s ] #.strftime("%Y/%m/%d %H:%M%p") ]       
