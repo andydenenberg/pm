@@ -6,7 +6,10 @@ module Options
   require 'open-uri'
  
   def self.yahoo_price(symbol)     
-    @agent = Mechanize.new 
+    @agent = Mechanize.new { |agent|
+      agent.open_timeout   = 5
+      agent.read_timeout   = 5
+    }
     url = "http://finance.yahoo.com/quote/#{symbol}?p=#{symbol}"
     begin
       page = @agent.get(url)  
