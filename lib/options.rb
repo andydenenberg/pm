@@ -7,8 +7,8 @@ module Options
  
   def self.yahoo_price(symbol)     
     @agent = Mechanize.new { |agent|
-      agent.open_timeout   = 5
-      agent.read_timeout   = 5
+      agent.open_timeout   = 10
+      agent.read_timeout   = 10
     }
     url = "http://finance.yahoo.com/quote/#{symbol}?p=#{symbol}"
     begin
