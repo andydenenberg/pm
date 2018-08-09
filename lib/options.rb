@@ -33,7 +33,8 @@ module Options
       change = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(500)")]//text()') # Pstart(10px) Fz(24px)
     rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
       puts "\n\nsymbol:#{symbol} - The request timed out...skipping.\n\n"
-      puts Mechanize::ResponseCodeError
+      puts Mechanize::ResponseCodeError.inspect
+      puts page.inspect
       puts "\n\n"
       return ["The request timed out...skipping."]
     rescue => e
