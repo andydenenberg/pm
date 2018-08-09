@@ -20,7 +20,7 @@ module Options
   
   def self.yahoo_price(symbol)
     results = Options.y_price(symbol)
-			if results != 4
+			if results.count != 4
 			  iteration = 0
 				loop do 
 				  iteration += 1 
