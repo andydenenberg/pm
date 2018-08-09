@@ -5,12 +5,15 @@ module Options
   require 'csv'
   require 'open-uri'
  
-  def self.yp_test(n)
+  def self.yp_test(n,delay=0)
   	errors = []
+  	total_count = 0
   	stocks = Stock.where(stock_option: 'Fund').collect { |s| s.symbol }
   	for i in 0..n
-  		stocks.each_with_index do |s, i|
-  			puts s
+  		stocks.each do |s|
+  		  sleep delay
+  		  total_count += 1
+  			puts "#{i}:#{total_count}:#{errors.count} #{s}"
   			if Options.yahoo_price(s).count != 4
   				errors.push s
   			end
@@ -22,8 +25,8 @@ module Options
   
   def self.yahoo_price(symbol)     
     @agent = Mechanize.new { |agent|
-      agent.open_timeout   = 10
-      agent.read_timeout   = 10
+      agent.open_timeout   = 20
+      agent.read_timeout   = 20
     }
     url = "http://finance.yahoo.com/quote/#{symbol}?p=#{symbol}"
     begin
@@ -33,9 +36,6 @@ module Options
       change = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(500)")]//text()') # Pstart(10px) Fz(24px)
     rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
       puts "\n\nsymbol:#{symbol} - The request timed out...skipping.\n\n"
-      puts Mechanize::ResponseCodeError.inspect
-      puts page.inspect
-      puts "\n\n"
       return ["The request timed out...skipping."]
     rescue => e
       puts "\n\nsymbol:#{symbol} - The request returned an error - #{e.inspect}.\n\n"

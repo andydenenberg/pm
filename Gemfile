@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'mechanize'
+gem 'faraday'
 
 gem 'by_star'
 gem 'iron_cache'
