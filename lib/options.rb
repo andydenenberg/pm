@@ -19,13 +19,13 @@ module Options
   end
   
   def self.yahoo_price(symbol)
-    results = Options.y_price(s).count
+    results = Options.y_price(symbol).count
 			if results != 4
 			  iteration = 0
 				loop do 
 				  iteration += 1 
 				  puts "#{s}: iteration:#{iteration}"
-				  results = Options.y_price(s)
+				  results = Options.y_price(symbol)
 				  break if results.count == 4 or iteration > 5
 				end
 		  end
