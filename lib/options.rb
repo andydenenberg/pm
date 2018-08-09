@@ -19,6 +19,7 @@ module Options
   				  iteration = 0
     				loop do 
     				  iteration += 1 
+    				  puts "iteration:#{iteration}"
     				  errors.push [s,iteration]
     				  break if Options.yahoo_price(s).count == 4 or iteration > 5
     				end
