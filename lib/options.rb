@@ -16,6 +16,7 @@ module Options
   			puts "#{i}:#{total_count}:#{errors.count} #{s}"
   			if Options.yahoo_price(s).count != 4
   				errors.push s
+  				Options.yahoo_price(s)
   			end
   		end
   	puts errors.inspect
