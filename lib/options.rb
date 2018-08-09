@@ -14,10 +14,15 @@ module Options
   		  sleep delay
   		  total_count += 1
   			puts "#{i}:#{total_count}:#{errors.count} #{s}"
-  			if Options.yahoo_price(s).count != 4
-  				errors.push s
-  				puts Options.yahoo_price(s).inspect
-  			end
+  			results = Options.yahoo_price(s).count
+  				if results != 4
+  				  iteration = 0
+    				loop do 
+    				  iteration += 1 
+    				  errors.push [s,iteration]
+    				  break if Options.yahoo_price(s).count == 4 or iteration > 5
+    				end
+  			  end
   		end
   	puts errors.inspect
   	end
