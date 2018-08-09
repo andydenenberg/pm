@@ -13,18 +13,18 @@ module Options
   		  sleep delay
   		  total_count += 1
   			puts "#{i}:#{total_count} #{s}"
-			  puts Options.yahoo_price(s)
+			  results = Options.yahoo_price(s)
   		end
   	end
   end
   
   def self.yahoo_price(symbol)
-    results = Options.y_price(symbol).count
+    results = Options.y_price(symbol)
 			if results != 4
 			  iteration = 0
 				loop do 
 				  iteration += 1 
-				  puts "#{s}: iteration:#{iteration}"
+				  puts "#{symbol}: iteration:#{iteration}"
 				  results = Options.y_price(symbol)
 				  break if results.count == 4 or iteration > 5
 				end
