@@ -5,6 +5,21 @@ module Options
   require 'csv'
   require 'open-uri'
  
+  def self.yp_test
+  	errors = []
+  	stocks = Stock.where(stock_option: 'Fund').collect { |s| s.symbol }
+  	for i in 0..4
+  		stocks.each_with_index do |s, i|
+  			puts s
+  			if Options.yahoo_price(s.symbol).count != 4
+  				errors.push s
+  			end
+  		end
+  	puts errors.inspect
+  	end
+  end
+  
+  
   def self.yahoo_price(symbol)     
     @agent = Mechanize.new { |agent|
       agent.open_timeout   = 10
