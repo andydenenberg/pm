@@ -6,31 +6,33 @@ module Options
   require 'open-uri'
  
   def self.yp_test(n,delay=0)
-  	errors = []
   	total_count = 0
   	stocks = Stock.where(stock_option: 'Fund').collect { |s| s.symbol }
   	for i in 0..n
   		stocks.each do |s|
   		  sleep delay
   		  total_count += 1
-  			puts "#{i}:#{total_count}:#{errors.count} #{s}"
-  			results = Options.yahoo_price(s).count
-  				if results != 4
-  				  iteration = 0
-    				loop do 
-    				  iteration += 1 
-    				  puts "iteration:#{iteration}"
-    				  errors.push [s,iteration]
-    				  break if Options.yahoo_price(s).count == 4 or iteration > 5
-    				end
-  			  end
+  			puts "#{i}:#{total_count} #{s}"
+			  puts Options.yahoo_price(s)
   		end
-  	puts errors.inspect
   	end
   end
   
+  def self.yahoo_price(symbol)
+    results = Options.y_price(s).count
+			if results != 4
+			  iteration = 0
+				loop do 
+				  iteration += 1 
+				  puts "#{s}: iteration:#{iteration}"
+				  results = Options.y_price(s)
+				  break if results.count == 4 or iteration > 5
+				end
+		  end
+		return results
+  end
   
-  def self.yahoo_price(symbol)     
+  def self.y_price(symbol)     
     @agent = Mechanize.new { |agent|
       agent.open_timeout   = 20
       agent.read_timeout   = 20
