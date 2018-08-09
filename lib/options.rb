@@ -11,7 +11,7 @@ module Options
   	for i in 0..4
   		stocks.each_with_index do |s, i|
   			puts s
-  			if Options.yahoo_price(s.symbol).count != 4
+  			if Options.yahoo_price(s).count != 4
   				errors.push s
   			end
   		end
