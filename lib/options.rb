@@ -139,7 +139,7 @@ module Options
 #        bid = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[2].to_s
         previous_close = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[0].to_s.split('data-reactid="40">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
         bid = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[2].to_s.split('data-reactid="50">').last.split('</span>').first.split('>').last
-        time = doc.search("[text()*='EDT']").first.to_s.split('">').last[5..-1].split('EST').first.strip
+        time = doc.search("[text()*='EST']").first.to_s.split('">').last[5..-1].split('EST').first.strip
         date = Date.today.strftime("%Y/%m/%d")
         date = date + ' ' + time                
 #        puts "bid: #{bid} ask: #{ask} prev: #{previous_close}"              
