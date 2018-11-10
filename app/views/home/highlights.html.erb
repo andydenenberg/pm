@@ -152,7 +152,7 @@
 					<strong class="d-inline-block mb-2 text-primary">
 						<%= link_to 'Year to Date', graphs_path %>
 					</strong>
-					<%= line_chart History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).collect { |h| 
+					<%= line_chart History.where(portfolio_id: 9999, snapshot_date: Date.today.beginning_of_year..Date.today).order('snapshot_date').collect { |h| 
 						[ h.snapshot_date.strftime("%-m/%-d"), h.total ]  }, id: "ytd-chart", thousands: ",", prefix: "$", min: @min, max: @max %>							
 			  </td>
 			</tr>
