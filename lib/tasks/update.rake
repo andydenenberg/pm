@@ -4,9 +4,12 @@ namespace :update do
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = 'tmp/DHC.CSV'
-      portfolio_name = File.basename(file).split('.').first   
-
+#      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
+      file = '/Users/andydenenberg/Downloads/DHC.CSV'
+      portfolio_name = File.basename(file).split('.').first 
+      
+      puts portfolio_name
+      
   # first find and delete old stocks
   #      stocks = portfolio.stocks
   #      puts "#{stocks.count} stocks found and deleted"
@@ -16,17 +19,19 @@ namespace :update do
       stocks = CSV.read(file)  # Andy.CSV')
       stock_total = stocks[3..-3].inject(0) { |result, element| result + element[6].gsub('$','').gsub(',','').to_f }
       cash = stocks[-2][6].gsub('$','').gsub(',','').to_f
-      if Portfolio.where(:name => portfolio_name).empty?
-        portfolio =  "Portfolio.create!( name: '#{portfolio_name}', cash: #{cash}, group_id: 1 )\n"
-      else
+#      if Portfolio.where(:name => portfolio_name).empty?
+#        portfolio =  "Portfolio.create!( name: '#{portfolio_name}', cash: #{cash}, group_id: 1 )\n"
+#      else
         portfolio = "p = Portfolio.where(:name => '#{portfolio_name}').first\n"
         portfolio += "p.cash = #{cash}\n"
         portfolio += "p.save\n"
-        portfolio_id = Portfolio.where(:name => portfolio_name).first.id
-      end
+        portfolio_id = 2 # Portfolio.where(:name => portfolio_name).first.id
+#      end
       puts
       puts portfolio
       puts
+      
+      
       
       port_stocks = ''
       stocks[3..-3].each do |s|
