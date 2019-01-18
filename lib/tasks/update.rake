@@ -5,7 +5,7 @@ namespace :update do
       require 'csv'
 
 #      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
-      file = '/Users/andydenenberg/Downloads/DHC.CSV'
+      file = '/Users/andydenenberg/Downloads/R 401K Rollover.CSV'
       portfolio_name = File.basename(file).split('.').first 
       
       puts portfolio_name
@@ -25,7 +25,7 @@ namespace :update do
         portfolio = "p = Portfolio.where(:name => '#{portfolio_name}').first\n"
         portfolio += "p.cash = #{cash}\n"
         portfolio += "p.save\n"
-        portfolio_id = 2 # Portfolio.where(:name => portfolio_name).first.id
+        portfolio_id = 13 # Portfolio.where(:name => portfolio_name).first.id
 #      end
       puts
       puts portfolio

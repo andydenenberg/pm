@@ -9,6 +9,11 @@ class Portfolio < ApplicationRecord
     return pnames
   end
   
+  def money_market
+    mm = self.stocks.where(symbol: 'SWVXX').or(p.stocks.where(symbol: 'SNVXX')).or(p.stocks.where(symbol: 'SNAXX')).sum(0) { |m| m.quantity }
+    return mm
+  end
+  
   def self.table_data(group_id, sort_by)
     totals = Hash.new
     all = group_id.nil? ? Portfolio.all : Portfolio.where(group_id: group_id)
