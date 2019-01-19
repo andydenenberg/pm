@@ -70,8 +70,8 @@
 	      <tr>
 	        <td></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]) %></td>
+			<td class='text-right'><%= number_to_currency(Portfolio.all.sum(0) { |p| p.money_market }) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[2]) %></td>
-			<td class='text-right'></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[3]) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]+@portfolios_data[2]+@portfolios_data[3]) %></td>
 			<td class='text-right'><%= link_to number_to_currency(@portfolios_data[6]), dividends_new_path %></td>
