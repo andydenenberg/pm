@@ -38,11 +38,19 @@ module Options
       agent.read_timeout   = 20
     }
     url = "http://finance.yahoo.com/quote/#{symbol}?p=#{symbol}"
+
+#    url = "http://finance.yahoo.com/quote/VITSX?p=VITSX"
+#    url = "http://finance.yahoo.com/quote/SWVXX?p=SWVXX"
+
     begin
       page = @agent.get(url)  
       doc = Nokogiri::HTML(page.body) 
       price = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(b)")]//text()')
       change = page.xpath('.//span[contains(@class,"Trsdu(0.3s) Fw(500)")]//text()') # Pstart(10px) Fz(24px)
+      
+      change = change.empty? ? 0.to_s : change.to_s.split('(')[0]
+      # added 02/08/2019 - compensates for missing change field in yahoo display of price and change 
+      
     rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
       puts "\n\nsymbol:#{symbol} - The request timed out...skipping.\n\n"
       return ["The request timed out...skipping."]
