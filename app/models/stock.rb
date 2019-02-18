@@ -51,7 +51,8 @@ class Stock < ApplicationRecord
          change, # change
          daily_dividend * quantity, # total dividends 
          Stock.portfolio_quantities(sym, pnames), # portfolio holdings 
-         daily_dividend # dividend / share   
+         daily_dividend, # dividend / share
+         s.first.stock_option  
        ]
     end
     stocks = values_changes.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] }

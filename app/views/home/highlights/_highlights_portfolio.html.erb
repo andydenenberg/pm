@@ -9,6 +9,7 @@
 	  <thead>
 		<tr>
 			<th>Symbol</th>
+			<th>Type</th>
 			<th class='text-right'>Quantity</th>
 			<th class='text-right'>Value</th>
 			<th class='text-right'>Change</th>
@@ -18,6 +19,7 @@
 		<% @stocks.each do |s| %>
 		<tr>
 			<td><%= s[0] %></td>
+			<td><%= s[10] %></td>
 			<td class='text-right'><%= number_with_precision( s[1], precision: 0, delimiter: ',' ) %></td>
 			<td class='text-right'><%= number_to_currency( s[2], precision: 0 ) %></td>
 			<td class='text-right'><%= number_to_currency( s[3], precision: 0 ) %></td>
@@ -26,26 +28,27 @@
 		<% @options.each do |s| %>
 		<tr>
 			<td><%= s.symbol %> (<%= s.strike %> <%= s.expiration_date %>)</td>
+			<td><%= s.stock_option %></td>
 			<td class='text-right'><%= number_with_precision( s.quantity, precision: 0, delimiter: ',' ) %></td>
 			<td class='text-right'><%= number_to_currency( s.quantity * s.price * 100, precision: 0 ) %></td>
 			<td class='text-right'><%= number_to_currency( s.quantity * s.change * 100, precision: 0 ) %></td>
 		</tr>
 		<% end %>
 		<tr>
-			<td colspan=2 class='text-right'></td>
+			<td colspan=3 class='text-right'></td>
 			<td class='text-right'><%= number_to_currency( @total_stocks_value, precision: 0 ) %></td>
 			<td class='text-right'><%= number_to_currency( @total_change, precision: 0 ) %></td>
 		</tr>
-		<tr><td colspan=3><td>
+		<tr><td colspan=4><td>
 		</tr>
 		<tr>
-			<td colspan=2 class='text-right'>Cash:</td>
+			<td colspan=3 class='text-right'>Cash:</td>
 			<td class='text-right'><%= number_to_currency( @cash) %>
 			<td></td>
 		</tr>	
-		<tr><td colspan=3><td>
+		<tr><td colspan=4><td>
 		<tr>
-			<td colspan=2 class='text-right'>Total Value:</td>
+			<td colspan=3 class='text-right'>Total Value:</td>
 			<td class='text-right'><%= number_to_currency( @cash + @total_stocks_value + @total_options_value) %>
 			<td></td>
 		</tr>	
