@@ -79,6 +79,13 @@ task :setup => ["db:migrate",
       puts "Options Created"          
     end
 
+    desc 'Fix IronCache'
+      task :fixic => :environment do
+        @ironcache = IronCache::Client.new
+        @cache = @ironcache.cache("my_cache")
+        @cache.put("poll_request", 'Complete')
+      end
+
     desc 'Refresh on Request'
       task :refresh_on_request => :environment do
         
