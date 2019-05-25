@@ -96,7 +96,7 @@ class HomeController < ApplicationController
      
      data = [ { name: 'padding', data: [ ] } ]
      Group.all.each do |g|
-       series = History.graph_data_comparison(g.name, 'Year to Date')[0]
+       series = History.graph_data_comparison(g.name, 'Last 2 Years')[0]
        data.push ( { name: g.name, data: series } ) 
      end
 
