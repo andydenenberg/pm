@@ -71,29 +71,35 @@ class History < ApplicationRecord
 
         def self.graph_data_comparison(group_name, period)
 
+          start_year = 2013
           year = Date.current.year
           years = [year]
           months = (1..12)
           case period
           when 'from Start'
+            start_year = 2013
             year = "2013-#{year}"
             years = (2013..(Date.today.year))
           when 'Last 3 Years'
+            start_year = Date.today.year-2
             year = "#{year-2}-#{year}"
             years = [Date.today.year-2, Date.today.year-1, Date.today.year]
           when 'Last 2 Years'
+            start_year = Date.today.year-1
             year = "#{year-1}-#{year}"
             years = [Date.today.year-1, Date.today.year]
           when 'Year to Date'
+            start_year = Date.today.year
             months = (1..12) # Date.today.month+1)
           when 'Month to Date'
+            start_year = Date.today.year
             months = [Date.today.month]
           end
 
           p_ids = Group.find_by_name(group_name).portfolios.collect { |p| p.id }
           reference_level = 0
           p_ids.each do |p|
-            r = History.where(portfolio_id: p, snapshot_date: Date.today.beginning_of_year..Date.today).order('snapshot_date').first
+            r = History.where(portfolio_id: p, snapshot_date: start_year.beginning_of_year..Date.today).order('snapshot_date').first
 #            puts "#{r.snapshot_date} - #{r.portfolio_id} - #{r.total} "
             reference_level += r.total
           end
