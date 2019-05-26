@@ -99,7 +99,7 @@ class History < ApplicationRecord
           p_ids = Group.find_by_name(group_name).portfolios.collect { |p| p.id }
           reference_level = 0
           p_ids.each do |p|
-            r = History.where(portfolio_id: p, snapshot_date: start_year.beginning_of_year..Date.today).order('snapshot_date').first
+            r = History.where(portfolio_id: p, snapshot_date: Date.strptime(start_date, '%Y').beginning_of_year..Date.today).order('snapshot_date').first
 #            puts "#{r.snapshot_date} - #{r.portfolio_id} - #{r.total} "
             reference_level += r.total
           end
