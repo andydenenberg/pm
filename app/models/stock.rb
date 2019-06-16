@@ -14,13 +14,9 @@ class Stock < ApplicationRecord
       data = [ self.symbol.upcase, price, 0, option['Time'] ]
     else
     data = [ 0, 0, 0, Time.parse(data[3]).strftime("%Y/%m/%d %H:%M") ]
-    end 
-    
-    puts 
-    puts data.inspect
-     
-    self.price = data[1]
-    self.change = data[2]
+    end      
+    self.price = data[1].gsub(',','')
+    self.change = data[2].gsub(',','')
     self.as_of = data[3]
     self.save
   end
