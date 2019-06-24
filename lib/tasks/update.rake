@@ -5,7 +5,8 @@ namespace :update do
       require 'csv'
 
 #      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
-      file = '/Users/andydenenberg/Downloads/R 401K Rollover.CSV'
+#      file = '/Users/andydenenberg/Downloads/Marital Trust SBH.CSV'
+      file = '/Users/andydenenberg/Downloads/Judy AGA Trust.CSV'
       portfolio_name = File.basename(file).split('.').first 
       
       puts portfolio_name
@@ -25,10 +26,19 @@ namespace :update do
         portfolio = "p = Portfolio.where(:name => '#{portfolio_name}').first\n"
         portfolio += "p.cash = #{cash}\n"
         portfolio += "p.save\n"
-        portfolio_id = 13 # Portfolio.where(:name => portfolio_name).first.id
+
+portfolio_ids = { } 
+# run the following in Heroku and place result in-line below
+Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
+        
+      portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
+
 #      end
       puts
       puts portfolio
+      puts 'p.stocks.delete_all'
+      puts portfolio_name
+      puts portfolio_id
       puts
       
       
@@ -57,7 +67,8 @@ namespace :update do
         when 'ETFs & Closed End Funds'
           stock_option = 'Fund'
         else
-          stock_option = 'Fund'
+          stock_option = 'Fund' # as of 06/15/2019 started using yahoo quotes exclusively
+#          stock_option = 'Stock'
         end
 
         port_stocks +=
@@ -78,6 +89,9 @@ namespace :update do
         end # stocks
 
         puts port_stocks
+        puts 
+        puts
+        puts
 
       end # update_portfolio
 

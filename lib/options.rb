@@ -139,14 +139,18 @@ module Options
         payload = page.body    
         doc = Nokogiri::HTML(payload)
 #        ask = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[3].to_s
-        ask = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[3].to_s.split('data-reactid="55">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
+#        ask = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[3].to_s.split('data-reactid="55">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
+        bid = doc.xpath("//td[@data-test='BID-value']//span").text
+        ask = doc.xpath("//td[@data-test='ASK-value']//span").text
+        previous_close = doc.xpath("//td[@data-test='PREV_CLOSE-value']//span").text
+
       break if !ask.empty?
       end
         
 #        previous_close = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[0].to_s
 #        bid = doc.xpath('//td[@class="Ta(end) Fw(b)"]/text()')[2].to_s
-        previous_close = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[0].to_s.split('data-reactid="40">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
-        bid = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[2].to_s.split('data-reactid="50">').last.split('</span>').first.split('>').last
+#        previous_close = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[0].to_s.split('data-reactid="40">').last.split('</span>').first.split('>').last.split('><').last.split('>').last
+#        bid = doc.xpath('//td[@class="Ta(end) Fw(b) Lh(14px)"]')[2].to_s.split('data-reactid="50">').last.split('</span>').first.split('>').last
         time = doc.search("[text()*='EST']").first.to_s.split('">').last[5..-1].split('EST').first.strip
         date = Date.today.strftime("%Y/%m/%d")
         date = date + ' ' + time                
