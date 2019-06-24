@@ -88,15 +88,9 @@ task :setup => ["db:migrate",
 
     desc 'Refresh on Request'
       task :refresh_on_request => :environment do
-        
-        puts 'here'
-        
         @ironcache = IronCache::Client.new
         @cache = @ironcache.cache("my_cache")
         state = @cache.get("poll_request").value
-        
-        puts state
-        
         if  state == 'Waiting' || state == 'Updating'
           @cache.put("poll_request", 'Complete')
           Stock.refresh_all('Stock')

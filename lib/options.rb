@@ -129,6 +129,9 @@ module Options
 
      doc = ''
      ask = ''
+     bid = ''
+     previous_close = ''
+     
       loop do 
         begin
           page = @agent.get(url)
