@@ -6,8 +6,8 @@ namespace :update do
 
 #      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
 #      file = '/Users/andydenenberg/Downloads/Marital Trust SBH.CSV'
-      file = '/Users/andydenenberg/Downloads/Roberta SLAT.CSV'
-      portfolio_name = File.basename(file).split('.').first 
+      file = '/Users/andydenenberg/Downloads/Roberta_SLAT.CSV'
+      portfolio_name = File.basename(file).split('.').first.gsub('_','')
       
       puts portfolio_name
       
