@@ -8,7 +8,7 @@ class Portfolio < ApplicationRecord
     Portfolio.all.each { |p| pnames[p.id] = p.name }
     return pnames
   end
-  VMFXX
+
   def money_market
     mm = self.stocks.where(symbol: 'SWVXX').or(self.stocks.where(symbol: 'VMFXX')).or(self.stocks.where(symbol: 'SNVXX')).or(self.stocks.where(symbol: 'SNAXX')).sum(0) { |m| m.quantity }
     return mm
