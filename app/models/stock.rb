@@ -99,7 +99,19 @@ class Stock < ApplicationRecord
   end
   
   def self.refresh_all(stock_option)
-    self.all.each do |s|
+    
+    @ironcache = IronCache::Client.new
+    @cache = @ironcache.cache("my_cache")
+    total = self.all.count
+    
+    puts "Total: #{total}"
+    
+    @cache.put("total", total)
+    
+    self.all.each_with_index do |s, i|
+      
+      puts "Count: #{i}"
+      
       if s.stock_option.include?(stock_option)
         s.update_price
       end
