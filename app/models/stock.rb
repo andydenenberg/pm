@@ -110,7 +110,7 @@ class Stock < ApplicationRecord
     
     self.all.each_with_index do |s, i|
       
-      puts "Count: #{i}"
+      puts "Count: #{i}  Stock_option: #{s.stock_option}  Symbol: #{s.symbol}"
       
       if s.stock_option.include?(stock_option)
         s.update_price
