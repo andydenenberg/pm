@@ -103,10 +103,10 @@ class Stock < ApplicationRecord
     @ironcache = IronCache::Client.new
     @cache = @ironcache.cache("my_cache")
     total = self.all.count
-    so = self.where(stock_option: stock_option)
+    so = self.where("stock_option LIKE ?", "%#{stock_option}%")
     so.each_with_index do |s, i|
       s.update_price
-      rs = "Count: #{i} of #{so}  Stock_option: #{s.stock_option}  Symbol: #{s.symbol}"
+      rs = "Count: #{i} of #{so.count}  Stock_option: #{s.stock_option}  Symbol: #{s.symbol}"
       @cache.put("refresh_status", rs)
       puts rs
     end    
