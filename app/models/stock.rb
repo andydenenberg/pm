@@ -103,19 +103,20 @@ class Stock < ApplicationRecord
     @ironcache = IronCache::Client.new
     @cache = @ironcache.cache("my_cache")
     total = self.all.count
+    so = self.where(stock_option: stock_option)
+    so.each_with_index do |s, i|
+      s.update_price
+      rs = "Count: #{i} of #{so}  Stock_option: #{s.stock_option}  Symbol: #{s.symbol}"
+      @cache.put("refresh_status", rs)
+      puts rs
+    end    
     
-    puts "Total: #{total}"
+#   self.all.each do |s|
+#     if s.stock_option.include?(stock_option)
+#       s.update_price
+#     end
+#   end    
     
-    @cache.put("total", total)
-    
-    self.all.each_with_index do |s, i|
-      
-      puts "Count: #{i}  Stock_option: #{s.stock_option}  Symbol: #{s.symbol}"
-      
-      if s.stock_option.include?(stock_option)
-        s.update_price
-      end
-    end
   end 
 
   def self.current_year_dividend_dates
