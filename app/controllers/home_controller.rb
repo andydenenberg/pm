@@ -170,6 +170,7 @@ class HomeController < ApplicationController
     @poll_request_time = cache.get("poll_request_time").value
     @data = Hash.new
     @data['poll_request'] = cache.get("poll_request").value
+    @data['refresh_status'] = cache.get("refresh_status").value
       respond_to do |format|
           format.js
       end
