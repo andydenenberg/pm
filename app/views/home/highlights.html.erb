@@ -16,8 +16,7 @@
 	      </div>
 
 	      <div class="col-4 d-flex justify-content-end align-items-center">
-			<a href='<%= "#{ENV["SCHEDULER_LINK"]}"%>'>Last | </a>
-			<span id='refresh_status'>Status</span> |
+			<a href='<%= "#{ENV["SCHEDULER_LINK"]}"%>'> <span id='refresh_status'>Status</span></a> |
 			<span id='poll_request_time'>Prices from ?</span>
 			<a  id='poll_set' onclick="RefreshSet();return false;" class="text-muted" href="#">
 				<svg height="30" width="30">
