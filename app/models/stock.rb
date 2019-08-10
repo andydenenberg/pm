@@ -110,6 +110,7 @@ class Stock < ApplicationRecord
       @cache.put("refresh_status", rs)
       puts rs
     end    
+    @cache.put("refresh_status", 'Complete')
     
 #   self.all.each do |s|
 #     if s.stock_option.include?(stock_option)
