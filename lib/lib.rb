@@ -20,7 +20,7 @@ module Lib
   # values = [ 29000000, 26000000, 23000000 ]
   def self.graph_scale(values)
     if values.max >    25000000
-      max = 35000000 
+      max = 38000000 
     elsif values.max > 20000000
       max = 25000000 
     elsif values.max > 15000000

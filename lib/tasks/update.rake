@@ -7,7 +7,7 @@ namespace :update do
 
 #      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
 #      file = '/Users/andydenenberg/Downloads/Marital Trust SBH.CSV'
-      file = '/Users/andydenenberg/Downloads/A&R.CSV'
+      file = '/Users/andydenenberg/Downloads/Roberta SLAT.CSV'
       portfolio_name = File.basename(file).split('.').first.gsub('_',' ')
       
       puts portfolio_name
@@ -34,7 +34,7 @@ Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
         
       portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
 
-portfolio_id = 6
+portfolio_id = 4
 
 #      end
       puts
