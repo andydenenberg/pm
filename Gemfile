@@ -8,6 +8,8 @@ end
 gem 'mechanize'
 gem 'faraday'
 
+gem 'redis'
+
 gem 'by_star'
 gem 'iron_cache'
 gem 'sendgrid-ruby'
