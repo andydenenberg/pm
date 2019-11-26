@@ -99,6 +99,19 @@ class Stock < ApplicationRecord
   end
   
   def self.refresh_all(stock_option)
+
+    uri = URI.parse(ENV["REDISTOGO_URL"])
+    REDIS = Redis.new(:url => uri)
+    total = self.all.count
+    so = self.where("stock_option LIKE ?", "%#{stock_option}%")
+    so.each_with_index do |s, i|
+      s.update_price
+      rs = "#{i}/#{so.count} #{s.symbol}"
+      REDIS.set("refresh_status", rs)
+      puts rs
+    end    
+    REDIS.set("refresh_status", 'Complete')
+
     
     @ironcache = IronCache::Client.new
     @cache = @ironcache.cache("my_cache")
