@@ -166,12 +166,12 @@ class HomeController < ApplicationController
   
   def poll_check
     
-    uri = URI.parse(ENV["REDISTOGO_URL"])
-    REDIS = Redis.new(:url => uri)
-    @poll_request_time_r = REDIS.get("poll_request_time")
-    @data = Hash.new
-    @data['poll_request'] = REDIS.get("poll_request")
-    @data['refresh_status'] = REDIS.get("refresh_status")   
+#    uri = URI.parse(ENV["REDISTOGO_URL"])
+#    REDIS = Redis.new(:url => uri)
+#    @poll_request_time_r = REDIS.get("poll_request_time")
+#    @data = Hash.new
+#    @data['poll_request'] = REDIS.get("poll_request")
+#    @data['refresh_status'] = REDIS.get("refresh_status")   
 
     ironcache = IronCache::Client.new
     cache = ironcache.cache("my_cache")
@@ -190,12 +190,12 @@ class HomeController < ApplicationController
       if ENV['RACK_ENV'] != 'development'      
 #        system "rake convert:refresh_all" run on Heroku      
 
-      uri = URI.parse(ENV["REDISTOGO_URL"])
-      REDIS = Redis.new(:url => uri)
-      state = REDIS.get("poll_request")
-      if state == 'Idle' || state == 'Complete'
-        REDIS.set("poll_request", 'Waiting')
-      end
+#      uri = URI.parse(ENV["REDISTOGO_URL"])
+#      REDIS = Redis.new(:url => uri)
+#      state = REDIS.get("poll_request")
+#      if state == 'Idle' || state == 'Complete'
+#        REDIS.set("poll_request", 'Waiting')
+#      end
 
 
        @ironcache = IronCache::Client.new
@@ -314,14 +314,14 @@ class HomeController < ApplicationController
     def reload_update
       if ENV['RACK_ENV'] != 'development'      
 
-        uri = URI.parse(ENV["REDISTOGO_URL"])
-        REDIS = Redis.new(:url => uri)
-        state = REDIS.get("poll_request")
-        if state == 'Complete'
-          REDIS.set("poll_request", 'Waiting')
-        elsif state == 'Idle'
-          REDIS.set("poll_request", 'Waiting')
-        end
+#       uri = URI.parse(ENV["REDISTOGO_URL"])
+#       REDIS = Redis.new(:url => uri)
+#       state = REDIS.get("poll_request")
+#       if state == 'Complete'
+#         REDIS.set("poll_request", 'Waiting')
+#       elsif state == 'Idle'
+#         REDIS.set("poll_request", 'Waiting')
+#       end
 
 
 
