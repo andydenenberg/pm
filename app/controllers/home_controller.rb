@@ -192,10 +192,10 @@ class HomeController < ApplicationController
 
 #      uri = URI.parse(ENV["REDISTOGO_URL"])
 #      REDIS = Redis.new(:url => uri)
-#      state = REDIS.get("poll_request")
-#      if state == 'Idle' || state == 'Complete'
-#        REDIS.set("poll_request", 'Waiting')
-#      end
+      state = REDIS.get("poll_request")
+      if state == 'Idle' || state == 'Complete'
+        REDIS.set("poll_request", 'Waiting')
+      end
 
 
        @ironcache = IronCache::Client.new
@@ -316,12 +316,12 @@ class HomeController < ApplicationController
 
 #       uri = URI.parse(ENV["REDISTOGO_URL"])
 #       REDIS = Redis.new(:url => uri)
-#       state = REDIS.get("poll_request")
-#       if state == 'Complete'
-#         REDIS.set("poll_request", 'Waiting')
-#       elsif state == 'Idle'
-#         REDIS.set("poll_request", 'Waiting')
-#       end
+       state = REDIS.get("poll_request")
+       if state == 'Complete'
+         REDIS.set("poll_request", 'Waiting')
+       elsif state == 'Idle'
+         REDIS.set("poll_request", 'Waiting')
+       end
 
 
 
