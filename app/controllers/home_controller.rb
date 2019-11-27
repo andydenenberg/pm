@@ -168,10 +168,10 @@ class HomeController < ApplicationController
     
 #    uri = URI.parse(ENV["REDISTOGO_URL"])
 #    REDIS = Redis.new(:url => uri)
-#    @poll_request_time_r = REDIS.get("poll_request_time")
-#    @data = Hash.new
-#    @data['poll_request'] = REDIS.get("poll_request")
-#    @data['refresh_status'] = REDIS.get("refresh_status")   
+    @poll_request_time_r = REDIS.get("poll_request_time")
+    @data = Hash.new
+    @data['poll_request'] = REDIS.get("poll_request")
+    @data['refresh_status'] = REDIS.get("refresh_status")   
 
     ironcache = IronCache::Client.new
     cache = ironcache.cache("my_cache")
