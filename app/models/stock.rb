@@ -113,17 +113,17 @@ class Stock < ApplicationRecord
     REDIS.set("refresh_status", 'Complete')
 
     
-    @ironcache = IronCache::Client.new
-    @cache = @ironcache.cache("my_cache")
-    total = self.all.count
-    so = self.where("stock_option LIKE ?", "%#{stock_option}%")
-    so.each_with_index do |s, i|
-      s.update_price
-      rs = "#{i}/#{so.count} #{s.symbol}"
-      @cache.put("refresh_status", rs)
-      puts rs
-    end    
-    @cache.put("refresh_status", 'Complete')
+#    @ironcache = IronCache::Client.new
+#    @cache = @ironcache.cache("my_cache")
+#    total = self.all.count
+#    so = self.where("stock_option LIKE ?", "%#{stock_option}%")
+#    so.each_with_index do |s, i|
+#      s.update_price
+#      rs = "#{i}/#{so.count} #{s.symbol}"
+#      @cache.put("refresh_status", rs)
+#      puts rs
+#    end    
+#    @cache.put("refresh_status", 'Complete')
     
 #   self.all.each do |s|
 #     if s.stock_option.include?(stock_option)

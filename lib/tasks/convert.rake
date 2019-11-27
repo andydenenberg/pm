@@ -102,17 +102,17 @@ task :setup => ["db:migrate",
           end 
 
 
-        @ironcache = IronCache::Client.new
-        @cache = @ironcache.cache("my_cache")
-        state = @cache.get("poll_request").value
-        if  state == 'Waiting' || state == 'Updating'
-          @cache.put("poll_request", 'Complete')
-          Stock.refresh_all('Stock')
-          Stock.refresh_all('Option')
-          Stock.refresh_all('Fund')
-#          @cache.put("poll_request", 'Complete')
-          @cache.put("poll_request_time", Time.now.to_s)
-        end 
+#          @ironcache = IronCache::Client.new
+#          @cache = @ironcache.cache("my_cache")
+#          state = @cache.get("poll_request").value
+#          if  state == 'Waiting' || state == 'Updating'
+#            @cache.put("poll_request", 'Complete')
+#            Stock.refresh_all('Stock')
+#            Stock.refresh_all('Option')
+#            Stock.refresh_all('Fund')
+#  #          @cache.put("poll_request", 'Complete')
+#            @cache.put("poll_request_time", Time.now.to_s)
+#          end 
         
       end
 

@@ -173,12 +173,12 @@ class HomeController < ApplicationController
     @data['poll_request'] = REDIS.get("poll_request")
     @data['refresh_status'] = REDIS.get("refresh_status")   
 
-    ironcache = IronCache::Client.new
-    cache = ironcache.cache("my_cache")
-    @poll_request_time = cache.get("poll_request_time").value
-    @data = Hash.new
-    @data['poll_request'] = cache.get("poll_request").value
-    @data['refresh_status'] = cache.get("refresh_status").value
+#   ironcache = IronCache::Client.new
+#   cache = ironcache.cache("my_cache")
+#   @poll_request_time = cache.get("poll_request_time").value
+#   @data = Hash.new
+#   @data['poll_request'] = cache.get("poll_request").value
+#   @data['refresh_status'] = cache.get("refresh_status").value
 
 
       respond_to do |format|
@@ -198,12 +198,12 @@ class HomeController < ApplicationController
       end
 
 
-       @ironcache = IronCache::Client.new
-       @cache = @ironcache.cache("my_cache")
-       state = @cache.get("poll_request").value
-       if state == 'Idle' || state == 'Complete'
-         @cache.put("poll_request", 'Waiting')
-       end
+#       @ironcache = IronCache::Client.new
+#       @cache = @ironcache.cache("my_cache")
+#       state = @cache.get("poll_request").value
+#       if state == 'Idle' || state == 'Complete'
+#         @cache.put("poll_request", 'Waiting')
+#       end
        
        
       end     
@@ -324,15 +324,16 @@ class HomeController < ApplicationController
        end
 
 
-
-        ironcache = IronCache::Client.new
-        cache = ironcache.cache("my_cache")
-        state = cache.get("poll_request").value
-        if state == 'Complete'
-          cache.put("poll_request", 'Waiting')
-        elsif state == 'Idle'
-          cache.put("poll_request", 'Waiting')
-        end
+#        ironcache = IronCache::Client.new
+#        cache = ironcache.cache("my_cache")
+#        state = cache.get("poll_request").value
+#        if state == 'Complete'
+#          cache.put("poll_request", 'Waiting')
+#        elsif state == 'Idle'
+#          cache.put("poll_request", 'Waiting')
+#        end
+        
+        
       end  
     end
     
