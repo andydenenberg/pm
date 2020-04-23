@@ -131,9 +131,9 @@ class HomeController < ApplicationController
     @month_change_total = 0
     @year_change_total = 0
     Portfolio.all.each do |p|
-      start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).first.total
+      start_year_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_year..Date.today).order(:snapshot_date).first.total
       @start_year_total += start_year_total
-      start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today).first.total
+      start_month_total = History.where(portfolio_id: p.id, snapshot_date: Date.today.beginning_of_month..Date.today).order(:snapshot_date).first.total
       @start_month_total += start_month_total
       
       group = Group.find(Portfolio.find(p.id).group_id)
