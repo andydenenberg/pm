@@ -10,9 +10,9 @@ namespace :update do
                     [ 'INTC', '01/21/2022', 15365, 54.13, 60.0, 65.0 ],
                     [ 'MSFT', '01/21/2022', 12110, 153.83, 190.0, 200.0 ] ]
               
-        output = "Start\n"
-        output += "#{Time.now.strftime("%m/%d %H:%M")}\n"
-        output += "Symbol, Quantity, Basis, Current Price, Change Price, Current Value, Change Value, Put Strike, Put Bid, Put Ask, Call Strike, Call Bid, Call Ask\n"
+        output = "Start<br>"
+        output += "#{Time.now.strftime("%m/%d %H:%M")}<br>"
+        output += "Symbol, Quantity, Basis, Current Price, Change Price, Current Value, Change Value, Put Strike, Put Bid, Put Ask, Call Strike, Call Bid, Call Ask<br>"
                 
         options.each do |o|
           symbol = o[0]
@@ -28,10 +28,10 @@ namespace :update do
           put_option = Options.option_price(symbol, put_strike, exp_date, 'Put Option')
           call_option = Options.option_price(symbol, call_strike, exp_date, 'Call Option')
   
-          output += "#{symbol}, #{quant}, #{basis}, #{current_price}, #{current_info[2]}, #{quant.to_d*current_price.to_d}, #{quant.to_d*current_info[2].to_d}, #{put_strike}, #{put_option['Bid']}, #{put_option['Ask']}, #{call_strike}, #{call_option['Bid']}, #{call_option['Ask']}\n" 
+          output += "#{symbol}, #{quant}, #{basis}, #{current_price}, #{current_info[2]}, #{quant.to_d*current_price.to_d}, #{quant.to_d*current_info[2].to_d}, #{put_strike}, #{put_option['Bid']}, #{put_option['Ask']}, #{call_strike}, #{call_option['Bid']}, #{call_option['Ask']}<br>" 
         end  
   
-        output += "End\n"
+        output += "End<br>"
         
         require 'sendgrid-ruby'
         include SendGrid
