@@ -125,7 +125,7 @@ module Options
      type = stock_option == 'Call Option' ? 'C' : 'P'     
 
      url = "https://finance.yahoo.com/quote/#{symbol.upcase}#{format_date}#{type}#{format_strike}/news?p=#{symbol.upcase}#{format_date}#{type}#{format_strike}"    
-     puts url
+#     puts url
 
      doc = ''
      ask = ''
