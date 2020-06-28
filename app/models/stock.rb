@@ -7,7 +7,8 @@ class Stock < ApplicationRecord
     when 'Stock'
       data = Options.stock_price(self.symbol)
     when 'Fund'
-      data = Options.yahoo_price(self.symbol)
+      data = Options.repo_price(self.symbol)
+#      data = Options.yahoo_price(self.symbol)
     when 'Call Option' || 'Put Option'
       option = Options.option_price(self.symbol, self.strike, self.expiration_date, self.stock_option)
         price = self.quantity > 0 ? option['Bid'] : option['Ask']

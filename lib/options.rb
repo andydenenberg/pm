@@ -32,6 +32,28 @@ module Options
 		return results
   end
   
+  def self.repo_price(symbol)
+    @agent = Mechanize.new { |agent|
+      agent.open_timeout   = 20
+      agent.read_timeout   = 20
+    }
+    url = "https://denrepo.herokuapp.com/quote?symbol=#{symbol}"   
+    begin
+      page = @agent.get(url)  
+      quote = JSON.parse(page.body) 
+  	  price = quote['last_price']
+  	  change = quote['last_change']
+    rescue Errno::ETIMEDOUT, Timeout::Error, Net::HTTPNotFound, Mechanize::ResponseCodeError
+      puts "\n\nsymbol:#{symbol} - The request timed out...skipping.\n\n"
+      return ["The request timed out...skipping."]
+    rescue => e
+      puts "\n\nsymbol:#{symbol} - The request returned an error - #{e.inspect}.\n\n"
+      return ["The request returned an error - #{e.inspect}."]
+    end     
+    return [ symbol.upcase, price.to_s, change.to_s, Time.now.to_s ] #.strftime("%Y/%m/%d %H:%M%p") ]           
+     
+  end
+  
   def self.y_price(symbol)     
     @agent = Mechanize.new { |agent|
       agent.open_timeout   = 20

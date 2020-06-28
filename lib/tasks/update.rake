@@ -5,14 +5,14 @@ namespace :update do
       task :daily_GRAT_snapshot => :environment do
 
         options = [ [ 'AMAT', '01/21/2022', 12800, 42.28, 57.5, 65 ],
-                    [ 'CRM', '01/21/2022', 24000, 134.31, 175.0, 190.0 ],
-                    [ 'CSCO', '01/21/2022', 63000, 39.06, 42.5, 50.0 ],
+                    [ 'CRM', '01/21/2022', 24000, 134.31, 180.0, 210.0 ],
+                    [ 'CSCO', '01/21/2022', 63000, 39.06, 42.5, 47.5 ],
                     [ 'INTC', '01/21/2022', 15365, 54.13, 60.0, 65.0 ],
-                    [ 'MSFT', '01/21/2022', 12110, 153.83, 190.0, 200.0 ] ]
+                    [ 'MSFT', '01/21/2022', 12110, 153.83, 190.0, 220.0 ] ]
               
-        output = "Start<br>"
-        output += "#{Time.now.strftime("%m/%d %H:%M")}<br>"
-        output += "Symbol, Quantity, Basis, Current Price, Change Price, Current Value, Change Value, Put Strike, Put Bid, Put Ask, Call Strike, Call Bid, Call Ask<br>"
+        output = "Start\n"
+        output += "#{Time.now.strftime("%m/%d %H:%M")}\n"
+        output += "Symbol, Quantity, Basis, Current Price, Change Price, Current Value, Change Value, Put Strike, Put Bid, Put Ask, Call Strike, Call Bid, Call Ask\n"
                 
         options.each do |o|
           symbol = o[0]
@@ -21,14 +21,15 @@ namespace :update do
           basis = o[3]
           put_strike = o[4]
           call_strike = o[5]
-          current_info = Options.yahoo_price(o[0])
+          current_info = Options.repo_price(o[0])
+      #    current_info = Options.yahoo_price(o[0])
           current_price = current_info[1].to_f
           current_gain = quant * (current_price - o[3])
 
           put_option = Options.option_price(symbol, put_strike, exp_date, 'Put Option')
           call_option = Options.option_price(symbol, call_strike, exp_date, 'Call Option')
   
-          output += "#{symbol}, #{quant}, #{basis}, #{current_price}, #{current_info[2]}, #{quant.to_d*current_price.to_d}, #{quant.to_d*current_info[2].to_d}, #{put_strike}, #{put_option['Bid']}, #{put_option['Ask']}, #{call_strike}, #{call_option['Bid']}, #{call_option['Ask']}<br>" 
+          output += "#{symbol}, #{quant}, #{basis}, #{current_price}, #{current_info[2]}, #{quant.to_d*current_price.to_d}, #{quant.to_d*current_info[2].to_d}, #{put_strike}, #{put_option['Bid']}, #{put_option['Ask']}, #{call_strike}, #{call_option['Bid']}, #{call_option['Ask']}\n" 
         end  
   
         output += "End<br>"
@@ -45,9 +46,9 @@ namespace :update do
         to = Email.new(email: 'andy@denenberg.net')
         content = Content.new(type: 'text/html', value: body)
         
-        mail = SendGrid::Mail.new(from, subject, to, content)
-        sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-        response = sg.client.mail._('send').post(request_body: mail.to_json)
+#        mail = SendGrid::Mail.new(from, subject, to, content)
+#        sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+#        response = sg.client.mail._('send').post(request_body: mail.to_json)
         
       end
 
@@ -55,11 +56,11 @@ namespace :update do
 desc "Grats protection"
   task :gprotect => :environment do
 
-  options = [ [ 'AMAT', '01/21/2022', 12800, 42.28, 57.5, 65 ],
-              [ 'CRM', '01/21/2022', 24000, 134.31, 175.0, 190.0 ],
-              [ 'CSCO', '01/21/2022', 63000, 39.06, 42.5, 50.0 ],
-              [ 'INTC', '01/21/2022', 15365, 54.13, 60.0, 65.0 ],
-              [ 'MSFT', '01/21/2022', 12110, 153.83, 190.0, 200.0 ] ]
+    options = [ [ 'AMAT', '01/21/2022', 12800, 42.28, 57.5, 65 ],
+                [ 'CRM', '01/21/2022', 24000, 134.31, 180.0, 210.0 ],
+                [ 'CSCO', '01/21/2022', 63000, 39.06, 42.5, 47.5 ],
+                [ 'INTC', '01/21/2022', 15365, 54.13, 60.0, 65.0 ],
+                [ 'MSFT', '01/21/2022', 12110, 153.83, 190.0, 220.0 ] ]
               
   gain_total = 0 
   gain_change_total = 0           
@@ -76,7 +77,8 @@ desc "Grats protection"
     basis = o[3]
     put_strike = o[4]
     call_strike = o[5]
-    current_info = Options.yahoo_price(o[0])
+    current_info = Options.repo_price(o[0])
+#    current_info = Options.yahoo_price(o[0])
     current_price = current_info[1].to_f
     current_gain = quant * (current_price - o[3])
     gain_total += current_gain
@@ -89,16 +91,16 @@ desc "Grats protection"
     max_band = 100 * (call_strike - current_price) / call_strike
 
     total_cost = sale - cost
-    min_gain = quant * (put_strike - basis - total_cost)
+    min_gain = quant * (put_strike - basis + total_cost)
     min_total += min_gain
-    max_gain = quant * (call_strike - basis - total_cost) 
+    max_gain = quant * (call_strike - basis + total_cost) 
     max_total += max_gain
     cost_total += quant * total_cost   
   
     puts "
     #{ActionController::Base.helpers.number_with_precision(quant, :precision => 0, :delimiter => ',')} of #{symbol} Price: #{ActiveSupport::NumberHelper.number_to_currency(current_price)} (#{current_info[2]})     
     Gain: $#{ActionController::Base.helpers.number_with_precision(current_gain, :precision => 2, :delimiter => ',')} ($#{ActionController::Base.helpers.number_with_precision(gain_change, :precision => 2, :delimiter => ',')})
-    Hedge
+    Basis: #{ActiveSupport::NumberHelper.number_to_currency(basis)} (#{ActionController::Base.helpers.number_with_precision(100*(current_price-basis)/basis, :precision => 2, :delimiter => ',')}% Gain)
     Put: $#{put_strike} Cost: $#{cost} Band: #{ActionController::Base.helpers.number_with_precision(min_band, :precision => 2, :delimiter => ',')}% Min: #{ActiveSupport::NumberHelper.number_to_currency(min_gain)}
     Call: $#{call_strike} Sale: $#{sale} Band: #{ActionController::Base.helpers.number_with_precision(max_band, :precision => 2, :delimiter => ',')}% Max: #{ActiveSupport::NumberHelper.number_to_currency(max_gain)}
     Net Cost: #{ActiveSupport::NumberHelper.number_to_currency(total_cost*quant)} is #{ActionController::Base.helpers.number_with_precision( 100 * (total_cost*quant) / current_gain, :precision => 2, :delimiter => ',')}% of unadjusted gain
@@ -124,7 +126,8 @@ desc "Grats Value"
     current_change = 0
     prices = [ ]
     stocks.each do |s|
-      value = Options.yahoo_price(s[1])
+      value = Options.repo_price(s[1])
+#      value = Options.yahoo_price(s[1])
       current_value = (s[0] * value[1].to_f)
       prices.push value[1]
       current_total += current_value
