@@ -149,7 +149,7 @@ desc "Grats Value"
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '/Users/andydenenberg/Downloads/latest.CSV'
+      file = '/Users/andydenenberg/Downloads/R Roth IRA1.CSV'
       portfolio_name = File.basename(file).split('.').first.gsub('_',' ')
       
       puts portfolio_name
@@ -176,7 +176,7 @@ Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
         
       portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
 
-portfolio_id = 7
+portfolio_id = 14
 
 #      end
       puts
@@ -195,6 +195,8 @@ portfolio_id = 7
         strike = nil
         expiration_date = nil
         quantity = s[2].gsub(',','').to_f
+        price = s[3].gsub('$','').gsub(',','').to_f
+        change = s[4].gsub('$','').gsub(',','').to_f
         purchase_price = s[9].gsub('$','').gsub(',','').to_f / quantity
 
         case s[15]
@@ -222,11 +224,11 @@ portfolio_id = 7
         "name: '#{s[1][0..15]}', " +
         "quantity: #{quantity}, " +
         "daily_dividend: 0, " +
-        "price: 0, " +
-        "change: 0, " +
+        "price: #{price}, " +
+        "change: #{change}, " +
         "as_of: '2018/04/26 23:00PM', " +
         "purchase_price: #{purchase_price}, " +
-        "portfolio_id: p.id, " +  # #{portfolio_id}, " +
+        "portfolio_id: #{portfolio_id}, " +
         "stock_option: '#{stock_option}', " +
         "strike: #{strike.inspect}, " +
         "expiration_date: #{expiration_date.inspect})\n"
