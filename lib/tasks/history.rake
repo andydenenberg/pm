@@ -6,7 +6,7 @@ namespace :history do
           
           require 'sendgrid-ruby'
           include SendGrid
-          body = "Finished at: #{Time.now.strftime("%m/%d %H:%M")}<br>Value: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[0].round)}<br>Change: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[1].round)}<br>"
+          body = "Finished at: #{Time.now.strftime("%m/%d %H:%M")}<br>Value: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[0].round)}<br>Change: $#{ActiveSupport::NumberHelper.number_to_delimited(totals[1].round)}<br><br> RepoUpdate: #{Options.last_repo_update}<br>"
 
           from = Email.new(email: 'winnetkadrone@gmail.com')
           subject = "#{ENV["APP_NAME"]} Daily Snapshot complete"

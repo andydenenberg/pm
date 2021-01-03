@@ -31,6 +31,13 @@ module Options
 		  end
 		return results
   end
+
+  def self.last_repo_update
+    @agent = Mechanize.new
+    url = "https://denrepo.herokuapp.com/lastupdate"
+    lu = @agent.get(url).body
+    return lu
+  end
   
   def self.repo_price(symbol)
     @agent = Mechanize.new { |agent|
