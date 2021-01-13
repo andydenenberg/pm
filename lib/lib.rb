@@ -19,8 +19,9 @@ module Lib
   
   # values = [ 29000000, 26000000, 23000000 ]
   def self.graph_scale(values)
+    s = Sysconfig.first
     if values.max >    25000000
-      max = 45000000 
+      max = s.ytd_max 
     elsif values.max > 20000000
       max = 25000000 
     elsif values.max > 15000000
