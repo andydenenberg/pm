@@ -173,7 +173,7 @@ class History < ApplicationRecord
     Stock.refresh_all('Option')
     Stock.refresh_all('Fund')
 #    Stock.refresh_all_dividends
-    Stock.refresh_dividends
+#    Stock.refresh_dividends
 
     date = Time.now.beginning_of_day()
     
