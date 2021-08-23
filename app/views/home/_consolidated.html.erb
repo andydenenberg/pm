@@ -48,7 +48,7 @@
 	      <th>Stocks</th>
 	      <th>Options</th>
 	      <th><%= link_to 'Total Value', consolidated_path(portfolio_name: @portfolio_name, sort_by: 0) %></th>
-		  <th>Current Month Divs</th>
+		  <th>Last DB refresh date</th>
 	      <th><%= link_to 'Daily Change', consolidated_path(portfolio_name: @portfolio_name, sort_by: 1) %></th>
 	    </tr>
 	  </thead>
@@ -62,7 +62,8 @@
 	        <td class='text-right'><%= number_to_currency(port.total_stocks_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.total_options_value) %></td>
 	        <td class='text-right'><%= number_to_currency(port.cash+port.total_stocks_value + port.total_options_value) %></td>
-			<td class='text-right'><%= link_to number_to_currency(port.total_dividends_value), dividends_new_path(portfolio_name: port.name) %> </td>
+			<td class='text-right'><%= port.updated_at.strftime("Updated on %m/%d/%Y") %> </td>
+			<!-- <%= link_to number_to_currency(port.total_dividends_value), dividends_new_path(portfolio_name: port.name) %> -->
 	        <td class='text-right'><%= number_to_currency(port.total_stocks_change_value) %></td>
 	      </tr>		
 	    <% end %>

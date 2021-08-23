@@ -149,7 +149,7 @@ desc "Grats Value"
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '/Users/andydenenberg/Downloads/R Roth IRA1.CSV'
+      file = '/Users/andydenenberg/Downloads/Marital_Trust_SPC.CSV'
       portfolio_name = File.basename(file).split('.').first.gsub('_',' ')
       
       puts portfolio_name
@@ -176,7 +176,7 @@ Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
         
       portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
 
-portfolio_id = 14
+portfolio_id = 1
 
 #      end
       puts
