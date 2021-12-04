@@ -17,7 +17,7 @@ class Portfolio < ApplicationRecord
   def self.table_data(group_id, sort_by)
     totals = Hash.new
     all = group_id.nil? ? Portfolio.all : Portfolio.where(group_id: group_id)
-    all.each { |p| totals[p.id] = [ (p.cash + p.total_stocks_value + p.total_options_value).to_f, p.total_stocks_change_value, p.cash, p.updated_at ] }
+    all.each { |p| totals[p.id] = [ (p.cash + p.total_stocks_value + p.total_options_value).to_f, p.total_stocks_change_value, p.cash, p.updated_at.to_i ] }
     ordered = Portfolio.find(totals.sort_by { |key, value_change | -value_change[sort_by] }.collect { |id, value| id })
     total_cash = all.sum { |s| s.cash }
     total_stocks = all.sum { |s| s.total_stocks_value }
