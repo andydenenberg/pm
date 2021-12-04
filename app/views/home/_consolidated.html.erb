@@ -48,7 +48,7 @@
 	      <th>Stocks</th>
 	      <th>Options</th>
 	      <th><%= link_to 'Total Value', consolidated_path(portfolio_name: @portfolio_name, sort_by: 0) %></th>
-		  <th><%= link_to 'Last DB refresh date' consolidated_path(portfolio_name: @portfolio_name, sort_by: 3) %></th>
+		  <th><%= link_to 'Last DB refresh date', consolidated_path(portfolio_name: @portfolio_name, sort_by: 3) %></th>
 	      <th><%= link_to 'Daily Change', consolidated_path(portfolio_name: @portfolio_name, sort_by: 1) %></th>
 	    </tr>
 	  </thead>
