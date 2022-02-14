@@ -54,7 +54,10 @@ class History < ApplicationRecord
         selected_date = Time.local(year, month, day)
         new_value = History.where(:portfolio_id => p_ids[0]).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if p_ids[1] # group is true
-          new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
+          nv = 0
+          new_value.each { |v| nv += v.total.to_f.round(0) }
+          new_value = nv
+#          new_value = new_value.sum(0) { |v| v.total.to_f.round(0) }
         else                 
            if new_value.last.nil? 
              new_value = 0
@@ -127,7 +130,10 @@ class History < ApplicationRecord
         selected_date = Time.local(year, month, day)
         value = History.where(:portfolio_id => p_ids).where(:snapshot_date => selected_date.beginning_of_day..selected_date.end_of_day)
         if value.count == p_ids.count 
-          value = value.sum(0) { |v| v.total }.to_f
+          val = 0
+          value.each { |v| val += v.total }
+          value = val.to_f
+#          value = value.sum(0) { |v| v.total }.to_f
           rel = ((value / reference_level) - 1).to_f 
           
           

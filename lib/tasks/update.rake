@@ -170,11 +170,11 @@ desc "Grats Value"
         portfolio += "p.cash = #{cash}\n"
         portfolio += "p.save\n"
 
-portfolio_ids = { } 
+#portfolio_ids = { } 
 # run the following in Heroku and place result in-line below
-Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
+#Portfolio.all.each { |p| puts "portfolio_ids['#{p.name}'] = #{p.id}" }
         
-      portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
+#      portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
 
 portfolio_id = 16
 

@@ -136,7 +136,10 @@
 					        <td><%= div.symbol %></td>
 							<td class='text-right'> <%= time_ago_in_words (div.date) %> ago</td>
 							<td class='text-right'> <%= number_to_currency( div.amount ) %>/share</td>
-							<td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td>
+							<% q = 0 %>
+							<% Stock.where(symbol: div.symbol).each { |s| q += s.quantity } %>
+							<td class='text-right'> <%= number_to_currency( div.amount * q, precision: 0 ) %></td>
+							<!-- ><td class='text-right'> <%= number_to_currency( div.amount * Stock.where(symbol: div.symbol).sum(0) { |s| s.quantity }, precision: 0 ) %></td> -->
 						</tr>
 						<% end %>
 						<tr>

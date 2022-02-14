@@ -38,7 +38,9 @@ class Stock < ApplicationRecord
     values_changes = [ ]
     symbols.each do |sym| 
       s = stocks_funds.where(symbol: sym)
-       quantity = s.sum(0) { |q| q.quantity }
+      quantity = 0
+      s.each { |q| quantity += q.quantity }
+#       quantity = s.sum(0) { |q| q.quantity }
        price = s.first.price ||= 0
        change = s.first.change ||= 0
        daily_dividend = s.last.daily_dividend ||= 0
@@ -57,47 +59,51 @@ class Stock < ApplicationRecord
        ]
     end
     stocks = values_changes.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] }
-    total_value = stocks.sum(0) { |data| data[2] } 
-    total_change = stocks.sum(0) { |data| data[3] }
+    total_value = 0
+    stocks.each { |data| total_value += data[2] }
+#    total_value = stocks.sum(0) { |data| data[2] } 
+    total_change = 0
+    stocks.each { |data| total_change += data[3] }
+#   total_change = stocks.sum(0) { |data| data[3] }
 
     return [ stocks, nil, total_value, total_change ]
   end
 
-  def self.table_data_old(portfolio_group_name, sort_column, sort_direction)
-      translate = { symbol: 0, value: 2, change: 3, dividends: 7 }
-      column = translate[sort_column.to_sym]
-
-      stocks = Stock.where(portfolio_id: Lib.translate_groupids(portfolio_group_name).first )
-      stocks_funds = stocks.where(stock_option: 'Stock').or(stocks.where(stock_option: 'Fund'))
-
-      symbols = stocks_funds.distinct.pluck(:symbol)
-      values = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.price ||= 0) ).to_f }] }
-      total_value = values.sum(0) { |sym, value| value }.to_f
-      change = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.change ||= 0) ).to_f }] }
-      total_change = change.sum(0) { |sym, value| value }.to_f
-
-      stocks = values.collect { |sym, value| [ sym, 
-          stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
-          value,
-          ( (stocks_funds.where(symbol: sym).first.change ||= 0 ) * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
-          nil, # stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
-          stocks_funds.where(symbol: sym).first.price,
-          stocks_funds.where(symbol: sym).first.change,
-          stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }, # dividends
-          stocks_funds.where(symbol: sym).collect { |s| #portfolios
-              [ Portfolio.find(s.portfolio_id).name, s.quantity ] }.sort_by { |sym, quantity| -quantity }.collect { |sym, quantity| 
-                "#{sym}: #{quantity.round.to_s.split(/(?=(?:...)*$)/).join(',')}"}.to_s.gsub('"','').gsub('[','').gsub(']',''),
-          stocks_funds.where(symbol: sym).first.daily_dividend.to_f, # dividend / share
-
-  #     ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
-        ] }.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] } 
-
-
-       dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.daily_dividend ||= 0) ).to_f }] }
-       dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
-        
-      return [ stocks, dividends, total_value, total_change ]
-  end
+#  def self.table_data_old(portfolio_group_name, sort_column, sort_direction)
+#      translate = { symbol: 0, value: 2, change: 3, dividends: 7 }
+#      column = translate[sort_column.to_sym]
+#
+#      stocks = Stock.where(portfolio_id: Lib.translate_groupids(portfolio_group_name).first )
+#      stocks_funds = stocks.where(stock_option: 'Stock').or(stocks.where(stock_option: 'Fund'))
+#
+#      symbols = stocks_funds.distinct.pluck(:symbol)
+#      values = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.price ||= 0) ).to_f }] }
+#      total_value = values.sum(0) { |sym, value| value }.to_f
+#      change = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.change ||= 0) ).to_f }] }
+#      total_change = change.sum(0) { |sym, value| value }.to_f
+#
+#      stocks = values.collect { |sym, value| [ sym, 
+#          stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity.to_f },
+#          value,
+#          ( (stocks_funds.where(symbol: sym).first.change ||= 0 ) * stocks_funds.where(symbol: sym).sum(0) { |data| data.quantity } ).to_f,
+#          nil, # stocks_funds.where(symbol: sym).collect { |stock| stock.portfolio_id }.collect { |id| Portfolio.find(id).name }.join(', '),
+#          stocks_funds.where(symbol: sym).first.price,
+#          stocks_funds.where(symbol: sym).first.change,
+#          stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * data.daily_dividend).to_f }, # dividends
+#          stocks_funds.where(symbol: sym).collect { |s| #portfolios
+#              [ Portfolio.find(s.portfolio_id).name, s.quantity ] }.sort_by { |sym, quantity| -quantity }.collect { |sym, quantity| 
+#                "#{sym}: #{quantity.round.to_s.split(/(?=(?:...)*$)/).join(',')}"}.to_s.gsub('"','').gsub('[','').gsub(']',''),
+#          stocks_funds.where(symbol: sym).first.daily_dividend.to_f, # dividend / share
+#
+#  #     ] }.sort_by {|data| sort_direction == 'asc' ? -data[column] : data[column] }
+#        ] }.sort { |x,y| sort_direction == 'asc' ? y[column] <=> x[column] : x[column] <=> y[column] } 
+#
+#
+#       dividends = symbols.collect { |sym| [ sym, stocks_funds.where(symbol: sym).sum(0) { |data| (data.quantity * (data.daily_dividend ||= 0) ).to_f }] }
+#       dividends = dividends.select { |s,d| d > 0 }.sort_by { |sym, dividend| -dividend }
+#        
+#      return [ stocks, dividends, total_value, total_change ]
+#  end
   
   def self.refresh_all(stock_option)
 
@@ -189,7 +195,10 @@ class Stock < ApplicationRecord
     stocks.each do |s|
       div = Dividend.where(symbol: s.symbol, date: Date.today-1.week..Date.today)
       if !div.empty? 
-        s.daily_dividend = div.sum(0) { |d| d.amount }
+        dd = 0
+        div.each { |d| dd += d.amount }
+        s.daily_dividend = dd
+#        s.daily_dividend = div.sum(0) { |d| d.amount }
         s.daily_dividend_date = div.last.date
         s.save
       end
@@ -212,10 +221,13 @@ class Stock < ApplicationRecord
         
         total_year = 0
         quantity = 0
-        quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
+        stocks_funds.where(symbol: sym).each { |s| quantity += s.quantity.to_f }
+#       quantity = stocks_funds.where(symbol: sym).sum(0) { |s| s.quantity.to_f }
         price = Stock.find_by_symbol(sym).price ||= 0
           stockorfund = Dividend.where(symbol: sym)
-          amount = stockorfund.sum(0) { |sf| sf.amount }
+          amount = 0
+          stockorfund.each { |sf| amount += sf.amount }
+#          amount = stockorfund.sum(0) { |sf| sf.amount }
             total_year += (amount * quantity)
               divs = stockorfund.collect { |sf| [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ] }
               stockorfund.each do |sf|                
@@ -238,7 +250,8 @@ class Stock < ApplicationRecord
           ctotal = 0
           all_divs.each do |sym| # [sym, divs, quantity, total_year, annual_yield]
                                     # divs = [ sf.year, sf.month, sf.amount, sf.date.strftime('%Y-%m-%d') ]
-            ctotal += sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2] * sym[2] }
+            sym[1].select { |d| d[1] == month and d[0] == year }.each { |t| ctotal += t[2] * sym[2] }           
+#            ctotal += sym[1].select { |d| d[1] == month and d[0] == year }.sum(0) { |t| t[2] * sym[2] }
           end
           current_year.push ctotal.to_f
         end

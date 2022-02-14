@@ -44,7 +44,9 @@ class HomeController < ApplicationController
       
 #      @stocks = Stock.where(stock_option: ['Stock', 'Fund']).order('symbol ASC')
       @options = Stock.where(stock_option: ['Call Option', 'Put Option']).order('quantity DESC')
-      @cash = Portfolio.all.sum(0) { |p| p.cash }
+      @cash = 0
+      Portfolio.all.each { |p| @cash += p.cash }
+#      @cash = Portfolio.all.sum(0) { |p| p.cash }
       @total_options_value = Portfolio.all.sum { |p| p.total_options_value }
       @total_stocks_value = Portfolio.all.sum { |p| p.total_stocks_value }
       @total_stocks_change = Portfolio.all.sum { |p| p.total_stocks_change_value }

@@ -10,7 +10,9 @@ class Portfolio < ApplicationRecord
   end
 
   def money_market
-    mm = self.stocks.where(symbol: 'SWVXX').or(self.stocks.where(symbol: 'VMFXX')).or(self.stocks.where(symbol: 'SNVXX')).or(self.stocks.where(symbol: 'SNAXX')).sum(0) { |m| m.quantity }
+    mm = 0
+    self.stocks.where(symbol: 'SWVXX').or(self.stocks.where(symbol: 'VMFXX')).or(self.stocks.where(symbol: 'SNVXX')).or(self.stocks.where(symbol: 'SNAXX')).each { |m| mm += m.quantity }
+#    mm = self.stocks.where(symbol: 'SWVXX').or(self.stocks.where(symbol: 'VMFXX')).or(self.stocks.where(symbol: 'SNVXX')).or(self.stocks.where(symbol: 'SNAXX')).sum(0) { |m| m.quantity }
     return mm
   end
   
