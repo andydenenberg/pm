@@ -149,7 +149,7 @@ desc "Grats Value"
     task :update_portfolio => :environment do
       require 'csv'
 
-      file = '/Users/andydenenberg/Downloads/BAD Inherited Roth.CSV'
+      file = '/Users/andydenenberg/Downloads/Fir Tree Mountain LLC.CSV'
       portfolio_name = File.basename(file).split('.').first.gsub('_',' ')
       
       puts portfolio_name
