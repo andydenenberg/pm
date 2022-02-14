@@ -74,7 +74,7 @@
 			<% pmm = 0 %>
 			<% Portfolio.all.each { |p| pmm += p.money_market } %>
 			<td class='text-right'><%= number_to_currency( pmm ) %></td>
-			<!-- <td class='text-right'><%= number_to_currency(Portfolio.all.sum(0) { |p| p.money_market }) %></td> -->
+			<!-- <td class='text-right'>< %= number_to_currency(Portfolio.all.sum(0) { |p| p.money_market }) %></td> -->
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[2]) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[3]) %></td>
 	        <td class='text-right'><%= number_to_currency(@portfolios_data[1]+@portfolios_data[2]+@portfolios_data[3]) %></td>
