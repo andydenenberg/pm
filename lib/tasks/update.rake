@@ -176,7 +176,7 @@ desc "Grats Value"
         
 #      portfolio_id = portfolio_ids[portfolio_name] # Portfolio.where(:name => portfolio_name).first.id
 
-portfolio_id = 16
+portfolio_id = 2
 
 #      end
       puts
