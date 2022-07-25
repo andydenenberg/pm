@@ -88,9 +88,6 @@ task :setup => ["db:migrate",
 
     desc 'Refresh on Request'
       task :refresh_on_request => :environment do
-
-#        uri = URI.parse(ENV["REDISTOGO_URL"])
-#        REDIS = Redis.new(:url => uri)
           state = REDIS.get("poll_request")
           if  state == 'Waiting' || state == 'Updating'
             REDIS.set("poll_request", 'Complete')
